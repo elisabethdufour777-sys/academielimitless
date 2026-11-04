@@ -538,6 +538,11 @@ const MODULES=[
   {id:"bd1",t:"J'ai répondu aux 5 questions"},
   {id:"bd2",t:"J'ai collé mon prompt dans Claude et reçu mon branding"},
   {id:"bd3",t:"J'ai collé le résumé dans mon projet « Mon contenu »"}]},
+ {id:"siteperso",n:"",sub:"Claude AI",title:"Créer ton site web personnalisé",group:"SOC",lessons:[
+  {id:"sp-site-1",t:"J'ai téléchargé le modèle et le prompt"},
+  {id:"sp-site-2",t:"J'ai personnalisé mon nom, ma photo, ma bio et mes liens"},
+  {id:"sp-site-3",t:"J'ai prévisualisé mon site et vérifié mes boutons"},
+  {id:"sp-site-4",t:"J'ai publié mon Artifact et copié mon lien"}]},
  {id:"claude",n:"06",sub:"Claude AI",title:"Créer plus vite avec Claude",group:"SOC",lessons:[
   {id:"a1",t:"J'ai créé mon projet « Mon contenu » dans Claude avec ma voix"},
   {id:"a2",t:"J'ai fait mon premier carrousel avec Claude"},
@@ -1024,6 +1029,24 @@ claude(m){
 },
 branding(m){
   return head(m,"Une palette de couleurs, des polices et des modèles de stories et de posts qui te ressemblent. Tu réponds à 5 questions, et Claude fait le reste.")+brandView()+lessons(m)+nav(m);
+
+},
+siteperso(m){
+  return head(m,"Crée une page qui permet aux gens de te connaître, puis publie-la comme Artifact Claude avec ton propre lien.")+
+  `<section class="blk"><h2>Ton modèle et ton prompt</h2><div class="vs">
+   <div class="card"><span class="sticker st-sun">À télécharger</span><h3>Le modèle du site</h3><p>Le code complet du site Limitless dans un fichier texte. Tu vas le joindre à ta conversation Claude.</p><a class="btn" href="/site-personnalise-limitless.txt" download="site-personnalise-limitless.txt">Télécharger le modèle (.txt)</a></div>
+   <div class="card"><span class="sticker st-sun">À copier dans Claude</span><h3>Le prompt de personnalisation</h3><p>Il guide Claude pour remplacer tes informations et créer ton Artifact sans inventer ton histoire ou tes liens.</p><a class="btn" href="/prompt-site-personnalise-claude.txt" download="prompt-site-personnalise-claude.txt">Télécharger le prompt (.txt)</a></div>
+  </div></section>
+  <section class="blk"><h2>Crée et publie ta page</h2><div class="prose"><ol>
+   <li>Télécharge les deux fichiers texte sur ton appareil.</li>
+   <li>Ouvre <a href="https://claude.ai" target="_blank" rel="noopener">Claude</a> et commence une nouvelle conversation. Un compte Claude est nécessaire pour créer et publier ton Artifact.</li>
+   <li>Ajoute le fichier <b>site-personnalise-limitless.txt</b> à la conversation, puis ouvre le fichier du prompt, copie son texte et colle-le dans Claude.</li>
+   <li>Réponds aux questions de Claude avec ton prénom, ta photo, ta bio, ton ID Partner.Co et tes liens sociaux. Choisis une palette : prune, sable ou lavande.</li>
+   <li>Prévisualise le site. Vérifie surtout ta photo, ton lien boutique et tes boutons Facebook, Messenger et Instagram.</li>
+   <li>Quand tout est prêt, publie l'Artifact dans Claude et copie le lien public pour le partager.</li>
+  </ol></div><div class="pill-row"><a class="btn ghost" href="https://claude.ai" target="_blank" rel="noopener">Ouvrir Claude ↗</a></div></section>
+  <section class="blk"><h2>Ton lien boutique Partner.Co</h2><div class="prose"><p>Utilise l'ID personnel reçu par courriel lors de ton inscription. Le lien à mettre sur ton site est <b>https://partner.co/nfr-ca/</b> suivi de ton ID, par exemple <b>https://partner.co/nfr-ca/A1234567</b>. Vérifie-le avant la publication.</p></div></section>
+  <div class="card"><span class="sticker st-ok">À savoir</span><p>Claude te donnera un lien public vers ton Artifact. Chaque membre publie et garde la responsabilité de sa propre page; pour changer son site plus tard, elle pourra le modifier dans Claude puis le republier.</p></div>`+lessons(m)+nav(m);
 },
 claudepro(m){
   return head(m,"La première étape avant d'utiliser Claude pour ton contenu : ton compte, ton abonnement, les applis et ton projet. Tu le fais une seule fois.")+
@@ -1397,6 +1420,7 @@ const MDESC={
  reels:"Les formats qui accrochent et des scripts prêts à filmer.",
  claudepro:"Ton compte, ton abonnement, les applis et ton projet « Mon contenu ».",
  branding:"5 questions pour créer ta palette, tes polices et tes modèles de stories et de posts.",
+ siteperso:"Un modèle et un prompt pour créer, personnaliser et publier ton propre site avec Claude.",
  claude:"Tes carrousels, tes covers de reels et tes idées de contenu, plus vite.",
  chrome:"L'audit de ton profil et ta direction de contenu avec Claude dans Chrome.",
  dm:"Les scripts pour répondre, relancer une seule fois et conclure sans gosser.",
@@ -1408,7 +1432,7 @@ const MDESC={
  storiesprod:"Des séquences de 6 stories à télécharger, prêtes à publier.",
  temoignages:"Comment recueillir et partager des témoignages conformes."
 };
-const SUB_DESC={"Les bases":"Le bon ton pour attirer sans faire pub, et ce qu'on peut dire (ou pas).","Créer ton contenu":"Ton mur, tes stories et tes reels, avec des idées et des scripts prêts à utiliser.","Claude AI":"Créer ton contenu plus vite et faire l'audit de ton profil avec Claude.","Vendre et recruter":"Les messages privés et le recrutement, sans gosser personne.","Passer à l'action":"Le défi de 14 jours pour tout mettre en pratique."};
+const SUB_DESC={"Les bases":"Le bon ton pour attirer sans faire pub, et ce qu'on peut dire (ou pas).","Créer ton contenu":"Ton mur, tes stories et tes reels, avec des idées et des scripts prêts à utiliser.","Claude AI":"Créer ton contenu, ton site personnalisé et faire l'audit de ton profil avec Claude.","Vendre et recruter":"Les messages privés et le recrutement, sans gosser personne.","Passer à l'action":"Le défi de 14 jours pour tout mettre en pratique."};
 const slug=t=>t.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
 function sumDone(mods){let a=0,b=0;mods.forEach(x=>{const [d,t]=modDone(x);a+=d;b+=t;});return [a,b,b?Math.round(a/b*100):0];}
 function modCard(m){const [d,t]=modDone(m);const p=t?Math.round(d/t*100):0;
