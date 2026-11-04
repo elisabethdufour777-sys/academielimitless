@@ -239,8 +239,8 @@ tr:last-child td{border-bottom:0}
 .day input{width:20px;height:20px;accent-color:var(--ok)}
 
 .home-hero{background:var(--accent);color:var(--accent-ink);border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:12px}
-.home-team-photo{display:block;width:100%;aspect-ratio:2.5/1;object-fit:cover;object-position:center 68%;border-radius:20px}
-@media(max-width:620px){.home-team-photo{aspect-ratio:3/2;object-position:center center}}
+.home-team-photo{display:block;width:100%;aspect-ratio:4/1;object-fit:cover;object-position:center 68%;border-radius:14px}
+@media(max-width:620px){.home-team-photo{aspect-ratio:2/1;object-position:center 66%}}
 .home-hero h1{font-size:clamp(28px,5vw,46px);font-weight:800;letter-spacing:-.03em}
 .home-hero p{font-size:18px;max-width:58ch;opacity:.92}
 .rule3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
@@ -918,8 +918,8 @@ accueil(m){
      <p class="cat-d">${esc(c.desc)}</p><div class="bar"><i style="width:${pc}%"></i></div>
      </div></a>`;
   }).join("");
-  return `<img class="home-team-photo" src="/img/equipe-limitless.jpg" alt="L’équipe Limitless réunie sur la plage"><div class="home-hero"><div class="kicker" style="color:inherit;opacity:.8">Équipe Limitless · Partner.Co</div>
-  <h1>Bienvenue dans l'équipe Limitless</h1>
+  return `<div class="home-hero"><div class="kicker" style="color:inherit;opacity:.8">Équipe Limitless · Partner.Co</div>
+  <h1>Bienvenue dans l'équipe Limitless</h1><img class="home-team-photo" src="/img/equipe-limitless.jpg" alt="L’équipe Limitless réunie sur la plage">
   <p>Ici, tu trouveras tout ce dont tu as besoin pour faire de ta décision un succès. Choisis ce que tu veux travailler aujourd'hui : pas besoin de suivre l'ordre.</p>
   ${p>0?`<div class="pill-row"><a class="btn" style="background:var(--sun);color:var(--sun-ink)" href="#${state.last&&MODULES.some(x=>x.id===state.last)?state.last:firstOpen()}">Reprendre où j'étais rendue →</a></div>`:`<div class="pill-row"><a class="btn" style="background:var(--sun);color:var(--sun-ink)" href="#cahier">Commencer ma première semaine →</a></div>`}</div>
   
