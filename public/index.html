@@ -194,6 +194,8 @@ section.blk>h2{font-size:24px;font-weight:700;letter-spacing:-.01em}
 .pt-h h3{font-size:17px;flex:1;min-width:0}
 .pt-tip{font-size:14px;color:var(--muted)}
 .acct{gap:10px;margin-bottom:6px}
+.acct-on{flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:space-between}
+section.acct-top{margin-top:20px}
 .acct-f{display:grid;grid-template-columns:1fr 1.4fr auto;gap:8px}
 @media (max-width:720px){.acct-f{grid-template-columns:1fr}}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
@@ -918,9 +920,10 @@ accueil(m){
   <h1>Bienvenue dans l'équipe Limitless</h1>
   <p>Ici, tu trouveras tout ce dont tu as besoin pour faire de ta décision un succès. Choisis ce que tu veux travailler aujourd'hui : pas besoin de suivre l'ordre.</p>
   ${p>0?`<div class="pill-row"><a class="btn" style="background:var(--sun);color:var(--sun-ink)" href="#${state.last&&MODULES.some(x=>x.id===state.last)?state.last:firstOpen()}">Reprendre où j'étais rendue →</a></div>`:`<div class="pill-row"><a class="btn" style="background:var(--sun);color:var(--sun-ink)" href="#cahier">Commencer ma première semaine →</a></div>`}</div>
+  ${ACCT.avail?`<section class="blk acct-top">${acctHTML()}</section>`:""}
   ${startHere()}
   <section class="blk"><div class="cats">${cards}</div></section>
-  <section class="blk"><h2>Ta progression</h2>${acctHTML()}<p class="prose">${ACCT.email?"Tu peux aussi":"Sans compte, ta progression est gardée seulement dans ce navigateur. Tu changes d'appareil? Tu peux"} créer un lien de transfert, te l'envoyer (par courriel ou Messenger), puis l'ouvrir sur l'autre appareil : tes cases cochées et tes réponses du cahier suivent.</p>
+  <section class="blk"><h2>Ta progression</h2><p class="prose">${ACCT.email?"Tu peux aussi":"Sans compte, ta progression est gardée seulement dans ce navigateur. Tu changes d'appareil? Tu peux"} créer un lien de transfert, te l'envoyer (par courriel ou Messenger), puis l'ouvrir sur l'autre appareil : tes cases cochées et tes réponses du cahier suivent.</p>
   <div class="pill-row"><button class="btn" id="sync-make" type="button">Créer mon lien de transfert</button><button class="reset" id="reset">Remettre ma progression à zéro</button></div>
   <div id="sync-out"></div><div id="confirm"></div><p class="ref">Ton lien contient tes réponses du cahier mindset : envoie-le seulement à toi-même.</p></section>`;
 },
@@ -1691,7 +1694,7 @@ document.addEventListener("click",async e=>{
 let ACCT={avail:false,email:null,msg:"",busy:false};
 function acctHTML(){
   if(!ACCT.avail)return "";
-  if(ACCT.email)return `<div class="card acct"><span class="sticker st-ok">Connectée</span><p>Tu es connectée avec <b>${esc(ACCT.email)}</b>. Ta progression est sauvegardée et te suit sur ton téléphone comme sur ton ordi.</p><div class="pill-row"><button class="btn ghost" id="acct-out" type="button">Me déconnecter</button></div>${ACCT.msg?`<p class="cz-msg">${esc(ACCT.msg)}</p>`:""}</div>`;
+  if(ACCT.email)return `<div class="card acct acct-on"><div><span class="sticker st-ok">Connectée</span> <span>${esc(ACCT.email)} · ta progression te suit sur tous tes appareils.</span></div><button class="sc-btn" id="acct-out" type="button">Me déconnecter</button>${ACCT.msg?`<p class="cz-msg" style="flex-basis:100%">${esc(ACCT.msg)}</p>`:""}</div>`;
   return `<div class="card acct"><h3>Garde ta progression sur tous tes appareils</h3><p>Entre ton courriel : tu reçois un lien de connexion, sans mot de passe. Tes cases cochées et tes réponses du cahier te suivent ensuite partout. Elles restent privées, liées à ton compte.</p>
    <form id="acct-form" class="acct-f" novalidate><input class="cz-in" id="acct-prenom" type="text" autocomplete="given-name" placeholder="Ton prénom" maxlength="60"><input class="cz-in" id="acct-email" type="email" autocomplete="email" inputmode="email" placeholder="Ton courriel" required><button class="btn" type="submit" ${ACCT.busy?"disabled":""}>${ACCT.busy?"Envoi…":"M'envoyer mon lien de connexion"}</button></form>
    ${ACCT.msg?`<p class="cz-msg">${esc(ACCT.msg)}</p>`:""}</div>`;
@@ -1718,7 +1721,7 @@ async function acctVerify(token){
     if(r.ok&&j.ok){ACCT.email=j.email;mergeState(j.state);ACCT.msg="Bienvenue! Tu es connectée et ta progression est synchronisée.";save();acctPush();}
     else ACCT.msg="Ce lien a expiré ou a déjà servi. Entre ton courriel pour en recevoir un nouveau.";}
   catch(e){ACCT.msg="La connexion n'a pas fonctionné. Réessaie dans un instant.";}
-  render();window.scrollTo(0,0);setTimeout(()=>{const el=document.getElementById("acct-form")||document.querySelector(".acct");if(el)el.scrollIntoView({block:"center"});},50);
+  render();window.scrollTo(0,0);
 }
 async function acctInit(){
   try{const r=await fetch("/api/me",{credentials:"same-origin",cache:"no-store"});if(!r.ok)return;
