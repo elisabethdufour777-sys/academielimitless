@@ -193,6 +193,9 @@ section.blk>h2{font-size:24px;font-weight:700;letter-spacing:-.01em}
 .pt-h{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
 .pt-h h3{font-size:17px;flex:1;min-width:0}
 .pt-tip{font-size:14px;color:var(--muted)}
+.acct{gap:10px;margin-bottom:6px}
+.acct-f{display:grid;grid-template-columns:1fr 1.4fr auto;gap:8px}
+@media (max-width:720px){.acct-f{grid-template-columns:1fr}}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chip{border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:99px;padding:7px 14px;font-weight:600;font-size:14px}
 .chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
@@ -811,7 +814,7 @@ const PROMPTS=[
 const KEY="limitless-academie-v1";
 let state={done:{},days:{},interests:["sante"]};
 try{const s=JSON.parse(localStorage.getItem(KEY)||"null");if(s&&typeof s==="object")state={...state,...s};}catch(e){}
-function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}if(typeof acctQueuePush==="function")acctQueuePush();}
 
 const ALL_LESSONS=MODULES.flatMap(m=>m.lessons.map(l=>l.id));
 function progress(){
@@ -917,7 +920,7 @@ accueil(m){
   ${p>0?`<div class="pill-row"><a class="btn" style="background:var(--sun);color:var(--sun-ink)" href="#${state.last&&MODULES.some(x=>x.id===state.last)?state.last:firstOpen()}">Reprendre où j'étais rendue →</a></div>`:`<div class="pill-row"><a class="btn" style="background:var(--sun);color:var(--sun-ink)" href="#cahier">Commencer ma première semaine →</a></div>`}</div>
   ${startHere()}
   <section class="blk"><div class="cats">${cards}</div></section>
-  <section class="blk"><h2>Ta progression</h2><p class="prose">Elle est gardée dans ce navigateur, sur cet appareil. Tu changes de téléphone ou tu veux continuer sur ton ordi? Crée ton lien de transfert, envoie-le-toi (par courriel ou Messenger), puis ouvre-le sur l'autre appareil : tes cases cochées et tes réponses du cahier suivent.</p>
+  <section class="blk"><h2>Ta progression</h2>${acctHTML()}<p class="prose">${ACCT.email?"Tu peux aussi":"Sans compte, ta progression est gardée seulement dans ce navigateur. Tu changes d'appareil? Tu peux"} créer un lien de transfert, te l'envoyer (par courriel ou Messenger), puis l'ouvrir sur l'autre appareil : tes cases cochées et tes réponses du cahier suivent.</p>
   <div class="pill-row"><button class="btn" id="sync-make" type="button">Créer mon lien de transfert</button><button class="reset" id="reset">Remettre ma progression à zéro</button></div>
   <div id="sync-out"></div><div id="confirm"></div><p class="ref">Ton lien contient tes réponses du cahier mindset : envoie-le seulement à toi-même.</p></section>`;
 },
@@ -1685,12 +1688,69 @@ document.addEventListener("click",async e=>{
     try{await navigator.clipboard.writeText(window.__syncLink);m.textContent="Lien copié! Colle-le dans un courriel ou un message à toi-même.";}
     catch(err){m.innerHTML=`Copie ce lien à la main : <span style="word-break:break-all">${esc(window.__syncLink)}</span>`;}}
 });
+let ACCT={avail:false,email:null,msg:"",busy:false};
+function acctHTML(){
+  if(!ACCT.avail)return "";
+  if(ACCT.email)return `<div class="card acct"><span class="sticker st-ok">Connectée</span><p>Tu es connectée avec <b>${esc(ACCT.email)}</b>. Ta progression est sauvegardée et te suit sur ton téléphone comme sur ton ordi.</p><div class="pill-row"><button class="btn ghost" id="acct-out" type="button">Me déconnecter</button></div>${ACCT.msg?`<p class="cz-msg">${esc(ACCT.msg)}</p>`:""}</div>`;
+  return `<div class="card acct"><h3>Garde ta progression sur tous tes appareils</h3><p>Entre ton courriel : tu reçois un lien de connexion, sans mot de passe. Tes cases cochées et tes réponses du cahier te suivent ensuite partout. Elles restent privées, liées à ton compte.</p>
+   <form id="acct-form" class="acct-f" novalidate><input class="cz-in" id="acct-prenom" type="text" autocomplete="given-name" placeholder="Ton prénom" maxlength="60"><input class="cz-in" id="acct-email" type="email" autocomplete="email" inputmode="email" placeholder="Ton courriel" required><button class="btn" type="submit" ${ACCT.busy?"disabled":""}>${ACCT.busy?"Envoi…":"M'envoyer mon lien de connexion"}</button></form>
+   ${ACCT.msg?`<p class="cz-msg">${esc(ACCT.msg)}</p>`:""}</div>`;
+}
+function acctRefresh(){const id=(location.hash||"#accueil").slice(1);if(id===""||id==="accueil")keepScroll(render);}
+const ACCT_KEYS=["done","days","interests","answers","brand","edits","yisPhase","seen","last","open"];
+function acctPayload(){const o={};ACCT_KEYS.forEach(k=>{if(state[k]!==undefined)o[k]=state[k];});return o;}
+let acctTimer=null;
+function acctQueuePush(){if(!ACCT.email)return;clearTimeout(acctTimer);acctTimer=setTimeout(acctPush,1500);}
+async function acctPush(){if(!ACCT.email)return;try{const r=await fetch("/api/progress",{method:"PUT",credentials:"same-origin",headers:{"content-type":"application/json"},body:JSON.stringify(acctPayload())});if(r.status===401){ACCT.email=null;acctRefresh();}}catch(e){}}
+function mergeState(sv){if(!sv||typeof sv!=="object")return;
+  const orMap=(a,b)=>{const o={...(a||{})};Object.entries(b||{}).forEach(([k,v])=>{if(v)o[k]=v;});return o;};
+  const filled=o=>Object.fromEntries(Object.entries(o||{}).filter(([k,v])=>v!==""&&v!=null));
+  state.done=orMap(sv.done,state.done);state.days=orMap(sv.days,state.days);
+  state.answers={...(sv.answers||{}),...filled(state.answers)};
+  state.edits={...(sv.edits||{}),...(state.edits||{})};
+  state.seen=[...new Set([...(sv.seen||[]),...(state.seen||[])])];
+  ["brand","yisPhase","last"].forEach(k=>{if(state[k]==null&&sv[k]!=null)state[k]=sv[k];});
+  if((!state.interests||!state.interests.length||(state.interests.length===1&&state.interests[0]==="sante"))&&Array.isArray(sv.interests)&&sv.interests.length)state.interests=sv.interests;
+}
+async function acctVerify(token){
+  history.replaceState(null,"","#accueil");
+  try{const r=await fetch("/api/verify",{method:"POST",credentials:"same-origin",headers:{"content-type":"application/json"},body:JSON.stringify({token})});const j=await r.json().catch(()=>({}));
+    if(r.ok&&j.ok){ACCT.email=j.email;mergeState(j.state);ACCT.msg="Bienvenue! Tu es connectée et ta progression est synchronisée.";save();acctPush();}
+    else ACCT.msg="Ce lien a expiré ou a déjà servi. Entre ton courriel pour en recevoir un nouveau.";}
+  catch(e){ACCT.msg="La connexion n'a pas fonctionné. Réessaie dans un instant.";}
+  render();window.scrollTo(0,0);setTimeout(()=>{const el=document.getElementById("acct-form")||document.querySelector(".acct");if(el)el.scrollIntoView({block:"center"});},50);
+}
+async function acctInit(){
+  try{const r=await fetch("/api/me",{credentials:"same-origin",cache:"no-store"});if(!r.ok)return;
+    const ct=r.headers.get("content-type")||"";if(!ct.includes("json"))return;const j=await r.json();if(!j||j.ok!==true)return;
+    ACCT.avail=true;ACCT.email=j.auth?j.email:null;
+    if(location.hash.startsWith("#login=")){await acctVerify(location.hash.slice(7));return;}
+    if(ACCT.email){const g=await fetch("/api/progress",{credentials:"same-origin",cache:"no-store"});const pj=await g.json().catch(()=>({}));if(pj&&pj.ok){mergeState(pj.state);try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}acctPush();openGroups=new Set(Array.isArray(state.open)?state.open:[]);render();return;}}
+    acctRefresh();
+  }catch(e){}
+}
+document.addEventListener("submit",async e=>{
+  if(e.target.id!=="acct-form")return;e.preventDefault();
+  const email=document.getElementById("acct-email").value.trim(),prenom=document.getElementById("acct-prenom").value.trim();
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){ACCT.msg="Vérifie ton adresse courriel.";acctRefresh();return;}
+  ACCT.busy=true;ACCT.msg="";acctRefresh();
+  try{const r=await fetch("/api/login",{method:"POST",credentials:"same-origin",headers:{"content-type":"application/json"},body:JSON.stringify({email,prenom})});
+    ACCT.msg=r.ok?`C'est envoyé! Regarde tes courriels (${email}) et clique sur le bouton « Ouvrir mon Académie ». Le lien est valide 15 minutes. Pense à vérifier tes indésirables.`:(r.status===429?"Tu as demandé plusieurs liens de suite. Attends quelques minutes avant de réessayer.":"L'envoi n'a pas fonctionné. Réessaie dans un instant.");}
+  catch(err){ACCT.msg="L'envoi n'a pas fonctionné. Vérifie ta connexion Internet.";}
+  ACCT.busy=false;acctRefresh();
+});
+document.addEventListener("click",async e=>{
+  if(!(e.target.closest&&e.target.closest("#acct-out")))return;
+  try{await fetch("/api/logout",{method:"POST",credentials:"same-origin"});}catch(err){}
+  ACCT.email=null;ACCT.msg="Tu es déconnectée. Ta progression reste aussi sur cet appareil.";acctRefresh();
+});
 function keepScroll(fn){const y=window.scrollY;fn();window.scrollTo(0,y);}
-window.addEventListener("hashchange",()=>{render();window.scrollTo(0,0);checkSyncHash();});
+window.addEventListener("hashchange",()=>{if(ACCT.avail&&location.hash.startsWith("#login=")){acctVerify(location.hash.slice(7));return;}render();window.scrollTo(0,0);checkSyncHash();});
 function setTopH(){const t=document.querySelector(".top");if(t)document.documentElement.style.setProperty("--top-h",t.getBoundingClientRect().height+"px");}
 window.addEventListener("resize",setTopH);setTimeout(setTopH,0);
 render();
 checkSyncHash();
+acctInit();
 </script>
 
 </body>
