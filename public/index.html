@@ -330,6 +330,8 @@ section.blk>h2.sub-t{font-family:var(--f-mono);font-size:13px;font-weight:500;le
 .grp-btn[aria-current="page"]{background:var(--accent-soft)}
 .cat-frame{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff}
 .cat-frame iframe{display:block;width:100%;height:calc(100vh - var(--top-h,72px) - 40px);height:calc(100dvh - var(--top-h,72px) - 40px);min-height:480px;border:0}
+.video-frame{width:100%;aspect-ratio:16/9;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#111}
+.video-frame iframe{display:block;width:100%;height:100%;border:0}
 body.is-cat .wrap{padding-bottom:0}
 body.is-cat{overflow:hidden}
 @media (min-width:861px){body.is-cat nav.rail{max-height:calc(100dvh - var(--top-h,72px) - 24px);overflow-y:auto;overscroll-behavior:contain}}
@@ -561,6 +563,9 @@ const MODULES=[
   {id:"c3",t:"J'ai fait un sondage « curieuse de savoir comment ça marche? »"}]},
  {id:"defi",n:"10",sub:"Passer à l'action",title:"Défi 14 jours",group:"SOC",lessons:[]},
  {id:"catalogue",n:"",title:"Catalogue produits",group:"PRO",lessons:[]},
+ {id:"formationproduits",n:"",title:"Formation produits",group:"PRO",lessons:[
+  {id:"np1",t:"J’ai regardé la formation vidéo sur le Noni"},
+  {id:"np2",t:"J’ai consulté les études sur le Noni"}]},
  {id:"produits",n:"",title:"Quel produit sert à quoi",group:"PRO",lessons:[
   {id:"q5",t:"Je sais qu'il y a deux boutiques (Canada et Ship from US to CA)"},
   {id:"q6",t:"J'ai regardé le survol du catalogue"},
@@ -685,7 +690,7 @@ const CATS=[
  {id:"MIN",title:"Mindset du travailleur autonome",desc:"Ton pourquoi, ton horaire, les refus et la constance."},
  {id:"BIZ",title:"Gérer ta nouvelle business",desc:"Ton back office, ton plan de rémunération et les gestes de base pour être autonome."},
  {id:"SOC",title:"Réseaux sociaux",desc:"Publie pour attirer sans devenir cringe & vends sans gosser personne."},
- {id:"PRO",title:"Produits",desc:"Le catalogue, quel produit sert à quoi, le Youth Infusing System, des stories prêtes à publier et des témoignages conformes."}
+ {id:"PRO",title:"Produits",desc:"Le catalogue, une formation produits, quel produit sert à quoi, le Youth Infusing System, des stories prêtes à publier et des témoignages conformes."}
 ];
 MODULES.forEach(m=>{const c=CATS.find(c=>c.id===m.group);if(c)m.group=c.title;});
 const DAYS=[
@@ -1099,6 +1104,11 @@ claudepro(m){
 catalogue(m){
   return `<div class="cat-frame"><iframe src="https://catalogue-partnerco.elisabethdufour777.workers.dev/" title="Catalogue des produits Partner.Co Canada" referrerpolicy="no-referrer"></iframe></div>`;
 },
+formationproduits(m){
+  return head(m,"Une vidéo de formation à regarder et à écouter directement dans l’Académie, avec un lien vers les études sur le Noni.")+
+  `<div class="card" style="margin-top:24px"><h2 style="font-size:24px">Formation sur le Noni</h2><p>Lance la vidéo pour la regarder et l’écouter ici, sans quitter l’Académie.</p><div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/tJsRoVaQTAk" title="Formation sur le Noni" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><p><a href="https://noniresearch.org/" target="_blank" rel="noopener">Consulter les études sur le Noni ↗</a></p><p class="ref">Si la vidéo ne se lance pas dans le lecteur, <a href="https://youtu.be/tJsRoVaQTAk" target="_blank" rel="noopener">ouvre-la sur YouTube ↗</a>.</p></div>`+lessons(m)+nav(m);
+},
+
 chrome(m){
   return head(m,"Avec l'extension Claude dans Chrome, Claude ouvre ton profil et tes statistiques dans ton navigateur et fait l'analyse pour toi. Toi, tu prends les décisions.")+
   acc(`<section class="blk"><h2>C'est quoi</h2><div class="prose"><p>Claude dans Chrome est une extension qui s'ouvre dans un panneau à côté de ta page. Elle peut lire la page, cliquer, défiler et naviguer dans ton Chrome, avec tes comptes déjà connectés. Tu lui dis quoi faire en mots, comme à une assistante.</p><p>Elle fonctionne avec un abonnement Claude payant, dans Google Chrome sur ordinateur seulement (pas sur le téléphone ni dans les autres navigateurs).</p></div></section>
@@ -1275,7 +1285,6 @@ produits(m){
    <li><b>Rappelle le réflexe santé</b> : enceinte, qui allaite ou qui prend des médicaments? On vérifie avec un professionnel de la santé avant.</li>
   </ol></div></section>`+D+
   `<section class="blk"><h2>Noni, Rejuveniix et Vinali en détail</h2><p class="prose">Les trois produits les plus partagés dans l'équipe, avec ce qu'on peut dire et ce qu'on ne dit pas.</p>${PHARES.map(p=>`<div class="card"><h3>${esc(p.n)}</h3><div class="vs"><div><span class="sticker st-ok">On peut dire</span><ul>${p.ok.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div><div><span class="sticker st-no">On ne dit pas</span><ul>${p.no.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div></div></div>`).join("")}</section>
-  <section class="blk-nonifixed" style="margin-top:32px;display:flex;flex-direction:column;gap:12px"><h2 style="font-size:24px;font-weight:700;letter-spacing:-.01em">Formation produits : Noni</h2><div class="grid"><div class="card"><h3>Approfondir le Noni</h3><p>Regarde la formation vidéo et consulte les ressources de recherche.</p><div class="pill-row"><a class="btn" href="https://youtu.be/tJsRoVaQTAk" target="_blank" rel="noopener">Voir la formation ↗</a><a class="btn ghost" href="https://noniresearch.org/" target="_blank" rel="noopener">Consulter les études ↗</a></div></div></div></section>
   <section class="blk"><h2>Trouver par besoin</h2><p class="prose">Les suggestions du catalogue pour orienter la conversation. Ce ne sont pas des traitements.</p><div class="tbl"><table><thead><tr><th>Besoin</th><th>Produits principaux</th><th>En soutien</th></tr></thead><tbody>${BESOINS.map(b=>`<tr><td><b>${esc(b[0])}</b></td><td>${esc(b[1])}</td><td>${esc(b[2])}</td></tr>`).join("")}</tbody></table></div></section>
   <section class="blk"><h2>Les formations produits</h2><div class="tbl"><table><tbody>
    <tr><td>Survol du catalogue</td><td><a href="https://youtu.be/wVSJjsk2bsk" target="_blank" rel="noopener">Regarder ↗</a></td></tr>
@@ -1454,6 +1463,7 @@ const MDESC={
  recrutement:"Parler de ton projet sans post « opportunité », et repérer les curieuses.",
  defi:"14 jours d'actions simples pour mettre tout ça en pratique.",
  catalogue:"Tous les produits Partner.Co Canada, avec leurs ingrédients et leurs bienfaits.",
+ formationproduits:"Une vidéo sur le Noni à regarder dans l’Académie et un lien vers les études.",
  produits:"Le catalogue par besoin, et les deux boutiques (Canada et États-Unis).",
  youth:"Le nouveau système Co.Lab : les 3 étapes, les comparatifs et le pré-lancement.",
  storiesprod:"Des séquences de 6 stories à télécharger, prêtes à publier.",
