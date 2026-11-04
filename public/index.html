@@ -332,6 +332,7 @@ section.blk>h2.sub-t{font-family:var(--f-mono);font-size:13px;font-weight:500;le
 .cat-frame iframe{display:block;width:100%;height:calc(100vh - var(--top-h,72px) - 40px);height:calc(100dvh - var(--top-h,72px) - 40px);min-height:480px;border:0}
 body.is-cat .wrap{padding-bottom:0}
 body.is-cat{overflow:hidden}
+@media (min-width:861px){body.is-cat nav.rail{max-height:calc(100dvh - var(--top-h,72px) - 24px);overflow-y:auto;overscroll-behavior:contain}}
 @media (max-width:860px){body.is-cat .wrap{padding-top:8px}}
 .st-l{display:flex;flex-direction:column;gap:8px}
 .st-i{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;text-decoration:none;color:var(--ink);transition:border-color .2s}
@@ -843,7 +844,7 @@ function updateTop(){
 }
 
 /* ---------- Rendu ---------- */
-let openGroups=new Set(CATS.map(c=>c.id));
+let openGroups=new Set(Array.isArray(state.open)?state.open:CATS.map(c=>c.id));
 function rail(cur){
   const link=m=>{const [a,b]=modDone(m);return `<a href="#${m.id}" ${m.id===cur?'aria-current="page"':""}><span class="n">${m.n||"·"}</span><span class="t">${esc(m.title)}</span>${b?`<span class="d">${a===b?"✓":a+"/"+b}</span>`:""}</a>`;};
   let h=MODULES.filter(m=>m.group==="Départ").map(link).join("");
@@ -1492,12 +1493,12 @@ function firstOpen(){for(const m of MODULES){const [a,b]=modDone(m);if(b&&a<b)re
 function render(){
   let id=(location.hash||"").replace("#","");
   const cat=id.startsWith("cat-")&&CATS.find(c=>c.id===id.slice(4));
-  if(cat){document.body.classList.remove("is-cat");openGroups.clear();openGroups.add(cat.id);rail(id);document.getElementById("main").innerHTML=catView(cat);updateTop();return;}
+  if(cat){document.body.classList.remove("is-cat");rail(id);document.getElementById("main").innerHTML=catView(cat);updateTop();return;}
   const sk=id.startsWith("s-")&&[...new Set(MODULES.map(m=>m.sub).filter(Boolean))].find(k=>slug(k)===id.slice(2));
-  if(sk){document.body.classList.remove("is-cat");const c=CATS.find(c=>c.title===MODULES.find(m=>m.sub===sk).group);openGroups.clear();openGroups.add(c.id);rail(id);document.getElementById("main").innerHTML=subView(sk);updateTop();return;}
+  if(sk){document.body.classList.remove("is-cat");const c=CATS.find(c=>c.title===MODULES.find(m=>m.sub===sk).group);openGroups.add(c.id);rail(id);document.getElementById("main").innerHTML=subView(sk);updateTop();return;}
   if(!VIEWS[id])id="accueil";
   const m=MODULES.find(x=>x.id===id);
-  if(m&&m.id!=="accueil"){const c=CATS.find(c=>c.title===m.group);if(c){openGroups.clear();openGroups.add(c.id);}state.last=m.id;save();}
+  if(m&&m.id!=="accueil"){const c=CATS.find(c=>c.title===m.group);if(c)openGroups.add(c.id);state.last=m.id;save();}
   rail(id);
   document.body.classList.toggle("is-cat",id==="catalogue");
   document.getElementById("main").innerHTML=VIEWS[id](m);
