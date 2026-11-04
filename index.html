@@ -307,7 +307,7 @@ tr:last-child td{border-bottom:0}
 section.blk>h2.sub-t{font-family:var(--f-mono);font-size:13px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-text)}
 .grp-btn[aria-current="page"]{background:var(--accent-soft)}
 .cat-frame{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff}
-.cat-frame iframe{display:block;width:100%;height:calc(100dvh - var(--hh,72px) - 150px);min-height:560px;border:0}
+.cat-frame iframe{display:block;width:100%;height:calc(100vh - 110px);height:calc(100dvh - 110px);min-height:520px;border:0}
 .cats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
 @media (max-width:720px){.cats{grid-template-columns:minmax(0,1fr)}}
 .cat{gap:0;padding:0;overflow:hidden}
@@ -1019,8 +1019,7 @@ claudepro(m){
 `)+lessons(m)+nav(m);
 },
 catalogue(m){
-  return `<div class="mod-h"><div class="kicker">${(()=>{const c=CATS.find(c=>c.title===m.group);return c?`<a href="#cat-${c.id}" style="color:inherit">${esc(m.group)}</a>`:esc(m.group);})()}</div><h1>Catalogue produits</h1></div>
-  <div class="cat-frame"><iframe src="https://catalogue-partnerco.elisabethdufour777.workers.dev/" title="Catalogue des produits Partner.Co Canada" loading="lazy" referrerpolicy="no-referrer"></iframe></div>
+  return `<div class="cat-frame"><iframe src="https://catalogue-partnerco.elisabethdufour777.workers.dev/" title="Catalogue des produits Partner.Co Canada" loading="lazy" referrerpolicy="no-referrer"></iframe></div>
   <p class="ref" style="margin-top:10px">Le catalogue ne s'affiche pas? <a href="https://catalogue-partnerco.elisabethdufour777.workers.dev/" target="_blank" rel="noopener">Ouvre-le dans un nouvel onglet</a>.</p>`+nav(m);
 },
 chrome(m){
