@@ -10,5 +10,6 @@
     "run_worker_first": ["/api/*"]
   },
   "keep_vars": true,
+  "kv_namespaces": [{ "binding": "ACADEMIE", "id": "b2117f29a2464d31bd5d478066c80e43" }],
   "observability": { "enabled": true }
 }
