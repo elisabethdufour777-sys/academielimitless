@@ -6,7 +6,7 @@ Avant de créer l'Artifact, pose-moi ces questions, une à la fois :
 1. Quel prénom et quel titre veux-tu afficher? (ex. « Ton guide wellness »)
 2. Quelle photo veux-tu utiliser? Demande-moi de téléverser une photo ou de fournir une URL d'image publique.
 3. Quelle bio personnelle veux-tu afficher? Si je n'en ai pas, aide-moi à en écrire une à partir de mes réponses, sans inventer d'expérience.
-4. Quel est mon ID Partner.Co personnel reçu par courriel lors de mon inscription? Il ressemble à A1234567. Vérifie que je donne seulement l'ID, pas un autre lien.
+4. Quel est mon ID Partner.Co personnel reçu par courriel lors de mon inscription? Il ressemble à N1234567. Vérifie que je donne seulement l'ID, pas un autre lien.
 5. Quels sont mes liens Facebook, Messenger et Instagram? Si je n'utilise pas un réseau, demande-moi si je préfère masquer son bouton.
 6. Quelle palette je préfère : prune, sable ou lavande?
 
