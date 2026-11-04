@@ -28,3 +28,4 @@ Quand tout est prêt :
 2. Vérifie que tous les boutons boutique ouvrent mon lien personnel Partner.Co et que les boutons sociaux ouvrent mes profils.
 3. Vérifie la mise en page sur téléphone et ordinateur et corrige tout débordement.
 4. Donne-moi les étapes pour publier l'Artifact et copier son lien public.
+5. Rappelle-moi ensuite d'ajouter le lien public de mon site à la bio de mes comptes Facebook, Instagram et TikTok. Je le ferai moi-même dans chaque application.
