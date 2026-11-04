@@ -1,0 +1,30 @@
+PROMPT CLAUDE — CRÉER MON SITE PERSONNALISÉ LIMITLESS
+
+Je joins un fichier texte qui contient le modèle HTML de mon site. Utilise ce fichier comme base exacte pour créer un Artifact Claude de type site web. Conserve le design, la structure, les animations, les sections, les boutons et l'affichage mobile. Ne reconstruis pas le site dans un style différent et ne retire aucune section.
+
+Avant de créer l'Artifact, pose-moi ces questions, une à la fois :
+1. Quel prénom et quel titre veux-tu afficher? (ex. « Ton guide wellness »)
+2. Quelle photo veux-tu utiliser? Demande-moi de téléverser une photo ou de fournir une URL d'image publique.
+3. Quelle bio personnelle veux-tu afficher? Si je n'en ai pas, aide-moi à en écrire une à partir de mes réponses, sans inventer d'expérience.
+4. Quel est mon ID Partner.Co personnel reçu par courriel lors de mon inscription? Il ressemble à A1234567. Vérifie que je donne seulement l'ID, pas un autre lien.
+5. Quels sont mes liens Facebook, Messenger et Instagram? Si je n'utilise pas un réseau, demande-moi si je préfère masquer son bouton.
+6. Quelle palette je préfère : prune, sable ou lavande?
+
+Ensuite, personnalise uniquement les valeurs dans l'objet MEMBER au début du code :
+- name : mon prénom
+- role : le titre que j'ai choisi
+- photo : l'image fournie
+- bio : ma bio
+- shopUrl : construis exactement le lien https://partner.co/nfr-ca/ suivi de mon ID Partner.Co personnel
+- facebookUrl, messengerUrl et instagramUrl : mes liens personnels
+- palette : prune, sable ou lavande
+
+Vérifie chaque lien. N'invente jamais mon ID, mes comptes sociaux, ma bio ni une expérience personnelle. Si je ne connais pas encore un lien social, garde le bouton masqué ou demande-moi quoi faire plutôt que d'inscrire un faux lien.
+
+Le modèle présente les gammes Partner.Co, CoLab Skincare à venir le 16 novembre, et un contact par réseaux sociaux. Garde ces textes et les sections. La date du lancement est le 16 novembre, sans ajouter d'année. Ne crée aucune promesse de résultat santé ou de revenu et ne transforme pas les textes en allégations.
+
+Quand tout est prêt :
+1. Affiche l'Artifact complet pour que je puisse le prévisualiser.
+2. Vérifie que tous les boutons boutique ouvrent mon lien personnel Partner.Co et que les boutons sociaux ouvrent mes profils.
+3. Vérifie la mise en page sur téléphone et ordinateur et corrige tout débordement.
+4. Donne-moi les étapes pour publier l'Artifact et copier son lien public.
