@@ -1,7 +1,6 @@
 // Académie Limitless : connexion par lien magique (envoyé par GHL) et sauvegarde de la progression.
-// Liaisons requises dans Cloudflare Pages :
-//   - KV namespace  : ACADEMIE
-//   - Variable secrète : GHL_WEBHOOK_URL
+// Worker Cloudflare : sert les fichiers de /public et répond aux routes /api/*.
+// Liaisons : KV « ACADEMIE » (wrangler.jsonc) et secret GHL_WEBHOOK_URL (tableau de bord).
 
 const SESSION_DAYS = 90;
 const TOKEN_MINUTES = 15;
@@ -43,9 +42,8 @@ async function rateLimit(env, key, max, seconds) {
   return true;
 }
 
-export async function onRequest({ request, env, params }) {
+async function api(request, env, path) {
   if (!env.ACADEMIE) return json({ ok: false, error: "not_configured" }, 503);
-  const path = (params.path || []).join("/");
   const method = request.method;
 
   // Protection simple : les requêtes qui modifient doivent venir du site lui-même.
@@ -127,3 +125,11 @@ export async function onRequest({ request, env, params }) {
     return json({ ok: false, error: "server" }, 500);
   }
 }
+
+export default {
+  async fetch(request, env) {
+    const url = new URL(request.url);
+    if (url.pathname.startsWith("/api/")) return api(request, env, url.pathname.slice(5).replace(/\/+$/, ""));
+    return env.ASSETS.fetch(request);
+  },
+};

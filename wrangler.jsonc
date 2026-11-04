@@ -1,0 +1,14 @@
+{
+  // Académie Limitless : Worker avec fichiers statiques et API de connexion
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "academielimitless",
+  "main": "src/worker.js",
+  "compatibility_date": "2025-07-18",
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"]
+  },
+  "keep_vars": true,
+  "observability": { "enabled": true }
+}
