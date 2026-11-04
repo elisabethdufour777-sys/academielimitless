@@ -835,7 +835,7 @@ function updateTop(){
 }
 
 /* ---------- Rendu ---------- */
-let openGroups=new Set(Array.isArray(state.open)?state.open:[]);
+let openGroups=new Set(CATS.map(c=>c.id));
 function rail(cur){
   const link=m=>{const [a,b]=modDone(m);return `<a href="#${m.id}" ${m.id===cur?'aria-current="page"':""}><span class="n">${m.n||"·"}</span><span class="t">${esc(m.title)}</span>${b?`<span class="d">${a===b?"✓":a+"/"+b}</span>`:""}</a>`;};
   let h=MODULES.filter(m=>m.group==="Départ").map(link).join("");
