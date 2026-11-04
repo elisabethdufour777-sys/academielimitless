@@ -306,6 +306,8 @@ tr:last-child td{border-bottom:0}
 .mc-f .bar{flex:1}
 section.blk>h2.sub-t{font-family:var(--f-mono);font-size:13px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-text)}
 .grp-btn[aria-current="page"]{background:var(--accent-soft)}
+.cat-frame{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff}
+.cat-frame iframe{display:block;width:100%;height:calc(100dvh - var(--hh,72px) - 150px);min-height:560px;border:0}
 .cats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
 @media (max-width:720px){.cats{grid-template-columns:minmax(0,1fr)}}
 .cat{gap:0;padding:0;overflow:hidden}
@@ -519,6 +521,7 @@ const MODULES=[
   {id:"c2",t:"J'ai publié un contenu coulisses (mon pourquoi)"},
   {id:"c3",t:"J'ai fait un sondage « curieuse de savoir comment ça marche? »"}]},
  {id:"defi",n:"10",sub:"Passer à l'action",title:"Défi 14 jours",group:"SOC",lessons:[]},
+ {id:"catalogue",n:"",title:"Catalogue produits",group:"PRO",lessons:[]},
  {id:"produits",n:"",title:"Quel produit sert à quoi",group:"PRO",lessons:[
   {id:"q5",t:"Je sais qu'il y a deux boutiques (Canada et Ship from US to CA)"},
   {id:"q6",t:"J'ai regardé le survol du catalogue"},
@@ -643,7 +646,7 @@ const CATS=[
  {id:"MIN",title:"Mindset du travailleur autonome",desc:"Ton pourquoi, ton horaire, les refus et la constance."},
  {id:"BIZ",title:"Gérer ta nouvelle business",desc:"Ton back office, ton plan de rémunération et les gestes de base pour être autonome."},
  {id:"SOC",title:"Réseaux sociaux",desc:"Publie pour attirer sans devenir cringe & vends sans gosser personne."},
- {id:"PRO",title:"Produits",desc:"Quel produit sert à quoi, des stories prêtes à publier et des témoignages conformes."}
+ {id:"PRO",title:"Produits",desc:"Le catalogue, quel produit sert à quoi, le Youth Infusing System, des stories prêtes à publier et des témoignages conformes."}
 ];
 MODULES.forEach(m=>{const c=CATS.find(c=>c.id===m.group);if(c)m.group=c.title;});
 const DAYS=[
@@ -1015,6 +1018,11 @@ claudepro(m){
   ${script("Ton premier prompt",FIRST_PROMPT)}</section>
 `)+lessons(m)+nav(m);
 },
+catalogue(m){
+  return `<div class="mod-h"><div class="kicker">${(()=>{const c=CATS.find(c=>c.title===m.group);return c?`<a href="#cat-${c.id}" style="color:inherit">${esc(m.group)}</a>`:esc(m.group);})()}</div><h1>Catalogue produits</h1></div>
+  <div class="cat-frame"><iframe src="https://catalogue-partnerco.elisabethdufour777.workers.dev/" title="Catalogue des produits Partner.Co Canada" loading="lazy" referrerpolicy="no-referrer"></iframe></div>
+  <p class="ref" style="margin-top:10px">Le catalogue ne s'affiche pas? <a href="https://catalogue-partnerco.elisabethdufour777.workers.dev/" target="_blank" rel="noopener">Ouvre-le dans un nouvel onglet</a>.</p>`+nav(m);
+},
 chrome(m){
   return head(m,"Avec l'extension Claude dans Chrome, Claude ouvre ton profil et tes statistiques dans ton navigateur et fait l'analyse pour toi. Toi, tu prends les décisions.")+
   acc(`<section class="blk"><h2>C'est quoi</h2><div class="prose"><p>Claude dans Chrome est une extension qui s'ouvre dans un panneau à côté de ta page. Elle peut lire la page, cliquer, défiler et naviguer dans ton Chrome, avec tes comptes déjà connectés. Tu lui dis quoi faire en mots, comme à une assistante.</p><p>Elle fonctionne avec un abonnement Claude payant, dans Google Chrome sur ordinateur seulement (pas sur le téléphone ni dans les autres navigateurs).</p></div></section>
@@ -1109,7 +1117,7 @@ backoffice(m){
    <tr><td><b>Service client</b></td><td><a href="https://partner.co/fr-ca/contact-us" target="_blank" rel="noopener">partner.co/fr-ca/contact-us ↗</a></td></tr>
    <tr><td><b>Politique de retour</b></td><td><a href="https://partner.co/fr-ca/return-policy" target="_blank" rel="noopener">partner.co/fr-ca/return-policy ↗</a></td></tr>
    <tr><td><b>Événements</b> (dont la PXP, en septembre 2026 à Orlando)</td><td><a href="https://partner.co/fr-ca/events" target="_blank" rel="noopener">partner.co/fr-ca/events ↗</a></td></tr>
-   <tr><td><b>Catalogue Canada de l'équipe</b></td><td><a href="https://catalogue-partnerco.elisabethdufour777.workers.dev/" target="_blank" rel="noopener">catalogue-partnerco.elisabethdufour777.workers.dev ↗</a></td></tr>
+   <tr><td><b>Catalogue Canada de l'équipe</b></td><td><a href="#catalogue">Ouvrir le catalogue dans l'Académie</a></td></tr>
   </tbody></table></div></section>
   <section class="blk"><h2>Questions fréquentes</h2><div class="faq">
    <details><summary>Une cliente veut devenir partenaire : comment je fais?</summary><div class="vs">
@@ -1176,7 +1184,7 @@ produits(m){
   <section class="blk"><h2>Les formations produits</h2><div class="tbl"><table><tbody>
    <tr><td>Survol du catalogue</td><td><a href="https://youtu.be/wVSJjsk2bsk" target="_blank" rel="noopener">Regarder ↗</a></td></tr>
    <tr><td>La vision produit (Wellness Council)</td><td><a href="https://youtu.be/Ne2FK6-sEbM" target="_blank" rel="noopener">Regarder ↗</a></td></tr>
-   <tr><td>Le catalogue complet, avec les ingrédients</td><td><a href="https://catalogue-partnerco.elisabethdufour777.workers.dev/" target="_blank" rel="noopener">Ouvrir ↗</a></td></tr>
+   <tr><td>Le catalogue complet, avec les ingrédients</td><td><a href="#catalogue">Ouvrir le catalogue</a></td></tr>
   </tbody></table></div><div class="prose"><p><b>Ce qui distingue Partner.Co, selon la compagnie :</b> l'accent sur la qualité des matières premières, l'absence d'ingrédients de remplissage, d'agents de conservation et de saveurs artificielles, des chercheurs à l'interne et à l'externe, et des tests de qualité par des tiers.</p></div></section>`)+lessons(m)+nav(m);
 },
 youth(m){
@@ -1348,6 +1356,7 @@ const MDESC={
  dm:"Les scripts pour répondre, relancer une seule fois et conclure sans gosser.",
  recrutement:"Parler de ton projet sans post « opportunité », et repérer les curieuses.",
  defi:"14 jours d'actions simples pour mettre tout ça en pratique.",
+ catalogue:"Tous les produits Partner.Co Canada, avec leurs ingrédients et leurs bienfaits.",
  produits:"Le catalogue par besoin, et les deux boutiques (Canada et États-Unis).",
  youth:"Le nouveau système Co.Lab : les 3 étapes, les comparatifs et le pré-lancement.",
  storiesprod:"Des séquences de 6 stories à télécharger, prêtes à publier.",
