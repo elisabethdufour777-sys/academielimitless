@@ -920,7 +920,7 @@ accueil(m){
   <h1>Bienvenue dans l'équipe Limitless</h1>
   <p>Ici, tu trouveras tout ce dont tu as besoin pour faire de ta décision un succès. Choisis ce que tu veux travailler aujourd'hui : pas besoin de suivre l'ordre.</p>
   ${p>0?`<div class="pill-row"><a class="btn" style="background:var(--sun);color:var(--sun-ink)" href="#${state.last&&MODULES.some(x=>x.id===state.last)?state.last:firstOpen()}">Reprendre où j'étais rendue →</a></div>`:`<div class="pill-row"><a class="btn" style="background:var(--sun);color:var(--sun-ink)" href="#cahier">Commencer ma première semaine →</a></div>`}</div>
-  ${ACCT.avail?`<section class="blk acct-top">${acctHTML()}</section>`:""}
+  
   ${startHere()}
   <section class="blk"><div class="cats">${cards}</div></section>
   <section class="blk"><h2>Ta progression</h2><p class="prose">${ACCT.email?"Tu peux aussi":"Sans compte, ta progression est gardée seulement dans ce navigateur. Tu changes d'appareil? Tu peux"} créer un lien de transfert, te l'envoyer (par courriel ou Messenger), puis l'ouvrir sur l'autre appareil : tes cases cochées et tes réponses du cahier suivent.</p>
