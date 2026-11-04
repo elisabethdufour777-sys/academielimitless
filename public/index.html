@@ -1139,15 +1139,26 @@ recrutement(m){
 },
 conformite(m){
   return head(m,"Ce module protège ton équipe et ta réputation. On le prend au sérieux.")+
-  `<section class="blk"><h2>Allégations santé (Noni, Rejuveniix, Vinali)</h2><div class="vs">
-   <div class="card"><span class="sticker st-ok">On peut</span><ul><li>Parler de ta routine et de pourquoi tu l'aimes</li><li>Utiliser les allégations approuvées par Partner.Co</li><li>Parler du goût, de la texture, de l'origine, des ingrédients</li></ul></div>
-   <div class="card"><span class="sticker st-no">On peut pas</span><ul><li>Dire qu'un produit guérit, traite ou prévient une maladie</li><li>« Ça a réglé mon arthrite / mon anxiété / mon acné »</li><li>Comparer à un médicament ou conseiller d'arrêter un traitement</li><li>Montrer un avant / après du corps lié au produit</li><li>Republier des témoignages de perte de poids ou d'arrêt de médicaments, même s'ils circulent ailleurs</li></ul></div>
-  </div></section>
+  `<section class="blk"><h2>Allégations santé</h2><div class="vs">
+   <div class="card"><span class="sticker st-ok">On peut</span><ul>
+    <li>Parler de ta routine, de ton expérience honnête, du goût, de la texture, de l'origine et des ingrédients.</li>
+    <li>Reprendre les allégations de la fiche Partner.Co seulement si elles sont autorisées au Canada pour ce produit précis.</li>
+    <li>Dire « soutient la santé des articulations » ou « aide à gérer le stress » uniquement si cette formulation est autorisée pour le produit. Pour un cosmétique, parler d'apparence ou de sensation — par exemple « ma peau est plus douce » — si c'est vrai et conforme à sa fiche.</li>
+    <li>Partager un témoignage réel avec l'accord écrit de la personne, sans en changer le sens et sans dépasser les allégations autorisées.</li>
+    <li>Partager des photos avant/après réelles avec l'accord écrit de la personne, un contexte honnête et une transformation que le produit est autorisé à revendiquer.</li>
+   </ul></div>
+   <div class="card"><span class="sticker st-no">On peut pas</span><ul>
+    <li>Dire qu'un produit guérit, traite ou prévient une maladie, ou qu'il a réglé l'arthrite, l'anxiété ou l'acné.</li>
+    <li>Dépasser l'allégation autorisée au Canada, même si une fiche ou un contenu général de la compagnie emploie des mots plus larges.</li>
+    <li>Comparer un produit à un médicament ou conseiller d'arrêter un traitement.</li>
+    <li>Utiliser une photo, un témoignage ou « les résultats varient » pour suggérer un effet non autorisé, garanti ou trompeur.</li>
+   </ul></div>
+  </div><p class="ref">« Les résultats varient d'une personne à l'autre » ne rend pas conforme une allégation qui n'est pas autorisée ou qui donne une impression trompeuse.</p></section>
   <section class="blk"><h2>Revenus et recrutement</h2><div class="vs">
    <div class="card"><span class="sticker st-ok">On peut</span><ul><li>Parler de ce que tu aimes de ton projet</li><li>Expliquer comment le plan fonctionne, avec le document officiel</li><li>Parler du temps que tu y mets</li></ul></div>
    <div class="card"><span class="sticker st-no">On peut pas</span><ul><li>Promettre un revenu ou une « liberté financière »</li><li>Montrer des captures de paies ou de chèques</li><li>Parler d'auto, de voyage ou de maison « payés par la business »</li><li>Dire « tout le monde peut réussir facilement »</li></ul></div>
   </div><p class="ref">Au Canada, la Loi sur la concurrence encadre les plans de vente multiniveau : une déclaration sur les gains doit être accompagnée des gains d'une participante typique. Le plus simple et le plus sûr : ne pas parler de montants.</p></section>
-  <section class="blk"><h2>Le guide officiel</h2>${todo("ajouter le lien vers le guide de conformité Partner.Co (Canada) et la liste des allégations approuvées par produit.")}</section>`+lessons(m)+nav(m);
+  <section class="blk"><h2>Comment vérifier une allégation</h2><div class="prose"><p>La fiche technique Partner.Co est un bon point de départ, mais utilise seulement une formulation autorisée au Canada pour le produit exact. Pour un produit de santé naturel, compare-la aux conditions de son autorisation canadienne et à son NPN.</p><p><a href="https://www.canada.ca/en/health-canada/services/drugs-health-products/marketing-drugs-devices/illegal-marketing/health-providers/natural-non-prescription.html" target="_blank" rel="noopener">Règles de Health Canada sur les allégations des produits de santé naturels ↗</a></p><p><a href="https://competition-bureau.canada.ca/en/deceptive-marketing-practices/types-deceptive-marketing-practices/use-tests-or-testimonials" target="_blank" rel="noopener">Règles du Bureau de la concurrence sur les témoignages et le consentement écrit ↗</a></p><p><a href="https://competition-bureau.canada.ca/en/deceptive-marketing-practices/types-deceptive-marketing-practices/advertising-dos-and-donts" target="_blank" rel="noopener">Conseils sur les avertissements et les impressions trompeuses ↗</a></p></div></section>`+lessons(m)+nav(m);
 },
 backoffice(m){
   const T=[
