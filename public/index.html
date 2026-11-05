@@ -570,7 +570,8 @@ const MODULES=[
  {id:"defi",n:"10",sub:"Passer à l'action",title:"Défi 14 jours",group:"SOC",lessons:[]},
  {id:"catalogue",n:"",title:"Catalogue produits",group:"PRO",lessons:[]},
  {id:"formationproduits",n:"",title:"Formation produits",group:"PRO",lessons:[
-  {id:"np1",t:"J’ai regardé la formation vidéo sur le Noni"}]},
+  {id:"np1",t:"J’ai regardé la formation vidéo sur le Noni"},
+  {id:"vp1",t:"J’ai regardé la formation vidéo sur Vinali"}]},
  {id:"produits",n:"",title:"Quel produit sert à quoi",group:"PRO",lessons:[
   {id:"q5",t:"Je sais qu'il y a deux boutiques (Canada et Ship from US to CA)"},
   {id:"q6",t:"J'ai regardé le survol du catalogue"},
@@ -1122,10 +1123,12 @@ formationproduits(m){
       <p class="ref">Si le lecteur ne fonctionne pas, <a href="https://youtu.be/tJsRoVaQTAk" target="_blank" rel="noopener">ouvrir la vidéo sur YouTube ↗</a>.</p>
     </article>
     <article class="card">
-      <span class="sticker st-sun">À venir</span>
+      <span class="sticker st-sun">Formation produits · Vinali</span>
       <h2 style="font-size:24px">Vinali</h2>
-      <p>La prochaine vidéo de formation sera ajoutée ici.</p>
-      <div class="video-frame video-placeholder">Vidéo Vinali à venir</div>
+      <p>Regarde la formation et écoute-la ici, sans quitter l’Académie.</p>
+      <div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/ExOQOjSgHfc" title="Formation sur Vinali" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+      ${lessonItem(m.lessons[1])}
+      <p class="ref">Si le lecteur ne fonctionne pas, <a href="https://youtu.be/ExOQOjSgHfc" target="_blank" rel="noopener">ouvrir la vidéo sur YouTube ↗</a>.</p>
     </article>
     <article class="card">
       <span class="sticker st-sun">À venir</span>
