@@ -332,6 +332,9 @@ section.blk>h2.sub-t{font-family:var(--f-mono);font-size:13px;font-weight:500;le
 .cat-frame iframe{display:block;width:100%;height:calc(100vh - var(--top-h,72px) - 40px);height:calc(100dvh - var(--top-h,72px) - 40px);min-height:480px;border:0}
 .video-frame{width:100%;aspect-ratio:16/9;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#111}
 .video-frame iframe{display:block;width:100%;height:100%;border:0}
+.training-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:24px}
+.video-placeholder{display:grid;place-items:center;padding:18px;text-align:center;color:var(--muted);background:var(--accent-soft);font-weight:600}
+@media(max-width:720px){.training-grid{grid-template-columns:1fr}}
 body.is-cat .wrap{padding-bottom:0}
 body.is-cat{overflow:hidden}
 @media (min-width:861px){body.is-cat nav.rail{max-height:calc(100dvh - var(--top-h,72px) - 24px);overflow-y:auto;overscroll-behavior:contain}}
@@ -1105,8 +1108,25 @@ catalogue(m){
   return `<div class="cat-frame"><iframe src="https://catalogue-partnerco.elisabethdufour777.workers.dev/" title="Catalogue des produits Partner.Co Canada" referrerpolicy="no-referrer"></iframe></div>`;
 },
 formationproduits(m){
-  return head(m,"Une vidéo de formation à regarder et à écouter directement dans l’Académie, avec un lien vers les études sur le Noni.")+
-  `<div class="card" style="margin-top:24px"><h2 style="font-size:24px">Formation sur le Noni</h2><p>Lance la vidéo pour la regarder et l’écouter ici, sans quitter l’Académie.</p><div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/tJsRoVaQTAk" title="Formation sur le Noni" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><p><a href="https://noniresearch.org/" target="_blank" rel="noopener">Consulter les études sur le Noni ↗</a></p><p class="ref">Si la vidéo ne se lance pas dans le lecteur, <a href="https://youtu.be/tJsRoVaQTAk" target="_blank" rel="noopener">ouvre-la sur YouTube ↗</a>.</p></div>`+lessons(m)+nav(m);
+  return head(m,"Des vidéos produits à regarder dans l’Académie. Coche chaque ressource au fur et à mesure.")+
+  `<section class="training-grid" aria-label="Formations produits">
+    <article class="card">
+      <span class="sticker st-sun">Aliments fonctionnels · Noni</span>
+      <h2 style="font-size:24px">Noni</h2>
+      <p>Regarde la formation et écoute-la ici, sans quitter l’Académie.</p>
+      <div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/tJsRoVaQTAk" title="Formation sur le Noni" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+      ${lessonItem(m.lessons[0])}
+      <p><a href="https://noniresearch.org/" target="_blank" rel="noopener">Consulter les études sur le Noni ↗</a></p>
+      ${lessonItem(m.lessons[1])}
+      <p class="ref">Si le lecteur ne fonctionne pas, <a href="https://youtu.be/tJsRoVaQTAk" target="_blank" rel="noopener">ouvrir la vidéo sur YouTube ↗</a>.</p>
+    </article>
+    <article class="card">
+      <span class="sticker st-sun">À venir</span>
+      <h2 style="font-size:24px">Vinali</h2>
+      <p>La prochaine vidéo de formation sera ajoutée ici.</p>
+      <div class="video-frame video-placeholder">Vidéo Vinali à venir</div>
+    </article>
+  </section>`+nav(m);
 },
 
 chrome(m){
