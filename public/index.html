@@ -513,9 +513,7 @@ const MODULES=[
   {id:"e4",t:"J'ai mis à jour ma bio Facebook et Instagram (qui je suis, pas ce que je vends)"}]},
  {id:"cap",n:"",sub:"Les bases",title:"Méthode CAP",group:"SOC",lessons:[
   {id:"cap1",t:"Je comprends les trois étapes de la méthode CAP"},
-  {id:"cap2",t:"J’ai choisi une ressource claire pour les produits et une pour l’activité"},
-  {id:"cap3",t:"J’ai préparé une invitation simple qui laisse la personne demander l’information"},
-  {id:"cap4",t:"Je sais personnaliser mon suivi sans mettre de pression"}]},
+]},
  {id:"conformite",n:"02",sub:"Les bases",title:"Ce qu'on peut dire (ou pas)",group:"SOC",lessons:[
   {id:"k1",t:"Je connais les règles sur les allégations santé"},
   {id:"k2",t:"Je connais les règles sur les revenus"},
@@ -882,7 +880,7 @@ function applyRailFilter(){
 }
 
 function head(m,lead){
-  return `<div class="mod-h"><div class="kicker">${m.n?"Module "+m.n+" · ":""}${(()=>{const c=CATS.find(c=>c.title===m.group);return c?`<a href="#cat-${c.id}" style="color:inherit">${esc(m.group)}</a>`:esc(m.group);})()}${m.sub?` · <a href="#s-${slug(m.sub)}" style="color:inherit">${esc(m.sub)}</a>`:""}</div><h1>${esc(m.title)}</h1>${lead?`<p class="lead">${lead}</p>`:""}</div>${m.sub&&typeof SUB_IMG!=="undefined"&&SUB_IMG[m.sub]?`<img class="mod-img" src="${SUB_IMG[m.sub]}" alt="Photo d'ambiance : ${esc(m.sub)}" style="object-position:${SUB_POS[m.sub]||"center 60%"}">`:""}`;
+  return `<div class="mod-h"><div class="kicker">${m.n?"Module "+m.n+" · ":""}${(()=>{const c=CATS.find(c=>c.title===m.group);return c?`<a href="#cat-${c.id}" style="color:inherit">${esc(m.group)}</a>`:esc(m.group);})()}${m.sub?` · <a href="#s-${slug(m.sub)}" style="color:inherit">${esc(m.sub)}</a>`:""}</div><h1>${esc(m.title)}</h1>${lead?`<p class="lead">${lead}</p>`:""}</div>${m.id==="cap"?'<img class="mod-img" src="/img/methode-cap-reseaux-sociaux.svg" alt="Infographie de la méthode CAP" loading="lazy" style="width:100%;height:auto;aspect-ratio:auto;object-fit:contain;border-radius:16px;margin-bottom:16px">':m.sub&&typeof SUB_IMG!=="undefined"&&SUB_IMG[m.sub]?`<img class="mod-img" src="${SUB_IMG[m.sub]}" alt="Photo d’ambiance : ${esc(m.sub)}" style="object-position:${SUB_POS[m.sub]||"center 60%"}">`:""}
 }
 const openAcc=new Set();
 const seenAcc=t=>Array.isArray(state.seen)&&state.seen.includes(t);
