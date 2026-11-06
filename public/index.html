@@ -80,6 +80,7 @@ nav.rail{position:sticky;top:calc(env(safe-area-inset-top,0px) + 76px);display:f
 .grp-btn[aria-expanded="true"] .chev{transform:rotate(90deg)}
 .grp-btn .d{white-space:nowrap;flex:0 0 auto;margin-left:auto;font-family:var(--f-mono);font-size:11px;font-weight:500;color:var(--muted)}
 .grp-items{display:flex;flex-direction:column;gap:2px;padding-left:14px}
+.grp-items[hidden]{display:none}
 .rail a .t{min-width:0}
 .rail a.sub-h{display:block;font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-text);padding:10px 10px 2px}
 .rail a{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:10px;text-decoration:none;color:var(--ink);font-weight:500;font-size:15px}
@@ -601,7 +602,7 @@ const MODULES=[
   {id:"sp1",t:"J'ai publié ma première séquence produit"},
   {id:"sp2",t:"J'ai adapté une séquence à ma façon de parler"}]},
  {id:"temoignages",n:"",title:"Témoignages produits",group:"PRO",lessons:[
-  {id:"tm1",t:"Je connais les règles d'un témoignage conforme"},
+  {id:"tm3",t:"J'ai partagé un premier témoignage de perte de poids"},
   {id:"tm2",t:"J'ai recueilli un premier témoignage de cliente"}]}
 ];
 const STORY_IMG={"Rejuveniix": ["img/c6dff5f84301.webp", "img/47442f72af1e.webp", "img/019305410fe5.webp", "img/886e5f8506c7.webp", "img/b6461483400c.webp", "img/515723eb40ee.webp"]};
@@ -1520,13 +1521,9 @@ storiesprod(m){
   `<p class="ref" style="margin-top:16px">D'autres produits vont s'ajouter. En attendant, le prompt 7 du module « Créer plus vite avec Claude » t'aide à créer une séquence pour n'importe quel produit.</p>`+lessons(m)+nav(m);
 },
 temoignages(m){
-  const T=CATALOGUE.map(c=>c.cat==="Gestion du poids"?poidsBank(c):`<section class="blk"><h2>${esc(c.cat)}</h2><div class="prose"><p style="color:var(--muted)">Produits : ${esc(c.items.map(i=>i.n).join(", "))}</p></div>${todo("ajouter les témoignages conformes de l'équipe pour cette catégorie.")}</section>`).join("");
-  return head(m,"Les témoignages, c'est ce qui convainc le plus. C'est aussi ce qui est le plus encadré. Voici comment les utiliser sans risque.")+
-  acc(`<section class="blk"><h2>Les règles d'un témoignage conforme</h2><div class="vs">
-   <div class="card"><span class="sticker st-ok">On partage</span><ul><li>L'expérience : la routine, le goût, la facilité</li><li>Le ressenti au quotidien : « je me sens plus énergique le matin »</li><li>Des témoignages avec l'accord de la personne</li></ul></div>
-   <div class="card"><span class="sticker st-no">On ne partage pas</span><ul><li>Une maladie, un diagnostic ou une douleur qui disparaît</li><li>L'arrêt ou la réduction de médicaments</li><li>Des avant / après du corps, des kilos ou de la cellulite</li><li>Des témoignages en lien avec le cancer, même indirectement</li></ul></div>
-  </div></section>
-  <section class="blk"><h2>Recueillir un témoignage</h2>${script("Message à une cliente","Hey! Ça fait un mois que tu as commencé [produit], comment tu trouves ça? Si tu es à l'aise, j'aimerais partager ton expérience (sans ton nom si tu préfères) : comment tu le prends, ce que tu aimes, comment tu te sens dans ton quotidien.")}</section>`+T)+lessons(m)+nav(m);
+  const T=CATALOGUE.filter(c=>c.cat==="Gestion du poids").map(poidsBank).join("");
+  return head(m,"Les témoignages, c'est ce qui convainc le plus. Copie le texte, télécharge la photo et publie les deux ensemble.")+
+  acc(`<section class="blk"><h2>Recueillir un témoignage</h2>${script("Message à une cliente","Hey! Ça fait un mois que tu as commencé [produit], comment tu trouves ça? Si tu es à l'aise, j'aimerais partager ton expérience (sans ton nom si tu préfères) : comment tu le prends, ce que tu aimes, comment tu te sens dans ton quotidien.")}</section>`+T)+lessons(m)+nav(m);
 },
 cahier(m){
   const A=state.answers||{};
@@ -1609,7 +1606,7 @@ const MDESC={
  produits:"Le catalogue par besoin, et les deux boutiques (Canada et États-Unis).",
  youth:"Le nouveau système Co.Lab : les 3 étapes, les comparatifs et le pré-lancement.",
  storiesprod:"Des séquences de 6 stories à télécharger, prêtes à publier.",
- temoignages:"Comment recueillir et partager des témoignages conformes."
+ temoignages:"Les témoignages de perte de poids prêts à partager et comment en recueillir."
 };
 const SUB_DESC={"Les bases":"Le bon ton pour attirer sans faire pub, et ce qu'on peut dire (ou pas).","Créer ton contenu":"Ton mur, tes stories et tes reels, avec des idées et des scripts prêts à utiliser.","Claude AI":"Créer ton contenu, ton site personnalisé et faire l'audit de ton profil avec Claude.","Vendre et recruter":"Les messages privés et le recrutement, sans gosser personne.","Passer à l'action":"Le défi de 14 jours pour tout mettre en pratique."};
 const slug=t=>t.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
