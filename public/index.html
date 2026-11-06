@@ -574,7 +574,8 @@ const MODULES=[
   {id:"vp1",t:"J’ai regardé la formation vidéo sur Vinali"},
   {id:"rp1",t:"J’ai regardé la formation vidéo sur Rejuveniix"},
   {id:"rt1",t:"J’ai regardé la formation vidéo sur Restoriix"},
-  {id:"pb1",t:"J’ai regardé la formation vidéo sur Probiotiix"}]},
+  {id:"pb1",t:"J’ai regardé la formation vidéo sur Probiotiix"},
+  {id:"cm1",t:"J’ai regardé la formation vidéo sur le bracelet CM2"}]},
  {id:"produits",n:"",title:"Quel produit sert à quoi",group:"PRO",lessons:[
   {id:"q5",t:"Je sais qu'il y a deux boutiques (Canada et Ship from US to CA)"},
   {id:"q6",t:"J'ai regardé le survol du catalogue"},
@@ -1142,10 +1143,12 @@ formationproduits(m){
       <p class="ref">Si le lecteur ne fonctionne pas, <a href="https://youtu.be/MJ01t3pDU7g" target="_blank" rel="noopener">ouvrir la vidéo sur YouTube ↗</a>.</p>
     </article>
     <article class="card">
-      <span class="sticker st-sun">À venir</span>
+      <span class="sticker st-sun">Technologie de bien-être</span>
       <h2 style="font-size:24px">Bracelet CM2</h2>
-      <p>La vidéo de formation sera ajoutée ici.</p>
-      <div class="video-frame video-placeholder">Vidéo à venir</div>
+      <p>Regarde la formation et écoute-la ici, sans quitter l’Académie.</p>
+      <div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/GlY3xA3N_Ag" title="Formation sur le bracelet CM2" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+      ${lessonItem(m.lessons[5])}
+      <p class="ref">Si le lecteur ne fonctionne pas, <a href="https://youtu.be/GlY3xA3N_Ag" target="_blank" rel="noopener">ouvrir la vidéo sur YouTube ↗</a>.</p>
     </article>
     <article class="card">
       <span class="sticker st-sun">Détoxification & soutien du pH</span>
