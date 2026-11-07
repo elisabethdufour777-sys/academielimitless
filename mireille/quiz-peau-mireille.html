@@ -3,13 +3,13 @@
      Tout est dans #lt-quiz : les styles ne touchent pas au reste de la page.
      Réglages : voir CONFIG au début du script. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
 <div id="lt-quiz" aria-live="polite"></div>
 <style>
-#lt-quiz{--bg:#f5efe5;--card:#ffffff;--ink:#1a1816;--muted:#6b645b;--sage:#a67c52;--sage-d:#1a1816;--sage-s:#efe7da;--line:#e4dccf;--rose:#a67c52;--rose-s:#f3e9dc;--gold:#a67c52;--bronze:#a67c52;--bronze-t:#86603a;
-  font-family:Inter,system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--bg);max-width:680px;margin:0 auto;padding:24px 16px 40px;border-radius:20px;box-sizing:border-box;line-height:1.55}
+#lt-quiz{--bg:#f8f9fa;--card:#ffffff;--ink:#1f3b45;--muted:#5d6b71;--sage:#ff585d;--sage-d:#007396;--sage-s:#e8f3f6;--line:#dfe8eb;--rose:#ff585d;--rose-s:#fdeced;--gold:#ff585d;--bronze:#ff585d;--bronze-t:#007396;
+  font-family:Poppins,system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--bg);max-width:680px;margin:0 auto;padding:24px 16px 40px;border-radius:20px;box-sizing:border-box;line-height:1.55}
 #lt-quiz *{box-sizing:border-box}
-#lt-quiz h1,#lt-quiz h2,#lt-quiz h3{font-family:Fraunces,Georgia,serif;font-weight:600;line-height:1.2;margin:0 0 12px;color:var(--ink)}
+#lt-quiz h1,#lt-quiz h2,#lt-quiz h3{font-family:Poppins,Arial,sans-serif;font-weight:600;line-height:1.2;margin:0 0 12px;color:var(--ink)}
 #lt-quiz h1{font-size:clamp(28px,6vw,38px)}
 #lt-quiz h2{font-size:clamp(21px,5vw,27px)}
 #lt-quiz h3{font-size:19px;margin-top:4px}
@@ -17,8 +17,8 @@
 #lt-quiz .kick{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--bronze-t);font-weight:600;margin-bottom:10px}
 #lt-quiz .lead{color:var(--muted);font-size:17px}
 #lt-quiz .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin:16px 0}
-#lt-quiz .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;background:var(--sage-d);color:#fff;font:600 16px Inter,sans-serif;padding:14px 26px;cursor:pointer;text-decoration:none;min-height:48px}
-#lt-quiz .btn:hover{background:#3a3631}
+#lt-quiz .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;background:var(--sage-d);color:#fff;font:600 16px Poppins,sans-serif;padding:14px 26px;cursor:pointer;text-decoration:none;min-height:48px}
+#lt-quiz .btn:hover{background:#e5484d}
 #lt-quiz .btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
 #lt-quiz .btn.ghost:hover{background:var(--sage-s)}
 #lt-quiz .meta{font-size:13px;color:var(--muted)}
@@ -28,25 +28,25 @@
 #lt-quiz .bar i{display:block;height:100%;background:var(--bronze);border-radius:99px;transition:width .3s}
 #lt-quiz .why{font-size:14px;color:var(--muted);margin:-4px 0 16px}
 #lt-quiz .opts{display:flex;flex-direction:column;gap:10px}
-#lt-quiz .opt{text-align:left;background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:15px 16px;font:500 16px Inter,sans-serif;color:var(--ink);cursor:pointer;min-height:52px;transition:border-color .15s,background .15s}
+#lt-quiz .opt{text-align:left;background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:15px 16px;font:500 16px Poppins,sans-serif;color:var(--ink);cursor:pointer;min-height:52px;transition:border-color .15s,background .15s}
 #lt-quiz .opt:hover,#lt-quiz .opt:focus-visible{border-color:var(--ink);background:var(--sage-s);outline:none}
 #lt-quiz .opt.sel{border-color:var(--sage-d);background:var(--sage-s)}
-#lt-quiz .back{background:none;border:0;color:var(--muted);font:500 14px Inter,sans-serif;cursor:pointer;padding:12px 0;margin-top:8px}
+#lt-quiz .back{background:none;border:0;color:var(--muted);font:500 14px Poppins,sans-serif;cursor:pointer;padding:12px 0;margin-top:8px}
 #lt-quiz .pillars{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:18px 0 6px}
 @media(max-width:520px){#lt-quiz .pillars{grid-template-columns:1fr 1fr}}
 #lt-quiz .pill{background:var(--sage-s);border-radius:12px;padding:12px 8px;font-size:13px;font-weight:500;color:var(--sage-d);text-align:center;display:grid;place-items:center}
 #lt-quiz .score{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
 #lt-quiz .ring{--v:0;width:120px;height:120px;border-radius:50%;background:conic-gradient(var(--sage-d) calc(var(--v)*1%),var(--line) 0);display:grid;place-items:center;flex:0 0 auto}
-#lt-quiz .ring div{width:94px;height:94px;border-radius:50%;background:var(--card);display:grid;place-items:center;text-align:center;font-family:Fraunces,Georgia,serif;font-size:32px;font-weight:600;line-height:1}
-#lt-quiz .ring small{display:block;font:500 12px Inter,sans-serif;color:var(--muted);margin-top:2px}
+#lt-quiz .ring div{width:94px;height:94px;border-radius:50%;background:var(--card);display:grid;place-items:center;text-align:center;font-family:Poppins,Arial,sans-serif;font-size:32px;font-weight:600;line-height:1}
+#lt-quiz .ring small{display:block;font:500 12px Poppins,sans-serif;color:var(--muted);margin-top:2px}
 #lt-quiz .pb{margin:12px 0}
 #lt-quiz .pb .l{display:flex;justify-content:space-between;font-size:14px;margin-bottom:5px}
 #lt-quiz .pb .l em{font-style:normal;font-size:12px;font-weight:600;padding:2px 8px;border-radius:99px}
 #lt-quiz .pb .t{height:10px;background:var(--line);border-radius:99px;overflow:hidden}
 #lt-quiz .pb .t i{display:block;height:100%;border-radius:99px}
-#lt-quiz .lv-bon{background:#ebe7e1;color:#1a1816}
-#lt-quiz .lv-moy{background:#f3e9dc;color:#86603a}
-#lt-quiz .lv-bas{background:#ead7c2;color:#6e4524}
+#lt-quiz .lv-bon{background:#e3f0f3;color:#1f3b45}
+#lt-quiz .lv-moy{background:#fdeced;color:#007396}
+#lt-quiz .lv-bas{background:#fbd9da;color:#b3262c}
 #lt-quiz .prio{display:flex;gap:14px;padding:16px 0;border-top:1px solid var(--line)}
 #lt-quiz .prio:first-of-type{border-top:0;padding-top:4px}
 #lt-quiz .prio .n{flex:0 0 32px;height:32px;border-radius:50%;background:var(--sage-d);color:#fff;display:grid;place-items:center;font-weight:600}
@@ -70,7 +70,7 @@
 #lt-quiz .placeholder{padding:18px;color:var(--muted);font-size:14px;border:1.5px dashed var(--bronze);border-radius:12px;background:transparent}
 #lt-quiz .fld{display:block;margin:0 0 14px}
 #lt-quiz .fld span{display:block;font-size:14px;font-weight:600;margin-bottom:6px}
-#lt-quiz .fld input{width:100%;font:400 16px Inter,sans-serif;color:var(--ink);background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:13px 14px;min-height:50px}
+#lt-quiz .fld input{width:100%;font:400 16px Poppins,sans-serif;color:var(--ink);background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:13px 14px;min-height:50px}
 #lt-quiz .fld input:focus{outline:none;border-color:var(--ink)}
 #lt-quiz .consent{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--muted);margin:4px 0 16px;cursor:pointer}
 #lt-quiz .consent input{width:20px;height:20px;margin:1px 0 0;accent-color:var(--ink);flex:0 0 auto}
@@ -112,6 +112,10 @@
 @media(max-width:820px){#lt-quiz.wide{max-width:680px;padding:24px 16px 40px}#lt-quiz .intro-g{grid-template-columns:1fr;gap:20px}#lt-quiz .intro-g .hero{aspect-ratio:3/2;max-height:none;object-position:30% 50%}}
 #lt-quiz .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
 #lt-quiz .small{font-size:12px;color:var(--muted);margin-top:14px}
+/* Marque Mireille Chevalier */
+#lt-quiz h1,#lt-quiz h2{color:#007396;letter-spacing:-.015em}
+#lt-quiz .btn{background:#ff585d;color:#fff}
+#lt-quiz .btn:hover{background:#e5484d}
 </style>
 <script>
 (function(){
@@ -474,7 +478,7 @@ async function envoyer(prenom,mail){
   })();
   await Promise.race([go,t]);
 }
-const lvl=v=>v>=80?["Bon","lv-bon","#1a1816"]:v>=55?["À améliorer","lv-moy","#c9a57c"]:["Priorité","lv-bas","#86603a"];
+const lvl=v=>v>=80?["Bon","lv-bon","#1f3b45"]:v>=55?["À améliorer","lv-moy","#ff8a8e"]:["Priorité","lv-bas","#007396"];
 function result(){
   root.classList.remove("wide");
   const R=compute(),r=P[R.p],ing=ING[R.p];
@@ -531,32 +535,32 @@ function pdfHtml(R,r){
   const li=a=>a.map(x=>`<li>${esc(x)}</li>`).join("");
   return `<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Décode ta peau${prenomP?" - "+esc(prenomP):""}</title>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
 <style>
 @page{size:A4;margin:14mm}
 *{box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-body{margin:0;background:#f5efe5;font:400 14px/1.55 Inter,Arial,sans-serif;color:#1a1816}
+body{margin:0;background:#f8f9fa;font:400 14px/1.55 Poppins,Arial,sans-serif;color:#1f3b45}
 .doc{max-width:760px;margin:0 auto;padding:28px 22px;background:#fff}
 @media print{body{background:#fff}.doc{padding:0;max-width:none}.noprint{display:none!important}}
-.k{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#86603a;font-weight:600;margin:0 0 6px}
-h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:600;margin:0 0 8px;line-height:1.2}
+.k{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#007396;font-weight:600;margin:0 0 6px}
+h1,h2,h3{font-family:Poppins,Arial,sans-serif;font-weight:600;margin:0 0 8px;line-height:1.2}
 h1{font-size:30px}h2{font-size:20px}h3{font-size:16px}
-p{margin:0 0 8px}.m{color:#6b645b}
-.box{border:1px solid #e4dccf;border-radius:12px;padding:16px 18px;margin:14px 0}
+p{margin:0 0 8px}.m{color:#5d6b71}
+.box{border:1px solid #dfe8eb;border-radius:12px;padding:16px 18px;margin:14px 0}
 .cr,.launch,.rtn,.ingb{break-inside:avoid}
-.cr{background:#f5efe5;border:0}
+.cr{background:#f8f9fa;border:0}
 .top{display:flex;gap:20px;align-items:center}
-.sc{font-family:Fraunces,Georgia,serif;font-size:54px;font-weight:600;line-height:1;white-space:nowrap;flex:0 0 auto}
-.sc small{font:400 14px Inter,sans-serif;color:#6b645b}
+.sc{font-family:Poppins,Arial,sans-serif;font-size:54px;font-weight:600;line-height:1;white-space:nowrap;flex:0 0 auto}
+.sc small{font:400 14px Poppins,sans-serif;color:#5d6b71}
 .pb{margin:8px 0}.pb .l{display:flex;justify-content:space-between;font-size:13px;margin-bottom:3px}
-.pb .t{height:8px;background:#e4dccf;border-radius:9px;overflow:hidden}.pb .t i{display:block;height:100%;border-radius:9px}
-.pr{display:flex;gap:12px;padding:10px 0;border-top:1px solid #e4dccf;break-inside:avoid}.pr:first-of-type{border-top:0}
-.n{flex:0 0 26px;height:26px;border-radius:50%;background:#1a1816;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:13px}
-.g2{display:flex;gap:12px}.g2>div{flex:1;background:#f5efe5;border-radius:10px;padding:12px 14px}
-.g2 b{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#86603a;margin-bottom:4px}
+.pb .t{height:8px;background:#dfe8eb;border-radius:9px;overflow:hidden}.pb .t i{display:block;height:100%;border-radius:9px}
+.pr{display:flex;gap:12px;padding:10px 0;border-top:1px solid #dfe8eb;break-inside:avoid}.pr:first-of-type{border-top:0}
+.n{flex:0 0 26px;height:26px;border-radius:50%;background:#1f3b45;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:13px}
+.g2{display:flex;gap:12px}.g2>div{flex:1;background:#f8f9fa;border-radius:10px;padding:12px 14px}
+.g2 b{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#007396;margin-bottom:4px}
 ol{margin:0;padding-left:18px}li{margin-bottom:3px}
-.launch{border-color:#a67c52;background:#f5efe5}
-.foot{display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid #a67c52;margin-top:18px;padding-top:12px}
+.launch{border-color:#ff585d;background:#f8f9fa}
+.foot{display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid #ff585d;margin-top:18px;padding-top:12px}
 </style></head><body><div class="doc">
 <div class="k">${esc(CONFIG.marque)} · Décode ta peau${nom}</div>
 <h1>Ce que ta peau essaie de te dire</h1>
@@ -564,12 +568,12 @@ ol{margin:0;padding-left:18px}li{margin-bottom:3px}
 ${Object.entries(PIL).map(([k,p])=>{const v=R.sc[k],l=L(v);return `<div class="pb"><div class="l"><span>${esc(p.n)}</span><span>${l[0]} · ${v}</span></div><div class="t"><i style="width:${Math.max(v,3)}%;background:${l[2]}"></i></div></div>`;}).join("")}</div>
 <div class="box"><div class="k">Ton profil de peau</div><h2>${esc(r.nom)}</h2><p class="m">${esc(r.expl)}</p></div>
 <div class="box"><div class="k">Tes 3 priorités pour les 14 prochains jours</div>
-${R.pr.map((f,k)=>`<div class="pr"><div class="n">${k+1}</div><div><h3>${esc(f.t)}</h3><p class="m">${esc(f.p)}</p>${whyTxt(f)?`<p style="color:#86603a;font-size:13px"><b>D'après tes réponses :</b> ${esc(whyTxt(f))}</p>`:""}<p><b>Ton geste :</b> ${esc(f.g)}</p></div></div>`).join("")}
+${R.pr.map((f,k)=>`<div class="pr"><div class="n">${k+1}</div><div><h3>${esc(f.t)}</h3><p class="m">${esc(f.p)}</p>${whyTxt(f)?`<p style="color:#007396;font-size:13px"><b>D'après tes réponses :</b> ${esc(whyTxt(f))}</p>`:""}<p><b>Ton geste :</b> ${esc(f.g)}</p></div></div>`).join("")}
 </div>
 <div class="box rtn"><div class="k">Ta routine simplifiée</div><div class="g2"><div><b>Matin</b><ol>${li(r.matin)}</ol></div><div><b>Soir</b><ol>${li(r.soir)}</ol></div></div><p style="margin:10px 0 0">${esc(r.astuce)}</p></div>
-<div class="box ingb"><div class="k">Ton guide des ingrédients</div><div class="g2"><div style="background:#fff;border:1px solid #e4dccf"><b>Ce que ta peau aime</b>${ING[R.p].oui.map(x=>`<p style="font-size:12.5px;margin:0 0 6px"><b>${esc(x[0])}</b> : ${esc(x[2])}.<br><i style="color:#6b645b">${esc(x[1])}</i></p>`).join("")}</div><div style="background:#fff;border:1px solid #e4dccf"><b>Ce qu'elle préfère éviter</b>${ING[R.p].non.map(x=>`<p style="font-size:12.5px;margin:0 0 6px"><b>${esc(x[0])}</b> : ${esc(x[2])}.<br><i style="color:#6b645b">${esc(x[1])}</i></p>`).join("")}</div></div></div>
+<div class="box ingb"><div class="k">Ton guide des ingrédients</div><div class="g2"><div style="background:#fff;border:1px solid #dfe8eb"><b>Ce que ta peau aime</b>${ING[R.p].oui.map(x=>`<p style="font-size:12.5px;margin:0 0 6px"><b>${esc(x[0])}</b> : ${esc(x[2])}.<br><i style="color:#5d6b71">${esc(x[1])}</i></p>`).join("")}</div><div style="background:#fff;border:1px solid #dfe8eb"><b>Ce qu'elle préfère éviter</b>${ING[R.p].non.map(x=>`<p style="font-size:12.5px;margin:0 0 6px"><b>${esc(x[0])}</b> : ${esc(x[2])}.<br><i style="color:#5d6b71">${esc(x[1])}</i></p>`).join("")}</div></div></div>
 <div class="box launch"><div class="k">Le 16 novembre</div><h3>Le skinimalisme arrive en force</h3><p style="margin:0">Moins de produits, mieux choisis : une routine courte et efficace, qui fait exactement ce que tes résultats recommandent. Comme tu as fait l'évaluation, tu seras parmi les premières au courant.</p></div>
-<div class="foot"><div><div style="font-family:Fraunces,Georgia,serif;font-size:18px;font-weight:600">${esc(CONFIG.nom)}</div><div class="m" style="font-size:12px">${esc(CONFIG.marque)}</div></div>
+<div class="foot"><div><div style="font-family:Poppins,Arial,sans-serif;font-size:18px;font-weight:600">${esc(CONFIG.nom)}</div><div class="m" style="font-size:12px">${esc(CONFIG.marque)}</div></div>
 <div class="m" style="font-size:10px;max-width:60%;text-align:right">Cette évaluation est un outil de sensibilisation. Elle ne remplace pas l'avis d'une professionnelle de la santé ou d'une dermatologue.</div></div>
 </div><script>window.addEventListener("load",function(){var go=function(){try{window.print()}catch(e){}};(document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(function(){setTimeout(go,300)});});<\/script></body></html>`;
 }
@@ -594,31 +598,31 @@ async function saveCard(R,r){
   const msg=root.querySelector("[data-msg]");const say=t=>{msg.hidden=false;msg.textContent=t;};
   const W=1080,H=1350,c=document.createElement("canvas");c.width=W;c.height=H;const x=c.getContext("2d");
   try{await document.fonts.ready;}catch(e){}
-  x.fillStyle="#f5efe5";x.fillRect(0,0,W,H);
-  x.fillStyle="#ffffff";x.strokeStyle="#e4dccf";x.lineWidth=3;rr(x,60,60,W-120,H-120,40);x.fill();x.stroke();
-  x.fillStyle="#86603a";x.font="600 28px Inter, sans-serif";x.fillText("DÉCODE TA PEAU · "+CONFIG.marque.toUpperCase(),120,150);
+  x.fillStyle="#f8f9fa";x.fillRect(0,0,W,H);
+  x.fillStyle="#ffffff";x.strokeStyle="#dfe8eb";x.lineWidth=3;rr(x,60,60,W-120,H-120,40);x.fill();x.stroke();
+  x.fillStyle="#007396";x.font="600 28px Poppins, sans-serif";x.fillText("DÉCODE TA PEAU · "+CONFIG.marque.toUpperCase(),120,150);
   // indice
-  x.lineWidth=22;x.strokeStyle="#e4dccf";x.beginPath();x.arc(215,300,85,0,Math.PI*2);x.stroke();
-  x.strokeStyle="#1a1816";x.beginPath();x.arc(215,300,85,-Math.PI/2,-Math.PI/2+Math.PI*2*R.indice/100);x.stroke();
-  x.fillStyle="#1a1816";x.textAlign="center";x.font="600 64px Fraunces, Georgia, serif";x.fillText(R.indice,215,318);
-  x.font="400 22px Inter, sans-serif";x.fillStyle="#6b645b";x.fillText("sur 100",215,350);x.textAlign="left";
-  x.fillStyle="#1a1816";x.font="600 50px Fraunces, Georgia, serif";x.fillStyle="#86603a";x.font="600 22px Inter, sans-serif";x.fillText("MON PROFIL DE PEAU",350,250);x.fillStyle="#1a1816";x.font="600 48px Fraunces, Georgia, serif";wrap(x,r.nom,350,310,610,58);
+  x.lineWidth=22;x.strokeStyle="#dfe8eb";x.beginPath();x.arc(215,300,85,0,Math.PI*2);x.stroke();
+  x.strokeStyle="#1f3b45";x.beginPath();x.arc(215,300,85,-Math.PI/2,-Math.PI/2+Math.PI*2*R.indice/100);x.stroke();
+  x.fillStyle="#1f3b45";x.textAlign="center";x.font="600 64px Poppins, Arial, sans-serif";x.fillText(R.indice,215,318);
+  x.font="400 22px Poppins, sans-serif";x.fillStyle="#5d6b71";x.fillText("sur 100",215,350);x.textAlign="left";
+  x.fillStyle="#1f3b45";x.font="600 50px Poppins, Arial, sans-serif";x.fillStyle="#007396";x.font="600 22px Poppins, sans-serif";x.fillText("MON PROFIL DE PEAU",350,250);x.fillStyle="#1f3b45";x.font="600 48px Poppins, Arial, sans-serif";wrap(x,r.nom,350,310,610,58);
   // piliers
-  let y=450;x.font="400 28px Inter, sans-serif";
+  let y=450;x.font="400 28px Poppins, sans-serif";
   Object.entries(PIL).forEach(([k,p])=>{const v=R.sc[k],L=lvl(v);
-    x.fillStyle="#1a1816";x.fillText(p.n,120,y);x.textAlign="right";x.fillStyle="#6b645b";x.fillText(v+"",960,y);x.textAlign="left";
-    x.fillStyle="#e4dccf";rr(x,120,y+14,840,14,7);x.fill();x.fillStyle=L[2];rr(x,120,y+14,Math.max(840*v/100,14),14,7);x.fill();y+=74;});
+    x.fillStyle="#1f3b45";x.fillText(p.n,120,y);x.textAlign="right";x.fillStyle="#5d6b71";x.fillText(v+"",960,y);x.textAlign="left";
+    x.fillStyle="#dfe8eb";rr(x,120,y+14,840,14,7);x.fill();x.fillStyle=L[2];rr(x,120,y+14,Math.max(840*v/100,14),14,7);x.fill();y+=74;});
   // priorités
-  y+=30;x.fillStyle="#1a1816";x.font="600 34px Fraunces, Georgia, serif";x.fillText("Mes 3 priorités",120,y);y+=56;
-  R.pr.forEach((f,k)=>{x.fillStyle="#1a1816";x.beginPath();x.arc(140,y-10,20,0,Math.PI*2);x.fill();
-    x.fillStyle="#fff";x.font="600 22px Inter, sans-serif";x.textAlign="center";x.fillText(k+1,140,y-2);x.textAlign="left";
-    x.fillStyle="#1a1816";x.font="400 30px Inter, sans-serif";y=wrap(x,f.t,180,y,780,40)+18;});
+  y+=30;x.fillStyle="#1f3b45";x.font="600 34px Poppins, Arial, sans-serif";x.fillText("Mes 3 priorités",120,y);y+=56;
+  R.pr.forEach((f,k)=>{x.fillStyle="#1f3b45";x.beginPath();x.arc(140,y-10,20,0,Math.PI*2);x.fill();
+    x.fillStyle="#fff";x.font="600 22px Poppins, sans-serif";x.textAlign="center";x.fillText(k+1,140,y-2);x.textAlign="left";
+    x.fillStyle="#1f3b45";x.font="400 30px Poppins, sans-serif";y=wrap(x,f.t,180,y,780,40)+18;});
   // pied
-  x.fillStyle="#86603a";x.fillRect(120,H-178,W-240,2);
-  x.fillStyle="#1a1816";x.font="600 34px Fraunces, Georgia, serif";let fx=120;
+  x.fillStyle="#007396";x.fillRect(120,H-178,W-240,2);
+  x.fillStyle="#1f3b45";x.font="600 34px Poppins, Arial, sans-serif";let fx=120;
   if(CONFIG.photo){try{const im=new Image();im.crossOrigin="anonymous";im.src=CONFIG.photo;await im.decode();
     x.save();x.beginPath();x.arc(165,H-110,45,0,Math.PI*2);x.clip();x.drawImage(im,120,H-155,90,90);x.restore();fx=235;}catch(e){}}
-  x.fillText(CONFIG.nom,fx,H-115);x.fillStyle="#6b645b";x.font="400 26px Inter, sans-serif";x.fillText(CONFIG.marque,fx,H-75);
+  x.fillText(CONFIG.nom,fx,H-115);x.fillStyle="#5d6b71";x.font="400 26px Poppins, sans-serif";x.fillText(CONFIG.marque,fx,H-75);
   c.toBlob(async b=>{
     if(!b){say("Impossible de créer l'image. Fais une capture d'écran de tes résultats.");return;}
     const f=new File([b],"decode-ta-peau.png",{type:"image/png"});

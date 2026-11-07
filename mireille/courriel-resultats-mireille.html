@@ -10,8 +10,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="x-apple-disable-message-reformatting">
 <title>Tes résultats · Décode ta peau</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
 <style>
-  body{margin:0;padding:0;background:#f5efe5}
+  body{margin:0;padding:0;background:#f8f9fa}
   @media (max-width:620px){
     .wrap{width:100% !important}
     .pad{padding-left:24px !important;padding-right:24px !important}
@@ -20,82 +21,82 @@
   }
 </style>
 </head>
-<body style="margin:0;padding:0;background:#f5efe5;">
+<body style="margin:0;padding:0;background:#f8f9fa;">
 <!-- Texte d'aperçu (caché) -->
-<div style="display:none;max-height:0;overflow:hidden;opacity:0;color:#f5efe5;">Ton score équilibre, ton profil et tes 3 priorités pour les 14 prochains jours.&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;</div>
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;color:#f8f9fa;">Ton score équilibre, ton profil et tes 3 priorités pour les 14 prochains jours.&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;</div>
 
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f5efe5;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f8f9fa;">
 <tr><td align="center" style="padding:32px 12px;">
 
-  <table role="presentation" class="wrap" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px;max-width:600px;background:#ffffff;border:1px solid #e4dccf;border-radius:16px;">
+  <table role="presentation" class="wrap" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px;max-width:600px;background:#ffffff;border:1px solid #dfe8eb;border-radius:16px;">
 
     <!-- En-tête -->
-    <tr><td class="pad" style="padding:40px 48px 8px;font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#86603a;font-weight:bold;">
+    <tr><td class="pad" style="padding:40px 48px 8px;font-family:Poppins,Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#007396;font-weight:bold;">
       Mireille Chevalier · Décode ta peau
     </td></tr>
     <tr><td class="pad" style="padding:0 48px 24px;">
-      <h1 class="h1" style="margin:0;font-family:Georgia,'Times New Roman',serif;font-size:32px;line-height:38px;font-weight:bold;color:#1a1816;">Voici ce que ta peau essaie de te dire</h1>
+      <h1 class="h1" style="margin:0;font-family:Poppins,Arial,Helvetica,sans-serif;font-size:32px;line-height:38px;font-weight:bold;color:#007396;">Voici ce que ta peau essaie de te dire</h1>
     </td></tr>
-    <tr><td class="pad" style="padding:0 48px 28px;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:26px;color:#3d3832;">
+    <tr><td class="pad" style="padding:0 48px 28px;font-family:Poppins,Arial,Helvetica,sans-serif;font-size:16px;line-height:26px;color:#33474e;">
       Allô {{contact.first_name}},<br><br>
       Merci d'avoir pris le temps de décoder ta peau! Voici tes résultats, à garder sous la main.
     </td></tr>
 
     <!-- Score -->
     <tr><td class="pad" style="padding:0 48px 28px;">
-      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f5efe5;border-radius:12px;">
-        <tr><td align="center" style="padding:28px 24px 8px;font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#86603a;font-weight:bold;">Ton score équilibre</td></tr>
-        <tr><td align="center" style="padding:0 24px;font-family:Georgia,'Times New Roman',serif;color:#1a1816;">
-          <span class="score" style="font-size:64px;line-height:70px;font-weight:bold;">{{contact.score_equilibre}}</span><span style="font-size:22px;color:#6b645b;"> / 100</span>
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f8f9fa;border-radius:12px;">
+        <tr><td align="center" style="padding:28px 24px 8px;font-family:Poppins,Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#007396;font-weight:bold;">Ton score équilibre</td></tr>
+        <tr><td align="center" style="padding:0 24px;font-family:Poppins,Arial,Helvetica,sans-serif;color:#1f3b45;">
+          <span class="score" style="font-size:64px;line-height:70px;font-weight:bold;">{{contact.score_equilibre}}</span><span style="font-size:22px;color:#5d6b71;"> / 100</span>
         </td></tr>
-        <tr><td align="center" style="padding:8px 32px 28px;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:23px;color:#6b645b;">
+        <tr><td align="center" style="padding:8px 32px 28px;font-family:Poppins,Arial,Helvetica,sans-serif;font-size:15px;line-height:23px;color:#5d6b71;">
           Ce score regarde ta peau dans son ensemble : ton hydratation, ta barrière cutanée, ton mode de vie, ta protection et ta routine. Parce que la peau, ça ne se joue pas juste dans le pot de crème.
         </td></tr>
       </table>
     </td></tr>
 
     <!-- Profil -->
-    <tr><td class="pad" style="padding:0 48px 8px;font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#86603a;font-weight:bold;">Ton profil de peau</td></tr>
-    <tr><td class="pad" style="padding:0 48px 10px;font-family:Georgia,'Times New Roman',serif;font-size:24px;line-height:30px;font-weight:bold;color:#1a1816;">{{contact.profil_de_peau}}</td></tr>
-    <tr><td class="pad" style="padding:0 48px 32px;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:26px;color:#3d3832;">Ton profil décrit ce dont ta peau a le plus besoin en ce moment. Tes priorités ci-dessous ont été choisies selon tes réponses pour y répondre, de la plus importante à la moins importante.</td></tr>
+    <tr><td class="pad" style="padding:0 48px 8px;font-family:Poppins,Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#007396;font-weight:bold;">Ton profil de peau</td></tr>
+    <tr><td class="pad" style="padding:0 48px 10px;font-family:Poppins,Arial,Helvetica,sans-serif;font-size:24px;line-height:30px;font-weight:bold;color:#007396;">{{contact.profil_de_peau}}</td></tr>
+    <tr><td class="pad" style="padding:0 48px 32px;font-family:Poppins,Arial,Helvetica,sans-serif;font-size:16px;line-height:26px;color:#33474e;">Ton profil décrit ce dont ta peau a le plus besoin en ce moment. Tes priorités ci-dessous ont été choisies selon tes réponses pour y répondre, de la plus importante à la moins importante.</td></tr>
 
-    <!-- Séparateur bronze -->
-    <tr><td class="pad" style="padding:0 48px;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="border-top:1px solid #a67c52;font-size:0;line-height:0;">&nbsp;</td></tr></table></td></tr>
+    <!-- Séparateur corail -->
+    <tr><td class="pad" style="padding:0 48px;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="border-top:1px solid #ff585d;font-size:0;line-height:0;">&nbsp;</td></tr></table></td></tr>
 
     <!-- Priorités -->
-    <tr><td class="pad" style="padding:32px 48px 6px;font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#86603a;font-weight:bold;">Tes 3 priorités</td></tr>
-    <tr><td class="pad" style="padding:0 48px 20px;font-family:Georgia,'Times New Roman',serif;font-size:24px;line-height:30px;font-weight:bold;color:#1a1816;">Pour les 14 prochains jours</td></tr>
+    <tr><td class="pad" style="padding:32px 48px 6px;font-family:Poppins,Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#007396;font-weight:bold;">Tes 3 priorités</td></tr>
+    <tr><td class="pad" style="padding:0 48px 20px;font-family:Poppins,Arial,Helvetica,sans-serif;font-size:24px;line-height:30px;font-weight:bold;color:#007396;">Pour les 14 prochains jours</td></tr>
 
     <tr><td class="pad" style="padding:0 48px 24px;">
-      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-left:3px solid #1a1816;">
-        <tr><td style="padding:4px 0 4px 20px;font-family:Arial,Helvetica,sans-serif;font-size:17px;line-height:30px;font-weight:bold;color:#1a1816;white-space:pre-line;">{{contact.priorites_peau}}</td></tr>
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-left:3px solid #ff585d;">
+        <tr><td style="padding:4px 0 4px 20px;font-family:Poppins,Arial,Helvetica,sans-serif;font-size:17px;line-height:30px;font-weight:bold;color:#1f3b45;white-space:pre-line;">{{contact.priorites_peau}}</td></tr>
       </table>
     </td></tr>
-    <tr><td class="pad" style="padding:0 48px 36px;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:24px;color:#6b645b;font-style:italic;">
+    <tr><td class="pad" style="padding:0 48px 36px;font-family:Poppins,Arial,Helvetica,sans-serif;font-size:15px;line-height:24px;color:#5d6b71;font-style:italic;">
       Mon conseil : commence par la première. Une seule habitude changée pour vrai, ça vaut mieux que dix bonnes intentions. Dans deux semaines, regarde ta peau à la lumière du jour et note ce qui a changé. Et si tu veux savoir comment t'y prendre pour une de tes priorités, réponds-moi : je t'explique.
     </td></tr>
 
     <!-- Lancement -->
     <tr><td class="pad" style="padding:0 48px 36px;">
-      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border:1px solid #a67c52;border-radius:12px;background:#f5efe5;">
-        <tr><td style="padding:24px 28px 6px;font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#86603a;font-weight:bold;">Le 16 novembre</td></tr>
-        <tr><td style="padding:0 28px 10px;font-family:Georgia,'Times New Roman',serif;font-size:22px;line-height:28px;font-weight:bold;color:#1a1816;">Le skinimalisme arrive en force</td></tr>
-        <tr><td style="padding:0 28px 24px;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:24px;color:#3d3832;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border:1px solid #ff585d;border-radius:12px;background:#f8f9fa;">
+        <tr><td style="padding:24px 28px 6px;font-family:Poppins,Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#007396;font-weight:bold;">Le 16 novembre</td></tr>
+        <tr><td style="padding:0 28px 10px;font-family:Poppins,Arial,Helvetica,sans-serif;font-size:22px;line-height:28px;font-weight:bold;color:#007396;">Le skinimalisme arrive en force</td></tr>
+        <tr><td style="padding:0 28px 24px;font-family:Poppins,Arial,Helvetica,sans-serif;font-size:15px;line-height:24px;color:#33474e;">
           Moins de produits, mieux choisis : une routine courte et efficace, qui fait exactement ce que tes résultats recommandent. Comme tu as fait l'évaluation, tu seras parmi les premières au courant. Surveille ta boîte courriel!
         </td></tr>
       </table>
     </td></tr>
 
     <!-- Signature -->
-    <tr><td class="pad" style="padding:0 48px 8px;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:26px;color:#3d3832;">
+    <tr><td class="pad" style="padding:0 48px 8px;font-family:Poppins,Arial,Helvetica,sans-serif;font-size:16px;line-height:26px;color:#33474e;">
       Une question sur tes résultats? Réponds simplement à ce courriel, je les lis tous.<br><br>
       À très vite,
     </td></tr>
-    <tr><td class="pad" style="padding:0 48px 4px;font-family:Georgia,'Times New Roman',serif;font-size:22px;line-height:28px;font-weight:bold;color:#1a1816;">Mireille</td></tr>
-    <tr><td class="pad" style="padding:0 48px 40px;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:20px;color:#86603a;">Naturothérapeute agréée</td></tr>
+    <tr><td class="pad" style="padding:0 48px 4px;font-family:Poppins,Arial,Helvetica,sans-serif;font-size:22px;line-height:28px;font-weight:bold;color:#007396;">Mireille</td></tr>
+    <tr><td class="pad" style="padding:0 48px 40px;font-family:Poppins,Arial,Helvetica,sans-serif;font-size:14px;line-height:20px;color:#007396;">Naturothérapeute agréée</td></tr>
 
     <!-- Avis -->
-    <tr><td class="pad" style="padding:20px 48px 32px;border-top:1px solid #e4dccf;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:18px;color:#8a8279;">
+    <tr><td class="pad" style="padding:20px 48px 32px;border-top:1px solid #dfe8eb;font-family:Poppins,Arial,Helvetica,sans-serif;font-size:12px;line-height:18px;color:#7b878c;">
       Cette évaluation est un outil de sensibilisation. Elle ne remplace pas l'avis d'une professionnelle de la santé ou d'une dermatologue.
     </td></tr>
   </table>
