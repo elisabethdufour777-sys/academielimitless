@@ -100,6 +100,16 @@
 #lt-quiz.fade>*{animation:ltIn .3s ease both}
 @keyframes ltIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 @media(prefers-reduced-motion:reduce){#lt-quiz.fade>*{animation:none}}
+#lt-quiz.wide{max-width:1180px;padding:24px}
+#lt-quiz .intro-g{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:44px;align-items:center}
+#lt-quiz .intro-g .hero{margin:0;aspect-ratio:4/5;max-height:min(640px,calc(100vh - 64px));object-position:6% 50%}
+#lt-quiz .intro-t h1{font-size:clamp(32px,4.4vw,54px);margin-bottom:14px}
+#lt-quiz .intro-t .actions{margin-top:18px}
+#lt-quiz .intro-t .small{margin-top:10px}
+#lt-quiz .recoit{margin-top:20px;padding-top:16px;border-top:1px solid var(--line);font-size:14px}
+#lt-quiz .recoit ul{margin:8px 0 0;padding-left:18px;color:var(--muted)}
+#lt-quiz .recoit li{margin-bottom:4px}
+@media(max-width:820px){#lt-quiz.wide{max-width:680px;padding:24px 16px 40px}#lt-quiz .intro-g{grid-template-columns:1fr;gap:20px}#lt-quiz .intro-g .hero{aspect-ratio:3/2;max-height:none;object-position:30% 50%}}
 #lt-quiz .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
 #lt-quiz .small{font-size:12px;color:var(--muted);margin-top:14px}
 </style>
@@ -378,19 +388,23 @@ const top=()=>{const r=root.getBoundingClientRect();if(r.top<0)window.scrollTo({
 
 function intro(){
   const enc0=lsGet(KEY_EN);const enc=enc0&&Array.isArray(enc0.ans)&&enc0.i>0&&enc0.i<Q.length?enc0:null;
-  root.innerHTML=`<img class="hero" src="${esc(CONFIG.image||HERO)}" alt="Une femme applique une goutte de sérum sur sa joue" width="1200" height="800">
+  root.classList.add("wide");
+  root.innerHTML=`<div class="intro-g">
+  <img class="hero" src="${esc(CONFIG.image||HERO)}" alt="Une femme applique une goutte de sérum sur sa joue" width="1200" height="800">
+  <div class="intro-t">
   <div class="kick">${esc(CONFIG.marque)}</div>
   <h1>Décode ta peau</h1>
   <p class="lead">Ta peau ne dépend pas que de tes crèmes. Ce que tu bois, ton sommeil, ton stress, tes hormones et ton environnement comptent autant. Cette évaluation regarde tout ça.</p>
-  <div class="pillars">${Object.values(PIL).map(p=>`<div class="pill">${esc(p.n)}</div>`).join("")}</div>
-  <div class="card"><b>À la fin, tu reçois :</b><ul style="margin-top:8px"><li>Ton score équilibre sur 100 et ton score pour chacun des 5 piliers</li><li>Ton profil de peau, expliqué simplement</li><li>Ce que tes réponses révèlent sur tes habitudes</li><li>Tes 3 priorités, choisies selon tes réponses</li><li>Ta routine simplifiée et ton guide des ingrédients à rechercher ou à éviter</li><li>Ton bilan complet en PDF, à garder</li></ul></div>
   ${enc?`<div class="actions"><button class="btn" data-resume>Reprendre là où j'étais (question ${enc.i+1} sur ${Q.length})</button><button class="btn ghost" data-go>Recommencer</button></div>`:`<div class="actions"><button class="btn" data-go>Commencer l'évaluation</button></div>`}
-  <p class="small">${Q.length} questions, environ 4 minutes. Tes résultats sont gratuits et t'arrivent aussi par courriel.</p>`;
+  <p class="small">${Q.length} questions, environ 4 minutes. Tes résultats sont gratuits et t'arrivent aussi par courriel.</p>
+  <div class="recoit"><b>À la fin, tu reçois :</b><ul><li>Ton score équilibre sur 100 et ton score pour chacun des 5 piliers</li><li>Ton profil de peau, expliqué simplement</li><li>Ce que tes réponses révèlent sur tes habitudes</li><li>Tes 3 priorités, choisies selon tes réponses</li><li>Ta routine simplifiée et ton guide des ingrédients à rechercher ou à éviter</li><li>Ton bilan complet en PDF, à garder</li></ul></div>
+  </div></div>`;
   root.querySelector("[data-go]").onclick=()=>{i=0;ans=[];lsSet(KEY_EN,null);ask();top();};
   const rs=root.querySelector("[data-resume]");if(rs)rs.onclick=()=>{i=enc.i;ans=enc.ans;ask();top();};
   anim();
 }
 function ask(){
+  root.classList.remove("wide");
   const it=Q[i];
   root.innerHTML=`<div class="sec"><span><b>${it.s+1}/${SEC.length}</b> · ${esc(SEC[it.s])}</span><span>${i+1} sur ${Q.length}</span></div>
   <div class="bar"><i style="width:${(i/Q.length)*100}%"></i></div>
@@ -421,6 +435,7 @@ function compute(){
 }
 /* Page intermédiaire : prénom et courriel obligatoires avant les résultats */
 function courriel(){
+  root.classList.remove("wide");
   root.innerHTML=`<div class="kick">Tes résultats sont prêts</div>
   <h1>Où veux-tu recevoir tes résultats?</h1>
   <p class="lead">Inscris ton prénom et ton courriel pour voir tes résultats. Je te les envoie aussi par courriel, pour que tu puisses les garder et y revenir.</p>
@@ -461,6 +476,7 @@ async function envoyer(prenom,mail){
 }
 const lvl=v=>v>=80?["Bon","lv-bon","#1a1816"]:v>=55?["À améliorer","lv-moy","#c9a57c"]:["Priorité","lv-bas","#86603a"];
 function result(){
+  root.classList.remove("wide");
   const R=compute(),r=P[R.p],ing=ING[R.p];
   /* Progression : comparaison avec la dernière évaluation faite sur cet appareil (plus de 12 h) */
   const prev=lsGet(KEY_RES),now=Date.now();
