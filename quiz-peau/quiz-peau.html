@@ -34,8 +34,7 @@
 #lt-quiz .back{background:none;border:0;color:var(--muted);font:500 14px Inter,sans-serif;cursor:pointer;padding:12px 0;margin-top:8px}
 #lt-quiz .pillars{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:18px 0 6px}
 @media(max-width:520px){#lt-quiz .pillars{grid-template-columns:1fr 1fr}}
-#lt-quiz .pill{background:var(--sage-s);border-radius:12px;padding:10px;font-size:13px;text-align:center}
-#lt-quiz .pill span{display:block;font-size:22px;margin-bottom:2px}
+#lt-quiz .pill{background:var(--sage-s);border-radius:12px;padding:12px 8px;font-size:13px;font-weight:500;color:var(--sage-d);text-align:center;display:grid;place-items:center}
 #lt-quiz .score{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
 #lt-quiz .ring{--v:0;width:120px;height:120px;border-radius:50%;background:conic-gradient(var(--sage-d) calc(var(--v)*1%),var(--line) 0);display:grid;place-items:center;flex:0 0 auto}
 #lt-quiz .ring div{width:94px;height:94px;border-radius:50%;background:var(--card);display:grid;place-items:center;text-align:center;font-family:Fraunces,Georgia,serif;font-size:32px;font-weight:600;line-height:1}
@@ -48,7 +47,6 @@
 #lt-quiz .lv-bon{background:var(--sage-s);color:var(--sage-d)}
 #lt-quiz .lv-moy{background:#f6ecd8;color:#8a6a2c}
 #lt-quiz .lv-bas{background:var(--rose-s);color:#9c5a49}
-#lt-quiz .emoji{font-size:40px;line-height:1;margin-bottom:8px}
 #lt-quiz .prio{display:flex;gap:14px;padding:16px 0;border-top:1px solid var(--line)}
 #lt-quiz .prio:first-of-type{border-top:0;padding-top:4px}
 #lt-quiz .prio .n{flex:0 0 32px;height:32px;border-radius:50%;background:var(--sage-d);color:#fff;display:grid;place-items:center;font-weight:600}
@@ -89,11 +87,11 @@ const CONFIG={
 
 /* Les 5 piliers évalués */
 const PIL={
-  h:{n:"Hydratation",e:"💧"},
-  b:{n:"Barrière cutanée",e:"🛡️"},
-  v:{n:"Mode de vie",e:"🌙"},
-  p:{n:"Protection",e:"☀️"},
-  r:{n:"Routine",e:"🧴"}
+  h:{n:"Hydratation"},
+  b:{n:"Barrière cutanée"},
+  v:{n:"Mode de vie"},
+  p:{n:"Protection"},
+  r:{n:"Routine"}
 };
 /* Les sections du bilan */
 const SEC=["Ta peau aujourd'hui","Hydratation et alimentation","Sommeil, stress et hormones","Ton environnement","Ta routine actuelle"];
@@ -101,109 +99,159 @@ const SEC=["Ta peau aujourd'hui","Hydratation et alimentation","Sommeil, stress 
 /* Questions. Chaque choix : [texte, points de profil, points perdus par pilier, priorité déclenchée] */
 const Q=[
  {s:0,q:"En fin de journée, ta peau est plutôt…",o:[
+   ["Confortable, je n'y pense pas",{},{}],
    ["Tiraillée, comme si elle manquait d'eau",{A:2},{h:2}],
    ["Luisante sur le front et le nez, mais tiraillée ailleurs",{A:1},{h:1}],
+   ["Luisante sur tout le visage",{A:1},{}],
    ["Rouge ou inconfortable par endroits",{F:2},{b:2}],
-   ["Correcte, mais terne et fatiguée",{E:2},{}],
-   ["Confortable, je n'y pense pas",{},{}]]},
- {s:0,q:"Quand tu essaies un nouveau produit…",o:[
-   ["Aucun souci, ma peau tolère tout",{},{}],
-   ["Ça picote parfois un peu",{F:1},{b:1}],
-   ["J'ai souvent des rougeurs ou des petites réactions",{F:2},{b:3}]]},
- {s:0,q:"Ce qui te dérange le plus dans le miroir?",o:[
-   ["Les petites ridules, surtout en fin de journée",{A:2},{}],
-   ["Un teint terne, un manque d'éclat",{E:2},{}],
+   ["Terne et fatiguée",{E:2},{}],
+   ["Je ne sais pas",{},{}]]},
+ {s:0,q:"Quand tu essaies un nouveau produit, ta peau réagit (picotements, rougeurs, boutons)…",o:[
+   ["Jamais",{},{}],
+   ["Rarement",{},{}],
+   ["Parfois",{F:1},{b:1}],
+   ["Souvent",{F:2},{b:3}],
+   ["Je ne sais pas, je change rarement de produits",{},{}]]},
+ {s:0,q:"Ce qui te préoccupe le plus pour ta peau en ce moment?",o:[
+   ["Les ridules, surtout en fin de journée",{A:2},{}],
+   ["Le manque d'éclat, un teint terne",{E:2},{}],
+   ["Les taches ou un teint inégal",{E:1,R:1},{p:1}],
    ["Les rougeurs ou l'inconfort",{F:2},{}],
-   ["La peau qui a perdu de son rebond",{R:2},{}],
-   ["Rien de particulier, je veux juste en prendre soin",{},{}]]},
- {s:0,q:"Avec le changement de saison, surtout l'hiver, ta peau…",o:[
-   ["Ne change pas vraiment",{},{}],
-   ["Devient plus sèche et tiraille",{A:1},{h:1,p:1}],
-   ["Devient plus sensible, rouge ou irritée",{F:1},{b:1,p:1}]]},
+   ["La perte de fermeté et de rebond",{R:2},{}],
+   ["Les imperfections (boutons, pores)",{F:1},{}],
+   ["Rien de particulier, je veux en prendre soin",{},{}]]},
+ {s:0,q:"L'hiver ou au changement de saison, ta peau…",o:[
+   ["Ne change pas",{},{}],
+   ["Devient un peu plus sèche",{A:1},{h:1}],
+   ["Devient beaucoup plus sèche et tiraille",{A:2},{h:2,p:1}],
+   ["Devient plus sensible, rouge ou irritée",{F:1},{b:1,p:1}],
+   ["Je n'ai jamais remarqué",{},{}]]},
 
- {s:1,q:"Combien de verres d'eau bois-tu par jour, à peu près?",w:"Tisanes et eau citronnée comptent aussi.",o:[
-   ["Moins de 3",{A:1},{h:3},"eau"],
-   ["3 à 5",{},{h:1},"eau"],
+ {s:1,q:"Combien de verres d'eau bois-tu par jour, en moyenne?",w:"Un verre = 250 ml. Les tisanes et l'eau citronnée comptent.",o:[
+   ["Moins de 2",{A:1},{h:4},"eau"],
+   ["2 à 3",{A:1},{h:3},"eau"],
+   ["4 à 5",{},{h:1},"eau"],
    ["6 à 8",{},{}],
-   ["Plus de 8",{},{}]]},
+   ["Plus de 8",{},{}],
+   ["Je ne sais pas",{},{h:1},"eau"]]},
  {s:1,q:"Combien de cafés, thés noirs ou boissons énergisantes par jour?",o:[
-   ["0 ou 1",{},{}],
+   ["Aucun",{},{}],
+   ["1",{},{}],
    ["2 ou 3",{},{h:1}],
    ["4 et plus",{A:1},{h:2},"cafe"]]},
- {s:1,q:"Combien de verres d'alcool par semaine?",o:[
-   ["0 à 2",{},{}],
-   ["3 à 6",{},{h:1,v:1}],
-   ["7 et plus",{A:1,F:1},{h:2,v:2},"alcool"]]},
- {s:1,q:"Combien de portions de fruits et légumes par jour?",o:[
+ {s:1,q:"Combien de consommations d'alcool par semaine, en moyenne?",o:[
+   ["Aucune",{},{}],
+   ["Moins d'une",{},{}],
+   ["1 à 3",{},{}],
+   ["4 à 7",{},{h:1,v:1},"alcool"],
+   ["Plus de 7",{A:1,F:1},{h:2,v:2},"alcool"]]},
+ {s:1,q:"Combien de portions de fruits et légumes manges-tu par jour?",w:"Une portion = environ une poignée ou une demi-tasse.",o:[
    ["5 et plus",{},{}],
-   ["2 à 4",{},{v:1}],
-   ["Presque pas",{E:1},{v:3},"fl"]]},
- {s:1,q:"Le sucre et les aliments transformés, c'est…",o:[
-   ["Rarement",{},{}],
-   ["Quelques fois par semaine",{},{v:1}],
-   ["Tous les jours",{E:1,R:1},{v:2},"sucre"]]},
- {s:1,q:"Les bons gras (avocat, noix, graines, poissons gras, huile d'olive), tu en manges…",o:[
+   ["3 ou 4",{},{v:1}],
+   ["1 ou 2",{E:1},{v:2},"fl"],
+   ["Moins d'une",{E:1},{v:3},"fl"]]},
+ {s:1,q:"À quelle fréquence manges-tu du sucre ou des aliments transformés (desserts, boissons sucrées, grignotines)?",o:[
+   ["Rarement ou jamais",{},{}],
+   ["1 ou 2 fois par semaine",{},{}],
+   ["3 à 5 fois par semaine",{},{v:1}],
+   ["Tous les jours",{E:1,R:1},{v:2},"sucre"],
+   ["Plusieurs fois par jour",{E:1,R:1},{v:3},"sucre"]]},
+ {s:1,q:"À quelle fréquence manges-tu de bons gras (avocat, noix, graines, poissons gras, huile d'olive)?",o:[
    ["Tous les jours",{},{}],
-   ["Quelques fois par semaine",{},{b:1}],
-   ["Rarement",{A:1},{b:2,v:1},"gras"]]},
+   ["3 à 5 fois par semaine",{},{}],
+   ["1 ou 2 fois par semaine",{},{b:1},"gras"],
+   ["Rarement ou jamais",{A:1},{b:2,v:1},"gras"]]},
 
- {s:2,q:"Tes nuits, c'est plutôt…",o:[
-   ["7 heures et plus, je me réveille reposée",{},{}],
-   ["6 à 7 heures, ça dépend des soirs",{},{v:1}],
-   ["Moins de 6 heures, ou un sommeil souvent coupé",{E:2},{v:3},"sommeil"]]},
- {s:2,q:"Ton niveau de stress ces temps-ci?",o:[
-   ["Bas, je me sens bien",{},{}],
-   ["Moyen, des hauts et des bas",{},{v:1}],
-   ["Élevé, je cours tout le temps",{F:1,E:1},{v:3},"stress"]]},
- {s:2,q:"Où en es-tu dans ta vie hormonale?",w:"Les hormones influencent beaucoup la peau. Tu peux passer cette question.",o:[
+ {s:2,q:"Combien d'heures dors-tu par nuit, en moyenne?",o:[
+   ["Moins de 5",{E:2},{v:3},"sommeil"],
+   ["5 à 6",{E:1},{v:2},"sommeil"],
+   ["6 à 7",{},{v:1}],
+   ["7 à 8",{},{}],
+   ["Plus de 8",{},{}]]},
+ {s:2,q:"Le matin, tu te réveilles reposée…",o:[
+   ["Presque toujours",{},{}],
+   ["Souvent",{},{}],
+   ["Parfois",{},{v:1}],
+   ["Rarement",{E:1},{v:2},"sommeil"]]},
+ {s:2,q:"Comment décrirais-tu ton niveau de stress ces dernières semaines?",o:[
+   ["Très bas",{},{}],
+   ["Bas",{},{}],
+   ["Modéré",{},{v:1}],
+   ["Élevé",{F:1,E:1},{v:2},"stress"],
+   ["Très élevé",{F:1,E:1},{v:3},"stress"]]},
+ {s:2,q:"Où en es-tu dans ta vie hormonale?",w:"Les hormones influencent beaucoup la peau.",o:[
    ["Cycles réguliers",{},{}],
+   ["Cycles irréguliers",{},{}],
    ["Grossesse ou allaitement",{},{},"enceinte"],
    ["Périménopause (cycles qui changent, chaleurs)",{R:1,A:1},{h:1},"hormones"],
    ["Ménopause",{R:2},{h:1,b:1},"hormones"],
+   ["Je ne sais pas",{},{}],
    ["Je préfère ne pas répondre",{},{}]]},
  {s:2,q:"Quel âge as-tu?",o:[
-   ["Moins de 35 ans",{E:1},{}],
+   ["Moins de 25 ans",{E:1},{}],
+   ["25 à 34 ans",{E:1},{}],
    ["35 à 44 ans",{A:1},{}],
    ["45 à 54 ans",{R:2},{}],
-   ["55 ans et plus",{R:3},{}]]},
+   ["55 à 64 ans",{R:3},{}],
+   ["65 ans et plus",{R:3},{}]]},
 
- {s:3,q:"La protection solaire au visage, tu en mets…",o:[
+ {s:3,q:"À quelle fréquence mets-tu une protection solaire au visage?",o:[
    ["Tous les jours, même en hiver",{},{}],
-   ["Seulement l'été ou quand il fait beau",{},{p:2},"spf"],
-   ["Rarement ou jamais",{R:1},{p:3},"spf"]]},
+   ["La plupart des jours",{},{p:1}],
+   ["Seulement l'été ou quand il fait soleil",{},{p:2},"spf"],
+   ["Rarement",{R:1},{p:3},"spf"],
+   ["Jamais",{R:1},{p:4},"spf"]]},
  {s:3,q:"Tes journées se passent surtout…",o:[
-   ["Dans un endroit chauffé ou climatisé plusieurs heures",{A:1},{h:1,p:1},"air"],
+   ["À l'intérieur, dans un endroit chauffé ou climatisé",{A:1},{h:1,p:1},"air"],
    ["Dehors, au froid, au vent ou au soleil",{A:1},{p:2},"dehors"],
-   ["Un peu des deux, rien d'extrême",{},{}]]},
- {s:3,q:"Tes douches sont plutôt…",o:[
-   ["Bien chaudes et longues, c'est mon moment!",{A:1},{h:1,b:1},"douche"],
-   ["Tièdes et rapides",{},{}]]},
+   ["Un mélange des deux",{},{p:1}],
+   ["À la maison, dans un environnement assez stable",{},{}]]},
+ {s:3,q:"La température de tes douches, c'est plutôt…",o:[
+   ["Très chaude",{A:1},{h:2,b:1},"douche"],
+   ["Chaude",{},{h:1}],
+   ["Tiède",{},{}],
+   ["Fraîche",{},{}]]},
  {s:3,q:"La fumée de cigarette, pour toi…",o:[
    ["Je ne fume pas et n'y suis pas exposée",{},{}],
-   ["Je suis exposée à la fumée des autres",{},{p:1}],
-   ["Je fume ou je vapote",{R:1,E:1},{p:3,v:2},"tabac"]]},
+   ["Je suis parfois exposée à la fumée des autres",{},{p:1}],
+   ["Je fume ou vapote à l'occasion",{E:1},{p:2,v:1},"tabac"],
+   ["Je fume ou vapote tous les jours",{R:1,E:1},{p:3,v:2},"tabac"]]},
 
- {s:4,q:"Combien de produits dans ta routine visage, à peu près?",o:[
-   ["0 à 2",{A:1},{r:1}],
-   ["3 à 5",{},{}],
-   ["6 et plus",{F:1},{r:2,b:1},"trop"]]},
- {s:4,q:"Le soir, tu te nettoies le visage…",o:[
+ {s:4,q:"Combien de produits utilises-tu sur ton visage, au total?",w:"Nettoyant, sérum, crème, contour des yeux, masque, huile, etc.",o:[
+   ["Aucun",{A:1},{r:2}],
+   ["1 ou 2",{A:1},{r:1}],
+   ["3 ou 4",{},{}],
+   ["5 ou 6",{},{r:1}],
+   ["7 et plus",{F:1},{r:2,b:1},"trop"]]},
+ {s:4,q:"À quelle fréquence te nettoies-tu le visage le soir?",o:[
    ["Tous les soirs",{},{}],
-   ["Certains soirs",{},{r:1}],
-   ["Rarement, je suis trop fatiguée",{E:1},{r:3},"soir"]]},
- {s:4,q:"Ton nettoyant, c'est plutôt…",o:[
-   ["Un savon ou un nettoyant moussant qui fait « squeaky clean »",{A:1,F:1},{b:2},"nettoyant"],
-   ["Un nettoyant doux, une huile ou un lait",{},{}],
+   ["La plupart des soirs",{},{}],
+   ["Environ un soir sur deux",{},{r:2},"soir"],
+   ["Rarement",{E:1},{r:3},"soir"],
+   ["Jamais",{E:1},{r:4},"soir"]]},
+ {s:4,q:"Pour te nettoyer le visage, tu utilises surtout…",o:[
+   ["Un savon ou un nettoyant moussant qui laisse la peau « squeaky clean »",{A:1,F:1},{b:2},"nettoyant"],
+   ["Des lingettes démaquillantes",{F:1},{b:1,r:1},"nettoyant"],
+   ["Un nettoyant doux, une huile, un baume ou un lait",{},{}],
    ["De l'eau seulement",{},{}],
-   ["Je ne sais pas trop",{},{r:1}]]},
- {s:4,q:"Tu exfolies ta peau (grains, acides, brosse)…",o:[
+   ["Je ne sais pas",{},{r:1}]]},
+ {s:4,q:"À quelle fréquence exfolies-tu ta peau (grains, acides, brosse)?",o:[
    ["Jamais",{E:1},{}],
-   ["1 à 2 fois par semaine",{},{}],
-   ["3 fois et plus par semaine",{F:2},{b:3},"exfo"]]},
- {s:4,q:"Les étiquettes de tes produits de soins, tu les lis?",o:[
-   ["Oui, j'évite le parfum et les ingrédients douteux",{},{}],
-   ["Pas vraiment, je ne sais pas quoi regarder",{},{r:1},"etiquettes"],
-   ["Non, et j'aime les produits bien parfumés",{F:1},{b:1,r:1},"parfum"]]}
+   ["Moins d'une fois par mois",{},{}],
+   ["1 à 3 fois par mois",{},{}],
+   ["1 ou 2 fois par semaine",{},{}],
+   ["3 fois et plus par semaine",{F:2},{b:3},"exfo"],
+   ["Je ne sais pas si mes produits exfolient",{},{r:1},"etiquettes"]]},
+ {s:4,q:"Tes soins visage contiennent du parfum?",o:[
+   ["Non, je les choisis sans parfum",{},{}],
+   ["Quelques-uns",{},{b:1}],
+   ["La plupart",{F:1},{b:2},"parfum"],
+   ["Je ne sais pas",{},{r:1},"etiquettes"]]},
+ {s:4,q:"À quelle fréquence lis-tu la liste d'ingrédients avant d'acheter un soin?",o:[
+   ["Toujours",{},{}],
+   ["Souvent",{},{}],
+   ["Parfois",{},{r:1}],
+   ["Rarement ou jamais",{},{r:2},"etiquettes"]]}
 ];
 
 /* Priorités personnalisées, déclenchées par les réponses. w = importance */
@@ -231,19 +279,19 @@ const PR={
 
 /* Les 4 profils */
 const P={
- A:{e:"💧",nom:"Ta peau est assoiffée",court:"Peau assoiffée",
+ A:{nom:"Ta peau est assoiffée",court:"Peau assoiffée",
    expl:"Ta peau n'est pas forcément sèche : elle est déshydratée. Elle manque d'eau, pas d'huile. C'est pour ça qu'une crème riche ne règle pas toujours le problème, et que tes ridules ressortent plus en fin de journée.",
    matin:["Nettoyage doux, ou juste de l'eau","Soin hydratant sur la peau encore humide","Protection solaire"],
    soir:["Nettoyant doux","Sérum hydratant","Crème pour sceller"]},
- F:{e:"🌿",nom:"Ta barrière cutanée est fragilisée",court:"Barrière fragilisée",
+ F:{nom:"Ta barrière cutanée est fragilisée",court:"Barrière fragilisée",
    expl:"La barrière de ta peau, c'est son mur de protection. Quand il est affaibli, ta peau perd son eau plus vite et réagit à tout : picotements, rougeurs, inconfort. Souvent, ce n'est pas qu'elle manque de produits, c'est qu'elle en reçoit trop.",
    matin:["De l'eau ou un nettoyant très doux","Hydratant apaisant","Protection solaire minérale"],
    soir:["Nettoyant doux","Hydratant réparateur","C'est tout, pendant 2 semaines"]},
- E:{e:"✨",nom:"Ton éclat est en pause",court:"Éclat en pause",
+ E:{nom:"Ton éclat est en pause",court:"Éclat en pause",
    expl:"Ta peau va bien, mais elle a l'air fatiguée. Souvent, c'est un mélange de manque d'hydratation, de sommeil et de cellules mortes qui s'accumulent. La bonne nouvelle : c'est le profil qui répond le plus vite.",
    matin:["Nettoyant doux","Sérum hydratant","Protection solaire"],
    soir:["Nettoyant","Sérum puis crème","Exfoliation douce 1 à 2 fois par semaine maximum"]},
- R:{e:"🌸",nom:"Ta peau cherche son rebond",court:"Peau qui cherche son rebond",
+ R:{nom:"Ta peau cherche son rebond",court:"Peau qui cherche son rebond",
    expl:"Avec les années, la peau devient naturellement moins rebondie et plus mince. Ce n'est pas toujours un manque d'actifs puissants : une peau bien hydratée et bien protégée paraît tout de suite plus lisse et plus pleine.",
    matin:["Nettoyant doux","Sérum hydratant","Crème raffermissante","Protection solaire"],
    soir:["Nettoyant","Sérum","Crème plus généreuse, jusqu'au cou"]}
@@ -271,10 +319,10 @@ function intro(){
   root.innerHTML=`<div class="kick">${esc(CONFIG.marque)} · Bilan peau</div>
   <h1>Ton bilan peau complet</h1>
   <p class="lead">Ta peau ne dépend pas que de tes crèmes. Ce que tu bois, ton sommeil, ton stress, tes hormones et ton environnement comptent autant. Ce bilan regarde tout ça.</p>
-  <div class="pillars">${Object.values(PIL).map(p=>`<div class="pill"><span aria-hidden="true">${p.e}</span>${esc(p.n)}</div>`).join("")}</div>
+  <div class="pillars">${Object.values(PIL).map(p=>`<div class="pill">${esc(p.n)}</div>`).join("")}</div>
   <div class="card"><b>À la fin, tu reçois :</b><ul style="margin-top:8px"><li>Ton indice peau sur 100 et ton score pour chacun des 5 piliers</li><li>Ton profil de peau, expliqué simplement</li><li>Tes 3 priorités, choisies selon tes réponses</li><li>Ta routine simplifiée, matin et soir, à enregistrer</li></ul></div>
   <div class="actions"><button class="btn" data-go>Commencer mon bilan</button></div>
-  <p class="small">${Q.length} questions, environ 4 minutes. Ton résultat s'affiche tout de suite, sans inscription.</p>`;
+  <p class="small">${Q.length} questions, environ 4 minutes. Ton résultat est gratuit et s'affiche tout de suite.</p>`;
   root.querySelector("[data-go]").onclick=()=>{i=0;ans=[];ask();top();};
 }
 function ask(){
@@ -284,7 +332,7 @@ function ask(){
   <h2>${esc(it.q)}</h2>${it.w?`<p class="why">${esc(it.w)}</p>`:""}
   <div class="opts">${it.o.map((o,k)=>`<button class="opt ${ans[i]===k?"sel":""}" data-k="${k}">${esc(o[0])}</button>`).join("")}</div>
   ${i?'<button class="back" data-back>← Question précédente</button>':""}`;
-  root.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{ans[i]=+b.dataset.k;i++;i<Q.length?ask():result();top();});
+  root.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{ans[i]=+b.dataset.k;i++;i<Q.length?ask():annonce();top();});
   const bk=root.querySelector("[data-back]");if(bk)bk.onclick=()=>{i--;ask();};
 }
 function compute(){
@@ -305,18 +353,37 @@ function compute(){
   if(pr.length<3)pr.push({t:"Garder le cap",p:"Tes habitudes sont déjà excellentes : ta peau te remercie.",g:"Continue exactement ce que tu fais, et refais ce bilan dans 3 mois ou au changement de saison."});
   return {p,sc,indice,pr:pr.slice(0,3),enceinte};
 }
+function ghlUrl(R,r){
+  if(!CONFIG.ghlFormUrl)return "";
+  return CONFIG.ghlFormUrl+(CONFIG.ghlFormUrl.includes("?")?"&":"?")+[[CONFIG.ghlChampProfil,r.court],[CONFIG.ghlChampScore,R.indice],[CONFIG.ghlChampPriorites,R.pr.map(f=>f.t).join(" | ")]].map(([k,v])=>encodeURIComponent(k)+"="+encodeURIComponent(v)).join("&");
+}
+/* Page intermédiaire : l'annonce de la nouvelle gamme, avant les résultats */
+function annonce(){
+  const R=compute(),r=P[R.p],url=ghlUrl(R,r);
+  root.innerHTML=`<div class="kick">Ton bilan est prêt</div>
+  <div class="card bridge">
+    <div class="kick" style="color:#cfd8c5">Bientôt disponible</div>
+    <h2 style="color:#fff">Une nouvelle gamme de soins s'en vient</h2>
+    <p>Le Youth Infusing System de Co.Lab, formulé en Italie : un sérum qui <b>hydrate</b>, une brume qui <b>active</b> et une crème qui <b>scelle et raffermit</b>. Trois gestes, matin et soir, pensés pour une peau hydratée, protégée et plus rebondie.</p>
+    <p>Laisse-moi ton prénom et ton courriel pour être tenue au courant dès qu'elle sera disponible, avec l'offre de lancement.</p>
+    <div class="form-slot">${url
+      ?`<iframe src="${esc(url)}" title="Être avisée du lancement" loading="lazy"></iframe>`
+      :`<div class="placeholder">Le formulaire GHL s'affichera ici (prénom, courriel, consentement). Ajoute son lien dans <code>ghlFormUrl</code> au début du script.</div>`}</div>
+  </div>
+  <div class="actions" style="justify-content:flex-end"><button class="btn" data-see>Voir mes résultats <span aria-hidden="true">→</span></button></div>`;
+  root.querySelector("[data-see]").onclick=()=>{result();top();};
+}
 const lvl=v=>v>=80?["Bon","lv-bon","#7d8f6e"]:v>=55?["À améliorer","lv-moy","#c9a25e"]:["Priorité","lv-bas","#c98f7e"];
 function result(){
   const R=compute(),r=P[R.p];
   const list=a=>`<ol>${a.map(x=>`<li>${esc(x)}</li>`).join("")}</ol>`;
   const msg=R.indice>=80?"Ta peau a de très bonnes bases. Quelques ajustements ciblés vont faire la différence.":R.indice>=60?"Ta peau a de bonnes bases, mais quelques habitudes freinent son plein potentiel.":"Plusieurs habitudes du quotidien pèsent sur ta peau en ce moment. La bonne nouvelle : ce sont des choses que tu peux changer.";
-  const url=CONFIG.ghlFormUrl?CONFIG.ghlFormUrl+(CONFIG.ghlFormUrl.includes("?")?"&":"?")+[[CONFIG.ghlChampProfil,r.court],[CONFIG.ghlChampScore,R.indice],[CONFIG.ghlChampPriorites,R.pr.map(f=>f.t).join(" | ")]].map(([k,v])=>encodeURIComponent(k)+"="+encodeURIComponent(v)).join("&"):"";
   root.innerHTML=`<div class="kick">Ton bilan peau</div>
   <div class="card"><div class="score"><div class="ring" style="--v:${R.indice}"><div>${R.indice}<small>sur 100</small></div></div>
     <div style="flex:1;min-width:200px"><h2 style="margin-bottom:6px">Ton indice peau</h2><p style="color:var(--muted);margin:0">${esc(msg)}</p></div></div>
-    <div style="margin-top:14px">${Object.entries(PIL).map(([k,p])=>{const v=R.sc[k],L=lvl(v);return `<div class="pb"><div class="l"><span>${p.e} ${esc(p.n)}</span><em class="${L[1]}">${L[0]} · ${v}</em></div><div class="t"><i style="width:${Math.max(v,4)}%;background:${L[2]}"></i></div></div>`;}).join("")}</div>
+    <div style="margin-top:14px">${Object.entries(PIL).map(([k,p])=>{const v=R.sc[k],L=lvl(v);return `<div class="pb"><div class="l"><span>${esc(p.n)}</span><em class="${L[1]}">${L[0]} · ${v}</em></div><div class="t"><i style="width:${Math.max(v,4)}%;background:${L[2]}"></i></div></div>`;}).join("")}</div>
   </div>
-  <div class="card"><div class="emoji" aria-hidden="true">${r.e}</div><h2>${esc(r.nom)}</h2><p style="color:var(--muted)">${esc(r.expl)}</p></div>
+  <div class="card"><div class="kick">Ton profil de peau</div><h2>${esc(r.nom)}</h2><p style="color:var(--muted)">${esc(r.expl)}</p></div>
   <div class="card"><h3>Tes 3 priorités pour les 14 prochains jours</h3><p class="meta" style="margin-bottom:12px">Choisies selon tes réponses, de la plus importante à la moins importante.</p>
     ${R.pr.map((f,k)=>`<div class="prio"><div class="n">${k+1}</div><div><h4>${esc(f.t)}</h4><p>${esc(f.p)}</p><div class="g"><b>Ton geste :</b> ${esc(f.g)}</div></div></div>`).join("")}
     ${R.enceinte?`<div class="tip">${esc(ENCEINTE)}</div>`:""}
@@ -326,16 +393,10 @@ function result(){
     <div class="actions" style="margin-top:16px"><button class="btn ghost" data-save>Enregistrer mon bilan</button></div>
     <p class="small" data-msg hidden></p>
   </div>
-  <div class="card bridge"><h3>Ta routine en 3 gestes, déjà pensée pour toi</h3>
-    <p>Je lance bientôt le Youth Infusing System de Co.Lab, formulé en Italie : un sérum qui <b>hydrate</b>, une brume qui <b>active</b> et une crème qui <b>scelle et raffermit</b>. C'est exactement la logique de ta routine ci-dessus, en 3 produits.</p>
-    <p>Inscris-toi à ma liste VIP pour l'avoir en premier, avec l'offre de lancement et mon suivi de 14 jours sur tes 3 priorités.</p>
-    <div class="form-slot">${url
-      ?`<iframe src="${esc(url)}" title="Inscription à la liste VIP" loading="lazy"></iframe>`
-      :`<div class="placeholder">Le formulaire GHL s'affichera ici (prénom, courriel, consentement). Ajoute son lien dans <code>ghlFormUrl</code> au début du script.</div>`}</div>
-  </div>
   <p class="small">Ce bilan est un outil de sensibilisation. Il ne remplace pas l'avis d'une professionnelle de la santé ou d'une dermatologue.</p>
-  <div class="actions"><button class="back" data-redo>↺ Refaire le bilan</button></div>`;
+  <div class="actions"><button class="back" data-redo>↺ Refaire le bilan</button><button class="back" data-annonce>Être avisée du lancement de la nouvelle gamme</button></div>`;
   root.querySelector("[data-redo]").onclick=()=>{intro();top();};
+  root.querySelector("[data-annonce]").onclick=()=>{annonce();top();};
   root.querySelector("[data-save]").onclick=()=>saveCard(R,r);
   top();
 }
@@ -359,7 +420,7 @@ async function saveCard(R,r){
   x.strokeStyle="#5d6e50";x.beginPath();x.arc(215,300,85,-Math.PI/2,-Math.PI/2+Math.PI*2*R.indice/100);x.stroke();
   x.fillStyle="#2f2a24";x.textAlign="center";x.font="600 64px Fraunces, Georgia, serif";x.fillText(R.indice,215,318);
   x.font="400 22px Inter, sans-serif";x.fillStyle="#6f665c";x.fillText("sur 100",215,350);x.textAlign="left";
-  x.fillStyle="#2f2a24";x.font="600 50px Fraunces, Georgia, serif";wrap(x,r.e+" "+r.nom,350,280,610,60);
+  x.fillStyle="#2f2a24";x.font="600 50px Fraunces, Georgia, serif";x.fillStyle="#5d6e50";x.font="600 22px Inter, sans-serif";x.fillText("MON PROFIL DE PEAU",350,250);x.fillStyle="#2f2a24";x.font="600 48px Fraunces, Georgia, serif";wrap(x,r.nom,350,310,610,58);
   // piliers
   let y=450;x.font="400 28px Inter, sans-serif";
   Object.entries(PIL).forEach(([k,p])=>{const v=R.sc[k],L=lvl(v);
