@@ -1,4 +1,4 @@
-<!-- Bilan peau complet · Style de vie Lowtox
+<!-- Décode ta peau · évaluation de la peau · Style de vie Lowtox
      À coller tel quel dans un élément « Code personnalisé » d'une page de funnel GHL.
      Tout est dans #lt-quiz : les styles ne touchent pas au reste de la page.
      Réglages : voir CONFIG au début du script. -->
@@ -65,6 +65,14 @@
 #lt-quiz .form-slot{margin-top:16px;border-radius:12px;overflow:hidden;background:#fff}
 #lt-quiz .form-slot iframe{width:100%;border:0;min-height:520px;display:block}
 #lt-quiz .placeholder{padding:18px;color:var(--muted);font-size:14px;border:1.5px dashed var(--bronze);border-radius:12px;background:transparent}
+#lt-quiz .fld{display:block;margin:0 0 14px}
+#lt-quiz .fld span{display:block;font-size:14px;font-weight:600;margin-bottom:6px}
+#lt-quiz .fld input{width:100%;font:400 16px Inter,sans-serif;color:var(--ink);background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:13px 14px;min-height:50px}
+#lt-quiz .fld input:focus{outline:none;border-color:var(--ink)}
+#lt-quiz .consent{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--muted);margin:4px 0 16px;cursor:pointer}
+#lt-quiz .consent input{width:20px;height:20px;margin:1px 0 0;accent-color:var(--ink);flex:0 0 auto}
+#lt-quiz .err{color:#9a3b2a;font-size:14px;margin:0 0 12px}
+#lt-quiz .btn[disabled]{opacity:.6;cursor:wait}
 #lt-quiz .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
 #lt-quiz .small{font-size:12px;color:var(--muted);margin-top:14px}
 </style>
@@ -72,16 +80,13 @@
 (function(){
 /* ================= CONFIG ================= */
 const CONFIG={
-  nom:"Eli Dufour",                    // affiché sur la carte « Mon bilan peau »
+  nom:"Eli Dufour",                    // affiché sur la carte de résultats
   marque:"Style de vie Lowtox",
   photo:"",                            // URL d'une photo carrée (optionnel) pour la carte
-  // Lien du formulaire GHL (le src de l'iframe dans le code « Embed » de GHL).
-  // Laisse vide tant que le formulaire n'est pas créé : un encadré l'indiquera.
-  ghlFormUrl:"",
-  // Clés des champs cachés dans GHL (paramètres d'URL qui les préremplissent).
-  ghlChampProfil:"profil_de_peau",
-  ghlChampScore:"indice_peau",
-  ghlChampPriorites:"priorites_peau"
+  // Adresse du webhook GHL : Automatisation > Workflow > déclencheur « Inbound Webhook ».
+  // Laisse vide pour tester : le formulaire fonctionne, mais rien n'est envoyé.
+  ghlWebhookUrl:"",
+  source:"Quiz Décode ta peau"
 };
 /* ========================================== */
 
@@ -316,13 +321,13 @@ const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",
 const top=()=>{const r=root.getBoundingClientRect();if(r.top<0)window.scrollTo({top:window.scrollY+r.top-16,behavior:"smooth"});};
 
 function intro(){
-  root.innerHTML=`<div class="kick">${esc(CONFIG.marque)} · Bilan peau</div>
-  <h1>Ton bilan peau complet</h1>
-  <p class="lead">Ta peau ne dépend pas que de tes crèmes. Ce que tu bois, ton sommeil, ton stress, tes hormones et ton environnement comptent autant. Ce bilan regarde tout ça.</p>
+  root.innerHTML=`<div class="kick">${esc(CONFIG.marque)}</div>
+  <h1>Décode ta peau</h1>
+  <p class="lead">Ta peau ne dépend pas que de tes crèmes. Ce que tu bois, ton sommeil, ton stress, tes hormones et ton environnement comptent autant. Cette évaluation regarde tout ça.</p>
   <div class="pillars">${Object.values(PIL).map(p=>`<div class="pill">${esc(p.n)}</div>`).join("")}</div>
-  <div class="card"><b>À la fin, tu reçois :</b><ul style="margin-top:8px"><li>Ton indice peau sur 100 et ton score pour chacun des 5 piliers</li><li>Ton profil de peau, expliqué simplement</li><li>Tes 3 priorités, choisies selon tes réponses</li><li>Ta routine simplifiée, matin et soir, à enregistrer</li></ul></div>
-  <div class="actions"><button class="btn" data-go>Commencer mon bilan</button></div>
-  <p class="small">${Q.length} questions, environ 4 minutes. Ton résultat est gratuit et s'affiche tout de suite.</p>`;
+  <div class="card"><b>À la fin, tu reçois :</b><ul style="margin-top:8px"><li>Ton score équilibre sur 100 et ton score pour chacun des 5 piliers</li><li>Ton profil de peau, expliqué simplement</li><li>Tes 3 priorités, choisies selon tes réponses</li><li>Ta routine simplifiée, matin et soir, à enregistrer</li></ul></div>
+  <div class="actions"><button class="btn" data-go>Commencer l'évaluation</button></div>
+  <p class="small">${Q.length} questions, environ 4 minutes. Tes résultats sont gratuits et t'arrivent aussi par courriel.</p>`;
   root.querySelector("[data-go]").onclick=()=>{i=0;ans=[];ask();top();};
 }
 function ask(){
@@ -350,33 +355,55 @@ function compute(){
   const enceinte=flags.delete("enceinte");
   let pr=[...flags].filter(f=>PR[f]).sort((a,b)=>PR[b].w-PR[a].w).map(f=>PR[f]);
   for(const e of ENTRETIEN[p]){if(pr.length>=3)break;pr.push(e);}
-  if(pr.length<3)pr.push({t:"Garder le cap",p:"Tes habitudes sont déjà excellentes : ta peau te remercie.",g:"Continue exactement ce que tu fais, et refais ce bilan dans 3 mois ou au changement de saison."});
+  if(pr.length<3)pr.push({t:"Garder le cap",p:"Tes habitudes sont déjà excellentes : ta peau te remercie.",g:"Continue exactement ce que tu fais, et refais cette évaluation dans 3 mois ou au changement de saison."});
   return {p,sc,indice,pr:pr.slice(0,3),enceinte};
 }
-function ghlUrl(R,r){
-  if(!CONFIG.ghlFormUrl)return "";
-  return CONFIG.ghlFormUrl+(CONFIG.ghlFormUrl.includes("?")?"&":"?")+[[CONFIG.ghlChampProfil,r.court],[CONFIG.ghlChampScore,R.indice],[CONFIG.ghlChampPriorites,R.pr.map(f=>f.t).join(" | ")]].map(([k,v])=>encodeURIComponent(k)+"="+encodeURIComponent(v)).join("&");
-}
-/* Page intermédiaire : le courriel pour recevoir les résultats */
+/* Page intermédiaire : prénom et courriel obligatoires avant les résultats */
 function courriel(){
-  const R=compute(),r=P[R.p],url=ghlUrl(R,r);
-  root.innerHTML=`<div class="kick">Ton bilan est prêt</div>
+  root.innerHTML=`<div class="kick">Tes résultats sont prêts</div>
   <h1>Où veux-tu recevoir tes résultats?</h1>
-  <p class="lead">Inscris ton prénom et ton courriel : je t'envoie ton bilan complet, pour que tu puisses le garder et y revenir.</p>
-  <div class="form-slot">${url
-    ?`<iframe src="${esc(url)}" title="Recevoir mes résultats par courriel" loading="lazy"></iframe>`
-    :`<div class="placeholder">Le formulaire GHL s'affichera ici (prénom, courriel, consentement). Ajoute son lien dans <code>ghlFormUrl</code> au début du script.</div>`}</div>
-  <div class="actions" style="justify-content:flex-end;margin-top:16px"><button class="btn" data-see>Voir mes résultats <span aria-hidden="true">→</span></button></div>`;
-  root.querySelector("[data-see]").onclick=()=>{result();top();};
+  <p class="lead">Inscris ton prénom et ton courriel pour voir tes résultats. Je te les envoie aussi par courriel, pour que tu puisses les garder et y revenir.</p>
+  <form class="card" data-form novalidate>
+    <label class="fld"><span>Prénom</span><input name="prenom" autocomplete="given-name" required></label>
+    <label class="fld"><span>Courriel</span><input name="courriel" type="email" autocomplete="email" inputmode="email" required></label>
+    <label class="consent"><input type="checkbox" name="consentement" required><span>J'accepte de recevoir mes résultats et des nouvelles de ${esc(CONFIG.marque)} par courriel. Je peux me désabonner en tout temps.</span></label>
+    <p class="err" data-err hidden></p>
+    <button class="btn" type="submit" style="width:100%">Voir mes résultats <span aria-hidden="true">→</span></button>
+    ${CONFIG.ghlWebhookUrl?"":'<p class="small">Mode test : le webhook GHL n\'est pas encore branché, rien n\'est envoyé.</p>'}
+  </form>`;
+  const f=root.querySelector("[data-form]"),err=root.querySelector("[data-err]");
+  f.onsubmit=async e=>{
+    e.preventDefault();
+    const prenom=f.prenom.value.trim(),mail=f.courriel.value.trim();
+    const bad=!prenom?"Inscris ton prénom.":!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(mail)?"Vérifie ton adresse courriel.":!f.consentement.checked?"Coche la case pour recevoir tes résultats par courriel.":"";
+    if(bad){err.hidden=false;err.textContent=bad;return;}
+    err.hidden=true;const btn=f.querySelector("button");btn.disabled=true;
+    await envoyer(prenom,mail);
+    result();top();
+  };
+}
+/* Envoi au webhook GHL. On n'empêche jamais la personne de voir ses résultats si le réseau flanche. */
+async function envoyer(prenom,mail){
+  if(!CONFIG.ghlWebhookUrl)return;
+  const R=compute(),r=P[R.p];
+  const data={prenom:prenom,first_name:prenom,courriel:mail,email:mail,consentement:"oui",source:CONFIG.source,
+    profil_de_peau:r.court,score_equilibre:R.indice,priorites_peau:R.pr.map(f=>f.t).join(" | "),
+    score_hydratation:R.sc.h,score_barriere:R.sc.b,score_mode_de_vie:R.sc.v,score_protection:R.sc.p,score_routine:R.sc.r};
+  const t=new Promise(res=>setTimeout(res,5000));
+  const go=(async()=>{
+    try{const x=await fetch(CONFIG.ghlWebhookUrl,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});if(x.ok)return;}catch(e){}
+    try{await fetch(CONFIG.ghlWebhookUrl,{method:"POST",mode:"no-cors",body:new URLSearchParams(Object.entries(data).map(([k,v])=>[k,String(v)]))});}catch(e){}
+  })();
+  await Promise.race([go,t]);
 }
 const lvl=v=>v>=80?["Bon","lv-bon","#1a1816"]:v>=55?["À améliorer","lv-moy","#c9a57c"]:["Priorité","lv-bas","#86603a"];
 function result(){
   const R=compute(),r=P[R.p];
   const list=a=>`<ol>${a.map(x=>`<li>${esc(x)}</li>`).join("")}</ol>`;
   const msg=R.indice>=80?"Ta peau a de très bonnes bases. Quelques ajustements ciblés vont faire la différence.":R.indice>=60?"Ta peau a de bonnes bases, mais quelques habitudes freinent son plein potentiel.":"Plusieurs habitudes du quotidien pèsent sur ta peau en ce moment. La bonne nouvelle : ce sont des choses que tu peux changer.";
-  root.innerHTML=`<div class="kick">Ton bilan peau</div>
+  root.innerHTML=`<div class="kick">Tes résultats · Décode ta peau</div>
   <div class="card"><div class="score"><div class="ring" style="--v:${R.indice}"><div>${R.indice}<small>sur 100</small></div></div>
-    <div style="flex:1;min-width:200px"><h2 style="margin-bottom:6px">Ton indice peau</h2><p style="color:var(--muted);margin:0">${esc(msg)}</p></div></div>
+    <div style="flex:1;min-width:200px"><h2 style="margin-bottom:6px">Ton score équilibre</h2><p style="color:var(--muted);margin:0">${esc(msg)}</p></div></div>
     <div style="margin-top:14px">${Object.entries(PIL).map(([k,p])=>{const v=R.sc[k],L=lvl(v);return `<div class="pb"><div class="l"><span>${esc(p.n)}</span><em class="${L[1]}">${L[0]} · ${v}</em></div><div class="t"><i style="width:${Math.max(v,4)}%;background:${L[2]}"></i></div></div>`;}).join("")}</div>
   </div>
   <div class="card"><div class="kick">Ton profil de peau</div><h2>${esc(r.nom)}</h2><p style="color:var(--muted)">${esc(r.expl)}</p></div>
@@ -386,13 +413,13 @@ function result(){
   </div>
   <div class="card"><h3>Ta routine simplifiée</h3>
     <div class="grid2"><div class="rt"><b>Matin</b>${list(r.matin)}</div><div class="rt"><b>Soir</b>${list(r.soir)}</div></div>
-    <div class="actions" style="margin-top:16px"><button class="btn ghost" data-save>Enregistrer mon bilan</button></div>
+    <div class="actions" style="margin-top:16px"><button class="btn ghost" data-save>Enregistrer mes résultats</button></div>
     <p class="small" data-msg hidden></p>
   </div>
   <div class="card launch"><div class="kick">Le 16 novembre</div><h3>Le skinimalisme arrive en force</h3>
-    <p style="margin:0">Moins de produits, mieux choisis : une routine courte et efficace, qui fait exactement ce que ton bilan recommande. Comme tu as fait ton bilan, tu seras parmi les premières au courant.</p></div>
-  <p class="small">Ce bilan est un outil de sensibilisation. Il ne remplace pas l'avis d'une professionnelle de la santé ou d'une dermatologue.</p>
-  <div class="actions"><button class="back" data-redo>↺ Refaire le bilan</button></div>`;
+    <p style="margin:0">Moins de produits, mieux choisis : une routine courte et efficace, qui fait exactement ce que tes résultats recommandent. Comme tu as fait l'évaluation, tu seras parmi les premières au courant.</p></div>
+  <p class="small">Cette évaluation est un outil de sensibilisation. Il ne remplace pas l'avis d'une professionnelle de la santé ou d'une dermatologue.</p>
+  <div class="actions"><button class="back" data-redo>↺ Refaire l'évaluation</button></div>`;
   root.querySelector("[data-redo]").onclick=()=>{intro();top();};
   root.querySelector("[data-save]").onclick=()=>saveCard(R,r);
   top();
@@ -411,7 +438,7 @@ async function saveCard(R,r){
   try{await document.fonts.ready;}catch(e){}
   x.fillStyle="#f5efe5";x.fillRect(0,0,W,H);
   x.fillStyle="#ffffff";x.strokeStyle="#e4dccf";x.lineWidth=3;rr(x,60,60,W-120,H-120,40);x.fill();x.stroke();
-  x.fillStyle="#86603a";x.font="600 28px Inter, sans-serif";x.fillText("MON BILAN PEAU · "+CONFIG.marque.toUpperCase(),120,150);
+  x.fillStyle="#86603a";x.font="600 28px Inter, sans-serif";x.fillText("DÉCODE TA PEAU · "+CONFIG.marque.toUpperCase(),120,150);
   // indice
   x.lineWidth=22;x.strokeStyle="#e4dccf";x.beginPath();x.arc(215,300,85,0,Math.PI*2);x.stroke();
   x.strokeStyle="#1a1816";x.beginPath();x.arc(215,300,85,-Math.PI/2,-Math.PI/2+Math.PI*2*R.indice/100);x.stroke();
@@ -435,11 +462,11 @@ async function saveCard(R,r){
     x.save();x.beginPath();x.arc(165,H-110,45,0,Math.PI*2);x.clip();x.drawImage(im,120,H-155,90,90);x.restore();fx=235;}catch(e){}}
   x.fillText(CONFIG.nom,fx,H-115);x.fillStyle="#6b645b";x.font="400 26px Inter, sans-serif";x.fillText(CONFIG.marque,fx,H-75);
   c.toBlob(async b=>{
-    if(!b){say("Impossible de créer l'image. Fais une capture d'écran de ton bilan.");return;}
-    const f=new File([b],"mon-bilan-peau.png",{type:"image/png"});
-    try{if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],title:"Mon bilan peau"});say("C'est fait! Choisis « Enregistrer l'image » pour le garder dans tes photos.");return;}}catch(e){if(e&&e.name==="AbortError")return;}
-    const u=URL.createObjectURL(b),a=document.createElement("a");a.href=u;a.download="mon-bilan-peau.png";document.body.appendChild(a);a.click();a.remove();
-    setTimeout(()=>URL.revokeObjectURL(u),4000);say("Ton bilan est téléchargé.");
+    if(!b){say("Impossible de créer l'image. Fais une capture d'écran de tes résultats.");return;}
+    const f=new File([b],"decode-ta-peau.png",{type:"image/png"});
+    try{if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],title:"Décode ta peau"});say("C'est fait! Choisis « Enregistrer l'image » pour la garder dans tes photos.");return;}}catch(e){if(e&&e.name==="AbortError")return;}
+    const u=URL.createObjectURL(b),a=document.createElement("a");a.href=u;a.download="decode-ta-peau.png";document.body.appendChild(a);a.click();a.remove();
+    setTimeout(()=>URL.revokeObjectURL(u),4000);say("Tes résultats sont téléchargés.");
   },"image/png");
 }
 intro();
