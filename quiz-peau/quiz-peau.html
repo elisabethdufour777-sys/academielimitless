@@ -1,4 +1,4 @@
-<!-- Quiz « Qu'est-ce que ta peau essaie de te dire? » · Style de vie Lowtox
+<!-- Bilan peau complet · Style de vie Lowtox
      À coller tel quel dans un élément « Code personnalisé » d'une page de funnel GHL.
      Tout est dans #lt-quiz : les styles ne touchent pas au reste de la page.
      Réglages : voir CONFIG au début du script. -->
@@ -6,12 +6,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <div id="lt-quiz" aria-live="polite"></div>
 <style>
-#lt-quiz{--bg:#f7f3ec;--card:#fffdf9;--ink:#2f2a24;--muted:#6f665c;--sage:#7d8f6e;--sage-d:#5d6e50;--sage-s:#e6ebdf;--line:#e7dfd3;--rose:#c98f7e;
-  font-family:Inter,system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--bg);max-width:640px;margin:0 auto;padding:24px 16px 40px;border-radius:20px;box-sizing:border-box;line-height:1.55}
+#lt-quiz{--bg:#f7f3ec;--card:#fffdf9;--ink:#2f2a24;--muted:#6f665c;--sage:#7d8f6e;--sage-d:#5d6e50;--sage-s:#e6ebdf;--line:#e7dfd3;--rose:#c98f7e;--rose-s:#fbf0ec;--gold:#c9a25e;
+  font-family:Inter,system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--bg);max-width:680px;margin:0 auto;padding:24px 16px 40px;border-radius:20px;box-sizing:border-box;line-height:1.55}
 #lt-quiz *{box-sizing:border-box}
 #lt-quiz h1,#lt-quiz h2,#lt-quiz h3{font-family:Fraunces,Georgia,serif;font-weight:600;line-height:1.2;margin:0 0 12px;color:var(--ink)}
 #lt-quiz h1{font-size:clamp(28px,6vw,38px)}
-#lt-quiz h2{font-size:clamp(22px,5vw,28px)}
+#lt-quiz h2{font-size:clamp(21px,5vw,27px)}
 #lt-quiz h3{font-size:19px;margin-top:4px}
 #lt-quiz p{margin:0 0 12px}
 #lt-quiz .kick{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--sage-d);font-weight:600;margin-bottom:10px}
@@ -22,26 +22,51 @@
 #lt-quiz .btn.ghost{background:transparent;color:var(--sage-d);border:1.5px solid var(--sage)}
 #lt-quiz .btn.ghost:hover{background:var(--sage-s)}
 #lt-quiz .meta{font-size:13px;color:var(--muted)}
-#lt-quiz .bar{height:6px;background:var(--line);border-radius:99px;overflow:hidden;margin:4px 0 20px}
+#lt-quiz .sec{display:flex;justify-content:space-between;gap:12px;font-size:13px;color:var(--muted);margin-bottom:6px}
+#lt-quiz .sec b{color:var(--sage-d);font-weight:600}
+#lt-quiz .bar{height:6px;background:var(--line);border-radius:99px;overflow:hidden;margin:0 0 22px}
 #lt-quiz .bar i{display:block;height:100%;background:var(--sage);border-radius:99px;transition:width .3s}
+#lt-quiz .why{font-size:14px;color:var(--muted);margin:-4px 0 16px}
 #lt-quiz .opts{display:flex;flex-direction:column;gap:10px}
 #lt-quiz .opt{text-align:left;background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:15px 16px;font:500 16px Inter,sans-serif;color:var(--ink);cursor:pointer;min-height:52px;transition:border-color .15s,background .15s}
 #lt-quiz .opt:hover,#lt-quiz .opt:focus-visible{border-color:var(--sage);background:var(--sage-s);outline:none}
+#lt-quiz .opt.sel{border-color:var(--sage-d);background:var(--sage-s)}
 #lt-quiz .back{background:none;border:0;color:var(--muted);font:500 14px Inter,sans-serif;cursor:pointer;padding:12px 0;margin-top:8px}
+#lt-quiz .pillars{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:18px 0 6px}
+@media(max-width:520px){#lt-quiz .pillars{grid-template-columns:1fr 1fr}}
+#lt-quiz .pill{background:var(--sage-s);border-radius:12px;padding:10px;font-size:13px;text-align:center}
+#lt-quiz .pill span{display:block;font-size:22px;margin-bottom:2px}
+#lt-quiz .score{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+#lt-quiz .ring{--v:0;width:120px;height:120px;border-radius:50%;background:conic-gradient(var(--sage-d) calc(var(--v)*1%),var(--line) 0);display:grid;place-items:center;flex:0 0 auto}
+#lt-quiz .ring div{width:94px;height:94px;border-radius:50%;background:var(--card);display:grid;place-items:center;text-align:center;font-family:Fraunces,Georgia,serif;font-size:32px;font-weight:600;line-height:1}
+#lt-quiz .ring small{display:block;font:500 12px Inter,sans-serif;color:var(--muted);margin-top:2px}
+#lt-quiz .pb{margin:12px 0}
+#lt-quiz .pb .l{display:flex;justify-content:space-between;font-size:14px;margin-bottom:5px}
+#lt-quiz .pb .l em{font-style:normal;font-size:12px;font-weight:600;padding:2px 8px;border-radius:99px}
+#lt-quiz .pb .t{height:10px;background:var(--line);border-radius:99px;overflow:hidden}
+#lt-quiz .pb .t i{display:block;height:100%;border-radius:99px}
+#lt-quiz .lv-bon{background:var(--sage-s);color:var(--sage-d)}
+#lt-quiz .lv-moy{background:#f6ecd8;color:#8a6a2c}
+#lt-quiz .lv-bas{background:var(--rose-s);color:#9c5a49}
 #lt-quiz .emoji{font-size:40px;line-height:1;margin-bottom:8px}
+#lt-quiz .prio{display:flex;gap:14px;padding:16px 0;border-top:1px solid var(--line)}
+#lt-quiz .prio:first-of-type{border-top:0;padding-top:4px}
+#lt-quiz .prio .n{flex:0 0 32px;height:32px;border-radius:50%;background:var(--sage-d);color:#fff;display:grid;place-items:center;font-weight:600}
+#lt-quiz .prio h4{margin:2px 0 6px;font-size:16px}
+#lt-quiz .prio p{font-size:15px;color:var(--muted);margin:0 0 6px}
+#lt-quiz .prio .g{color:var(--ink);font-size:15px}
 #lt-quiz .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(max-width:520px){#lt-quiz .grid2{grid-template-columns:1fr}}
 #lt-quiz .rt{background:var(--sage-s);border-radius:12px;padding:14px}
 #lt-quiz .rt b{display:block;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--sage-d);margin-bottom:6px}
 #lt-quiz ol,#lt-quiz ul{margin:0;padding-left:20px}
 #lt-quiz li{margin-bottom:6px}
-#lt-quiz .tip{border-left:3px solid var(--rose);padding:10px 14px;background:#fbf0ec;border-radius:0 10px 10px 0;margin-top:12px;font-size:15px}
+#lt-quiz .tip{border-left:3px solid var(--rose);padding:10px 14px;background:var(--rose-s);border-radius:0 10px 10px 0;margin-top:12px;font-size:15px}
 #lt-quiz .bridge{background:var(--ink);color:#f7f3ec;border:0}
 #lt-quiz .bridge h3{color:#fff}
-#lt-quiz .bridge .btn{background:#f7f3ec;color:var(--ink)}
 #lt-quiz .form-slot{margin-top:16px;border-radius:12px;overflow:hidden;background:#fff}
 #lt-quiz .form-slot iframe{width:100%;border:0;min-height:520px;display:block}
-#lt-quiz .placeholder{padding:18px;color:var(--muted);font-size:14px;border:1.5px dashed #9b9286;border-radius:12px;background:transparent}
+#lt-quiz .placeholder{padding:18px;color:#cfc6ba;font-size:14px;border:1.5px dashed #8d8478;border-radius:12px;background:transparent}
 #lt-quiz .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
 #lt-quiz .small{font-size:12px;color:var(--muted);margin-top:14px}
 </style>
@@ -49,68 +74,193 @@
 (function(){
 /* ================= CONFIG ================= */
 const CONFIG={
-  nom:"Eli Dufour",                    // affiché sur la carte « Ma routine »
+  nom:"Eli Dufour",                    // affiché sur la carte « Mon bilan peau »
   marque:"Style de vie Lowtox",
   photo:"",                            // URL d'une photo carrée (optionnel) pour la carte
   // Lien du formulaire GHL (le src de l'iframe dans le code « Embed » de GHL).
   // Laisse vide tant que le formulaire n'est pas créé : un encadré l'indiquera.
   ghlFormUrl:"",
-  // Clé du champ caché « Profil de peau » dans GHL (paramètre d'URL qui le préremplit).
-  ghlChampProfil:"profil_de_peau"
+  // Clés des champs cachés dans GHL (paramètres d'URL qui les préremplissent).
+  ghlChampProfil:"profil_de_peau",
+  ghlChampScore:"indice_peau",
+  ghlChampPriorites:"priorites_peau"
 };
 /* ========================================== */
 
+/* Les 5 piliers évalués */
+const PIL={
+  h:{n:"Hydratation",e:"💧"},
+  b:{n:"Barrière cutanée",e:"🛡️"},
+  v:{n:"Mode de vie",e:"🌙"},
+  p:{n:"Protection",e:"☀️"},
+  r:{n:"Routine",e:"🧴"}
+};
+/* Les sections du bilan */
+const SEC=["Ta peau aujourd'hui","Hydratation et alimentation","Sommeil, stress et hormones","Ton environnement","Ta routine actuelle"];
+
+/* Questions. Chaque choix : [texte, points de profil, points perdus par pilier, priorité déclenchée] */
 const Q=[
- {q:"En fin de journée, ta peau est plutôt…",o:[
-   ["Tiraillée, comme si elle manquait d'eau",{A:1}],
-   ["Luisante sur le front et le nez, mais tiraillée ailleurs",{A:1}],
-   ["Rouge ou inconfortable par endroits",{F:1}],
-   ["Correcte, mais terne et fatiguée",{E:1}]]},
- {q:"Quand tu essaies un nouveau produit…",o:[
-   ["Aucun souci, ma peau tolère tout",{}],
-   ["Ça picote parfois un peu",{F:1}],
-   ["J'ai souvent des rougeurs ou des petites réactions",{F:2}]]},
- {q:"Ce qui te dérange le plus dans le miroir?",o:[
-   ["Les petites ridules, surtout en fin de journée",{A:1}],
-   ["Un teint terne, un manque d'éclat",{E:1}],
-   ["Les rougeurs ou l'inconfort",{F:1}],
-   ["La peau qui a perdu de son rebond",{R:1}]]},
- {q:"Combien de produits dans ta routine, à peu près?",o:[
-   ["0 à 2",{A:1}],
-   ["3 à 5",{}],
-   ["6 et plus",{F:1},"trop"]]},
- {q:"Tes douches sont plutôt…",o:[
-   ["Bien chaudes, c'est mon moment!",{A:1}],
-   ["Tièdes",{}]]},
- {q:"Tu as…",o:[
-   ["Moins de 35 ans",{E:1}],
-   ["35 à 44 ans",{A:1}],
-   ["45 ans et plus",{R:2}]]}
+ {s:0,q:"En fin de journée, ta peau est plutôt…",o:[
+   ["Tiraillée, comme si elle manquait d'eau",{A:2},{h:2}],
+   ["Luisante sur le front et le nez, mais tiraillée ailleurs",{A:1},{h:1}],
+   ["Rouge ou inconfortable par endroits",{F:2},{b:2}],
+   ["Correcte, mais terne et fatiguée",{E:2},{}],
+   ["Confortable, je n'y pense pas",{},{}]]},
+ {s:0,q:"Quand tu essaies un nouveau produit…",o:[
+   ["Aucun souci, ma peau tolère tout",{},{}],
+   ["Ça picote parfois un peu",{F:1},{b:1}],
+   ["J'ai souvent des rougeurs ou des petites réactions",{F:2},{b:3}]]},
+ {s:0,q:"Ce qui te dérange le plus dans le miroir?",o:[
+   ["Les petites ridules, surtout en fin de journée",{A:2},{}],
+   ["Un teint terne, un manque d'éclat",{E:2},{}],
+   ["Les rougeurs ou l'inconfort",{F:2},{}],
+   ["La peau qui a perdu de son rebond",{R:2},{}],
+   ["Rien de particulier, je veux juste en prendre soin",{},{}]]},
+ {s:0,q:"Avec le changement de saison, surtout l'hiver, ta peau…",o:[
+   ["Ne change pas vraiment",{},{}],
+   ["Devient plus sèche et tiraille",{A:1},{h:1,p:1}],
+   ["Devient plus sensible, rouge ou irritée",{F:1},{b:1,p:1}]]},
+
+ {s:1,q:"Combien de verres d'eau bois-tu par jour, à peu près?",w:"Tisanes et eau citronnée comptent aussi.",o:[
+   ["Moins de 3",{A:1},{h:3},"eau"],
+   ["3 à 5",{},{h:1},"eau"],
+   ["6 à 8",{},{}],
+   ["Plus de 8",{},{}]]},
+ {s:1,q:"Combien de cafés, thés noirs ou boissons énergisantes par jour?",o:[
+   ["0 ou 1",{},{}],
+   ["2 ou 3",{},{h:1}],
+   ["4 et plus",{A:1},{h:2},"cafe"]]},
+ {s:1,q:"Combien de verres d'alcool par semaine?",o:[
+   ["0 à 2",{},{}],
+   ["3 à 6",{},{h:1,v:1}],
+   ["7 et plus",{A:1,F:1},{h:2,v:2},"alcool"]]},
+ {s:1,q:"Combien de portions de fruits et légumes par jour?",o:[
+   ["5 et plus",{},{}],
+   ["2 à 4",{},{v:1}],
+   ["Presque pas",{E:1},{v:3},"fl"]]},
+ {s:1,q:"Le sucre et les aliments transformés, c'est…",o:[
+   ["Rarement",{},{}],
+   ["Quelques fois par semaine",{},{v:1}],
+   ["Tous les jours",{E:1,R:1},{v:2},"sucre"]]},
+ {s:1,q:"Les bons gras (avocat, noix, graines, poissons gras, huile d'olive), tu en manges…",o:[
+   ["Tous les jours",{},{}],
+   ["Quelques fois par semaine",{},{b:1}],
+   ["Rarement",{A:1},{b:2,v:1},"gras"]]},
+
+ {s:2,q:"Tes nuits, c'est plutôt…",o:[
+   ["7 heures et plus, je me réveille reposée",{},{}],
+   ["6 à 7 heures, ça dépend des soirs",{},{v:1}],
+   ["Moins de 6 heures, ou un sommeil souvent coupé",{E:2},{v:3},"sommeil"]]},
+ {s:2,q:"Ton niveau de stress ces temps-ci?",o:[
+   ["Bas, je me sens bien",{},{}],
+   ["Moyen, des hauts et des bas",{},{v:1}],
+   ["Élevé, je cours tout le temps",{F:1,E:1},{v:3},"stress"]]},
+ {s:2,q:"Où en es-tu dans ta vie hormonale?",w:"Les hormones influencent beaucoup la peau. Tu peux passer cette question.",o:[
+   ["Cycles réguliers",{},{}],
+   ["Grossesse ou allaitement",{},{},"enceinte"],
+   ["Périménopause (cycles qui changent, chaleurs)",{R:1,A:1},{h:1},"hormones"],
+   ["Ménopause",{R:2},{h:1,b:1},"hormones"],
+   ["Je préfère ne pas répondre",{},{}]]},
+ {s:2,q:"Quel âge as-tu?",o:[
+   ["Moins de 35 ans",{E:1},{}],
+   ["35 à 44 ans",{A:1},{}],
+   ["45 à 54 ans",{R:2},{}],
+   ["55 ans et plus",{R:3},{}]]},
+
+ {s:3,q:"La protection solaire au visage, tu en mets…",o:[
+   ["Tous les jours, même en hiver",{},{}],
+   ["Seulement l'été ou quand il fait beau",{},{p:2},"spf"],
+   ["Rarement ou jamais",{R:1},{p:3},"spf"]]},
+ {s:3,q:"Tes journées se passent surtout…",o:[
+   ["Dans un endroit chauffé ou climatisé plusieurs heures",{A:1},{h:1,p:1},"air"],
+   ["Dehors, au froid, au vent ou au soleil",{A:1},{p:2},"dehors"],
+   ["Un peu des deux, rien d'extrême",{},{}]]},
+ {s:3,q:"Tes douches sont plutôt…",o:[
+   ["Bien chaudes et longues, c'est mon moment!",{A:1},{h:1,b:1},"douche"],
+   ["Tièdes et rapides",{},{}]]},
+ {s:3,q:"La fumée de cigarette, pour toi…",o:[
+   ["Je ne fume pas et n'y suis pas exposée",{},{}],
+   ["Je suis exposée à la fumée des autres",{},{p:1}],
+   ["Je fume ou je vapote",{R:1,E:1},{p:3,v:2},"tabac"]]},
+
+ {s:4,q:"Combien de produits dans ta routine visage, à peu près?",o:[
+   ["0 à 2",{A:1},{r:1}],
+   ["3 à 5",{},{}],
+   ["6 et plus",{F:1},{r:2,b:1},"trop"]]},
+ {s:4,q:"Le soir, tu te nettoies le visage…",o:[
+   ["Tous les soirs",{},{}],
+   ["Certains soirs",{},{r:1}],
+   ["Rarement, je suis trop fatiguée",{E:1},{r:3},"soir"]]},
+ {s:4,q:"Ton nettoyant, c'est plutôt…",o:[
+   ["Un savon ou un nettoyant moussant qui fait « squeaky clean »",{A:1,F:1},{b:2},"nettoyant"],
+   ["Un nettoyant doux, une huile ou un lait",{},{}],
+   ["De l'eau seulement",{},{}],
+   ["Je ne sais pas trop",{},{r:1}]]},
+ {s:4,q:"Tu exfolies ta peau (grains, acides, brosse)…",o:[
+   ["Jamais",{E:1},{}],
+   ["1 à 2 fois par semaine",{},{}],
+   ["3 fois et plus par semaine",{F:2},{b:3},"exfo"]]},
+ {s:4,q:"Les étiquettes de tes produits de soins, tu les lis?",o:[
+   ["Oui, j'évite le parfum et les ingrédients douteux",{},{}],
+   ["Pas vraiment, je ne sais pas quoi regarder",{},{r:1},"etiquettes"],
+   ["Non, et j'aime les produits bien parfumés",{F:1},{b:1,r:1},"parfum"]]}
 ];
-const ORDER=["F","A","R","E"]; // priorité en cas d'égalité
+
+/* Priorités personnalisées, déclenchées par les réponses. w = importance */
+const PR={
+ spf:{w:10,t:"Protection solaire tous les jours",p:"Le soleil est le premier facteur extérieur du vieillissement visible de la peau, même en hiver et même par temps gris.",g:"Ajoute une protection solaire FPS 30 et plus chaque matin, en dernière étape. Choisis une formule minérale si ta peau est sensible."},
+ tabac:{w:10,t:"Réduire la fumée",p:"La fumée réduit l'apport d'oxygène à la peau et accélère la perte de fermeté et d'éclat.",g:"Chaque cigarette en moins compte. Si tu veux arrêter, ta pharmacienne peut t'accompagner."},
+ eau:{w:9,t:"Boire 6 à 8 verres d'eau",p:"L'hydratation se joue aussi de l'intérieur. Quand tu bois peu, la peau a tendance à paraître plus terne et à mieux marquer les ridules.",g:"Garde une gourde à portée de main et bois un grand verre d'eau au réveil, avant ton café."},
+ sommeil:{w:9,t:"Protéger ton sommeil",p:"C'est la nuit que la peau se répare et se renouvelle. Les nuits courtes se voient vite : teint terne, cernes, peau plus réactive.",g:"Écrans fermés 30 minutes avant de dormir, chambre fraîche, et vise une heure de coucher régulière."},
+ exfo:{w:8,t:"Exfolier moins souvent",p:"Trop exfolier affaiblit la barrière de la peau : elle perd son eau plus vite et devient sensible.",g:"Maximum 1 à 2 fois par semaine, et fais une pause complète de 2 semaines si ta peau picote."},
+ nettoyant:{w:8,t:"Un nettoyant plus doux",p:"La sensation « squeaky clean », c'est souvent le signe qu'on a retiré les lipides protecteurs de la peau.",g:"Passe à un nettoyant doux, une huile ou un lait. Ta peau devrait être confortable, jamais tiraillée, après le nettoyage."},
+ stress:{w:7,t:"Faire baisser le stress",p:"Le stress chronique peut rendre la peau plus réactive, plus terne et plus lente à se rétablir.",g:"5 minutes par jour : respiration lente, marche dehors ou étirements. Fais de ta routine du soir un vrai moment pour toi."},
+ soir:{w:7,t:"Nettoyer ta peau chaque soir",p:"La nuit, ta peau se répare mieux quand elle est débarrassée du maquillage, de la pollution et de l'écran solaire de la journée.",g:"Garde un nettoyant doux près du lit pour les soirs de fatigue : 30 secondes suffisent."},
+ hormones:{w:7,t:"Adapter ta routine à tes hormones",p:"Avec la baisse des œstrogènes, la peau devient souvent plus sèche, plus mince et moins rebondie. Elle a besoin de plus d'hydratation et de soins qui renforcent la barrière.",g:"Mise sur des textures plus nourrissantes, applique jusqu'au cou et au décolleté, et parles-en à ta professionnelle de la santé si tu as des inquiétudes."},
+ trop:{w:6,t:"Simplifier ta routine",p:"Plus de produits ne veut pas dire de meilleurs résultats. Les mélanges d'actifs peuvent irriter et rendre difficile de savoir ce qui fonctionne.",g:"Garde 3 ou 4 produits essentiels pendant 2 semaines et observe ta peau."},
+ alcool:{w:6,t:"Moins d'alcool, plus d'eau",p:"L'alcool déshydrate et peut accentuer les rougeurs et la fatigue du teint le lendemain.",g:"Alterne chaque verre d'alcool avec un verre d'eau, et garde quelques soirs sans alcool dans la semaine."},
+ fl:{w:6,t:"Plus de couleurs dans ton assiette",p:"Les fruits et légumes apportent des antioxydants et de la vitamine C, qui contribuent à la formation du collagène et à l'éclat de la peau.",g:"Ajoute une portion de fruits ou de légumes à chaque repas, en visant le plus de couleurs possible."},
+ sucre:{w:5,t:"Moins de sucre au quotidien",p:"Le sucre en excès est associé à la glycation, un processus qui peut affecter la souplesse et la fermeté de la peau avec le temps.",g:"Commence par remplacer une collation sucrée par des noix, un fruit ou un yogourt nature."},
+ gras:{w:5,t:"Des bons gras chaque jour",p:"Les bons gras aident la peau à fabriquer son ciment protecteur, celui qui retient l'hydratation.",g:"Ajoute une poignée de noix, un demi-avocat ou une cuillère de graines de lin ou de chia dans ta journée."},
+ douche:{w:5,t:"Des douches plus tièdes",p:"L'eau très chaude retire les lipides protecteurs de la peau et la laisse plus sèche et tiraillée.",g:"Baisse un peu la température, raccourcis la douche et applique ton soin dans la minute qui suit, sur peau encore humide."},
+ air:{w:5,t:"Contrer l'air sec",p:"Le chauffage et la climatisation font baisser l'humidité de l'air, et ta peau perd son eau plus vite.",g:"Un humidificateur au bureau ou dans la chambre, et une brume hydratante pendant la journée."},
+ dehors:{w:5,t:"Protéger ta peau dehors",p:"Le froid, le vent et le soleil fragilisent la barrière de la peau.",g:"Une crème plus protectrice les jours de grand froid, et la protection solaire même l'hiver."},
+ etiquettes:{w:4,t:"Apprendre à lire tes étiquettes",p:"Certains ingrédients, comme le parfum synthétique, sont une source fréquente d'irritation et de perturbateurs potentiels.",g:"Commence par repérer le mot « parfum » ou « fragrance » dans la liste d'ingrédients de tes produits visage."},
+ parfum:{w:6,t:"Choisir des produits sans parfum",p:"Le parfum est l'une des causes les plus fréquentes de réactions et de sensibilité au visage.",g:"Pour les soins qui restent sur la peau (sérum, crème), choisis des versions sans parfum ajouté."}
+};
+
+/* Les 4 profils */
 const P={
  A:{e:"💧",nom:"Ta peau est assoiffée",court:"Peau assoiffée",
    expl:"Ta peau n'est pas forcément sèche : elle est déshydratée. Elle manque d'eau, pas d'huile. C'est pour ça qu'une crème riche ne règle pas toujours le problème, et que tes ridules ressortent plus en fin de journée.",
    matin:["Nettoyage doux, ou juste de l'eau","Soin hydratant sur la peau encore humide","Protection solaire"],
-   soir:["Nettoyant doux","Sérum hydratant","Crème pour sceller"],
-   gestes:["Applique ton soin dans la minute qui suit, sur une peau encore humide : elle retient mieux l'eau.","Baisse un peu la température de la douche. L'eau très chaude dessèche.","Un humidificateur dans ta chambre, surtout quand le chauffage roule."]},
+   soir:["Nettoyant doux","Sérum hydratant","Crème pour sceller"]},
  F:{e:"🌿",nom:"Ta barrière cutanée est fragilisée",court:"Barrière fragilisée",
    expl:"La barrière de ta peau, c'est son mur de protection. Quand il est affaibli, ta peau perd son eau plus vite et réagit à tout : picotements, rougeurs, inconfort. Souvent, ce n'est pas qu'elle manque de produits, c'est qu'elle en reçoit trop.",
-   matin:["De l'eau ou un nettoyant très doux","Hydratant apaisant","Protection solaire"],
-   soir:["Nettoyant doux","Hydratant réparateur","C'est tout, pendant 2 semaines"],
-   gestes:["Mets de côté les exfoliants et les actifs forts pendant 14 jours. Laisse ta peau respirer.","Ne frotte plus avec ta serviette : tamponne.","Ajoute un seul nouveau produit à la fois, jamais deux en même temps."]},
+   matin:["De l'eau ou un nettoyant très doux","Hydratant apaisant","Protection solaire minérale"],
+   soir:["Nettoyant doux","Hydratant réparateur","C'est tout, pendant 2 semaines"]},
  E:{e:"✨",nom:"Ton éclat est en pause",court:"Éclat en pause",
    expl:"Ta peau va bien, mais elle a l'air fatiguée. Souvent, c'est un mélange de manque d'hydratation, de sommeil et de cellules mortes qui s'accumulent. La bonne nouvelle : c'est le profil qui répond le plus vite.",
    matin:["Nettoyant doux","Sérum hydratant","Protection solaire"],
-   soir:["Nettoyant","Sérum puis crème","Exfoliation douce 1 à 2 fois par semaine maximum"],
-   gestes:["30 secondes de massage du visage en appliquant ta crème, pour réveiller le teint.","Une taie d'oreiller propre 2 fois par semaine.","Un verre d'eau avant ton café du matin."]},
+   soir:["Nettoyant","Sérum puis crème","Exfoliation douce 1 à 2 fois par semaine maximum"]},
  R:{e:"🌸",nom:"Ta peau cherche son rebond",court:"Peau qui cherche son rebond",
    expl:"Avec les années, la peau devient naturellement moins rebondie et plus mince. Ce n'est pas toujours un manque d'actifs puissants : une peau bien hydratée et bien protégée paraît tout de suite plus lisse et plus pleine.",
    matin:["Nettoyant doux","Sérum hydratant","Crème raffermissante","Protection solaire"],
-   soir:["Nettoyant","Sérum","Crème plus généreuse, jusqu'au cou"],
-   gestes:["Applique toujours jusqu'au cou et au décolleté : c'est là que ça paraît en premier.","La protection solaire tous les jours, même en hiver. C'est le geste anti-âge numéro un.","Dors sur le dos quand tu peux, pour éviter les plis du matin."]}
+   soir:["Nettoyant","Sérum","Crème plus généreuse, jusqu'au cou"]}
 };
-const TROP="Tu utilises 6 produits ou plus : plus n'est pas toujours mieux. Garde ceux de ta routine ci-dessus pendant 2 semaines et observe ta peau.";
+const ORDER=["F","A","R","E"]; // priorité des profils en cas d'égalité
+/* Si moins de 3 priorités sont déclenchées, on complète avec des gestes d'entretien selon le profil */
+const ENTRETIEN={
+ A:[{w:0,t:"Hydrater sur peau humide",p:"Une peau encore humide retient beaucoup mieux l'hydratation que tu lui apportes.",g:"Applique ton sérum ou ta crème dans la minute qui suit le nettoyage ou la douche."},
+    {w:0,t:"Une brume pendant la journée",p:"Ta peau a tendance à manquer d'eau en fin de journée.",g:"Une brume hydratante au bureau ou en après-midi, puis tapote pour faire pénétrer."}],
+ F:[{w:0,t:"Un seul nouveau produit à la fois",p:"Ta peau est plus réactive que la moyenne : il faut pouvoir repérer ce qui lui convient.",g:"Introduis chaque nouveau soin seul, pendant au moins 2 semaines, et teste-le d'abord dans le cou."},
+    {w:0,t:"Tamponner, ne plus frotter",p:"La friction suffit à irriter une barrière fragile.",g:"Sèche ton visage en tamponnant avec une serviette douce et propre."}],
+ E:[{w:0,t:"Masser en appliquant",p:"Le massage réveille le teint et rend ta routine plus agréable.",g:"30 secondes de massage du visage en appliquant ta crème, du centre vers l'extérieur."},
+    {w:0,t:"Une taie d'oreiller propre",p:"Ta peau passe 7 à 8 heures par nuit contre ta taie d'oreiller.",g:"Change-la 2 fois par semaine, idéalement pour une taie en soie ou en coton doux."}],
+ R:[{w:0,t:"Jusqu'au cou et au décolleté",p:"C'est souvent là que la perte de rebond paraît en premier, et on l'oublie.",g:"Applique chaque soin jusqu'au cou et au décolleté, en remontant."},
+    {w:0,t:"Dormir sur le dos",p:"Les plis de l'oreiller marquent plus longtemps une peau moins rebondie.",g:"Quand tu peux, dors sur le dos, ou choisis une taie en soie."}]
+};
+const ENCEINTE="Tu es enceinte ou tu allaites : avant d'ajouter un nouveau produit à ta routine, vérifie avec ta professionnelle de la santé.";
 
 const root=document.getElementById("lt-quiz");
 let i=0,ans=[];
@@ -118,91 +268,120 @@ const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",
 const top=()=>{const r=root.getBoundingClientRect();if(r.top<0)window.scrollTo({top:window.scrollY+r.top-16,behavior:"smooth"});};
 
 function intro(){
-  root.innerHTML=`<div class="kick">${esc(CONFIG.marque)} · Quiz peau</div>
-  <h1>Qu'est-ce que ta peau essaie de te dire?</h1>
-  <p class="lead">6 questions, 60 secondes. Tu repars avec ton profil de peau, ta routine simplifiée et 3 gestes gratuits à essayer cette semaine.</p>
-  <div class="actions"><button class="btn" data-go>Commencer le quiz</button></div>
-  <p class="small">Ton résultat s'affiche tout de suite, sans inscription.</p>`;
-  root.querySelector("[data-go]").onclick=()=>{i=0;ans=[];ask();};
+  root.innerHTML=`<div class="kick">${esc(CONFIG.marque)} · Bilan peau</div>
+  <h1>Ton bilan peau complet</h1>
+  <p class="lead">Ta peau ne dépend pas que de tes crèmes. Ce que tu bois, ton sommeil, ton stress, tes hormones et ton environnement comptent autant. Ce bilan regarde tout ça.</p>
+  <div class="pillars">${Object.values(PIL).map(p=>`<div class="pill"><span aria-hidden="true">${p.e}</span>${esc(p.n)}</div>`).join("")}</div>
+  <div class="card"><b>À la fin, tu reçois :</b><ul style="margin-top:8px"><li>Ton indice peau sur 100 et ton score pour chacun des 5 piliers</li><li>Ton profil de peau, expliqué simplement</li><li>Tes 3 priorités, choisies selon tes réponses</li><li>Ta routine simplifiée, matin et soir, à enregistrer</li></ul></div>
+  <div class="actions"><button class="btn" data-go>Commencer mon bilan</button></div>
+  <p class="small">${Q.length} questions, environ 4 minutes. Ton résultat s'affiche tout de suite, sans inscription.</p>`;
+  root.querySelector("[data-go]").onclick=()=>{i=0;ans=[];ask();top();};
 }
 function ask(){
   const it=Q[i];
-  root.innerHTML=`<div class="meta">Question ${i+1} sur ${Q.length}</div>
+  root.innerHTML=`<div class="sec"><span><b>${it.s+1}/${SEC.length}</b> · ${esc(SEC[it.s])}</span><span>${i+1} sur ${Q.length}</span></div>
   <div class="bar"><i style="width:${(i/Q.length)*100}%"></i></div>
-  <h2>${esc(it.q)}</h2>
-  <div class="opts">${it.o.map((o,k)=>`<button class="opt" data-k="${k}">${esc(o[0])}</button>`).join("")}</div>
+  <h2>${esc(it.q)}</h2>${it.w?`<p class="why">${esc(it.w)}</p>`:""}
+  <div class="opts">${it.o.map((o,k)=>`<button class="opt ${ans[i]===k?"sel":""}" data-k="${k}">${esc(o[0])}</button>`).join("")}</div>
   ${i?'<button class="back" data-back>← Question précédente</button>':""}`;
   root.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{ans[i]=+b.dataset.k;i++;i<Q.length?ask():result();top();});
   const bk=root.querySelector("[data-back]");if(bk)bk.onclick=()=>{i--;ask();};
 }
-function score(){
-  const s={A:0,F:0,E:0,R:0};let trop=false;
-  ans.forEach((k,qi)=>{const o=Q[qi].o[k];Object.entries(o[1]).forEach(([p,v])=>s[p]+=v);if(o[2]==="trop")trop=true;});
-  const max=Math.max(...Object.values(s));
-  return {p:ORDER.find(k=>s[k]===max),trop};
+function compute(){
+  const prof={A:0,F:0,E:0,R:0},lost={h:0,b:0,v:0,p:0,r:0},max={h:0,b:0,v:0,p:0,r:0},flags=new Set();
+  Q.forEach((q,qi)=>{
+    Object.keys(max).forEach(k=>{max[k]+=Math.max(...q.o.map(o=>(o[2]||{})[k]||0));});
+    const o=q.o[ans[qi]];
+    Object.entries(o[1]).forEach(([k,v])=>prof[k]+=v);
+    Object.entries(o[2]).forEach(([k,v])=>lost[k]+=v);
+    if(o[3])flags.add(o[3]);
+  });
+  const sc={};Object.keys(max).forEach(k=>sc[k]=max[k]?Math.round(100*(1-lost[k]/max[k])):100);
+  const indice=Math.round(Object.values(sc).reduce((a,b)=>a+b,0)/5);
+  const m=Math.max(...Object.values(prof));const p=m?ORDER.find(k=>prof[k]===m):"E";
+  const enceinte=flags.delete("enceinte");
+  let pr=[...flags].filter(f=>PR[f]).sort((a,b)=>PR[b].w-PR[a].w).map(f=>PR[f]);
+  for(const e of ENTRETIEN[p]){if(pr.length>=3)break;pr.push(e);}
+  if(pr.length<3)pr.push({t:"Garder le cap",p:"Tes habitudes sont déjà excellentes : ta peau te remercie.",g:"Continue exactement ce que tu fais, et refais ce bilan dans 3 mois ou au changement de saison."});
+  return {p,sc,indice,pr:pr.slice(0,3),enceinte};
 }
+const lvl=v=>v>=80?["Bon","lv-bon","#7d8f6e"]:v>=55?["À améliorer","lv-moy","#c9a25e"]:["Priorité","lv-bas","#c98f7e"];
 function result(){
-  const {p,trop}=score(),r=P[p];
+  const R=compute(),r=P[R.p];
   const list=a=>`<ol>${a.map(x=>`<li>${esc(x)}</li>`).join("")}</ol>`;
-  root.innerHTML=`<div class="kick">Ton résultat</div>
-  <div class="emoji" aria-hidden="true">${r.e}</div>
-  <h1>${esc(r.nom)}</h1>
-  <p class="lead">${esc(r.expl)}</p>
+  const msg=R.indice>=80?"Ta peau a de très bonnes bases. Quelques ajustements ciblés vont faire la différence.":R.indice>=60?"Ta peau a de bonnes bases, mais quelques habitudes freinent son plein potentiel.":"Plusieurs habitudes du quotidien pèsent sur ta peau en ce moment. La bonne nouvelle : ce sont des choses que tu peux changer.";
+  const url=CONFIG.ghlFormUrl?CONFIG.ghlFormUrl+(CONFIG.ghlFormUrl.includes("?")?"&":"?")+[[CONFIG.ghlChampProfil,r.court],[CONFIG.ghlChampScore,R.indice],[CONFIG.ghlChampPriorites,R.pr.map(f=>f.t).join(" | ")]].map(([k,v])=>encodeURIComponent(k)+"="+encodeURIComponent(v)).join("&"):"";
+  root.innerHTML=`<div class="kick">Ton bilan peau</div>
+  <div class="card"><div class="score"><div class="ring" style="--v:${R.indice}"><div>${R.indice}<small>sur 100</small></div></div>
+    <div style="flex:1;min-width:200px"><h2 style="margin-bottom:6px">Ton indice peau</h2><p style="color:var(--muted);margin:0">${esc(msg)}</p></div></div>
+    <div style="margin-top:14px">${Object.entries(PIL).map(([k,p])=>{const v=R.sc[k],L=lvl(v);return `<div class="pb"><div class="l"><span>${p.e} ${esc(p.n)}</span><em class="${L[1]}">${L[0]} · ${v}</em></div><div class="t"><i style="width:${Math.max(v,4)}%;background:${L[2]}"></i></div></div>`;}).join("")}</div>
+  </div>
+  <div class="card"><div class="emoji" aria-hidden="true">${r.e}</div><h2>${esc(r.nom)}</h2><p style="color:var(--muted)">${esc(r.expl)}</p></div>
+  <div class="card"><h3>Tes 3 priorités pour les 14 prochains jours</h3><p class="meta" style="margin-bottom:12px">Choisies selon tes réponses, de la plus importante à la moins importante.</p>
+    ${R.pr.map((f,k)=>`<div class="prio"><div class="n">${k+1}</div><div><h4>${esc(f.t)}</h4><p>${esc(f.p)}</p><div class="g"><b>Ton geste :</b> ${esc(f.g)}</div></div></div>`).join("")}
+    ${R.enceinte?`<div class="tip">${esc(ENCEINTE)}</div>`:""}
+  </div>
   <div class="card"><h3>Ta routine simplifiée</h3>
     <div class="grid2"><div class="rt"><b>Matin</b>${list(r.matin)}</div><div class="rt"><b>Soir</b>${list(r.soir)}</div></div>
-    ${trop?`<div class="tip">${esc(TROP)}</div>`:""}
-    <div class="actions" style="margin-top:16px"><button class="btn ghost" data-save>Enregistrer ma routine</button></div>
+    <div class="actions" style="margin-top:16px"><button class="btn ghost" data-save>Enregistrer mon bilan</button></div>
     <p class="small" data-msg hidden></p>
   </div>
-  <div class="card"><h3>Tes 3 gestes gratuits cette semaine</h3>${list(r.gestes)}</div>
   <div class="card bridge"><h3>Ta routine en 3 gestes, déjà pensée pour toi</h3>
     <p>Je lance bientôt le Youth Infusing System de Co.Lab, formulé en Italie : un sérum qui <b>hydrate</b>, une brume qui <b>active</b> et une crème qui <b>scelle et raffermit</b>. C'est exactement la logique de ta routine ci-dessus, en 3 produits.</p>
-    <p>Inscris-toi à ma liste VIP pour l'avoir en premier, avec l'offre de lancement et mon suivi de 14 jours.</p>
-    <div class="form-slot">${CONFIG.ghlFormUrl
-      ?`<iframe src="${esc(CONFIG.ghlFormUrl+(CONFIG.ghlFormUrl.includes("?")?"&":"?")+encodeURIComponent(CONFIG.ghlChampProfil)+"="+encodeURIComponent(r.court))}" title="Inscription à la liste VIP" loading="lazy"></iframe>`
+    <p>Inscris-toi à ma liste VIP pour l'avoir en premier, avec l'offre de lancement et mon suivi de 14 jours sur tes 3 priorités.</p>
+    <div class="form-slot">${url
+      ?`<iframe src="${esc(url)}" title="Inscription à la liste VIP" loading="lazy"></iframe>`
       :`<div class="placeholder">Le formulaire GHL s'affichera ici (prénom, courriel, consentement). Ajoute son lien dans <code>ghlFormUrl</code> au début du script.</div>`}</div>
   </div>
-  <div class="actions"><button class="back" data-redo>↺ Refaire le quiz</button></div>`;
+  <p class="small">Ce bilan est un outil de sensibilisation. Il ne remplace pas l'avis d'une professionnelle de la santé ou d'une dermatologue.</p>
+  <div class="actions"><button class="back" data-redo>↺ Refaire le bilan</button></div>`;
   root.querySelector("[data-redo]").onclick=()=>{intro();top();};
-  root.querySelector("[data-save]").onclick=()=>saveCard(r,trop);
+  root.querySelector("[data-save]").onclick=()=>saveCard(R,r);
   top();
 }
 
-/* ----- Carte « Ma routine » en image (1080 x 1350) ----- */
+/* ----- Carte « Mon bilan peau » en image (1080 x 1350) ----- */
 function wrap(ctx,text,x,y,maxW,lh){
   const words=text.split(" ");let line="",yy=y;
   for(const w of words){const t=line?line+" "+w:w;if(ctx.measureText(t).width>maxW&&line){ctx.fillText(line,x,yy);line=w;yy+=lh;}else line=t;}
   if(line){ctx.fillText(line,x,yy);yy+=lh;}return yy;
 }
-async function saveCard(r,trop){
+function rr(x,X,Y,W,H,R){x.beginPath();x.roundRect?x.roundRect(X,Y,W,H,R):x.rect(X,Y,W,H);}
+async function saveCard(R,r){
   const msg=root.querySelector("[data-msg]");const say=t=>{msg.hidden=false;msg.textContent=t;};
   const W=1080,H=1350,c=document.createElement("canvas");c.width=W;c.height=H;const x=c.getContext("2d");
   try{await document.fonts.ready;}catch(e){}
   x.fillStyle="#f7f3ec";x.fillRect(0,0,W,H);
-  x.fillStyle="#fffdf9";x.strokeStyle="#e7dfd3";x.lineWidth=3;
-  x.beginPath();x.roundRect?x.roundRect(60,60,W-120,H-120,40):x.rect(60,60,W-120,H-120);x.fill();x.stroke();
-  x.fillStyle="#5d6e50";x.font="600 30px Inter, sans-serif";x.fillText("MA ROUTINE · "+CONFIG.marque.toUpperCase(),120,160);
-  x.font="80px serif";x.fillText(r.e,120,280);
-  x.fillStyle="#2f2a24";x.font="600 64px Fraunces, Georgia, serif";let y=wrap(x,r.nom,120,380,W-240,76);
-  const col=(t,items,cx,cy)=>{x.fillStyle="#e6ebdf";x.beginPath();x.roundRect?x.roundRect(cx,cy,410,380,24):x.rect(cx,cy,410,380);x.fill();
-    x.fillStyle="#5d6e50";x.font="600 28px Inter, sans-serif";x.fillText(t,cx+30,cy+60);
-    x.fillStyle="#2f2a24";x.font="400 30px Inter, sans-serif";let yy=cy+115;
-    items.forEach((it,k)=>{yy=wrap(x,(k+1)+". "+it,cx+30,yy,350,40)+14;});};
-  y+=30;col("MATIN",r.matin,120,y);col("SOIR",r.soir,550,y);y+=440;
-  x.fillStyle="#2f2a24";x.font="600 32px Inter, sans-serif";x.fillText("Mon geste de la semaine",120,y);
-  x.font="400 30px Inter, sans-serif";x.fillStyle="#6f665c";y=wrap(x,r.gestes[0],120,y+50,W-240,42);
+  x.fillStyle="#fffdf9";x.strokeStyle="#e7dfd3";x.lineWidth=3;rr(x,60,60,W-120,H-120,40);x.fill();x.stroke();
+  x.fillStyle="#5d6e50";x.font="600 28px Inter, sans-serif";x.fillText("MON BILAN PEAU · "+CONFIG.marque.toUpperCase(),120,150);
+  // indice
+  x.lineWidth=22;x.strokeStyle="#e7dfd3";x.beginPath();x.arc(215,300,85,0,Math.PI*2);x.stroke();
+  x.strokeStyle="#5d6e50";x.beginPath();x.arc(215,300,85,-Math.PI/2,-Math.PI/2+Math.PI*2*R.indice/100);x.stroke();
+  x.fillStyle="#2f2a24";x.textAlign="center";x.font="600 64px Fraunces, Georgia, serif";x.fillText(R.indice,215,318);
+  x.font="400 22px Inter, sans-serif";x.fillStyle="#6f665c";x.fillText("sur 100",215,350);x.textAlign="left";
+  x.fillStyle="#2f2a24";x.font="600 50px Fraunces, Georgia, serif";wrap(x,r.e+" "+r.nom,350,280,610,60);
+  // piliers
+  let y=450;x.font="400 28px Inter, sans-serif";
+  Object.entries(PIL).forEach(([k,p])=>{const v=R.sc[k],L=lvl(v);
+    x.fillStyle="#2f2a24";x.fillText(p.n,120,y);x.textAlign="right";x.fillStyle="#6f665c";x.fillText(v+"",960,y);x.textAlign="left";
+    x.fillStyle="#e7dfd3";rr(x,120,y+14,840,14,7);x.fill();x.fillStyle=L[2];rr(x,120,y+14,Math.max(840*v/100,14),14,7);x.fill();y+=74;});
+  // priorités
+  y+=30;x.fillStyle="#2f2a24";x.font="600 34px Fraunces, Georgia, serif";x.fillText("Mes 3 priorités",120,y);y+=56;
+  R.pr.forEach((f,k)=>{x.fillStyle="#5d6e50";x.beginPath();x.arc(140,y-10,20,0,Math.PI*2);x.fill();
+    x.fillStyle="#fff";x.font="600 22px Inter, sans-serif";x.textAlign="center";x.fillText(k+1,140,y-2);x.textAlign="left";
+    x.fillStyle="#2f2a24";x.font="400 30px Inter, sans-serif";y=wrap(x,f.t,180,y,780,40)+18;});
+  // pied
   x.fillStyle="#5d6e50";x.fillRect(120,H-178,W-240,2);
-  x.fillStyle="#2f2a24";x.font="600 34px Fraunces, Georgia, serif";
-  let fx=120;
+  x.fillStyle="#2f2a24";x.font="600 34px Fraunces, Georgia, serif";let fx=120;
   if(CONFIG.photo){try{const im=new Image();im.crossOrigin="anonymous";im.src=CONFIG.photo;await im.decode();
     x.save();x.beginPath();x.arc(165,H-110,45,0,Math.PI*2);x.clip();x.drawImage(im,120,H-155,90,90);x.restore();fx=235;}catch(e){}}
   x.fillText(CONFIG.nom,fx,H-115);x.fillStyle="#6f665c";x.font="400 26px Inter, sans-serif";x.fillText(CONFIG.marque,fx,H-75);
   c.toBlob(async b=>{
-    if(!b){say("Impossible de créer l'image. Fais une capture d'écran de ta routine.");return;}
-    const f=new File([b],"ma-routine-peau.png",{type:"image/png"});
-    try{if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],title:"Ma routine peau"});say("C'est fait! Choisis « Enregistrer l'image » pour la garder dans tes photos.");return;}}catch(e){if(e&&e.name==="AbortError")return;}
-    const u=URL.createObjectURL(b),a=document.createElement("a");a.href=u;a.download="ma-routine-peau.png";document.body.appendChild(a);a.click();a.remove();
-    setTimeout(()=>URL.revokeObjectURL(u),4000);say("Ta routine est téléchargée.");
+    if(!b){say("Impossible de créer l'image. Fais une capture d'écran de ton bilan.");return;}
+    const f=new File([b],"mon-bilan-peau.png",{type:"image/png"});
+    try{if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],title:"Mon bilan peau"});say("C'est fait! Choisis « Enregistrer l'image » pour le garder dans tes photos.");return;}}catch(e){if(e&&e.name==="AbortError")return;}
+    const u=URL.createObjectURL(b),a=document.createElement("a");a.href=u;a.download="mon-bilan-peau.png";document.body.appendChild(a);a.click();a.remove();
+    setTimeout(()=>URL.revokeObjectURL(u),4000);say("Ton bilan est téléchargé.");
   },"image/png");
 }
 intro();
