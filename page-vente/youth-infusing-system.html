@@ -110,12 +110,24 @@
 #lt-vente .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
 #lt-vente .chips span{border:1px solid var(--line);border-radius:99px;padding:6px 14px;font-size:14px;background:var(--bg)}
 /* comparatif */
-#lt-vente .cmp{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:40px}
-#lt-vente .cmp div{border:1px solid var(--line);border-radius:16px;padding:22px;background:var(--card);text-align:center}
-#lt-vente .cmp b{display:block;font-family:Fraunces,Georgia,serif;font-size:30px;margin:6px 0}
-#lt-vente .cmp span{font-size:13px;color:var(--muted)}
-#lt-vente .cmp .me{background:var(--ink);border-color:var(--ink)}
-#lt-vente .cmp .me *{color:#fff}#lt-vente .cmp .me span{color:#cfc6ba}
+#lt-vente .story{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:start;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:34px;margin-top:36px}
+#lt-vente .story .q{font-family:Fraunces,Georgia,serif;font-size:72px;line-height:.8;color:var(--bronze)}
+#lt-vente .story p{font-size:17px;margin:0 0 12px}
+#lt-vente .story .sig{font-size:14px;color:var(--muted);margin:0}
+#lt-vente .cmp{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:24px;align-items:stretch}
+#lt-vente .rt{border:1px solid var(--line);border-radius:18px;padding:24px;background:var(--card);display:flex;flex-direction:column}
+#lt-vente .rt .who{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--bronze-t);font-weight:600;margin-bottom:4px}
+#lt-vente .rt h3{font-size:19px;margin-bottom:12px}
+#lt-vente .rt ul{list-style:none;padding:0;margin:0 0 16px;flex:1}
+#lt-vente .rt li{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--line);font-size:13.5px}
+#lt-vente .rt li span{color:var(--muted)}#lt-vente .rt li b{white-space:nowrap;font-weight:600}
+#lt-vente .rt .tot{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+#lt-vente .rt .tot b{font-family:Fraunces,Georgia,serif;font-size:28px;white-space:nowrap}
+#lt-vente .rt .tot span{font-size:13px;color:var(--muted)}
+#lt-vente .rt.mine{border:2px solid var(--bronze)}
+#lt-vente .rt .eco{margin-top:12px;background:var(--soft);color:var(--bronze-t);border-radius:12px;padding:10px 12px;font-size:13.5px;font-weight:600;text-align:center}
+#lt-vente .rt.me{background:var(--ink);border-color:var(--ink)}
+#lt-vente .rt.me *{color:#fff}#lt-vente .rt.me li,#lt-vente .rt.me .tot{border-color:rgba(255,255,255,.14)}#lt-vente .rt.me li span,#lt-vente .rt.me .tot span{color:#cfc6ba}#lt-vente .rt.me .who{color:#c9a57c}
 /* offres */
 #lt-vente .offers{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:880px;margin:40px auto 0}
 #lt-vente .offer{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:34px;display:flex;flex-direction:column}
@@ -146,7 +158,8 @@
   #lt-vente .stage{max-width:440px}
   #lt-vente .final{gap:0}#lt-vente .final .ft{padding:40px 28px}
   #lt-vente .steps{grid-template-columns:1fr}
-  #lt-vente .cmp{grid-template-columns:1fr 1fr}
+  #lt-vente .cmp{grid-template-columns:1fr}
+  #lt-vente .story{grid-template-columns:1fr;gap:6px;padding:26px}
   #lt-vente .slide{flex-basis:82%}
   #lt-vente .arr{display:none}
   #lt-vente .w{padding:0 18px}
@@ -156,6 +169,7 @@
 (function(){
 /* ================= CONFIG ================= */
 const CONFIG={
+  nom:"Eli Dufour",                          // signature de l'histoire
   lien:"https://partner.co/s/YjNkYTY2MDRk",   // lien d'achat
   prixUnique:"341,95 $",
   prixAbonnement:"283,95 $",
@@ -181,6 +195,12 @@ const STEPS=[
   i:[["Argireline® Amplified","peptide qui aide à détendre l'apparence des ridules d'expression, pour plus de fermeté et d'éclat"],["Madécassoside (centella)","apaise et aide à réduire les rougeurs"],["Prune Kakadu","riche en vitamine C, illumine et unifie le teint"]],
   r:"Selon la compagnie : résultats visibles dès 5 jours, réduction de l'apparence des rides en 14 jours."}
 ];
+const ROUTINES=[
+ {who:"Ma routine actuelle",t:"OLIVEDA, routine correctrice",cls:"mine",n:"5 produits",tot:"558,75 $",p:[["F67 Facial Tonic (100 ml)","74,95 $"],["F59 Corrective Serum Face (30 ml)","131,95 $"],["F87 Kahai Elixir (30 ml)","118,95 $"],["F60 Corrective Eye Cream (30 ml)","102,95 $"],["F42 Corrective Face Cream (60 ml)","129,95 $"]],eco:"Mon économie avec le système : 274,80 $"},
+ {who:"Routine prestige",t:"Chez Sephora",n:"3 produits",tot:"339,00 $",p:[["SkinCeuticals H.A. Intensifier (30 ml)","175,00 $"],["Tatcha Luminous Dewy Skin Mist (40 ml)","68,00 $"],["Drunk Elephant Protini (50 ml)","96,00 $"]]},
+ {who:"Routine en pharmacie",t:"Vichy, Avène et Olay",n:"3 produits",tot:"138,06 $",p:[["Vichy Minéral 89 (50 ml)","69,58 $"],["Avène Eau thermale (150 ml)","21,49 $"],["Olay Regenerist Micro-Sculpting FPS 30 (50 ml)","46,99 $"]]},
+ {who:"Co.Lab",t:"Youth Infusing System",cls:"me",n:"3 produits · en abonnement",tot:CONFIG.prixAbonnement,p:[["HA Face Serum (30 ml)","inclus"],["Activating Face Mist (45 ml)","inclus"],["ReFirming Face Cream (55 ml)","inclus"],["Achat unique",CONFIG.prixUnique]]}
+];
 const SANS=["Parabènes","Sulfates (SLS et SLES)","Talc","Huiles minérales","EDTA","Libérateurs de formaldéhyde","BHT"];
 const FAQ=[
  ["Pour quel type de peau?","Pour tous les types de peau. Les textures sont légères et non grasses : elles conviennent aussi bien aux peaux sèches qu'aux peaux mixtes ou sensibles."],
@@ -191,7 +211,7 @@ const FAQ=[
  ["Je suis enceinte ou j'allaite, est-ce que je peux l'utiliser?","Avant d'ajouter un nouveau soin à ta routine, vérifie avec ta professionnelle de la santé."]
 ];
 const root=document.getElementById("lt-vente");
-const T=[{img:IMG.tammy,nom:"Tammy",duree:"Du jour 1 au jour 45"},{img:IMG.michele,nom:"Michele",duree:"Du 25 juillet au 29 septembre"},{img:IMG.claudia,nom:"Claudia"},{img:IMG.sheela,nom:"Sheela",duree:"Après 11 semaines"},{img:IMG.janell,nom:"Janell"}].concat(CONFIG.transformations);
+const T=[{img:IMG.tammy,nom:"Tammy",duree:"Du jour 1 au jour 45"},{img:IMG.michele,nom:"Michele",duree:"Du 25 juillet au 29 septembre"},{img:IMG.claudia,nom:"Claudia",duree:"Après 45 jours"},{img:IMG.sheela,nom:"Sheela",duree:"Après 11 semaines"},{img:IMG.janell,nom:"Janell"}].concat(CONFIG.transformations);
 root.innerHTML=`
 <section class="hero"><div class="w">
   <div>
@@ -245,10 +265,14 @@ root.innerHTML=`
 </div></section>
 
 <section style="padding-top:0"><div class="w">
-  <div class="c"><div class="k">La même routine en 3 étapes, ailleurs</div><h2>Le luxe, sans le prix du luxe</h2><p class="lead">Un sérum à l'acide hyaluronique, une brume et une crème raffermissante de marques connues, au prix régulier au Canada.</p></div>
-  <div class="cmp"><div><span>En pharmacie</span><b>138 $</b><span>environ</span></div><div><span>Prestige</span><b>339 $</b><span>environ</span></div><div><span>Luxe</span><b>787 $</b><span>environ</span></div>
-    <div class="me"><span>Youth Infusing System</span><b>${esc(CONFIG.prixAbonnement)}</b><span>en abonnement</span></div></div>
-  <p class="small c" style="margin-top:14px">Prix réguliers relevés le 2 novembre 2026 chez des détaillants canadiens. Les prix peuvent changer.</p>
+  <div class="c"><div class="k">Le vrai calcul</div><h2>Le luxe, sans le prix du luxe</h2><p class="lead">De vrais produits, à leur vrai prix au Canada. À commencer par ma propre routine.</p></div>
+  <div class="story"><div class="q" aria-hidden="true">“</div><div>
+    <p>Ça fait un an et demi que j'utilise la routine correctrice OLIVEDA : cinq produits, plus de 550 $ chaque fois que je la renouvelle. J'aimais ma peau, mais pas ma facture.</p>
+    <p>Je commence le Youth Infusing System : trois produits, une routine plus simple, et <b>274,80 $ d'économie</b> en abonnement. J'ai vraiment hâte de voir mes résultats, et je vous les partage au fil des semaines.</p>
+    <p class="sig">— ${esc(CONFIG.nom)}</p></div></div>
+  <div class="cmp">${ROUTINES.map(r=>`<div class="rt ${r.cls||""}"><div class="who">${esc(r.who)}</div><h3>${esc(r.t)}</h3><ul>${r.p.map(x=>`<li><span>${esc(x[0])}</span><b>${esc(x[1])}</b></li>`).join("")}</ul>
+    <div class="tot"><span>${esc(r.n)}</span><b>${esc(r.tot)}</b></div>${r.eco?`<div class="eco">${esc(r.eco)}</div>`:""}</div>`).join("")}</div>
+  <p class="small c" style="margin-top:16px">Prix réguliers relevés le 2 novembre 2026 sur Sephora Canada, Well.ca, Dermshop.ca, Care to Beauty Canada et ca.olivetreepeople.com. Les prix changent souvent. La routine en pharmacie coûte moins cher : la différence se joue sur la formule (six acides hyaluroniques, un peptide ciblé, l'Ectoin® et la liste « formulé sans »). Le Youth Infusing System ne comprend ni nettoyant ni contour des yeux.</p>
 </div></section>
 
 <section style="padding-top:0" id="offre"><div class="w">
