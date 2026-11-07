@@ -206,16 +206,16 @@
 /* Mode lancement */
 #lt-vente .cd{margin-top:26px}
 #lt-vente .cd-t{font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--bronze-t);margin-bottom:10px}
-#lt-vente .cd-g{display:flex;gap:10px;flex-wrap:wrap}
+#lt-vente .cd-g{display:flex;align-items:flex-start}
 #lt-vente .c .cd-g,#lt-vente .cd.c .cd-g{justify-content:center}
-#lt-vente .cd-g div{min-width:76px;text-align:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 8px 10px}
-#lt-vente .cd-g b{display:block;font-family:Poppins,Arial,sans-serif;font-weight:600;font-size:32px;line-height:1.05;font-variant-numeric:tabular-nums}
+#lt-vente .cd-g div{text-align:center;padding:0 22px;min-width:92px}#lt-vente .cd-g div:first-child{padding-left:0;min-width:70px}#lt-vente .cd.c .cd-g div:first-child{padding-left:22px}#lt-vente .cd-g div+div{border-left:1px solid var(--line)}
+#lt-vente .cd-g b{display:block;font-family:Poppins,Arial,sans-serif;font-weight:600;font-size:44px;line-height:1;font-variant-numeric:tabular-nums;margin-bottom:6px}
 #lt-vente .cd-g span{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 #lt-vente .cd.dark .cd-t{color:#ff8a8e}
-#lt-vente .cd.dark .cd-g div{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.18)}
+#lt-vente .cd.dark .cd-g div+div{border-color:rgba(255,255,255,.22)}
 #lt-vente .cd.dark .cd-g b{color:#fff}#lt-vente .cd.dark .cd-g span{color:#cfe2e8}
 #lt-vente .btn.lock{opacity:.6;cursor:default;pointer-events:none}
-@media(max-width:900px){#lt-vente .cd-g div{min-width:0;flex:1}#lt-vente .cd-g b{font-size:26px}}
+@media(max-width:900px){#lt-vente .cd-g div,#lt-vente .cd-g div:first-child,#lt-vente .cd.c .cd-g div:first-child{min-width:0;flex:1;padding:0 6px}#lt-vente .cd-g b{font-size:34px}#lt-vente .cd-g span{font-size:10px;letter-spacing:.06em}}
 </style>
 <script>
 (function(){
@@ -272,7 +272,7 @@ const FAQ=[
 ];
 const root=document.getElementById("lt-vente");
 const T=[{img:IMG.tammy,nom:"Tammy",duree:"Du jour 1 au jour 45"},{img:IMG.michele,nom:"Michele",duree:"Du 25 juillet au 29 septembre"},{img:IMG.claudia,nom:"Claudia",duree:"Après 45 jours"},{img:IMG.sheela,nom:"Sheela",duree:"Après 11 semaines"},{img:IMG.janell,nom:"Janell"}].concat(CONFIG.transformations);
-root.innerHTML=`${CONFIG.lien?"":`<div style="background:#007396;color:#fff;text-align:center;padding:10px 16px;font-size:14px">Mode test : ajoute le lien d'achat Partner.Co dans <code>lien</code> au début du script. Les boutons « Commander » ne mènent nulle part pour l'instant.</div>`}
+root.innerHTML=`
 <section class="hero"><div class="w">
   <div>
     <div class="k in d1">Co.Lab · Formulé en Italie</div>
