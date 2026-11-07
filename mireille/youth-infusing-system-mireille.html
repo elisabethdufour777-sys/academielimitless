@@ -174,7 +174,7 @@
   #lt-vente .two,#lt-vente .offers,#lt-vente .final{grid-template-columns:1fr;gap:28px}
   #lt-vente .hero .w{grid-template-columns:1fr;gap:8px;padding-top:40px}
   #lt-vente .hero{min-height:0}
-  #lt-vente .stage{max-width:440px}
+  #lt-vente .stage{max-width:440px;margin-top:36px}
   #lt-vente .final{gap:0}#lt-vente .final .ft{padding:40px 28px}
   #lt-vente .steps{grid-template-columns:1fr}
   #lt-vente .cmp{grid-template-columns:1fr}
@@ -401,7 +401,8 @@ const reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 if(!reduce){const prods=[...root.querySelectorAll(".prod")],hero=root.querySelector(".hero");let mx=0,my=0,tx=0,ty=0,sy=0;
   hero.addEventListener("pointermove",e=>{const r=hero.getBoundingClientRect();mx=(e.clientX-r.left)/r.width-.5;my=(e.clientY-r.top)/r.height-.5;});
   hero.addEventListener("pointerleave",()=>{mx=0;my=0;});
-  window.addEventListener("scroll",()=>{sy=Math.max(0,-hero.getBoundingClientRect().top);},{passive:true});
+  const mob=window.matchMedia("(max-width:900px)");
+  window.addEventListener("scroll",()=>{sy=mob.matches?0:Math.max(0,-hero.getBoundingClientRect().top);},{passive:true});
   (function loop(){tx+=(mx-tx)*.06;ty+=(my-ty)*.06;
     prods.forEach(p=>{const d=+p.dataset.d;p.style.transform=`translate3d(${(-tx*d).toFixed(2)}px,${(-ty*d-sy*d/120).toFixed(2)}px,0)`;});
     requestAnimationFrame(loop);})();}
