@@ -316,7 +316,7 @@ const ENTRETIEN={
 const ENCEINTE="Tu es enceinte ou tu allaites : avant d'ajouter un nouveau produit à ta routine, vérifie avec ta professionnelle de la santé.";
 
 const root=document.getElementById("lt-quiz");
-let i=0,ans=[];
+let i=0,ans=[],prenomP="";
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const top=()=>{const r=root.getBoundingClientRect();if(r.top<0)window.scrollTo({top:window.scrollY+r.top-16,behavior:"smooth"});};
 
@@ -378,7 +378,7 @@ function courriel(){
     const bad=!prenom?"Inscris ton prénom.":!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(mail)?"Vérifie ton adresse courriel.":!f.consentement.checked?"Coche la case pour recevoir tes résultats par courriel.":"";
     if(bad){err.hidden=false;err.textContent=bad;return;}
     err.hidden=true;const btn=f.querySelector("button");btn.disabled=true;
-    await envoyer(prenom,mail);
+    prenomP=prenom;await envoyer(prenom,mail);
     result();top();
   };
 }
@@ -415,7 +415,7 @@ function result(){
   </div>
   <div class="card"><h3>Ta routine simplifiée</h3>
     <div class="grid2"><div class="rt"><b>Matin</b>${list(r.matin)}</div><div class="rt"><b>Soir</b>${list(r.soir)}</div></div>
-    <div class="actions" style="margin-top:16px"><button class="btn ghost" data-save>Enregistrer mes résultats</button></div>
+    <div class="actions" style="margin-top:16px"><button class="btn" data-pdf>Télécharger mes résultats (PDF)</button><button class="btn ghost" data-save>Enregistrer l'image</button></div>
     <p class="small" data-msg hidden></p>
   </div>
   <div class="card launch"><div class="kick">Le 16 novembre</div><h3>Le skinimalisme arrive en force</h3>
@@ -424,7 +424,68 @@ function result(){
   <div class="actions"><button class="back" data-redo>↺ Refaire l'évaluation</button></div>`;
   root.querySelector("[data-redo]").onclick=()=>{intro();top();};
   root.querySelector("[data-save]").onclick=()=>saveCard(R,r);
+  root.querySelector("[data-pdf]").onclick=()=>pdf(R,r);
   top();
+}
+
+/* ----- Bilan complet imprimable / PDF ----- */
+function pdfHtml(R,r){
+  const L=v=>lvl(v);
+  const nom=prenomP?" · "+esc(prenomP):"";
+  const li=a=>a.map(x=>`<li>${esc(x)}</li>`).join("");
+  return `<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Décode ta peau${prenomP?" - "+esc(prenomP):""}</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+@page{size:A4;margin:14mm}
+*{box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{margin:0;background:#f5efe5;font:400 14px/1.55 Inter,Arial,sans-serif;color:#1a1816}
+.doc{max-width:760px;margin:0 auto;padding:28px 22px;background:#fff}
+@media print{body{background:#fff}.doc{padding:0;max-width:none}.noprint{display:none!important}}
+.k{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#86603a;font-weight:600;margin:0 0 6px}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:600;margin:0 0 8px;line-height:1.2}
+h1{font-size:30px}h2{font-size:20px}h3{font-size:16px}
+p{margin:0 0 8px}.m{color:#6b645b}
+.box{border:1px solid #e4dccf;border-radius:12px;padding:16px 18px;margin:14px 0}
+.cr,.launch,.rtn{break-inside:avoid}
+.cr{background:#f5efe5;border:0}
+.top{display:flex;gap:20px;align-items:center}
+.sc{font-family:Fraunces,Georgia,serif;font-size:54px;font-weight:600;line-height:1;white-space:nowrap;flex:0 0 auto}
+.sc small{font:400 14px Inter,sans-serif;color:#6b645b}
+.pb{margin:8px 0}.pb .l{display:flex;justify-content:space-between;font-size:13px;margin-bottom:3px}
+.pb .t{height:8px;background:#e4dccf;border-radius:9px;overflow:hidden}.pb .t i{display:block;height:100%;border-radius:9px}
+.pr{display:flex;gap:12px;padding:10px 0;border-top:1px solid #e4dccf;break-inside:avoid}.pr:first-of-type{border-top:0}
+.n{flex:0 0 26px;height:26px;border-radius:50%;background:#1a1816;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:13px}
+.g2{display:flex;gap:12px}.g2>div{flex:1;background:#f5efe5;border-radius:10px;padding:12px 14px}
+.g2 b{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#86603a;margin-bottom:4px}
+ol{margin:0;padding-left:18px}li{margin-bottom:3px}
+.launch{border-color:#a67c52;background:#f5efe5}
+.foot{display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid #a67c52;margin-top:18px;padding-top:12px}
+.btnp{display:block;width:100%;margin:0 0 18px;padding:14px;border:0;border-radius:999px;background:#1a1816;color:#fff;font:600 16px Inter,sans-serif;cursor:pointer}
+</style></head><body><div class="doc">
+<button class="btnp noprint" onclick="window.print()">Enregistrer en PDF ou imprimer</button>
+<div class="k">${esc(CONFIG.marque)} · Décode ta peau${nom}</div>
+<h1>Ce que ta peau essaie de te dire</h1>
+<div class="box cr"><div class="top"><div class="sc">${R.indice}<small> / 100</small></div><div><div class="k">Ton score équilibre</div><p class="m" style="margin:0">Il regarde ta peau dans son ensemble : hydratation, barrière cutanée, mode de vie, protection et routine.</p></div></div>
+${Object.entries(PIL).map(([k,p])=>{const v=R.sc[k],l=L(v);return `<div class="pb"><div class="l"><span>${esc(p.n)}</span><span>${l[0]} · ${v}</span></div><div class="t"><i style="width:${Math.max(v,3)}%;background:${l[2]}"></i></div></div>`;}).join("")}</div>
+<div class="box"><div class="k">Ton profil de peau</div><h2>${esc(r.nom)}</h2><p class="m">${esc(r.expl)}</p></div>
+<div class="box"><div class="k">Tes 3 priorités pour les 14 prochains jours</div>
+${R.pr.map((f,k)=>`<div class="pr"><div class="n">${k+1}</div><div><h3>${esc(f.t)}</h3><p class="m">${esc(f.p)}</p><p><b>Ton geste :</b> ${esc(f.g)}</p></div></div>`).join("")}
+${R.enceinte?`<p style="margin-top:8px"><b>À noter :</b> ${esc(ENCEINTE)}</p>`:""}</div>
+<div class="box rtn"><div class="k">Ta routine simplifiée</div><div class="g2"><div><b>Matin</b><ol>${li(r.matin)}</ol></div><div><b>Soir</b><ol>${li(r.soir)}</ol></div></div></div>
+<div class="box launch"><div class="k">Le 16 novembre</div><h3>Le skinimalisme arrive en force</h3><p style="margin:0">Moins de produits, mieux choisis : une routine courte et efficace, qui fait exactement ce que tes résultats recommandent. Comme tu as fait l'évaluation, tu seras parmi les premières au courant.</p></div>
+<div class="foot"><div><div style="font-family:Fraunces,Georgia,serif;font-size:18px;font-weight:600">${esc(CONFIG.nom)}</div><div class="m" style="font-size:12px">${esc(CONFIG.marque)}</div></div>
+<div class="m" style="font-size:10px;max-width:60%;text-align:right">Cette évaluation est un outil de sensibilisation. Elle ne remplace pas l'avis d'une professionnelle de la santé ou d'une dermatologue.</div></div>
+</div><script>window.addEventListener("load",function(){var go=function(){try{window.print()}catch(e){}};(document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(function(){setTimeout(go,300)});});<\/script></body></html>`;
+}
+function pdf(R,r){
+  const html=pdfHtml(R,r);
+  const w=window.open("","_blank");
+  if(w){w.document.open();w.document.write(html);w.document.close();return;}
+  // Fenêtre bloquée : on passe par un cadre invisible dans la page
+  const f=document.createElement("iframe");f.style.cssText="position:fixed;right:0;bottom:0;width:0;height:0;border:0";
+  document.body.appendChild(f);f.contentDocument.open();f.contentDocument.write(html.replace(/<script>[\s\S]*?<\/script>/,""));f.contentDocument.close();
+  setTimeout(()=>{try{f.contentWindow.focus();f.contentWindow.print();}catch(e){}setTimeout(()=>f.remove(),60000);},600);
 }
 
 /* ----- Carte « Mon bilan peau » en image (1080 x 1350) ----- */
