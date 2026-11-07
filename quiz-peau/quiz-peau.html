@@ -388,7 +388,9 @@ async function envoyer(prenom,mail){
   const R=compute(),r=P[R.p];
   const data={prenom:prenom,first_name:prenom,courriel:mail,email:mail,consentement:"oui",source:CONFIG.source,
     profil_de_peau:r.court,score_equilibre:R.indice,priorites_peau:R.pr.map(f=>f.t).join(" | "),
-    score_hydratation:R.sc.h,score_barriere:R.sc.b,score_mode_de_vie:R.sc.v,score_protection:R.sc.p,score_routine:R.sc.r};
+    score_hydratation:R.sc.h,score_barriere:R.sc.b,score_mode_de_vie:R.sc.v,score_protection:R.sc.p,score_routine:R.sc.r,
+    profil_explication:r.expl};
+  R.pr.forEach((f,k)=>{data["priorite_"+(k+1)]=f.t;data["priorite_"+(k+1)+"_geste"]=f.g;});
   const t=new Promise(res=>setTimeout(res,5000));
   const go=(async()=>{
     try{const x=await fetch(CONFIG.ghlWebhookUrl,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});if(x.ok)return;}catch(e){}
