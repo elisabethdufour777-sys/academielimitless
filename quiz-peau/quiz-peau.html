@@ -200,12 +200,12 @@ const Q=[
    ["55 à 64 ans",{R:3},{}],
    ["65 ans et plus",{R:3},{}]]},
 
- {s:3,q:"À quelle fréquence mets-tu une protection solaire au visage?",o:[
-   ["Tous les jours, même en hiver",{},{}],
-   ["La plupart des jours",{},{p:1}],
-   ["Seulement l'été ou quand il fait soleil",{},{p:2},"spf"],
+ {s:3,q:"Quand tu es au soleil, tu protèges ta peau (chapeau, ombre, vêtements, crème minérale si tu restes longtemps)…",o:[
+   ["Toujours",{},{}],
+   ["La plupart du temps",{},{p:1}],
+   ["Parfois",{},{p:2},"spf"],
    ["Rarement",{R:1},{p:3},"spf"],
-   ["Jamais",{R:1},{p:4},"spf"]]},
+   ["Jamais, j'aime le soleil sans protection",{R:1},{p:4},"spf"]]},
  {s:3,q:"Tes journées se passent surtout…",o:[
    ["À l'intérieur, dans un endroit chauffé ou climatisé",{A:1},{h:1,p:1},"air"],
    ["Dehors, au froid, au vent ou au soleil",{A:1},{p:2},"dehors"],
@@ -261,14 +261,14 @@ const Q=[
 
 /* Priorités personnalisées, déclenchées par les réponses. w = importance */
 const PR={
- spf:{w:10,t:"Protection solaire tous les jours",p:"Le soleil est le premier facteur extérieur du vieillissement visible de la peau, même en hiver et même par temps gris.",g:"Ajoute une protection solaire FPS 30 et plus chaque matin, en dernière étape. Choisis une formule minérale si ta peau est sensible."},
+ spf:{w:10,t:"Protéger ta peau du soleil",p:"Le soleil est le premier facteur extérieur du vieillissement visible de la peau.",g:"Mise d\'abord sur la protection physique : chapeau à large bord, lunettes de soleil et ombre aux heures les plus fortes. Lors d\'une exposition prolongée, ajoute une crème solaire minérale."},
  tabac:{w:10,t:"Réduire la fumée",p:"La fumée réduit l'apport d'oxygène à la peau et accélère la perte de fermeté et d'éclat.",g:"Chaque cigarette en moins compte. Si tu veux arrêter, ta pharmacienne peut t'accompagner."},
  eau:{w:9,t:"Boire 6 à 8 verres d'eau",p:"L'hydratation se joue aussi de l'intérieur. Quand tu bois peu, la peau a tendance à paraître plus terne et à mieux marquer les ridules.",g:"Garde une gourde à portée de main et bois un grand verre d'eau au réveil, avant ton café."},
  sommeil:{w:9,t:"Protéger ton sommeil",p:"C'est la nuit que la peau se répare et se renouvelle. Les nuits courtes se voient vite : teint terne, cernes, peau plus réactive.",g:"Écrans fermés 30 minutes avant de dormir, chambre fraîche, et vise une heure de coucher régulière."},
  exfo:{w:8,t:"Exfolier moins souvent",p:"Trop exfolier affaiblit la barrière de la peau : elle perd son eau plus vite et devient sensible.",g:"Maximum 1 à 2 fois par semaine, et fais une pause complète de 2 semaines si ta peau picote."},
  nettoyant:{w:8,t:"Un nettoyant plus doux",p:"La sensation « squeaky clean », c'est souvent le signe qu'on a retiré les lipides protecteurs de la peau.",g:"Passe à un nettoyant doux, une huile ou un lait. Ta peau devrait être confortable, jamais tiraillée, après le nettoyage."},
  stress:{w:7,t:"Faire baisser le stress",p:"Le stress chronique peut rendre la peau plus réactive, plus terne et plus lente à se rétablir.",g:"5 minutes par jour : respiration lente, marche dehors ou étirements. Fais de ta routine du soir un vrai moment pour toi."},
- soir:{w:7,t:"Nettoyer ta peau chaque soir",p:"La nuit, ta peau se répare mieux quand elle est débarrassée du maquillage, de la pollution et de l'écran solaire de la journée.",g:"Garde un nettoyant doux près du lit pour les soirs de fatigue : 30 secondes suffisent."},
+ soir:{w:7,t:"Nettoyer ta peau chaque soir",p:"La nuit, ta peau se répare mieux quand elle est débarrassée du maquillage, de la pollution et de tout ce qui s'est accumulé pendant la journée.",g:"Garde un nettoyant doux près du lit pour les soirs de fatigue : 30 secondes suffisent."},
  hormones:{w:7,t:"Adapter ta routine à tes hormones",p:"Avec la baisse des œstrogènes, la peau devient souvent plus sèche, plus mince et moins rebondie. Elle a besoin de plus d'hydratation et de soins qui renforcent la barrière.",g:"Mise sur des textures plus nourrissantes, applique jusqu'au cou et au décolleté, et parles-en à ta professionnelle de la santé si tu as des inquiétudes."},
  trop:{w:6,t:"Simplifier ta routine",p:"Plus de produits ne veut pas dire de meilleurs résultats. Les mélanges d'actifs peuvent irriter et rendre difficile de savoir ce qui fonctionne.",g:"Garde 3 ou 4 produits essentiels pendant 2 semaines et observe ta peau."},
  alcool:{w:6,t:"Moins d'alcool, plus d'eau",p:"L'alcool déshydrate et peut accentuer les rougeurs et la fatigue du teint le lendemain.",g:"Alterne chaque verre d'alcool avec un verre d'eau, et garde quelques soirs sans alcool dans la semaine."},
@@ -277,14 +277,14 @@ const PR={
  gras:{w:5,t:"Des bons gras chaque jour",p:"Les bons gras aident la peau à fabriquer son ciment protecteur, celui qui retient l'hydratation.",g:"Ajoute une poignée de noix, un demi-avocat ou une cuillère de graines de lin ou de chia dans ta journée."},
  douche:{w:5,t:"Des douches plus tièdes",p:"L'eau très chaude retire les lipides protecteurs de la peau et la laisse plus sèche et tiraillée.",g:"Baisse un peu la température, raccourcis la douche et applique ton soin dans la minute qui suit, sur peau encore humide."},
  air:{w:5,t:"Contrer l'air sec",p:"Le chauffage et la climatisation font baisser l'humidité de l'air, et ta peau perd son eau plus vite.",g:"Un humidificateur au bureau ou dans la chambre, et une brume hydratante pendant la journée."},
- dehors:{w:5,t:"Protéger ta peau dehors",p:"Le froid, le vent et le soleil fragilisent la barrière de la peau.",g:"Une crème plus protectrice les jours de grand froid, et la protection solaire même l'hiver."},
+ dehors:{w:5,t:"Protéger ta peau dehors",p:"Le froid, le vent et le soleil fragilisent la barrière de la peau.",g:"Une crème plus protectrice les jours de grand froid, et un chapeau ou un foulard pour couper le vent et le soleil."},
  etiquettes:{w:4,t:"Apprendre à lire tes étiquettes",p:"Certains ingrédients, comme le parfum synthétique, sont une source fréquente d'irritation et de perturbateurs potentiels.",g:"Commence par repérer le mot « parfum » ou « fragrance » dans la liste d'ingrédients de tes produits visage."},
  parfum:{w:6,t:"Choisir des produits sans parfum",p:"Le parfum est l'une des causes les plus fréquentes de réactions et de sensibilité au visage.",g:"Pour les soins qui restent sur la peau (sérum, crème), choisis des versions sans parfum ajouté."}
 };
 
 /* La routine suit les 3 étapes de la gamme (hydrater, activer, raffermir), matin et soir */
 const RT={
-  matin:["Nettoyant doux, ou juste de l'eau","Sérum à l'acide hyaluronique, pour hydrater","Brume activante, pour réactiver l'hydratation","Crème raffermissante, pour sceller","Protection solaire"],
+  matin:["Nettoyant doux, ou juste de l'eau","Sérum à l'acide hyaluronique, pour hydrater","Brume activante, pour réactiver l'hydratation","Crème raffermissante, pour sceller"],
   soir:["Nettoyant doux, pour retirer la journée","Sérum à l'acide hyaluronique, pour hydrater","Brume activante, pour réactiver l'hydratation","Crème raffermissante, pour sceller et raffermir"]
 };
 /* Les 4 profils */
@@ -296,7 +296,7 @@ const P={
  F:{nom:"Ta barrière cutanée est fragilisée",court:"Barrière fragilisée",
    expl:"La barrière de ta peau, c'est son mur de protection. Quand il est affaibli, ta peau perd son eau plus vite et réagit à tout : picotements, rougeurs, inconfort. Souvent, ce n'est pas qu'elle manque de produits, c'est qu'elle en reçoit trop.",
    matin:RT.matin,soir:RT.soir,
-   astuce:"Pour toi : mets de côté les exfoliants et les actifs forts pendant que ta peau se rétablit, et ajoute un nouveau produit à la fois. Une protection solaire minérale est souvent mieux tolérée."},
+   astuce:"Pour toi : mets de côté les exfoliants et les actifs forts pendant que ta peau se rétablit, et ajoute un nouveau produit à la fois."},
  E:{nom:"Ton éclat est en pause",court:"Éclat en pause",
    expl:"Ta peau va bien, mais elle a l'air fatiguée. Souvent, c'est un mélange de manque d'hydratation, de sommeil et de cellules mortes qui s'accumulent. La bonne nouvelle : c'est le profil qui répond le plus vite.",
    matin:RT.matin,soir:RT.soir,
