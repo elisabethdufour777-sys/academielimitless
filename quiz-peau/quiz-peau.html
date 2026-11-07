@@ -282,24 +282,29 @@ const PR={
  parfum:{w:6,t:"Choisir des produits sans parfum",p:"Le parfum est l'une des causes les plus fréquentes de réactions et de sensibilité au visage.",g:"Pour les soins qui restent sur la peau (sérum, crème), choisis des versions sans parfum ajouté."}
 };
 
+/* La routine suit les 3 étapes de la gamme (hydrater, activer, raffermir), matin et soir */
+const RT={
+  matin:["Nettoyant doux, ou juste de l'eau","Sérum à l'acide hyaluronique, pour hydrater","Brume activante, pour réactiver l'hydratation","Crème raffermissante, pour sceller","Protection solaire"],
+  soir:["Nettoyant doux, pour retirer la journée","Sérum à l'acide hyaluronique, pour hydrater","Brume activante, pour réactiver l'hydratation","Crème raffermissante, pour sceller et raffermir"]
+};
 /* Les 4 profils */
 const P={
  A:{nom:"Ta peau est assoiffée",court:"Peau assoiffée",
    expl:"Ta peau n'est pas forcément sèche : elle est déshydratée. Elle manque d'eau, pas d'huile. C'est pour ça qu'une crème riche ne règle pas toujours le problème, et que tes ridules ressortent plus en fin de journée.",
-   matin:["Nettoyage doux, ou juste de l'eau","Soin hydratant sur la peau encore humide","Protection solaire"],
-   soir:["Nettoyant doux","Sérum hydratant","Crème pour sceller"]},
+   matin:RT.matin,soir:RT.soir,
+   astuce:"Pour toi : applique ton sérum sur une peau encore humide, et garde la brume à portée de main pour la journée. C'est elle qui réactive l'hydratation quand ta peau tire."},
  F:{nom:"Ta barrière cutanée est fragilisée",court:"Barrière fragilisée",
    expl:"La barrière de ta peau, c'est son mur de protection. Quand il est affaibli, ta peau perd son eau plus vite et réagit à tout : picotements, rougeurs, inconfort. Souvent, ce n'est pas qu'elle manque de produits, c'est qu'elle en reçoit trop.",
-   matin:["De l'eau ou un nettoyant très doux","Hydratant apaisant","Protection solaire minérale"],
-   soir:["Nettoyant doux","Hydratant réparateur","C'est tout, pendant 2 semaines"]},
+   matin:RT.matin,soir:RT.soir,
+   astuce:"Pour toi : mets de côté les exfoliants et les actifs forts pendant que ta peau se rétablit, et ajoute un nouveau produit à la fois. Une protection solaire minérale est souvent mieux tolérée."},
  E:{nom:"Ton éclat est en pause",court:"Éclat en pause",
    expl:"Ta peau va bien, mais elle a l'air fatiguée. Souvent, c'est un mélange de manque d'hydratation, de sommeil et de cellules mortes qui s'accumulent. La bonne nouvelle : c'est le profil qui répond le plus vite.",
-   matin:["Nettoyant doux","Sérum hydratant","Protection solaire"],
-   soir:["Nettoyant","Sérum puis crème","Exfoliation douce 1 à 2 fois par semaine maximum"]},
+   matin:RT.matin,soir:RT.soir,
+   astuce:"Pour toi : le soir, une exfoliation douce 1 à 2 fois par semaine maximum, avant le sérum. Et prends 30 secondes pour masser ta crème : ça réveille le teint."},
  R:{nom:"Ta peau cherche son rebond",court:"Peau qui cherche son rebond",
    expl:"Avec les années, la peau devient naturellement moins rebondie et plus mince. Ce n'est pas toujours un manque d'actifs puissants : une peau bien hydratée et bien protégée paraît tout de suite plus lisse et plus pleine.",
-   matin:["Nettoyant doux","Sérum hydratant","Crème raffermissante","Protection solaire"],
-   soir:["Nettoyant","Sérum","Crème plus généreuse, jusqu'au cou"]}
+   matin:RT.matin,soir:RT.soir,
+   astuce:"Pour toi : applique chaque étape jusqu'au cou et au décolleté, et sois généreuse avec la crème le soir. C'est là que la peau a le plus besoin de rebond."}
 };
 const ORDER=["F","A","R","E"]; // priorité des profils en cas d'égalité
 /* Si moins de 3 priorités sont déclenchées, on complète avec des gestes d'entretien selon le profil */
@@ -313,7 +318,6 @@ const ENTRETIEN={
  R:[{w:0,t:"Jusqu'au cou et au décolleté",p:"C'est souvent là que la perte de rebond paraît en premier, et on l'oublie.",g:"Applique chaque soin jusqu'au cou et au décolleté, en remontant."},
     {w:0,t:"Dormir sur le dos",p:"Les plis de l'oreiller marquent plus longtemps une peau moins rebondie.",g:"Quand tu peux, dors sur le dos, ou choisis une taie en soie."}]
 };
-const ENCEINTE="Tu es enceinte ou tu allaites : avant d'ajouter un nouveau produit à ta routine, vérifie avec ta professionnelle de la santé.";
 
 const root=document.getElementById("lt-quiz");
 let i=0,ans=[],prenomP="";
@@ -411,10 +415,10 @@ function result(){
   <div class="card"><div class="kick">Ton profil de peau</div><h2>${esc(r.nom)}</h2><p style="color:var(--muted)">${esc(r.expl)}</p></div>
   <div class="card"><h3>Tes 3 priorités pour les 14 prochains jours</h3><p class="meta" style="margin-bottom:12px">Choisies selon tes réponses, de la plus importante à la moins importante.</p>
     ${R.pr.map((f,k)=>`<div class="prio"><div class="n">${k+1}</div><div><h4>${esc(f.t)}</h4><p>${esc(f.p)}</p><div class="g"><b>Ton geste :</b> ${esc(f.g)}</div></div></div>`).join("")}
-    ${R.enceinte?`<div class="tip">${esc(ENCEINTE)}</div>`:""}
   </div>
   <div class="card"><h3>Ta routine simplifiée</h3>
     <div class="grid2"><div class="rt"><b>Matin</b>${list(r.matin)}</div><div class="rt"><b>Soir</b>${list(r.soir)}</div></div>
+    <div class="tip">${esc(r.astuce)}</div>
     <div class="actions" style="margin-top:16px"><button class="btn" data-pdf>Télécharger mes résultats (PDF)</button><button class="btn ghost" data-save>Enregistrer l'image</button></div>
     <p class="small" data-msg hidden></p>
   </div>
@@ -461,9 +465,7 @@ p{margin:0 0 8px}.m{color:#6b645b}
 ol{margin:0;padding-left:18px}li{margin-bottom:3px}
 .launch{border-color:#a67c52;background:#f5efe5}
 .foot{display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid #a67c52;margin-top:18px;padding-top:12px}
-.btnp{display:block;width:100%;margin:0 0 18px;padding:14px;border:0;border-radius:999px;background:#1a1816;color:#fff;font:600 16px Inter,sans-serif;cursor:pointer}
 </style></head><body><div class="doc">
-<button class="btnp noprint" onclick="window.print()">Enregistrer en PDF ou imprimer</button>
 <div class="k">${esc(CONFIG.marque)} · Décode ta peau${nom}</div>
 <h1>Ce que ta peau essaie de te dire</h1>
 <div class="box cr"><div class="top"><div class="sc">${R.indice}<small> / 100</small></div><div><div class="k">Ton score équilibre</div><p class="m" style="margin:0">Il regarde ta peau dans son ensemble : hydratation, barrière cutanée, mode de vie, protection et routine.</p></div></div>
@@ -471,8 +473,8 @@ ${Object.entries(PIL).map(([k,p])=>{const v=R.sc[k],l=L(v);return `<div class="p
 <div class="box"><div class="k">Ton profil de peau</div><h2>${esc(r.nom)}</h2><p class="m">${esc(r.expl)}</p></div>
 <div class="box"><div class="k">Tes 3 priorités pour les 14 prochains jours</div>
 ${R.pr.map((f,k)=>`<div class="pr"><div class="n">${k+1}</div><div><h3>${esc(f.t)}</h3><p class="m">${esc(f.p)}</p><p><b>Ton geste :</b> ${esc(f.g)}</p></div></div>`).join("")}
-${R.enceinte?`<p style="margin-top:8px"><b>À noter :</b> ${esc(ENCEINTE)}</p>`:""}</div>
-<div class="box rtn"><div class="k">Ta routine simplifiée</div><div class="g2"><div><b>Matin</b><ol>${li(r.matin)}</ol></div><div><b>Soir</b><ol>${li(r.soir)}</ol></div></div></div>
+</div>
+<div class="box rtn"><div class="k">Ta routine simplifiée</div><div class="g2"><div><b>Matin</b><ol>${li(r.matin)}</ol></div><div><b>Soir</b><ol>${li(r.soir)}</ol></div></div><p style="margin:10px 0 0">${esc(r.astuce)}</p></div>
 <div class="box launch"><div class="k">Le 16 novembre</div><h3>Le skinimalisme arrive en force</h3><p style="margin:0">Moins de produits, mieux choisis : une routine courte et efficace, qui fait exactement ce que tes résultats recommandent. Comme tu as fait l'évaluation, tu seras parmi les premières au courant.</p></div>
 <div class="foot"><div><div style="font-family:Fraunces,Georgia,serif;font-size:18px;font-weight:600">${esc(CONFIG.nom)}</div><div class="m" style="font-size:12px">${esc(CONFIG.marque)}</div></div>
 <div class="m" style="font-size:10px;max-width:60%;text-align:right">Cette évaluation est un outil de sensibilisation. Elle ne remplace pas l'avis d'une professionnelle de la santé ou d'une dermatologue.</div></div>
