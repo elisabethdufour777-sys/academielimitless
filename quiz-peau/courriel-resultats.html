@@ -3,7 +3,7 @@
      À coller dans GHL : Send Email > éditeur HTML (ou modèle « Code HTML »).
      Objet : {{contact.first_name}}, voici ce que ta peau essaie de te dire
      Texte d'aperçu : Ton score équilibre, ton profil et tes 3 priorités pour les 14 prochains jours.
-     Vérifie que les clés {{contact.…}} correspondent à tes champs personnalisés dans GHL. -->
+     Champs personnalisés utilisés : {{contact.score_equilibre}}, {{contact.profil_de_peau}}, {{contact.priorites_peau}}. -->
 <html lang="fr">
 <head>
 <meta charset="utf-8">
@@ -57,7 +57,7 @@
     <!-- Profil -->
     <tr><td class="pad" style="padding:0 48px 8px;font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#86603a;font-weight:bold;">Ton profil de peau</td></tr>
     <tr><td class="pad" style="padding:0 48px 10px;font-family:Georgia,'Times New Roman',serif;font-size:24px;line-height:30px;font-weight:bold;color:#1a1816;">{{contact.profil_de_peau}}</td></tr>
-    <tr><td class="pad" style="padding:0 48px 32px;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:26px;color:#3d3832;">{{contact.profil_explication}}</td></tr>
+    <tr><td class="pad" style="padding:0 48px 32px;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:26px;color:#3d3832;">Ton profil décrit ce dont ta peau a le plus besoin en ce moment. Tes priorités ci-dessous ont été choisies selon tes réponses pour y répondre, de la plus importante à la moins importante.</td></tr>
 
     <!-- Séparateur bronze -->
     <tr><td class="pad" style="padding:0 48px;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="border-top:1px solid #a67c52;font-size:0;line-height:0;">&nbsp;</td></tr></table></td></tr>
@@ -66,42 +66,13 @@
     <tr><td class="pad" style="padding:32px 48px 6px;font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#86603a;font-weight:bold;">Tes 3 priorités</td></tr>
     <tr><td class="pad" style="padding:0 48px 20px;font-family:Georgia,'Times New Roman',serif;font-size:24px;line-height:30px;font-weight:bold;color:#1a1816;">Pour les 14 prochains jours</td></tr>
 
-    <tr><td class="pad" style="padding:0 48px 22px;">
-      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td width="44" valign="top"><table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td width="32" height="32" align="center" style="width:32px;height:32px;border-radius:16px;background:#1a1816;font-family:Arial,Helvetica,sans-serif;font-size:15px;font-weight:bold;color:#ffffff;">1</td></tr></table></td>
-          <td valign="top" style="font-family:Arial,Helvetica,sans-serif;">
-            <div style="font-size:17px;line-height:24px;font-weight:bold;color:#1a1816;padding:4px 0 6px;">{{contact.priorite_1}}</div>
-            <div style="font-size:15px;line-height:24px;color:#3d3832;">{{contact.priorite_1_geste}}</div>
-          </td>
-        </tr>
-      </table>
-    </td></tr>
-    <tr><td class="pad" style="padding:0 48px 22px;">
-      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td width="44" valign="top"><table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td width="32" height="32" align="center" style="width:32px;height:32px;border-radius:16px;background:#1a1816;font-family:Arial,Helvetica,sans-serif;font-size:15px;font-weight:bold;color:#ffffff;">2</td></tr></table></td>
-          <td valign="top" style="font-family:Arial,Helvetica,sans-serif;">
-            <div style="font-size:17px;line-height:24px;font-weight:bold;color:#1a1816;padding:4px 0 6px;">{{contact.priorite_2}}</div>
-            <div style="font-size:15px;line-height:24px;color:#3d3832;">{{contact.priorite_2_geste}}</div>
-          </td>
-        </tr>
-      </table>
-    </td></tr>
     <tr><td class="pad" style="padding:0 48px 24px;">
-      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td width="44" valign="top"><table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td width="32" height="32" align="center" style="width:32px;height:32px;border-radius:16px;background:#1a1816;font-family:Arial,Helvetica,sans-serif;font-size:15px;font-weight:bold;color:#ffffff;">3</td></tr></table></td>
-          <td valign="top" style="font-family:Arial,Helvetica,sans-serif;">
-            <div style="font-size:17px;line-height:24px;font-weight:bold;color:#1a1816;padding:4px 0 6px;">{{contact.priorite_3}}</div>
-            <div style="font-size:15px;line-height:24px;color:#3d3832;">{{contact.priorite_3_geste}}</div>
-          </td>
-        </tr>
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-left:3px solid #1a1816;">
+        <tr><td style="padding:4px 0 4px 20px;font-family:Arial,Helvetica,sans-serif;font-size:17px;line-height:30px;font-weight:bold;color:#1a1816;white-space:pre-line;">{{contact.priorites_peau}}</td></tr>
       </table>
     </td></tr>
-
     <tr><td class="pad" style="padding:0 48px 36px;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:24px;color:#6b645b;font-style:italic;">
-      Mon conseil : commence par la première. Une seule habitude changée pour vrai, ça vaut mieux que dix bonnes intentions. Dans deux semaines, regarde ta peau à la lumière du jour et note ce qui a changé.
+      Mon conseil : commence par la première. Une seule habitude changée pour vrai, ça vaut mieux que dix bonnes intentions. Dans deux semaines, regarde ta peau à la lumière du jour et note ce qui a changé. Et si tu veux savoir comment t'y prendre pour une de tes priorités, réponds-moi : je t'explique.
     </td></tr>
 
     <!-- Lancement -->

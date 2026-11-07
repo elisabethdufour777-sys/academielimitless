@@ -387,7 +387,7 @@ async function envoyer(prenom,mail){
   if(!CONFIG.ghlWebhookUrl)return;
   const R=compute(),r=P[R.p];
   const data={prenom:prenom,first_name:prenom,courriel:mail,email:mail,consentement:"oui",source:CONFIG.source,
-    profil_de_peau:r.court,score_equilibre:R.indice,priorites_peau:R.pr.map(f=>f.t).join(" | "),
+    profil_de_peau:r.court,score_equilibre:R.indice,priorites_peau:R.pr.map((f,k)=>(k+1)+". "+f.t).join("\n"),
     score_hydratation:R.sc.h,score_barriere:R.sc.b,score_mode_de_vie:R.sc.v,score_protection:R.sc.p,score_routine:R.sc.r,
     profil_explication:r.expl};
   R.pr.forEach((f,k)=>{data["priorite_"+(k+1)]=f.t;data["priorite_"+(k+1)+"_geste"]=f.g;});
