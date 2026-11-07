@@ -6,7 +6,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <div id="lt-quiz" aria-live="polite"></div>
 <style>
-#lt-quiz{--bg:#f7f3ec;--card:#fffdf9;--ink:#2f2a24;--muted:#6f665c;--sage:#7d8f6e;--sage-d:#5d6e50;--sage-s:#e6ebdf;--line:#e7dfd3;--rose:#c98f7e;--rose-s:#fbf0ec;--gold:#c9a25e;
+#lt-quiz{--bg:#f5efe5;--card:#ffffff;--ink:#1a1816;--muted:#6b645b;--sage:#a67c52;--sage-d:#1a1816;--sage-s:#efe7da;--line:#e4dccf;--rose:#a67c52;--rose-s:#f3e9dc;--gold:#a67c52;--bronze:#a67c52;--bronze-t:#86603a;
   font-family:Inter,system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--bg);max-width:680px;margin:0 auto;padding:24px 16px 40px;border-radius:20px;box-sizing:border-box;line-height:1.55}
 #lt-quiz *{box-sizing:border-box}
 #lt-quiz h1,#lt-quiz h2,#lt-quiz h3{font-family:Fraunces,Georgia,serif;font-weight:600;line-height:1.2;margin:0 0 12px;color:var(--ink)}
@@ -14,22 +14,22 @@
 #lt-quiz h2{font-size:clamp(21px,5vw,27px)}
 #lt-quiz h3{font-size:19px;margin-top:4px}
 #lt-quiz p{margin:0 0 12px}
-#lt-quiz .kick{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--sage-d);font-weight:600;margin-bottom:10px}
+#lt-quiz .kick{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--bronze-t);font-weight:600;margin-bottom:10px}
 #lt-quiz .lead{color:var(--muted);font-size:17px}
 #lt-quiz .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin:16px 0}
 #lt-quiz .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;background:var(--sage-d);color:#fff;font:600 16px Inter,sans-serif;padding:14px 26px;cursor:pointer;text-decoration:none;min-height:48px}
-#lt-quiz .btn:hover{background:#4d5c42}
-#lt-quiz .btn.ghost{background:transparent;color:var(--sage-d);border:1.5px solid var(--sage)}
+#lt-quiz .btn:hover{background:#3a3631}
+#lt-quiz .btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
 #lt-quiz .btn.ghost:hover{background:var(--sage-s)}
 #lt-quiz .meta{font-size:13px;color:var(--muted)}
 #lt-quiz .sec{display:flex;justify-content:space-between;gap:12px;font-size:13px;color:var(--muted);margin-bottom:6px}
-#lt-quiz .sec b{color:var(--sage-d);font-weight:600}
+#lt-quiz .sec b{color:var(--bronze-t);font-weight:600}
 #lt-quiz .bar{height:6px;background:var(--line);border-radius:99px;overflow:hidden;margin:0 0 22px}
-#lt-quiz .bar i{display:block;height:100%;background:var(--sage);border-radius:99px;transition:width .3s}
+#lt-quiz .bar i{display:block;height:100%;background:var(--bronze);border-radius:99px;transition:width .3s}
 #lt-quiz .why{font-size:14px;color:var(--muted);margin:-4px 0 16px}
 #lt-quiz .opts{display:flex;flex-direction:column;gap:10px}
 #lt-quiz .opt{text-align:left;background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:15px 16px;font:500 16px Inter,sans-serif;color:var(--ink);cursor:pointer;min-height:52px;transition:border-color .15s,background .15s}
-#lt-quiz .opt:hover,#lt-quiz .opt:focus-visible{border-color:var(--sage);background:var(--sage-s);outline:none}
+#lt-quiz .opt:hover,#lt-quiz .opt:focus-visible{border-color:var(--ink);background:var(--sage-s);outline:none}
 #lt-quiz .opt.sel{border-color:var(--sage-d);background:var(--sage-s)}
 #lt-quiz .back{background:none;border:0;color:var(--muted);font:500 14px Inter,sans-serif;cursor:pointer;padding:12px 0;margin-top:8px}
 #lt-quiz .pillars{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:18px 0 6px}
@@ -44,9 +44,9 @@
 #lt-quiz .pb .l em{font-style:normal;font-size:12px;font-weight:600;padding:2px 8px;border-radius:99px}
 #lt-quiz .pb .t{height:10px;background:var(--line);border-radius:99px;overflow:hidden}
 #lt-quiz .pb .t i{display:block;height:100%;border-radius:99px}
-#lt-quiz .lv-bon{background:var(--sage-s);color:var(--sage-d)}
-#lt-quiz .lv-moy{background:#f6ecd8;color:#8a6a2c}
-#lt-quiz .lv-bas{background:var(--rose-s);color:#9c5a49}
+#lt-quiz .lv-bon{background:#ebe7e1;color:#1a1816}
+#lt-quiz .lv-moy{background:#f3e9dc;color:#86603a}
+#lt-quiz .lv-bas{background:#ead7c2;color:#6e4524}
 #lt-quiz .prio{display:flex;gap:14px;padding:16px 0;border-top:1px solid var(--line)}
 #lt-quiz .prio:first-of-type{border-top:0;padding-top:4px}
 #lt-quiz .prio .n{flex:0 0 32px;height:32px;border-radius:50%;background:var(--sage-d);color:#fff;display:grid;place-items:center;font-weight:600}
@@ -56,15 +56,15 @@
 #lt-quiz .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(max-width:520px){#lt-quiz .grid2{grid-template-columns:1fr}}
 #lt-quiz .rt{background:var(--sage-s);border-radius:12px;padding:14px}
-#lt-quiz .rt b{display:block;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--sage-d);margin-bottom:6px}
+#lt-quiz .rt b{display:block;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--bronze-t);margin-bottom:6px}
 #lt-quiz ol,#lt-quiz ul{margin:0;padding-left:20px}
 #lt-quiz li{margin-bottom:6px}
-#lt-quiz .tip{border-left:3px solid var(--rose);padding:10px 14px;background:var(--rose-s);border-radius:0 10px 10px 0;margin-top:12px;font-size:15px}
-#lt-quiz .bridge{background:var(--ink);color:#f7f3ec;border:0}
-#lt-quiz .bridge h3{color:#fff}
+#lt-quiz .tip{border-left:3px solid var(--bronze);padding:10px 14px;background:var(--rose-s);border-radius:0 10px 10px 0;margin-top:12px;font-size:15px}
+#lt-quiz .launch{border-color:var(--bronze);background:var(--bg)}
+#lt-quiz .launch .kick{margin-bottom:6px}
 #lt-quiz .form-slot{margin-top:16px;border-radius:12px;overflow:hidden;background:#fff}
 #lt-quiz .form-slot iframe{width:100%;border:0;min-height:520px;display:block}
-#lt-quiz .placeholder{padding:18px;color:#cfc6ba;font-size:14px;border:1.5px dashed #8d8478;border-radius:12px;background:transparent}
+#lt-quiz .placeholder{padding:18px;color:var(--muted);font-size:14px;border:1.5px dashed var(--bronze);border-radius:12px;background:transparent}
 #lt-quiz .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
 #lt-quiz .small{font-size:12px;color:var(--muted);margin-top:14px}
 </style>
@@ -332,7 +332,7 @@ function ask(){
   <h2>${esc(it.q)}</h2>${it.w?`<p class="why">${esc(it.w)}</p>`:""}
   <div class="opts">${it.o.map((o,k)=>`<button class="opt ${ans[i]===k?"sel":""}" data-k="${k}">${esc(o[0])}</button>`).join("")}</div>
   ${i?'<button class="back" data-back>← Question précédente</button>':""}`;
-  root.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{ans[i]=+b.dataset.k;i++;i<Q.length?ask():annonce();top();});
+  root.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{ans[i]=+b.dataset.k;i++;i<Q.length?ask():courriel();top();});
   const bk=root.querySelector("[data-back]");if(bk)bk.onclick=()=>{i--;ask();};
 }
 function compute(){
@@ -357,23 +357,19 @@ function ghlUrl(R,r){
   if(!CONFIG.ghlFormUrl)return "";
   return CONFIG.ghlFormUrl+(CONFIG.ghlFormUrl.includes("?")?"&":"?")+[[CONFIG.ghlChampProfil,r.court],[CONFIG.ghlChampScore,R.indice],[CONFIG.ghlChampPriorites,R.pr.map(f=>f.t).join(" | ")]].map(([k,v])=>encodeURIComponent(k)+"="+encodeURIComponent(v)).join("&");
 }
-/* Page intermédiaire : l'annonce de la nouvelle gamme, avant les résultats */
-function annonce(){
+/* Page intermédiaire : le courriel pour recevoir les résultats */
+function courriel(){
   const R=compute(),r=P[R.p],url=ghlUrl(R,r);
   root.innerHTML=`<div class="kick">Ton bilan est prêt</div>
-  <div class="card bridge">
-    <div class="kick" style="color:#cfd8c5">Bientôt disponible</div>
-    <h2 style="color:#fff">Une nouvelle gamme de soins s'en vient</h2>
-    <p>Le Youth Infusing System de Co.Lab, formulé en Italie : un sérum qui <b>hydrate</b>, une brume qui <b>active</b> et une crème qui <b>scelle et raffermit</b>. Trois gestes, matin et soir, pensés pour une peau hydratée, protégée et plus rebondie.</p>
-    <p>Laisse-moi ton prénom et ton courriel pour être tenue au courant dès qu'elle sera disponible, avec l'offre de lancement.</p>
-    <div class="form-slot">${url
-      ?`<iframe src="${esc(url)}" title="Être avisée du lancement" loading="lazy"></iframe>`
-      :`<div class="placeholder">Le formulaire GHL s'affichera ici (prénom, courriel, consentement). Ajoute son lien dans <code>ghlFormUrl</code> au début du script.</div>`}</div>
-  </div>
-  <div class="actions" style="justify-content:flex-end"><button class="btn" data-see>Voir mes résultats <span aria-hidden="true">→</span></button></div>`;
+  <h1>Où veux-tu recevoir tes résultats?</h1>
+  <p class="lead">Inscris ton prénom et ton courriel : je t'envoie ton bilan complet, pour que tu puisses le garder et y revenir.</p>
+  <div class="form-slot">${url
+    ?`<iframe src="${esc(url)}" title="Recevoir mes résultats par courriel" loading="lazy"></iframe>`
+    :`<div class="placeholder">Le formulaire GHL s'affichera ici (prénom, courriel, consentement). Ajoute son lien dans <code>ghlFormUrl</code> au début du script.</div>`}</div>
+  <div class="actions" style="justify-content:flex-end;margin-top:16px"><button class="btn" data-see>Voir mes résultats <span aria-hidden="true">→</span></button></div>`;
   root.querySelector("[data-see]").onclick=()=>{result();top();};
 }
-const lvl=v=>v>=80?["Bon","lv-bon","#7d8f6e"]:v>=55?["À améliorer","lv-moy","#c9a25e"]:["Priorité","lv-bas","#c98f7e"];
+const lvl=v=>v>=80?["Bon","lv-bon","#1a1816"]:v>=55?["À améliorer","lv-moy","#c9a57c"]:["Priorité","lv-bas","#86603a"];
 function result(){
   const R=compute(),r=P[R.p];
   const list=a=>`<ol>${a.map(x=>`<li>${esc(x)}</li>`).join("")}</ol>`;
@@ -393,10 +389,11 @@ function result(){
     <div class="actions" style="margin-top:16px"><button class="btn ghost" data-save>Enregistrer mon bilan</button></div>
     <p class="small" data-msg hidden></p>
   </div>
+  <div class="card launch"><div class="kick">Le 16 novembre</div><h3>Le skinimalisme arrive en force</h3>
+    <p style="margin:0">Moins de produits, mieux choisis : une routine courte et efficace, qui fait exactement ce que ton bilan recommande. Comme tu as fait ton bilan, tu seras parmi les premières au courant.</p></div>
   <p class="small">Ce bilan est un outil de sensibilisation. Il ne remplace pas l'avis d'une professionnelle de la santé ou d'une dermatologue.</p>
-  <div class="actions"><button class="back" data-redo>↺ Refaire le bilan</button><button class="back" data-annonce>Être avisée du lancement de la nouvelle gamme</button></div>`;
+  <div class="actions"><button class="back" data-redo>↺ Refaire le bilan</button></div>`;
   root.querySelector("[data-redo]").onclick=()=>{intro();top();};
-  root.querySelector("[data-annonce]").onclick=()=>{annonce();top();};
   root.querySelector("[data-save]").onclick=()=>saveCard(R,r);
   top();
 }
@@ -412,31 +409,31 @@ async function saveCard(R,r){
   const msg=root.querySelector("[data-msg]");const say=t=>{msg.hidden=false;msg.textContent=t;};
   const W=1080,H=1350,c=document.createElement("canvas");c.width=W;c.height=H;const x=c.getContext("2d");
   try{await document.fonts.ready;}catch(e){}
-  x.fillStyle="#f7f3ec";x.fillRect(0,0,W,H);
-  x.fillStyle="#fffdf9";x.strokeStyle="#e7dfd3";x.lineWidth=3;rr(x,60,60,W-120,H-120,40);x.fill();x.stroke();
-  x.fillStyle="#5d6e50";x.font="600 28px Inter, sans-serif";x.fillText("MON BILAN PEAU · "+CONFIG.marque.toUpperCase(),120,150);
+  x.fillStyle="#f5efe5";x.fillRect(0,0,W,H);
+  x.fillStyle="#ffffff";x.strokeStyle="#e4dccf";x.lineWidth=3;rr(x,60,60,W-120,H-120,40);x.fill();x.stroke();
+  x.fillStyle="#86603a";x.font="600 28px Inter, sans-serif";x.fillText("MON BILAN PEAU · "+CONFIG.marque.toUpperCase(),120,150);
   // indice
-  x.lineWidth=22;x.strokeStyle="#e7dfd3";x.beginPath();x.arc(215,300,85,0,Math.PI*2);x.stroke();
-  x.strokeStyle="#5d6e50";x.beginPath();x.arc(215,300,85,-Math.PI/2,-Math.PI/2+Math.PI*2*R.indice/100);x.stroke();
-  x.fillStyle="#2f2a24";x.textAlign="center";x.font="600 64px Fraunces, Georgia, serif";x.fillText(R.indice,215,318);
-  x.font="400 22px Inter, sans-serif";x.fillStyle="#6f665c";x.fillText("sur 100",215,350);x.textAlign="left";
-  x.fillStyle="#2f2a24";x.font="600 50px Fraunces, Georgia, serif";x.fillStyle="#5d6e50";x.font="600 22px Inter, sans-serif";x.fillText("MON PROFIL DE PEAU",350,250);x.fillStyle="#2f2a24";x.font="600 48px Fraunces, Georgia, serif";wrap(x,r.nom,350,310,610,58);
+  x.lineWidth=22;x.strokeStyle="#e4dccf";x.beginPath();x.arc(215,300,85,0,Math.PI*2);x.stroke();
+  x.strokeStyle="#1a1816";x.beginPath();x.arc(215,300,85,-Math.PI/2,-Math.PI/2+Math.PI*2*R.indice/100);x.stroke();
+  x.fillStyle="#1a1816";x.textAlign="center";x.font="600 64px Fraunces, Georgia, serif";x.fillText(R.indice,215,318);
+  x.font="400 22px Inter, sans-serif";x.fillStyle="#6b645b";x.fillText("sur 100",215,350);x.textAlign="left";
+  x.fillStyle="#1a1816";x.font="600 50px Fraunces, Georgia, serif";x.fillStyle="#86603a";x.font="600 22px Inter, sans-serif";x.fillText("MON PROFIL DE PEAU",350,250);x.fillStyle="#1a1816";x.font="600 48px Fraunces, Georgia, serif";wrap(x,r.nom,350,310,610,58);
   // piliers
   let y=450;x.font="400 28px Inter, sans-serif";
   Object.entries(PIL).forEach(([k,p])=>{const v=R.sc[k],L=lvl(v);
-    x.fillStyle="#2f2a24";x.fillText(p.n,120,y);x.textAlign="right";x.fillStyle="#6f665c";x.fillText(v+"",960,y);x.textAlign="left";
-    x.fillStyle="#e7dfd3";rr(x,120,y+14,840,14,7);x.fill();x.fillStyle=L[2];rr(x,120,y+14,Math.max(840*v/100,14),14,7);x.fill();y+=74;});
+    x.fillStyle="#1a1816";x.fillText(p.n,120,y);x.textAlign="right";x.fillStyle="#6b645b";x.fillText(v+"",960,y);x.textAlign="left";
+    x.fillStyle="#e4dccf";rr(x,120,y+14,840,14,7);x.fill();x.fillStyle=L[2];rr(x,120,y+14,Math.max(840*v/100,14),14,7);x.fill();y+=74;});
   // priorités
-  y+=30;x.fillStyle="#2f2a24";x.font="600 34px Fraunces, Georgia, serif";x.fillText("Mes 3 priorités",120,y);y+=56;
-  R.pr.forEach((f,k)=>{x.fillStyle="#5d6e50";x.beginPath();x.arc(140,y-10,20,0,Math.PI*2);x.fill();
+  y+=30;x.fillStyle="#1a1816";x.font="600 34px Fraunces, Georgia, serif";x.fillText("Mes 3 priorités",120,y);y+=56;
+  R.pr.forEach((f,k)=>{x.fillStyle="#1a1816";x.beginPath();x.arc(140,y-10,20,0,Math.PI*2);x.fill();
     x.fillStyle="#fff";x.font="600 22px Inter, sans-serif";x.textAlign="center";x.fillText(k+1,140,y-2);x.textAlign="left";
-    x.fillStyle="#2f2a24";x.font="400 30px Inter, sans-serif";y=wrap(x,f.t,180,y,780,40)+18;});
+    x.fillStyle="#1a1816";x.font="400 30px Inter, sans-serif";y=wrap(x,f.t,180,y,780,40)+18;});
   // pied
-  x.fillStyle="#5d6e50";x.fillRect(120,H-178,W-240,2);
-  x.fillStyle="#2f2a24";x.font="600 34px Fraunces, Georgia, serif";let fx=120;
+  x.fillStyle="#86603a";x.fillRect(120,H-178,W-240,2);
+  x.fillStyle="#1a1816";x.font="600 34px Fraunces, Georgia, serif";let fx=120;
   if(CONFIG.photo){try{const im=new Image();im.crossOrigin="anonymous";im.src=CONFIG.photo;await im.decode();
     x.save();x.beginPath();x.arc(165,H-110,45,0,Math.PI*2);x.clip();x.drawImage(im,120,H-155,90,90);x.restore();fx=235;}catch(e){}}
-  x.fillText(CONFIG.nom,fx,H-115);x.fillStyle="#6f665c";x.font="400 26px Inter, sans-serif";x.fillText(CONFIG.marque,fx,H-75);
+  x.fillText(CONFIG.nom,fx,H-115);x.fillStyle="#6b645b";x.font="400 26px Inter, sans-serif";x.fillText(CONFIG.marque,fx,H-75);
   c.toBlob(async b=>{
     if(!b){say("Impossible de créer l'image. Fais une capture d'écran de ton bilan.");return;}
     const f=new File([b],"mon-bilan-peau.png",{type:"image/png"});
