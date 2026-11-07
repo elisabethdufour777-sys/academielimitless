@@ -204,18 +204,19 @@
 #lt-vente .band h2,#lt-vente .final h2,#lt-vente .hero h1,#lt-vente .rt.me h3{color:#fff}
 #lt-vente .dots button[aria-current="true"]{background:#007396}
 /* Mode lancement */
-#lt-vente .cd{margin-top:26px}
-#lt-vente .cd-t{font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--bronze-t);margin-bottom:10px}
-#lt-vente .cd-g{display:flex;align-items:flex-start}
-#lt-vente .c .cd-g,#lt-vente .cd.c .cd-g{justify-content:center}
-#lt-vente .cd-g div{text-align:center;padding:0 22px;min-width:92px}#lt-vente .cd-g div:first-child{padding-left:0;min-width:70px}#lt-vente .cd.c .cd-g div:first-child{padding-left:22px}#lt-vente .cd-g div+div{border-left:1px solid var(--line)}
-#lt-vente .cd-g b{display:block;font-family:Poppins,Arial,sans-serif;font-weight:600;font-size:44px;line-height:1;font-variant-numeric:tabular-nums;margin-bottom:6px}
-#lt-vente .cd-g span{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-#lt-vente .cd.dark .cd-t{color:#ff8a8e}
-#lt-vente .cd.dark .cd-g div+div{border-color:rgba(255,255,255,.22)}
-#lt-vente .cd.dark .cd-g b{color:#fff}#lt-vente .cd.dark .cd-g span{color:#cfe2e8}
+#lt-vente .lt-cd,#lt-vente .lt-cd-g,#lt-vente .lt-cd-g div,#lt-vente .lt-cd-t{background:transparent!important;box-shadow:none!important}
+#lt-vente .lt-cd{margin-top:26px}
+#lt-vente .lt-cd-t{font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--bronze-t);margin-bottom:10px}
+#lt-vente .lt-cd-g{display:flex;align-items:flex-start}
+#lt-vente .c .lt-cd-g,#lt-vente .lt-cd.c .lt-cd-g{justify-content:center}
+#lt-vente .lt-cd-g div{text-align:center;padding:0 22px;min-width:92px}#lt-vente .lt-cd-g div:first-child{padding-left:0;min-width:70px}#lt-vente .lt-cd.c .lt-cd-g div:first-child{padding-left:22px}#lt-vente .lt-cd-g div+div{border-left:1px solid var(--line)}
+#lt-vente .lt-cd-g b{display:block;font-family:Poppins,Arial,sans-serif;font-weight:600;font-size:44px;line-height:1;font-variant-numeric:tabular-nums;margin-bottom:6px}
+#lt-vente .lt-cd-g span{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+#lt-vente .lt-cd.dark .lt-cd-t{color:#ff8a8e}
+#lt-vente .lt-cd.dark .lt-cd-g div+div{border-color:rgba(255,255,255,.22)}
+#lt-vente .lt-cd.dark .lt-cd-g b{color:#fff}#lt-vente .lt-cd.dark .lt-cd-g span{color:#cfe2e8}
 #lt-vente .btn.lock{opacity:.6;cursor:default;pointer-events:none}
-@media(max-width:900px){#lt-vente .cd-g div,#lt-vente .cd-g div:first-child,#lt-vente .cd.c .cd-g div:first-child{min-width:0;flex:1;padding:0 6px}#lt-vente .cd-g b{font-size:34px}#lt-vente .cd-g span{font-size:10px;letter-spacing:.06em}}
+@media(max-width:900px){#lt-vente .lt-cd-g div,#lt-vente .lt-cd-g div:first-child,#lt-vente .lt-cd.c .lt-cd-g div:first-child{min-width:0;flex:1;padding:0 6px}#lt-vente .lt-cd-g b{font-size:34px}#lt-vente .lt-cd-g span{font-size:10px;letter-spacing:.06em}}
 </style>
 <script>
 (function(){
@@ -241,7 +242,7 @@ const OUV=CONFIG.ouverture?new Date(CONFIG.ouverture).getTime():0;
 const ferme=()=>OUV>0&&Date.now()<OUV;
 const jourOuv=OUV?new Date(OUV).toLocaleDateString("fr-CA",{day:"numeric",month:"long",timeZone:"America/Toronto"}):"";
 const cta=(t,cls)=>`<a class="btn ${cls||""}" data-cta="${esc(t)}" href="${esc(CONFIG.lien||"#offre")}" ${CONFIG.lien?'target="_blank" rel="noopener"':""}>${t} <span aria-hidden="true">→</span></a>`;
-const cd=cls=>OUV?`<div class="cd ${cls||""}" data-cd><div class="cd-t">Ouverture des commandes le ${esc(jourOuv)}</div><div class="cd-g" role="timer" aria-live="off">${[["j","jours"],["h","heures"],["m","minutes"],["s","secondes"]].map(u=>`<div><b data-u="${u[0]}">00</b><span>${u[1]}</span></div>`).join("")}</div></div>`:"";
+const cd=cls=>OUV?`<div class="lt-cd ${cls||""}" data-cd><div class="lt-cd-t">Ouverture des commandes le ${esc(jourOuv)}</div><div class="lt-cd-g" aria-live="off">${[["j","jours"],["h","heures"],["m","minutes"],["s","secondes"]].map(u=>`<div><b data-u="${u[0]}">00</b><span>${u[1]}</span></div>`).join("")}</div></div>`:"";
 const STEPS=[
  {n:"01",img:IMG.pserum,v:"Hydrater",t:"Youth Infusing HA Face Serum",f:"30 ml · émulsion ultralégère et rosée",d:"Remplit et lisse, et prépare la peau à recevoir les étapes suivantes.",
   i:[["HA-6 Complex","six tailles d'acide hyaluronique pour une peau d'apparence lisse, repulpée et lumineuse"],["Vitamine E","aide à combattre le stress oxydatif"],["Esters de jojoba","aident à retenir l'hydratation"]],
