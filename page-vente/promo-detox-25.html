@@ -91,8 +91,6 @@ html,body{overflow-x:hidden}
 #lt-promo .pil .card{padding:22px 14px;text-align:center}
 #lt-promo .pil b{display:block;font-family:var(--serif);font-weight:400;font-size:25px;line-height:1.1;margin-bottom:6px}
 #lt-promo .pil span{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--terra);font-weight:600}
-#lt-promo .quiz{font-size:14px;color:var(--muted);margin:16px 0 0}
-#lt-promo .quiz .tl{font-size:14px}
 /* profils */
 #lt-promo .profils{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px}
 #lt-promo .pf{display:flex;flex-direction:column}
@@ -296,7 +294,6 @@ root.innerHTML=`
   <div class="h-vid"><div class="vid ${CONFIG.videoVertical?"v916":""}">${vid}</div></div>
   <div class="h-bot">
     <p class="lead">Avant de remplir ton panier, regarde comment utiliser chaque booster selon ton profil détox. Parce qu'un booster pris au mauvais moment, c'est de l'argent gaspillé.</p>
-    <p class="quiz">Tu ne connais pas ton profil détox? <a class="tl" href="${esc(CONFIG.quiz)}" target="_blank" rel="noopener">Fais le quiz gratuit dans mon app →</a></p>
     ${GATED?`<div class="lock" data-lock><p><b>Regarde la vidéo :</b> tes prix à -${CONFIG.rabais} % s'affichent dès que tu en as vu ${CONFIG.seuil} %.</p><div class="bar" role="progressbar" aria-label="Progression de la vidéo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i></i></div></div>`:""}
     <div class="acts" data-acts ${GATED?"hidden":""}><a class="btn" href="#produits">Voir mes prix à -${CONFIG.rabais} %</a><a class="tl" href="${ln(CONFIG.lienEnsemble)}" target="_blank" rel="noopener">Je prends l'ensemble →</a></div>
     ${cd()}
