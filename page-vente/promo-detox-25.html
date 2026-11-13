@@ -3,153 +3,173 @@
      Tout est dans #lt-promo : les styles ne touchent pas au reste de la page.
      Réglages : voir CONFIG au début du script (vidéo, liens d'achat, prix, date de fin, photos). -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <div id="lt-promo"></div>
 <style>
-#lt-promo{--bg:#f5efe5;--card:#fff;--ink:#1a1816;--muted:#6b645b;--line:#e4dccf;--soft:#efe7da;--bronze:#a67c52;--bronze-t:#86603a;--gold:#c9a57c;--sage:#7d8a6a;
-  font-family:Inter,system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;box-sizing:border-box;overflow:hidden}
+/* Couleurs et polices de styledevielowtox.com */
+#lt-promo{--cream:#FAF6F0;--white:#FFFCF7;--sand:#E8D9C4;--sand-d:#C9B49A;--terra:#C4775A;--terra-d:#A85C40;--ink:#2A2118;--brown:#6B4C3B;--brown-l:#9C7A68;--muted:#7A6355;--line:#E2D5C4;--on-dark:rgba(255,252,247,.72);--line-dark:rgba(255,252,247,.14);
+  --serif:'Cormorant Garamond',Georgia,serif;--sans:'DM Sans',system-ui,-apple-system,sans-serif;
+  font-family:var(--sans);font-weight:400;color:var(--ink);background:var(--cream);line-height:1.65;box-sizing:border-box;overflow:hidden}
 #lt-promo *{box-sizing:border-box}
-#lt-promo .w{max-width:1180px;margin:0 auto;padding:0 32px}
-#lt-promo section{padding:72px 0}
-#lt-promo h1,#lt-promo h2,#lt-promo h3{font-family:Fraunces,Georgia,serif;font-weight:600;line-height:1.12;margin:0 0 14px;color:var(--ink)}
-#lt-promo h1{font-size:clamp(38px,5.6vw,72px);letter-spacing:-.01em}
-#lt-promo h2{font-size:clamp(28px,3.6vw,42px)}
-#lt-promo h3{font-size:22px}
+#lt-promo .w{max-width:1320px;margin:0 auto;padding:0 48px}
+#lt-promo section{padding:80px 0}
+#lt-promo h1,#lt-promo h2,#lt-promo h3,#lt-promo .cd-g b,#lt-promo .price b,#lt-promo .pack .r .big{font-variant-numeric:lining-nums tabular-nums}
+#lt-promo h1,#lt-promo h2,#lt-promo h3{font-family:var(--serif);font-weight:500;line-height:1.08;margin:0 0 14px;color:var(--ink);text-wrap:balance}
+#lt-promo h1{font-size:clamp(38px,4.6vw,68px);letter-spacing:-.01em}
+#lt-promo h1 em,#lt-promo h2 em{font-style:italic;font-weight:400;color:var(--terra)}
+#lt-promo h2{font-size:clamp(32px,3.6vw,48px)}
+#lt-promo h3{font-size:26px}
 #lt-promo p{margin:0 0 14px}
-#lt-promo .k{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--bronze-t);font-weight:600;margin-bottom:14px}
-#lt-promo .lead{font-size:clamp(17px,1.6vw,20px);color:var(--muted);max-width:640px}
+#lt-promo .k{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--brown-l);font-weight:500;margin-bottom:14px}
+#lt-promo .lead{font-size:clamp(16px,1.35vw,19px);color:var(--muted);font-weight:300;max-width:620px}
 #lt-promo .c{text-align:center}#lt-promo .c .lead{margin-left:auto;margin-right:auto}
 #lt-promo .small{font-size:13px;color:var(--muted)}
-#lt-promo .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;border-radius:999px;background:var(--ink);color:#fff;font:600 16px Inter,sans-serif;padding:17px 34px;text-decoration:none;min-height:54px;cursor:pointer;transition:background .2s,transform .2s}
-#lt-promo .btn:hover{background:#3a3631}
-#lt-promo .btn.light{background:#f5efe5;color:var(--ink)}#lt-promo .btn.light:hover{background:#fff}
-#lt-promo .btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}#lt-promo .btn.ghost:hover{background:var(--soft)}
+#lt-promo .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;border-radius:30px;background:var(--terra);color:#fff;font:500 16px var(--sans);padding:16px 32px;text-decoration:none;min-height:54px;cursor:pointer;transition:background .2s}
+#lt-promo .btn:hover{background:var(--terra-d)}
+#lt-promo .btn:focus-visible{outline:3px solid var(--sand-d);outline-offset:3px}
+#lt-promo .btn.light{background:var(--terra);color:#fff}
+#lt-promo .btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}#lt-promo .btn.ghost:hover{background:var(--sand)}
 #lt-promo .btn.sm{font-size:15px;padding:13px 22px;min-height:48px;width:100%}
 /* bandeau promo */
-#lt-promo .top{background:var(--bronze);color:#fff;text-align:center;font-size:14px;font-weight:600;letter-spacing:.04em;padding:11px 16px}
-/* hero */
-#lt-promo .hero{background:radial-gradient(120% 90% at 80% 30%,#3a332b 0%,#1a1816 60%,#121110 100%);color:#f5efe5;padding:64px 0 72px}
-#lt-promo .hero .k{color:var(--gold)}
-#lt-promo .hero h1{color:#fff;max-width:900px;margin-left:auto;margin-right:auto}
-#lt-promo .hero h1 em{font-style:italic;font-weight:500;color:var(--gold)}
-#lt-promo .hero .lead{color:#cfc6ba}
-#lt-promo .badge{display:inline-flex;align-items:baseline;gap:10px;border:1px solid rgba(201,165,124,.45);border-radius:999px;padding:8px 20px;margin-bottom:22px;color:#f5efe5;font-size:14px}
-#lt-promo .badge b{font-family:Fraunces,Georgia,serif;font-size:24px;color:var(--gold);line-height:1}
+#lt-promo .top{background:var(--terra);color:#fff;text-align:center;font-size:14px;font-weight:500;letter-spacing:.04em;padding:10px 16px}
+/* hero pleine largeur : texte à gauche, vidéo à droite */
+#lt-promo .hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);grid-template-areas:"top vid" "bot vid";background:var(--cream);padding:0;width:100%}
+#lt-promo .h-top{grid-area:top;align-self:end;padding:48px 48px 0 max(48px,calc((100vw - 1320px)/2 + 48px))}
+#lt-promo .h-bot{grid-area:bot;align-self:start;padding:0 48px 48px max(48px,calc((100vw - 1320px)/2 + 48px))}
+#lt-promo .h-vid{grid-area:vid;background:var(--sand);display:flex;align-items:center;justify-content:center;padding:40px max(40px,calc((100vw - 1320px)/2 + 40px)) 40px 40px;min-height:min(78vh,720px)}
+#lt-promo .pill{display:inline-flex;align-items:center;gap:10px;background:var(--white);border:1px solid var(--line);border-radius:30px;padding:7px 16px 7px 8px;font-size:13px;color:var(--brown);margin-bottom:20px}
+#lt-promo .pill b{background:var(--terra);color:#fff;border-radius:30px;padding:3px 10px;font-weight:600}
+#lt-promo .hero .lead{margin-bottom:6px}
 /* vidéo */
-#lt-promo .vid{position:relative;max-width:900px;margin:36px auto 0;aspect-ratio:16/9;border-radius:20px;overflow:hidden;background:#0d0c0b;box-shadow:0 30px 70px rgba(0,0,0,.45);border:1px solid rgba(201,165,124,.25)}
-#lt-promo .vid.v916{aspect-ratio:9/16;max-width:400px}
+#lt-promo .vid{position:relative;width:100%;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:var(--ink);box-shadow:0 30px 60px rgba(42,33,24,.22)}
+#lt-promo .vid.v916{aspect-ratio:9/16;width:auto;height:min(72vh,680px);max-width:100%}
 #lt-promo .vid iframe,#lt-promo .vid video{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;object-fit:cover}
-#lt-promo .vid .ph{position:absolute;inset:0;display:grid;place-items:center;align-content:center;gap:14px;color:#cfc6ba;font-size:15px;text-align:center;padding:24px}
-#lt-promo .vid .play{width:84px;height:84px;border-radius:50%;background:var(--gold);display:grid;place-items:center;margin:0 auto}
-#lt-promo .vid .play:after{content:"";border-left:24px solid var(--ink);border-top:15px solid transparent;border-bottom:15px solid transparent;margin-left:6px}
-#lt-promo .hero .btn.ghost{color:#f5efe5;border-color:rgba(245,239,229,.5)}#lt-promo .hero .btn.ghost:hover{background:rgba(245,239,229,.08)}
-#lt-promo .hero .acts{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:32px}
+#lt-promo .vid .ph{position:absolute;inset:0;display:grid;place-items:center;align-content:center;gap:14px;color:var(--on-dark);font-size:15px;text-align:center;padding:24px}
+#lt-promo .vid .play{width:84px;height:84px;border-radius:50%;background:var(--terra);display:grid;place-items:center;margin:0 auto}
+#lt-promo .vid .play:after{content:"";border-left:24px solid #fff;border-top:15px solid transparent;border-bottom:15px solid transparent;margin-left:6px}
+#lt-promo .hero .acts{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
 /* déblocage */
-#lt-promo .lock{max-width:560px;margin:30px auto 0;border:1px solid rgba(201,165,124,.35);border-radius:18px;padding:20px 24px;text-align:center}
-#lt-promo .lock p{color:#cfc6ba;font-size:15px;margin:0 0 12px}
-#lt-promo .lock p b{color:#fff}
-#lt-promo .bar{height:6px;border-radius:99px;background:rgba(245,239,229,.14);overflow:hidden}
-#lt-promo .bar i{display:block;height:100%;width:0;background:var(--gold);border-radius:99px;transition:width .6s ease}
+#lt-promo .lock{max-width:520px;margin:24px 0 0;background:var(--white);border:1px solid var(--line);border-radius:16px;padding:16px 20px}
+#lt-promo .lock p{color:var(--muted);font-size:15px;margin:0 0 10px}
+#lt-promo .lock p b{color:var(--ink);font-weight:600}
+#lt-promo .bar{height:6px;border-radius:99px;background:var(--sand);overflow:hidden}
+#lt-promo .bar i{display:block;height:100%;width:0;background:var(--terra);border-radius:99px;transition:width .6s ease}
 #lt-promo .gate[hidden],#lt-promo .acts[hidden],#lt-promo .lock[hidden]{display:none}
 #lt-promo .gate.open,#lt-promo .acts.open{animation:ltOpen .9s cubic-bezier(.2,.7,.2,1)}
 @keyframes ltOpen{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
 @media(prefers-reduced-motion:reduce){#lt-promo .gate.open,#lt-promo .acts.open{animation:none}}
 /* décompte */
-#lt-promo .cd{margin-top:30px}
-#lt-promo .cd-t{font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--bronze-t);margin-bottom:10px}
+#lt-promo .cd{margin-top:26px}
+#lt-promo .cd-t{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:var(--brown-l);margin-bottom:8px}
 #lt-promo .cd-g{display:flex;justify-content:center}
-#lt-promo .cd-g div{text-align:center;padding:0 22px;min-width:92px}#lt-promo .cd-g div+div{border-left:1px solid var(--line)}
-#lt-promo .cd-g b{display:block;font-family:Fraunces,Georgia,serif;font-weight:600;font-size:44px;line-height:1;font-variant-numeric:tabular-nums;margin-bottom:6px}
+#lt-promo .hero .cd-g{justify-content:flex-start}
+#lt-promo .cd-g div{text-align:center;padding:0 20px;min-width:84px}#lt-promo .cd-g div+div{border-left:1px solid var(--line)}
+#lt-promo .hero .cd-g div:first-child{padding-left:0;min-width:64px}
+#lt-promo .cd-g b{display:block;font-family:var(--serif);font-weight:500;font-size:44px;line-height:1;font-variant-numeric:tabular-nums;margin-bottom:4px;color:var(--ink)}
 #lt-promo .cd-g span{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-#lt-promo .cd.dark .cd-t{color:var(--gold)}#lt-promo .cd.dark .cd-g div+div{border-color:rgba(255,255,255,.22)}
-#lt-promo .cd.dark .cd-g b{color:#fff}#lt-promo .cd.dark .cd-g span{color:#cfc6ba}
-#lt-promo .over{font-weight:600;color:var(--bronze-t)}
+#lt-promo .cd.dark .cd-t{color:var(--sand-d)}#lt-promo .cd.dark .cd-g div+div{border-color:var(--line-dark)}
+#lt-promo .cd.dark .cd-g b{color:#fff}#lt-promo .cd.dark .cd-g span{color:var(--on-dark)}
+#lt-promo .over{font-weight:500;color:var(--terra-d)}
 /* piliers */
-#lt-promo .band{background:var(--ink);color:#f5efe5;padding:56px 0}
+#lt-promo .band{background:var(--ink);color:var(--cream);padding:64px 0}
 #lt-promo .band h2{color:#fff;max-width:780px;margin:0 auto 10px}
-#lt-promo .band p{color:#cfc6ba;max-width:660px;margin:0 auto}
-#lt-promo .pil{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:34px}
-#lt-promo .pil div{border:1px solid rgba(245,239,229,.16);border-radius:14px;padding:18px 14px;text-align:center}
-#lt-promo .pil b{display:block;font-family:Fraunces,Georgia,serif;font-size:19px;color:#fff;margin-bottom:4px}
-#lt-promo .pil span{font-size:13px;color:#cfc6ba;line-height:1.45;display:block}
+#lt-promo .band p{color:var(--on-dark);font-weight:300;max-width:660px;margin:0 auto}
+#lt-promo .pil{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:36px}
+#lt-promo .pil div{border:1px solid var(--line-dark);border-radius:14px;padding:18px 12px;text-align:center}
+#lt-promo .pil b{display:block;font-family:var(--serif);font-weight:500;font-size:24px;color:#fff;margin-bottom:2px}
+#lt-promo .pil span{font-size:13px;color:var(--sand-d);line-height:1.45;display:block}
 /* produits */
-#lt-promo .prods{display:grid;grid-template-columns:repeat(6,1fr);gap:20px;margin-top:40px}
-#lt-promo .pr{grid-column:span 2;background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column}
-#lt-promo .pr .pic{position:relative;aspect-ratio:1/1;background:var(--soft);display:grid;place-items:center;overflow:hidden}
+#lt-promo .prods{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px}
+#lt-promo .pr{background:var(--white);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column}
+#lt-promo .pr .pic{position:relative;aspect-ratio:4/3;background:var(--sand);display:grid;place-items:center;overflow:hidden}
 #lt-promo .pr .pic img{width:100%;height:100%;object-fit:contain;display:block;padding:18px}
-#lt-promo .pr .pic .mono{font-family:Fraunces,Georgia,serif;font-size:56px;color:var(--bronze);opacity:.55}
-#lt-promo .pr .off{position:absolute;top:14px;left:14px;background:var(--bronze);color:#fff;font-size:13px;font-weight:600;border-radius:99px;padding:5px 12px}
-#lt-promo .pr .bd{padding:24px;display:flex;flex-direction:column;flex:1}
-#lt-promo .pr .role{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--sage);font-weight:600;margin-bottom:4px}
+#lt-promo .pr .pic .mono{font-family:var(--serif);font-style:italic;font-size:64px;color:var(--terra);opacity:.7}
+#lt-promo .pr .off{position:absolute;top:14px;left:14px;background:var(--terra);color:#fff;font-size:13px;font-weight:600;border-radius:30px;padding:5px 12px}
+#lt-promo .pr .bd{padding:26px;display:flex;flex-direction:column;flex:1}
+#lt-promo .pr .role{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--brown-l);font-weight:500;margin-bottom:2px}
 #lt-promo .pr h3{margin-bottom:8px}
 #lt-promo .pr .d{color:var(--muted);font-size:15px}
 #lt-promo .pr ul{list-style:none;padding:0;margin:4px 0 16px;border-top:1px solid var(--line);flex:1}
 #lt-promo .pr li{padding:9px 0 9px 20px;border-bottom:1px solid var(--line);font-size:14px;position:relative}
-#lt-promo .pr li:before{content:"";position:absolute;left:2px;top:17px;width:7px;height:7px;border-radius:50%;background:var(--bronze)}
-#lt-promo .pr .note{font-size:13px;color:var(--bronze-t);margin:-6px 0 14px}
+#lt-promo .pr li:before{content:"";position:absolute;left:2px;top:17px;width:7px;height:7px;border-radius:50%;background:var(--terra)}
+#lt-promo .pr .note{font-size:13px;color:var(--terra-d);margin:-6px 0 14px}
 #lt-promo .price{display:flex;align-items:baseline;gap:10px;margin-bottom:14px}
 #lt-promo .price s{color:var(--muted);font-size:15px}
-#lt-promo .price b{font-family:Fraunces,Georgia,serif;font-size:30px;line-height:1}
-#lt-promo .price span{font-size:13px;color:var(--bronze-t);font-weight:600}
+#lt-promo .price b{font-family:var(--serif);font-weight:600;font-size:34px;line-height:1}
+#lt-promo .price span{font-size:13px;color:var(--terra-d);font-weight:600}
 /* routine */
-#lt-promo .day{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px;position:relative}
-#lt-promo .day>div{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px}
-#lt-promo .day .t{font-family:Fraunces,Georgia,serif;font-size:26px;color:var(--bronze);line-height:1;margin-bottom:6px}
-#lt-promo .day h3{font-size:18px;margin-bottom:6px}
+#lt-promo .day{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px}
+#lt-promo .day>div{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:24px}
+#lt-promo .day .t{font-family:var(--serif);font-style:italic;font-size:28px;color:var(--terra);line-height:1;margin-bottom:8px}
+#lt-promo .day h3{font-size:21px;margin-bottom:6px}
 #lt-promo .day p{color:var(--muted);font-size:14.5px;margin:0}
 /* ensemble */
-#lt-promo .pack{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:0;background:var(--ink);color:#f5efe5;border-radius:24px;overflow:hidden;margin-top:8px}
-#lt-promo .pack .l{padding:48px}
-#lt-promo .pack h2{color:#fff}#lt-promo .pack .k{color:var(--gold)}#lt-promo .pack p{color:#cfc6ba}
+#lt-promo .pack{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);background:var(--ink);color:var(--cream);border-radius:22px;overflow:hidden}
+#lt-promo .pack .l{padding:52px}
+#lt-promo .pack h2{color:#fff}#lt-promo .pack .k{color:var(--sand-d)}#lt-promo .pack p{color:var(--on-dark);font-weight:300}
 #lt-promo .pack ul{list-style:none;padding:0;margin:20px 0 0}
-#lt-promo .pack li{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-top:1px solid rgba(255,255,255,.12);font-size:15px}
-#lt-promo .pack li span{color:#cfc6ba}
-#lt-promo .pack .r{background:#24211d;padding:48px;display:flex;flex-direction:column;justify-content:center;text-align:center}
-#lt-promo .pack .r s{color:#a39a8e;font-size:18px}
-#lt-promo .pack .r .big{font-family:Fraunces,Georgia,serif;font-size:58px;color:#fff;line-height:1;margin:6px 0}
-#lt-promo .pack .r .eco{display:inline-block;background:rgba(201,165,124,.16);color:var(--gold);border-radius:99px;padding:6px 16px;font-size:14px;font-weight:600;margin:6px auto 22px}
+#lt-promo .pack li{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-top:1px solid var(--line-dark);font-size:15px}
+#lt-promo .pack li span{color:var(--sand-d)}
+#lt-promo .pack .r{background:var(--brown);padding:52px;display:flex;flex-direction:column;justify-content:center;text-align:center}
+#lt-promo .pack .r s{color:var(--sand-d);font-size:18px}
+#lt-promo .pack .r .big{font-family:var(--serif);font-weight:600;font-size:64px;color:#fff;line-height:1;margin:6px 0}
+#lt-promo .pack .r .eco{display:inline-block;background:rgba(255,252,247,.12);color:#fff;border-radius:30px;padding:6px 16px;font-size:14px;font-weight:500;margin:6px auto 22px}
+#lt-promo .pack .r .small{color:var(--sand-d)!important}
 /* lowtox */
 #lt-promo .two{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:40px}
-#lt-promo .box{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:30px}
+#lt-promo .box{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:30px}
 #lt-promo .box ul{list-style:none;padding:0;margin:12px 0 0}
 #lt-promo .box li{padding:9px 0 9px 22px;border-top:1px solid var(--line);position:relative;font-size:15px}
-#lt-promo .box li:before{content:"";position:absolute;left:2px;top:17px;width:8px;height:8px;border-radius:50%;background:var(--sage)}
-#lt-promo .story{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:start;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:34px;margin-top:20px}
-#lt-promo .story .q{font-family:Fraunces,Georgia,serif;font-size:72px;line-height:.8;color:var(--bronze)}
-#lt-promo .story p{font-size:17px;margin:0 0 12px}
-#lt-promo .story .sig{font-size:14px;color:var(--muted);margin:0}
+#lt-promo .box li:before{content:"";position:absolute;left:2px;top:17px;width:8px;height:8px;border-radius:50%;background:var(--terra)}
+#lt-promo .story{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:start;background:var(--sand);border-radius:18px;padding:36px;margin-top:20px}
+#lt-promo .story .q{font-family:var(--serif);font-size:90px;line-height:.7;color:var(--terra)}
+#lt-promo .story p{font-family:var(--serif);font-style:italic;font-size:23px;line-height:1.4;margin:0 0 12px}
+#lt-promo .story .sig{font-family:var(--sans);font-style:normal;font-size:14px;color:var(--brown);margin:0}
 /* témoignages */
 #lt-promo .tes{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:36px}
-#lt-promo .te{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px}
-#lt-promo .te p{font-style:italic;color:var(--muted);font-size:15.5px}
-#lt-promo .te b{font-size:14px}
+#lt-promo .te{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:26px}
+#lt-promo .te p{font-family:var(--serif);font-style:italic;color:var(--brown);font-size:20px;line-height:1.4}
+#lt-promo .te b{font-size:14px;font-weight:600}
 /* faq */
 #lt-promo .faq{max-width:820px;margin:36px auto 0}
 #lt-promo details{border-bottom:1px solid var(--line);padding:18px 0}
-#lt-promo summary{cursor:pointer;font-weight:600;font-size:17px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+#lt-promo summary{cursor:pointer;font-weight:500;font-size:17px;list-style:none;display:flex;justify-content:space-between;gap:16px}
 #lt-promo summary::-webkit-details-marker{display:none}
-#lt-promo summary:after{content:"+";font-weight:400;font-size:22px;color:var(--bronze);line-height:1}
+#lt-promo summary:after{content:"+";font-weight:300;font-size:24px;color:var(--terra);line-height:1}
 #lt-promo details[open] summary:after{content:"–"}
 #lt-promo details p{margin:12px 0 0;color:var(--muted)}
-#lt-promo .final{background:var(--ink);color:#fff;border-radius:24px;padding:56px 40px}
-#lt-promo .final h2{color:#fff}#lt-promo .final p{color:#cfc6ba}
+#lt-promo .final{background:var(--ink);color:#fff;border-radius:22px;padding:60px 40px}
+#lt-promo .final h2{color:#fff}#lt-promo .final p{color:var(--on-dark)}#lt-promo .final .k{color:var(--sand-d)!important}
 #lt-promo .legal{font-size:12px;color:var(--muted);text-align:center;max-width:780px;margin:28px auto 0}
 @media(max-width:980px){
+  #lt-promo .w{padding:0 28px}
+  #lt-promo .hero{grid-template-columns:1fr;grid-template-areas:"top" "vid" "bot"}
+  #lt-promo .h-top{padding:28px 28px 18px}
+  #lt-promo .h-vid{padding:0 28px;min-height:0;background:linear-gradient(var(--cream) 50%,var(--sand) 50%)}
+  #lt-promo .h-bot{padding:18px 28px 40px;background:var(--sand)}
+  #lt-promo .lock{background:var(--white)}
+  #lt-promo .vid.v916{height:auto;width:min(100%,380px)}
   #lt-promo .prods{grid-template-columns:1fr 1fr}
-  #lt-promo .pr{grid-column:auto}
   #lt-promo .pil{grid-template-columns:repeat(3,1fr)}
   #lt-promo .day{grid-template-columns:1fr 1fr}
 }
 @media(max-width:700px){
-  #lt-promo section{padding:52px 0}
+  #lt-promo section{padding:56px 0}
   #lt-promo .w{padding:0 18px}
-  #lt-promo .hero{padding:44px 0 52px}
+  #lt-promo h1{font-size:clamp(32px,8.6vw,40px)}
+  #lt-promo .h-top{padding:22px 18px 16px}
+  #lt-promo .h-top .k{display:none}
+  #lt-promo .pill{margin-bottom:14px}
+  #lt-promo .h-vid{padding:0}
+  #lt-promo .vid{border-radius:0;box-shadow:none}
+  #lt-promo .vid.v916{width:100%;max-width:none;border-radius:0}
+  #lt-promo .h-bot{padding:18px 18px 40px}
   #lt-promo .prods,#lt-promo .two,#lt-promo .tes,#lt-promo .day,#lt-promo .pack{grid-template-columns:1fr}
   #lt-promo .pil{grid-template-columns:1fr 1fr}
   #lt-promo .pack .l,#lt-promo .pack .r{padding:32px 24px}
-  #lt-promo .story{grid-template-columns:1fr;gap:6px;padding:26px}
-  #lt-promo .final{padding:40px 22px}
-  #lt-promo .cd-g div{min-width:0;flex:1;padding:0 6px}#lt-promo .cd-g b{font-size:34px}#lt-promo .cd-g span{font-size:10px;letter-spacing:.06em}
+  #lt-promo .story{grid-template-columns:1fr;gap:4px;padding:26px}
+  #lt-promo .final{padding:44px 22px}
+  #lt-promo .cd-g div,#lt-promo .hero .cd-g div:first-child{min-width:0;flex:1;padding:0 6px}#lt-promo .cd-g b{font-size:34px}#lt-promo .cd-g span{font-size:10px;letter-spacing:.06em}
   #lt-promo .hero .acts .btn{width:100%}
 }
 </style>
@@ -243,16 +263,20 @@ let deja=false;try{deja=localStorage.getItem(KEY)==="1"}catch(e){}
 const GATED=CONFIG.seuil>0&&!!CONFIG.video.trim()&&!deja&&qs.get("acces")!=="1";
 root.innerHTML=`
 <div class="top">-${CONFIG.rabais} % sur la routine détox · ${FIN?`Jusqu'au ${esc(jourFin)} seulement`:"Pour une durée limitée"}</div>
-<section class="hero c"><div class="w">
-  <div class="badge"><b>-${CONFIG.rabais} %</b> sur 6 produits</div>
-  <div class="k">Style de vie Lowtox · Promo limitée</div>
-  <h1>Donne un coup de main à ton corps pour <em>faire le ménage</em></h1>
-  <p class="lead">Ton corps se détoxifie tous les jours. Mais entre les plastiques, le sucre et le stress, il en a beaucoup sur les épaules. Dans cette vidéo, je t'explique comment 6 produits peuvent soutenir ses processus naturels.</p>
-  <div class="vid ${CONFIG.videoVertical?"v916":""}">${vid}</div>
-  ${GATED?`<div class="lock" data-lock><p><b>Regarde la vidéo :</b> tes prix à -${CONFIG.rabais} % s'affichent juste en dessous dès que tu en as vu ${CONFIG.seuil} %.</p><div class="bar" role="progressbar" aria-label="Progression de la vidéo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i></i></div></div>`:""}
-  <div class="acts" data-acts ${GATED?"hidden":""}><a class="btn light" href="#produits">Voir mes prix à -${CONFIG.rabais} % <span aria-hidden="true">↓</span></a>${cta("Je prends l'ensemble",CONFIG.lienEnsemble,"ghost")}</div>
-  ${cd("dark")}
-</div></section>
+<section class="hero">
+  <div class="h-top">
+    <div class="pill"><b>-${CONFIG.rabais} %</b> sur 6 produits · ${FIN?`jusqu'au ${esc(jourFin)}`:"durée limitée"}</div>
+    <div class="k">Style de vie Lowtox · La routine détox</div>
+    <h1>Donne un coup de main à ton corps pour <em>faire le ménage</em></h1>
+  </div>
+  <div class="h-vid"><div class="vid ${CONFIG.videoVertical?"v916":""}">${vid}</div></div>
+  <div class="h-bot">
+    <p class="lead">Ton corps se détoxifie tous les jours. Mais entre les plastiques, le sucre et le stress, il en a beaucoup sur les épaules. Dans cette vidéo, je t'explique comment 6 produits peuvent soutenir ses processus naturels.</p>
+    ${GATED?`<div class="lock" data-lock><p><b>Regarde la vidéo :</b> tes prix à -${CONFIG.rabais} % s'affichent dès que tu en as vu ${CONFIG.seuil} %.</p><div class="bar" role="progressbar" aria-label="Progression de la vidéo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i></i></div></div>`:""}
+    <div class="acts" data-acts ${GATED?"hidden":""}><a class="btn" href="#produits">Voir mes prix à -${CONFIG.rabais} % <span aria-hidden="true">↓</span></a>${cta("Je prends l'ensemble",CONFIG.lienEnsemble,"ghost")}</div>
+    ${cd()}
+  </div>
+</section>
 
 <div class="band c"><div class="w">
   <h2>La détox, ce n'est pas une cure miracle</h2>
@@ -280,7 +304,7 @@ root.innerHTML=`
     <div class="l"><div class="k">L'ensemble complet</div><h2>La routine détox au complet</h2><p>Les six produits ensemble, pour couvrir les six piliers : purifier, nourrir, préserver, protéger, équilibrer et hydrater.</p>
       <ul>${pr.map(p=>`<li>${esc(p.n)}<span>${p.reg?fmt(p.promo):"-"+CONFIG.rabais+" %"}</span></li>`).join("")}</ul></div>
     <div class="r">${allPrix?`<s>${fmt(totReg)}</s><div class="big">${fmt(totReg*(1-R))}</div><div class="eco">Tu économises ${fmt(totReg*R)}</div>`:`<div class="big">-${CONFIG.rabais} %</div><div class="eco">sur les 6 produits</div>`}
-      ${cta("Je prends l'ensemble",CONFIG.lienEnsemble,"light")}<p class="small" style="margin:16px 0 0;color:#a39a8e">${FIN?`Prix valides jusqu'au ${esc(jourFin)}.`:"Prix valides pour une durée limitée."}</p></div>
+      ${cta("Je prends l'ensemble",CONFIG.lienEnsemble,"light")}<p class="small" style="margin:16px 0 0">${FIN?`Prix valides jusqu'au ${esc(jourFin)}.`:"Prix valides pour une durée limitée."}</p></div>
   </div>
 </div></section>
 
@@ -303,7 +327,7 @@ ${CONFIG.temoignages.length?`<section style="padding-top:0"><div class="w"><div 
 </div></section>
 
 <section style="padding-top:0"><div class="w">
-  <div class="final c"><div class="k" style="color:var(--gold)">Dernière chance</div><h2>-${CONFIG.rabais} % sur la routine détox</h2>
+  <div class="final c"><div class="k">Dernière chance</div><h2>-${CONFIG.rabais} % sur la routine détox</h2>
     <p class="lead" style="margin-left:auto;margin-right:auto">Une routine simple pour soutenir ton corps, au meilleur prix de la saison.</p>
     ${cd("dark")}<div style="margin-top:28px">${cta("Je profite du rabais",CONFIG.lienEnsemble,"light")}</div></div>
   <p class="legal">Ces produits sont des produits de santé naturels. Lis l'étiquette et respecte le mode d'emploi. Ils ne remplacent pas une alimentation variée et équilibrée ni un mode de vie sain. Consulte une professionnelle de la santé si tu prends des médicaments, si tu es enceinte ou si tu allaites. Les rabais s'appliquent jusqu'à la date de fin indiquée, ou jusqu'à épuisement des stocks.</p>
