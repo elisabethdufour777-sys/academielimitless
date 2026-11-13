@@ -10,6 +10,9 @@
 #lt-promo{--cream:#FAF6F0;--white:#FFFCF7;--sand:#E8D9C4;--sand-d:#C9B49A;--terra:#C4775A;--terra-d:#A85C40;--ink:#2A2118;--brown:#6B4C3B;--brown-l:#9C7A68;--muted:#7A6355;--line:#E2D5C4;--on-dark:rgba(255,252,247,.68);--line-dark:rgba(255,252,247,.14);
   --serif:'Cormorant Garamond',Georgia,serif;--sans:'DM Sans',system-ui,-apple-system,sans-serif;
   font-family:var(--sans);font-weight:400;font-size:16px;color:var(--ink);background:var(--cream);line-height:1.7;box-sizing:border-box;overflow:hidden}
+/* Pleine largeur : sort du conteneur de GHL pour couvrir tout l'écran */
+#lt-promo{width:100vw;max-width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw}
+html,body{overflow-x:hidden}
 #lt-promo *{box-sizing:border-box}
 #lt-promo .w{max-width:1180px;margin:0 auto;padding:0 40px}
 #lt-promo section{padding:96px 0}
