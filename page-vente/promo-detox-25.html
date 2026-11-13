@@ -91,6 +91,16 @@ html,body{overflow-x:hidden}
 #lt-promo .pil .card{padding:22px 14px;text-align:center}
 #lt-promo .pil b{display:block;font-family:var(--serif);font-weight:400;font-size:25px;line-height:1.1;margin-bottom:6px}
 #lt-promo .pil span{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--terra);font-weight:600}
+/* profils */
+#lt-promo .profils{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px}
+#lt-promo .pf{display:flex;flex-direction:column}
+#lt-promo .pf-h{display:flex;align-items:center;gap:14px;margin-bottom:10px}
+#lt-promo .pf-h h3{margin:0;font-size:24px}
+#lt-promo .pf-l{flex:none;width:42px;height:42px;border-radius:50%;border:1px solid var(--terra);color:var(--terra);display:grid;place-items:center;font-family:var(--serif);font-size:22px;line-height:1}
+#lt-promo .pf-s{color:var(--muted);font-size:14.5px;flex:1}
+#lt-promo .pf-b{font-family:var(--serif);font-size:21px;line-height:1.25;margin:0 0 8px}
+#lt-promo .pf-b a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--terra);text-underline-offset:3px}
+#lt-promo .pf-a{font-size:13.5px;color:var(--terra-d);font-style:italic;margin:0;padding-top:10px;border-top:1px solid var(--line)}
 /* produits */
 #lt-promo .prods{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px}
 #lt-promo .pr{display:flex;flex-direction:column;padding:30px 28px}
@@ -153,7 +163,7 @@ html,body{overflow-x:hidden}
   #lt-promo section{padding:76px 0}
   #lt-promo .h-vid{padding:0 28px}#lt-promo .h-bot{padding:32px 28px 0}
   #lt-promo .vid.v916{height:auto;width:min(100%,380px)}
-  #lt-promo .prods{grid-template-columns:1fr 1fr}
+  #lt-promo .prods,#lt-promo .profils{grid-template-columns:1fr 1fr}
   #lt-promo .pil{grid-template-columns:repeat(3,1fr)}
   #lt-promo .day{grid-template-columns:1fr 1fr}
   #lt-promo .pack{grid-template-columns:1fr;gap:36px}
@@ -170,7 +180,7 @@ html,body{overflow-x:hidden}
   #lt-promo .vid.v916{width:100%}
   #lt-promo .h-bot{padding:28px 20px 0}
   #lt-promo .acts{gap:18px;flex-direction:column}#lt-promo .acts .btn{width:100%}
-  #lt-promo .prods,#lt-promo .two,#lt-promo .tes,#lt-promo .day{grid-template-columns:1fr}
+  #lt-promo .prods,#lt-promo .profils,#lt-promo .two,#lt-promo .tes,#lt-promo .day{grid-template-columns:1fr}
   #lt-promo .pil{grid-template-columns:1fr 1fr}
   #lt-promo .card{padding:24px 22px}
   #lt-promo .cd-g div{min-width:0;flex:1;padding:0 6px}#lt-promo .cd-g b{font-size:28px}
@@ -196,6 +206,8 @@ const CONFIG={
   seuil:40,
   /* Lien d'achat général (ta boutique Partner.Co). Chaque produit peut avoir son propre lien plus bas. */
   lien:"https://partner.co/",
+  /* Quiz du profil détox (app LowTox) */
+  quiz:"https://app.styledevielowtox.com",
   /* Lien de l'ensemble complet (panier avec les 6 produits). Vide = lien général. */
   lienEnsemble:"https://partner.co/s/MDk4MWQwYjUz",
   /* PRODUITS : prix régulier (ex. "89,95 $"), lien d'achat et photo (téléversée dans la médiathèque GHL).
@@ -247,6 +259,14 @@ const P=[
 ];
 const PIL=[["Purifier","Restoriix"],["Nourrir","Optimals"],["Préserver","Renew"],["Protéger","Rejuveniix"],["Équilibrer","Sugar Stop"],["Hydrater","Beauty Boost"]];
 const DAY=[["Matin","Hydrater","Beauty Boost dans ta bouteille d'eau, pour bien partir la journée."],["Au repas","Nourrir et préserver","Optimals et Renew, selon l'étiquette, avec tes repas."],["Avant un repas","Équilibrer","Sugar Stop avant un repas plus riche en féculents."],["En après-midi","Recharger","Rejuveniix au lieu du café de 14 h."]];
+const PROFILS=[
+ {l:"A",n:"Nerfs à vif",s:"Stress, sommeil léger, pensées en boucle le soir.",b:"Renew",a:"Évite Rejuveniix : il contient de la caféine."},
+ {l:"B",n:"Transit lent",s:"Selles irrégulières, ballonnements en fin de journée.",b:"Sugar Stop et Beauty Boost",a:"Restoriix seulement quand ton transit est régulier, avec beaucoup d'eau."},
+ {l:"C",n:"Intestin sensible",s:"Inconforts après les repas, réactions à certains aliments.",b:"Probiotiix (hors promo)",u:"https://partner.co/s/YjBiMzdlNzcy",a:"Avec Sugar Stop, commence doucement : les fibres peuvent irriter."},
+ {l:"D",n:"Surcharge hépatique",s:"Maux de tête après les excès, mauvaise tolérance au gras et au sucre.",b:"Optimals, puis Restoriix",a:"La base d'abord, le capteur ensuite."},
+ {l:"E",n:"Congestion lymphatique",s:"Rétention d'eau, raideur au réveil, corps lourd.",b:"Beauty Boost",a:"Ta priorité : bouger chaque jour. L'hydratation suit."},
+ {l:"F",n:"Filtration rénale ralentie",s:"Peu d'urine, urine foncée, chevilles qui enflent.",b:"Beauty Boost",a:"Hydratation et minéraux d'abord, avant toute détox plus intense."}
+];
 const FAQ=[
  ["Combien de temps dure la promo?",FIN?`Jusqu'au ${jourFin} à minuit (heure de l'Est), ou jusqu'à épuisement des stocks. Après, les produits reviennent au prix régulier.`:"Pour une durée limitée seulement. Après, les produits reviennent au prix régulier."],
  ["Est-ce que je dois prendre les 6 produits?","Non. Chaque produit s'achète seul. Restoriix est le cœur de la routine détox, et les autres viennent soutenir l'hydratation, la nutrition de base et l'équilibre. Si tu hésites, écris-moi et on regarde ensemble ce qui te convient."],
@@ -273,7 +293,7 @@ root.innerHTML=`
   <div class="w" style="padding:0"><h1>Ton corps fait le ménage tous les jours.<em>Et si tu lui donnais un coup de main?</em></h1></div>
   <div class="h-vid"><div class="vid ${CONFIG.videoVertical?"v916":""}">${vid}</div></div>
   <div class="h-bot">
-    <p class="lead">Entre les plastiques, le sucre et le stress, ton corps a beaucoup sur les épaules. Dans cette vidéo, je t'explique comment 6 produits peuvent soutenir ses processus naturels de détoxification.</p>
+    <p class="lead">Entre les plastiques, le sucre et le stress, ton corps a beaucoup sur les épaules. Dans cette vidéo, je te présente mes 6 boosters détox : des suppléments qui soutiennent la détoxification naturelle de ton corps. Chacun a son rôle, selon ton profil détox.</p>
     ${GATED?`<div class="lock" data-lock><p><b>Regarde la vidéo :</b> tes prix à -${CONFIG.rabais} % s'affichent dès que tu en as vu ${CONFIG.seuil} %.</p><div class="bar" role="progressbar" aria-label="Progression de la vidéo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i></i></div></div>`:""}
     <div class="acts" data-acts ${GATED?"hidden":""}><a class="btn" href="#produits">Voir mes prix à -${CONFIG.rabais} %</a><a class="tl" href="${ln(CONFIG.lienEnsemble)}" target="_blank" rel="noopener">Je prends l'ensemble →</a></div>
     ${cd()}
@@ -283,10 +303,19 @@ root.innerHTML=`
 <section class="s-cream c"><div class="w">
   <div class="k">Mon approche</div>
   <h2>La détox, ce n'est pas<em>une cure miracle</em></h2>
-  <p class="lead">C'est ton foie, tes reins, ta peau et ton système digestif qui font le travail, chaque jour. Mon approche : réduire ce qui entre, et donner à ton corps ce dont il a besoin pour bien faire son travail.</p>
+  <p class="lead">C'est ton foie, tes reins, ta peau et ton système digestif qui font le travail, chaque jour. Mon approche : réduire ce qui entre, et donner à ton corps les bons boosters, dans le bon ordre, selon ce dont il a besoin.</p>
 </div></section>
 
 <div class="gate" data-gate ${GATED?"hidden":""}>
+<section class="s-cream" style="padding-top:8px"><div class="w">
+  <div class="c"><div class="k">Ton profil détox</div><h2>Chaque booster a son rôle<em>selon ton profil</em></h2>
+    <p class="lead">Ton corps a une porte d'entrée prioritaire. Découvre la tienne avec le quiz gratuit dans mon app LowTox, puis choisis les boosters qui lui vont.</p>
+    <div class="acts" style="margin-top:22px"><a class="btn" href="${esc(CONFIG.quiz)}" target="_blank" rel="noopener">Faire le quiz du profil détox</a></div></div>
+  <div class="profils">${PROFILS.map(x=>`<div class="card pf"><div class="pf-h"><span class="pf-l">${x.l}</span><h3>${esc(x.n)}</h3></div><p class="pf-s">${esc(x.s)}</p>
+    <div class="lbl">Tes boosters</div><p class="pf-b">${x.u?`<a href="${esc(x.u)}" target="_blank" rel="noopener">${esc(x.b)}</a>`:esc(x.b)}</p><p class="pf-a">${esc(x.a)}</p></div>`).join("")}</div>
+  <p class="small c" style="margin-top:20px">Contenu éducatif seulement, ne remplace pas un avis médical.</p>
+</div></section>
+
 <section id="produits" class="s-white"><div class="w">
   <div class="c"><div class="k">Les produits en promo</div><h2>-${CONFIG.rabais} %<em>sur chacun des six</em></h2><p class="lead">Prends seulement celui dont tu as besoin, ou les six pour une routine complète.</p></div>
   <div class="prods">${pr.map((p,k)=>`<article class="card pr"><div class="hd"><span class="no">${String(k+1).padStart(2,"0")}</span><span class="off">-${CONFIG.rabais} %</span></div>
