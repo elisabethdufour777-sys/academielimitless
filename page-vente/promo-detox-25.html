@@ -203,7 +203,7 @@ const CONFIG={
   /* DÉBLOCAGE : les produits et les prix apparaissent quand la personne a vu ce % de la vidéo. 0 = tout afficher tout de suite.
      Une fois débloquée, la page reste débloquée pour cette personne (même appareil).
      Pour un lien qui ouvre la page déjà débloquée (ex. courriel « dernière chance ») : ajoute ?acces=1 à la fin du lien. */
-  seuil:40,
+  seuil:15,
   /* Lien d'achat général (ta boutique Partner.Co). Chaque produit peut avoir son propre lien plus bas. */
   lien:"https://partner.co/",
   /* Quiz du profil détox (app LowTox) */
@@ -289,11 +289,11 @@ let deja=false;try{deja=localStorage.getItem(KEY)==="1"}catch(e){}
 const GATED=CONFIG.seuil>0&&!!CONFIG.video.trim()&&!deja&&qs.get("acces")!=="1";
 root.innerHTML=`
 <section class="hero s-zen">
-  <div class="k">Promo -${CONFIG.rabais} % · ${FIN?`jusqu'au ${esc(jourFin)}`:"durée limitée"}</div>
-  <div class="w" style="padding:0"><h1>Ton corps fait le ménage tous les jours.<em>Et si tu lui donnais un coup de main?</em></h1></div>
+  <div class="k">Black Friday · -${CONFIG.rabais} % ${FIN?`jusqu'au ${esc(jourFin)}`:"pour une durée limitée"}</div>
+  <div class="w" style="padding:0"><h1>Mes boosters détox à -${CONFIG.rabais} % pour le Black Friday.<em>Je te montre comment en tirer le maximum.</em></h1></div>
   <div class="h-vid"><div class="vid ${CONFIG.videoVertical?"v916":""}">${vid}</div></div>
   <div class="h-bot">
-    <p class="lead">Entre les plastiques, le sucre et le stress, ton corps a beaucoup sur les épaules. Dans cette vidéo, je te présente mes 6 boosters détox : des suppléments qui soutiennent la détoxification naturelle de ton corps. Chacun a son rôle, selon ton profil détox.</p>
+    <p class="lead">Avant de remplir ton panier, regarde comment utiliser chaque booster selon ton profil détox. Parce qu'un booster pris au mauvais moment, c'est de l'argent gaspillé.</p>
     ${GATED?`<div class="lock" data-lock><p><b>Regarde la vidéo :</b> tes prix à -${CONFIG.rabais} % s'affichent dès que tu en as vu ${CONFIG.seuil} %.</p><div class="bar" role="progressbar" aria-label="Progression de la vidéo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i></i></div></div>`:""}
     <div class="acts" data-acts ${GATED?"hidden":""}><a class="btn" href="#produits">Voir mes prix à -${CONFIG.rabais} %</a><a class="tl" href="${ln(CONFIG.lienEnsemble)}" target="_blank" rel="noopener">Je prends l'ensemble →</a></div>
     ${cd()}
@@ -357,7 +357,7 @@ ${CONFIG.temoignages.length?`<section class="s-cream"><div class="w"><div class=
 </div></section>
 
 <section class="s-brown final c"><div class="w">
-  <div class="k">Dernière chance</div><h2>-${CONFIG.rabais} % sur la routine détox${FIN?`<em>jusqu'au ${esc(jourFin)}</em>`:""}</h2>
+  <div class="k">Dernière chance</div><h2>Black Friday : -${CONFIG.rabais} % sur mes boosters détox${FIN?`<em>jusqu'au ${esc(jourFin)} à minuit</em>`:""}</h2>
   <p class="lead">Une routine simple pour soutenir ton corps, au meilleur prix de la saison.</p>
   ${cd()}<div class="acts">${cta("Je profite du rabais",CONFIG.lienEnsemble,"white")}</div>
 </div></section>
