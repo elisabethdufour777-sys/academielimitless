@@ -43,6 +43,16 @@
 #lt-promo .vid .play{width:84px;height:84px;border-radius:50%;background:var(--gold);display:grid;place-items:center;margin:0 auto}
 #lt-promo .vid .play:after{content:"";border-left:24px solid var(--ink);border-top:15px solid transparent;border-bottom:15px solid transparent;margin-left:6px}
 #lt-promo .hero .acts{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:32px}
+/* déblocage */
+#lt-promo .lock{max-width:560px;margin:30px auto 0;border:1px solid rgba(201,165,124,.35);border-radius:18px;padding:20px 24px;text-align:center}
+#lt-promo .lock p{color:#cfc6ba;font-size:15px;margin:0 0 12px}
+#lt-promo .lock p b{color:#fff}
+#lt-promo .bar{height:6px;border-radius:99px;background:rgba(245,239,229,.14);overflow:hidden}
+#lt-promo .bar i{display:block;height:100%;width:0;background:var(--gold);border-radius:99px;transition:width .6s ease}
+#lt-promo .gate[hidden],#lt-promo .acts[hidden],#lt-promo .lock[hidden]{display:none}
+#lt-promo .gate.open,#lt-promo .acts.open{animation:ltOpen .9s cubic-bezier(.2,.7,.2,1)}
+@keyframes ltOpen{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){#lt-promo .gate.open,#lt-promo .acts.open{animation:none}}
 /* décompte */
 #lt-promo .cd{margin-top:30px}
 #lt-promo .cd-t{font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--bronze-t);margin-bottom:10px}
@@ -157,6 +167,10 @@ const CONFIG={
   /* VIDÉO : lien YouTube, Vimeo ou fichier .mp4 (ex. téléversé dans la médiathèque GHL). Vide = image « vidéo à venir ». */
   video:"",
   videoVertical:false,                         // true si la vidéo est filmée à la verticale (9:16)
+  /* DÉBLOCAGE : les produits et les prix apparaissent quand la personne a vu ce % de la vidéo. 0 = tout afficher tout de suite.
+     Une fois débloquée, la page reste débloquée pour cette personne (même appareil).
+     Pour un lien qui ouvre la page déjà débloquée (ex. courriel « dernière chance ») : ajoute ?acces=1 à la fin du lien. */
+  seuil:40,
   /* Lien d'achat général (ta boutique Partner.Co). Chaque produit peut avoir son propre lien plus bas. */
   lien:"https://partner.co/",
   /* Lien de l'ensemble complet (panier avec les 5 produits). Vide = lien général. */
@@ -218,10 +232,14 @@ const root=document.getElementById("lt-promo");
 const pr=P.map(p=>{const c=CONFIG.produits[p.id]||{};const reg=num(c.prix);return{...p,lien:c.lien||CONFIG.lien,img:c.img,reg,promo:reg?reg*(1-R):0}});
 const totReg=pr.reduce((a,p)=>a+p.reg,0),allPrix=pr.every(p=>p.reg);
 const vid=(()=>{const u=CONFIG.video.trim();if(!u)return`<div class="ph"><div class="play"></div>La vidéo s'affiche ici</div>`;
-  let m=u.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([\w-]{11})/);if(m)return`<iframe src="https://www.youtube-nocookie.com/embed/${m[1]}?rel=0" title="Vidéo : la routine détox" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>`;
-  m=u.match(/vimeo\.com\/(?:video\/)?(\d+)/);if(m)return`<iframe src="https://player.vimeo.com/video/${m[1]}" title="Vidéo : la routine détox" allow="autoplay;fullscreen;picture-in-picture" allowfullscreen></iframe>`;
+  let m=u.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([\w-]{11})/);if(m)return`<iframe data-yt src="https://www.youtube.com/embed/${m[1]}?rel=0&playsinline=1&enablejsapi=1&origin=${encodeURIComponent(location.origin)}" title="Vidéo : la routine détox" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>`;
+  m=u.match(/vimeo\.com\/(?:video\/)?(\d+)/);if(m)return`<iframe data-vimeo src="https://player.vimeo.com/video/${m[1]}" title="Vidéo : la routine détox" allow="autoplay;fullscreen;picture-in-picture" allowfullscreen></iframe>`;
   return`<video src="${esc(u)}" controls playsinline preload="metadata"></video>`})();
 
+const qs=new URLSearchParams(location.search);
+const KEY="lt-promo-detox-ouvert";
+let deja=false;try{deja=localStorage.getItem(KEY)==="1"}catch(e){}
+const GATED=CONFIG.seuil>0&&!!CONFIG.video.trim()&&!deja&&qs.get("acces")!=="1";
 root.innerHTML=`
 <div class="top">-${CONFIG.rabais} % sur la routine détox · ${FIN?`Jusqu'au ${esc(jourFin)} seulement`:"Pour une durée limitée"}</div>
 <section class="hero c"><div class="w">
@@ -230,7 +248,8 @@ root.innerHTML=`
   <h1>Donne un coup de main à ton corps pour <em>faire le ménage</em></h1>
   <p class="lead">Ton corps se détoxifie tous les jours. Mais entre les plastiques, le sucre et le stress, il en a beaucoup sur les épaules. Dans cette vidéo, je t'explique comment 5 produits peuvent soutenir ses processus naturels.</p>
   <div class="vid ${CONFIG.videoVertical?"v916":""}">${vid}</div>
-  <div class="acts">${cta("Je profite du rabais",CONFIG.lienEnsemble,"light")}<a class="btn ghost" style="color:#f5efe5;border-color:rgba(245,239,229,.5)" href="#produits">Voir les produits <span aria-hidden="true">↓</span></a></div>
+  ${GATED?`<div class="lock" data-lock><p><b>Regarde la vidéo :</b> tes prix à -${CONFIG.rabais} % s'affichent juste en dessous dès que tu en as vu ${CONFIG.seuil} %.</p><div class="bar" role="progressbar" aria-label="Progression de la vidéo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i></i></div></div>`:""}
+  <div class="acts" data-acts ${GATED?"hidden":""}><a class="btn light" href="#produits">Voir mes prix à -${CONFIG.rabais} % <span aria-hidden="true">↓</span></a>${cta("Je prends l'ensemble",CONFIG.lienEnsemble,"ghost")}</div>
   ${cd("dark")}
 </div></section>
 
@@ -240,6 +259,7 @@ root.innerHTML=`
   <div class="pil">${PIL.map(x=>`<div><b>${x[0]}</b><span>${x[1]}</span></div>`).join("")}</div>
 </div></div>
 
+<div class="gate" data-gate ${GATED?"hidden":""}>
 <section id="produits"><div class="w">
   <div class="c"><div class="k">Les produits en promo</div><h2>-${CONFIG.rabais} % sur chacun</h2><p class="lead">Prends seulement celui dont tu as besoin, ou les cinq pour une routine complète.</p></div>
   <div class="prods">${pr.map(p=>`<article class="pr"><div class="pic">${p.img?`<img src="${esc(p.img)}" alt="${esc(p.n)}" loading="lazy">`:`<div class="mono" aria-hidden="true">${p.m}</div>`}<div class="off">-${CONFIG.rabais} %</div></div>
@@ -286,7 +306,25 @@ ${CONFIG.temoignages.length?`<section style="padding-top:0"><div class="w"><div 
     <p class="lead" style="margin-left:auto;margin-right:auto">Une routine simple pour soutenir ton corps, au meilleur prix de la saison.</p>
     ${cd("dark")}<div style="margin-top:28px">${cta("Je profite du rabais",CONFIG.lienEnsemble,"light")}</div></div>
   <p class="legal">Ces produits sont des produits de santé naturels. Lis l'étiquette et respecte le mode d'emploi. Ils ne remplacent pas une alimentation variée et équilibrée ni un mode de vie sain. Consulte une professionnelle de la santé si tu prends des médicaments, si tu es enceinte ou si tu allaites. Les rabais s'appliquent jusqu'à la date de fin indiquée, ou jusqu'à épuisement des stocks.</p>
-</div></section>`;
+</div></section>
+</div>`;
+
+/* déblocage selon la vidéo */
+if(GATED){
+  const gate=root.querySelector("[data-gate]"),acts=root.querySelector("[data-acts]"),lock=root.querySelector("[data-lock]"),bar=lock.querySelector(".bar"),fill=bar.querySelector("i");
+  let ouvert=false,max=0;
+  const ouvrir=()=>{if(ouvert)return;ouvert=true;try{localStorage.setItem(KEY,"1")}catch(e){}
+    fill.style.width="100%";setTimeout(()=>{lock.hidden=true;acts.hidden=false;acts.classList.add("open");gate.hidden=false;gate.classList.add("open")},500)};
+  const prog=pct=>{if(ouvert||!isFinite(pct))return;max=Math.max(max,pct);const v=Math.min(100,max/CONFIG.seuil*100);fill.style.width=v+"%";bar.setAttribute("aria-valuenow",Math.round(v));if(max>=CONFIG.seuil)ouvrir()};
+  const v=root.querySelector(".vid video"),yt=root.querySelector("iframe[data-yt]"),vm=root.querySelector("iframe[data-vimeo]");
+  const charger=(src,ok)=>{const s=document.createElement("script");s.src=src;if(ok)s.onload=ok;s.onerror=ouvrir;document.head.appendChild(s)};
+  if(v){v.addEventListener("timeupdate",()=>v.duration&&prog(v.currentTime/v.duration*100));v.addEventListener("error",ouvrir)}
+  else if(yt){
+    const go=()=>{const pl=new YT.Player(yt,{events:{onReady:()=>setInterval(()=>{try{const d=pl.getDuration();if(d)prog(pl.getCurrentTime()/d*100)}catch(e){}},1000)}})};
+    if(window.YT&&window.YT.Player)go();else{const prev=window.onYouTubeIframeAPIReady;window.onYouTubeIframeAPIReady=()=>{prev&&prev();go()};charger("https://www.youtube.com/iframe_api")}}
+  else if(vm){const go=()=>new Vimeo.Player(vm).on("timeupdate",d=>prog(d.percent*100));if(window.Vimeo&&window.Vimeo.Player)go();else charger("https://player.vimeo.com/api/player.js",go)}
+  else ouvrir();
+}
 
 /* décompte */
 const cds=root.querySelectorAll("[data-cd]");
