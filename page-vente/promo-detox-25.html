@@ -98,7 +98,7 @@ html,body{overflow-x:hidden}
 #lt-promo .pr .no{font-family:var(--serif);font-weight:300;font-size:46px;line-height:.9;color:var(--sand-d)}
 #lt-promo .pr .off{border:1px solid var(--terra);color:var(--terra);font-size:12px;font-weight:600;border-radius:30px;padding:4px 12px;letter-spacing:.04em}
 #lt-promo .pr .pic{aspect-ratio:4/3;background:var(--sand);border-radius:14px;overflow:hidden;margin:0 0 20px}
-#lt-promo .pr .pic img{width:100%;height:100%;object-fit:contain;display:block;padding:14px}
+#lt-promo .pr .pic img{width:100%;height:100%;object-fit:cover;display:block}
 #lt-promo .pr h3{margin-bottom:10px}
 #lt-promo .pr .d{color:var(--muted);font-size:15px;line-height:1.65}
 #lt-promo .pr ul{list-style:none;padding:0;margin:4px 0 18px;flex:1}
@@ -198,11 +198,11 @@ const CONFIG={
   /* PRODUITS : prix régulier (ex. "89,95 $"), lien d'achat et photo (téléversée dans la médiathèque GHL).
      Le prix réduit se calcule tout seul. Prix vide = on affiche seulement « -25 % ». */
   produits:{
-    restoriix:  {prix:"", lien:"", img:""},
-    rejuveniix: {prix:"", lien:"", img:""},
-    optimals:   {prix:"", lien:"", img:""},   // Optimal-V et Optimal-M
+    restoriix:  {prix:"", lien:"https://styledevielowtox.com/detox", img:"https://storage.googleapis.com/msgsndr/3jVw7PhwNi4fWicuccu9/media/670d5918e4ea0b15ef96db6c.jpeg"},
+    rejuveniix: {prix:"", lien:"https://styledevielowtox.com/rejuveniix", img:"https://storage.googleapis.com/msgsndr/3jVw7PhwNi4fWicuccu9/media/6939989bacebf71a07ff5751.png"},
+    optimals:   {prix:"", lien:"https://styledevielowtox.com/optimal", img:"https://storage.googleapis.com/msgsndr/3jVw7PhwNi4fWicuccu9/media/67153758632aae6af3a04281.webp"},   // Optimal-V et Optimal-M
     renew:      {prix:"", lien:"", img:""},
-    sugarstop:  {prix:"", lien:"", img:""},
+    sugarstop:  {prix:"", lien:"https://partner.co/s/ZDc1YjliYWZi", img:"https://storage.googleapis.com/msgsndr/3jVw7PhwNi4fWicuccu9/media/6970f5e2113e8223cb5bd32d.jpg"},
     beautyboost:{prix:"", lien:"", img:""}
   },
   /* TÉMOIGNAGES (optionnel) : {texte:"…", nom:"Julie", produit:"Restoriix"} */
@@ -281,7 +281,6 @@ root.innerHTML=`
   <div class="k">Mon approche</div>
   <h2>La détox, ce n'est pas<em>une cure miracle</em></h2>
   <p class="lead">C'est ton foie, tes reins, ta peau et ton système digestif qui font le travail, chaque jour. Mon approche : réduire ce qui entre, et donner à ton corps ce dont il a besoin pour bien faire son travail.</p>
-  <div class="pil">${PIL.map(x=>`<div class="card"><b>${x[0]}</b><span>${x[1]}</span></div>`).join("")}</div>
 </div></section>
 
 <div class="gate" data-gate ${GATED?"hidden":""}>
