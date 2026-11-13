@@ -23,6 +23,17 @@ html,body{overflow-x:hidden}
 #lt-promo .s-zen:before{top:-260px;right:-180px}
 #lt-promo .s-zen:after{bottom:-300px;left:-220px;width:560px;height:560px}
 #lt-promo .s-sable{background-color:#F3ECE4;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .42 0 0 0 0 .30 0 0 0 0 .23 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+/* sections sombres (pas le hero) */
+#lt-promo .s-dark{background-color:var(--ink);background-image:radial-gradient(ellipse 50% 70% at 100% 0%,rgba(196,119,90,.16),transparent 70%),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .97 0 0 0 0 .92 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");color:var(--on-dark)}
+#lt-promo .s-brown{background-color:var(--brown);background-image:radial-gradient(ellipse 60% 80% at 50% 0%,rgba(255,252,247,.08),transparent 70%),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .97 0 0 0 0 .92 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");color:var(--on-dark)}
+#lt-promo .s-dark h2,#lt-promo .s-dark h3,#lt-promo .s-brown h2{color:#fff}
+#lt-promo .s-dark .k,#lt-promo .s-brown .k{color:var(--sand-d)}
+#lt-promo .s-dark .lead,#lt-promo .s-brown .lead,#lt-promo .s-dark p{color:var(--on-dark)}
+#lt-promo .s-dark .pack li{border-color:var(--line-dark);color:#fff}#lt-promo .s-dark .pack li span{color:var(--sand-d)}
+#lt-promo .s-dark .pack .r{background:rgba(255,252,247,.04);border-color:var(--line-dark)}
+#lt-promo .s-dark .pack .r s{color:var(--sand-d)}#lt-promo .s-dark .pack .r .big{color:#fff}#lt-promo .s-dark .pack .r .small{color:var(--on-dark)}
+#lt-promo .s-brown .cd-t{color:var(--sand)}#lt-promo .s-brown .cd-g div+div{border-color:var(--line-dark)}#lt-promo .s-brown .cd-g b{color:#fff}#lt-promo .s-brown .cd-g span{color:var(--on-dark)}
+#lt-promo .s-brown h2 em{color:var(--sand)}#lt-promo .s-brown .over{color:var(--sand)}
 #lt-promo h1,#lt-promo h2,#lt-promo h3{font-family:var(--serif);font-weight:400;line-height:1.12;margin:0 0 16px;color:var(--ink);text-wrap:balance}
 #lt-promo h1{font-size:clamp(36px,4.4vw,62px);letter-spacing:-.005em}
 #lt-promo h2{font-size:clamp(32px,3.4vw,46px)}
@@ -289,7 +300,7 @@ root.innerHTML=`
   <div class="day">${DAY.map(d=>`<div class="card"><div class="t">${d[0]}</div><h3>${d[1]}</h3><p>${esc(d[2])}</p></div>`).join("")}</div>
 </div></section>
 
-<section class="s-sable"><div class="w pack">
+<section class="s-dark"><div class="w pack">
   <div><div class="k">L'ensemble complet</div><h2>La routine détox<em>au complet</em></h2><p>Les six produits ensemble, pour couvrir les six piliers : purifier, nourrir, préserver, protéger, équilibrer et hydrater.</p>
     <ul>${pr.map(p=>`<li>${esc(p.n)}<span>${p.reg?fmt(p.promo):"-"+CONFIG.rabais+" %"}</span></li>`).join("")}</ul></div>
   <div class="r">${allPrix?`<s>${fmt(totReg)}</s><div class="big">${fmt(totReg*(1-R))}</div><div class="eco">Tu économises ${fmt(totReg*R)}</div>`:`<div class="big">-${CONFIG.rabais} %</div><div class="eco">sur les 6 produits</div>`}
@@ -314,10 +325,10 @@ ${CONFIG.temoignages.length?`<section class="s-cream"><div class="w"><div class=
   <div class="faq">${FAQ.map(f=>`<details><summary>${esc(f[0])}</summary><p>${esc(f[1])}</p></details>`).join("")}</div>
 </div></section>
 
-<section class="s-zen final c"><div class="w">
+<section class="s-brown final c"><div class="w">
   <div class="k">Dernière chance</div><h2>-${CONFIG.rabais} % sur la routine détox${FIN?`<em>jusqu'au ${esc(jourFin)}</em>`:""}</h2>
   <p class="lead">Une routine simple pour soutenir ton corps, au meilleur prix de la saison.</p>
-  ${cd()}<div class="acts">${cta("Je profite du rabais",CONFIG.lienEnsemble)}</div>
+  ${cd()}<div class="acts">${cta("Je profite du rabais",CONFIG.lienEnsemble,"white")}</div>
 </div></section>
 <section class="s-cream" style="padding:36px 0"><div class="w">
   <p class="legal">Ces produits sont des produits de santé naturels. Lis l'étiquette et respecte le mode d'emploi. Ils ne remplacent pas une alimentation variée et équilibrée ni un mode de vie sain. Consulte une professionnelle de la santé si tu prends des médicaments, si tu es enceinte ou si tu allaites. Les rabais s'appliquent jusqu'à la date de fin indiquée, ou jusqu'à épuisement des stocks.</p>
