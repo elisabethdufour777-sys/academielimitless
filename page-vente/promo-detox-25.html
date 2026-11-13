@@ -42,6 +42,7 @@
 #lt-promo .vid .ph{position:absolute;inset:0;display:grid;place-items:center;align-content:center;gap:14px;color:#cfc6ba;font-size:15px;text-align:center;padding:24px}
 #lt-promo .vid .play{width:84px;height:84px;border-radius:50%;background:var(--gold);display:grid;place-items:center;margin:0 auto}
 #lt-promo .vid .play:after{content:"";border-left:24px solid var(--ink);border-top:15px solid transparent;border-bottom:15px solid transparent;margin-left:6px}
+#lt-promo .hero .btn.ghost{color:#f5efe5;border-color:rgba(245,239,229,.5)}#lt-promo .hero .btn.ghost:hover{background:rgba(245,239,229,.08)}
 #lt-promo .hero .acts{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:32px}
 /* déblocage */
 #lt-promo .lock{max-width:560px;margin:30px auto 0;border:1px solid rgba(201,165,124,.35);border-radius:18px;padding:20px 24px;text-align:center}
@@ -67,14 +68,13 @@
 #lt-promo .band{background:var(--ink);color:#f5efe5;padding:56px 0}
 #lt-promo .band h2{color:#fff;max-width:780px;margin:0 auto 10px}
 #lt-promo .band p{color:#cfc6ba;max-width:660px;margin:0 auto}
-#lt-promo .pil{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:34px}
+#lt-promo .pil{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:34px}
 #lt-promo .pil div{border:1px solid rgba(245,239,229,.16);border-radius:14px;padding:18px 14px;text-align:center}
 #lt-promo .pil b{display:block;font-family:Fraunces,Georgia,serif;font-size:19px;color:#fff;margin-bottom:4px}
 #lt-promo .pil span{font-size:13px;color:#cfc6ba;line-height:1.45;display:block}
 /* produits */
 #lt-promo .prods{display:grid;grid-template-columns:repeat(6,1fr);gap:20px;margin-top:40px}
 #lt-promo .pr{grid-column:span 2;background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column}
-#lt-promo .pr:nth-child(4){grid-column:2/span 2}
 #lt-promo .pr .pic{position:relative;aspect-ratio:1/1;background:var(--soft);display:grid;place-items:center;overflow:hidden}
 #lt-promo .pr .pic img{width:100%;height:100%;object-fit:contain;display:block;padding:18px}
 #lt-promo .pr .pic .mono{font-family:Fraunces,Georgia,serif;font-size:56px;color:var(--bronze);opacity:.55}
@@ -136,8 +136,7 @@
 #lt-promo .legal{font-size:12px;color:var(--muted);text-align:center;max-width:780px;margin:28px auto 0}
 @media(max-width:980px){
   #lt-promo .prods{grid-template-columns:1fr 1fr}
-  #lt-promo .pr,#lt-promo .pr:nth-child(4){grid-column:auto}
-  #lt-promo .pr:nth-child(5){grid-column:1/-1;max-width:520px;justify-self:center;width:100%}
+  #lt-promo .pr{grid-column:auto}
   #lt-promo .pil{grid-template-columns:repeat(3,1fr)}
   #lt-promo .day{grid-template-columns:1fr 1fr}
 }
@@ -146,9 +145,7 @@
   #lt-promo .w{padding:0 18px}
   #lt-promo .hero{padding:44px 0 52px}
   #lt-promo .prods,#lt-promo .two,#lt-promo .tes,#lt-promo .day,#lt-promo .pack{grid-template-columns:1fr}
-  #lt-promo .pr:nth-child(5){max-width:none}
   #lt-promo .pil{grid-template-columns:1fr 1fr}
-  #lt-promo .pil div:last-child{grid-column:1/-1}
   #lt-promo .pack .l,#lt-promo .pack .r{padding:32px 24px}
   #lt-promo .story{grid-template-columns:1fr;gap:6px;padding:26px}
   #lt-promo .final{padding:40px 22px}
@@ -173,13 +170,14 @@ const CONFIG={
   seuil:40,
   /* Lien d'achat général (ta boutique Partner.Co). Chaque produit peut avoir son propre lien plus bas. */
   lien:"https://partner.co/",
-  /* Lien de l'ensemble complet (panier avec les 5 produits). Vide = lien général. */
+  /* Lien de l'ensemble complet (panier avec les 6 produits). Vide = lien général. */
   lienEnsemble:"",
   /* PRODUITS : prix régulier (ex. "89,95 $"), lien d'achat et photo (téléversée dans la médiathèque GHL).
      Le prix réduit se calcule tout seul. Prix vide = on affiche seulement « -25 % ». */
   produits:{
     restoriix:  {prix:"", lien:"", img:""},
     rejuveniix: {prix:"", lien:"", img:""},
+    optimals:   {prix:"", lien:"", img:""},   // Optimal-V et Optimal-M
     renew:      {prix:"", lien:"", img:""},
     sugarstop:  {prix:"", lien:"", img:""},
     beautyboost:{prix:"", lien:"", img:""}
@@ -204,7 +202,10 @@ const P=[
   d:"Un complément de purification qui soutient les processus naturels de détoxification du corps.",
   i:["Zéolite et charbon activé","Chlorelle et spiruline","Superaliments verts"],
   note:"À prendre à distance des médicaments et des autres suppléments, selon l'étiquette."},
- {id:"renew",n:"Renew",m:"Rn",role:"Nourrir les cellules",
+ {id:"optimals",n:"Optimals",m:"O",role:"La base",
+  d:"Bien plus qu'une multivitamine : vitamines, minéraux et antioxydants en doses optimales.",
+  i:["Optimal-V et Optimal-M","Vitamines, minéraux et antioxydants","Une base solide au quotidien"]},
+ {id:"renew",n:"Renew",m:"Rn",role:"Bien vieillir",
   d:"Une formule brevetée de vitamines, minéraux et plantes, pensée pour bien vieillir.",
   i:["Vitamines et minéraux","Extraits de plantes","Pour le vieillissement en santé"]},
  {id:"rejuveniix",n:"Rejuveniix",m:"Rj",role:"Antioxydants et énergie",
@@ -214,15 +215,15 @@ const P=[
  {id:"sugarstop",n:"CoLab Sugar Stop",m:"S",role:"Calmer le sucre",
   d:"Des fibres, du haricot blanc et du L-arabinose pour réduire l'absorption des sucres. Saveur mangue.",
   i:["Fibres","Extrait de haricot blanc","L-arabinose"]},
- {id:"beautyboost",n:"Optimals Beauty Boost",m:"B",role:"Hydrater de l'intérieur",
+ {id:"beautyboost",n:"Beauty Boost",m:"B",role:"Hydrater de l'intérieur",
   d:"Une hydratation beauté avec plus de 3 000 mg d'électrolytes. Saveur mandarine-papaye, végane.",
   i:["Plus de 3 000 mg d'électrolytes","Biotine et algues rouges","Enzymes"]}
 ];
-const PIL=[["Purifier","Restoriix"],["Nourrir","Renew"],["Protéger","Rejuveniix"],["Équilibrer","Sugar Stop"],["Hydrater","Beauty Boost"]];
-const DAY=[["Matin","Hydrater","Beauty Boost dans ta bouteille d'eau, pour bien partir la journée."],["Au repas","Nourrir","Renew, selon l'étiquette, avec un de tes repas."],["Avant un repas","Équilibrer","Sugar Stop avant un repas plus riche en féculents."],["En après-midi","Recharger","Rejuveniix au lieu du café de 14 h."]];
+const PIL=[["Purifier","Restoriix"],["Nourrir","Optimals"],["Préserver","Renew"],["Protéger","Rejuveniix"],["Équilibrer","Sugar Stop"],["Hydrater","Beauty Boost"]];
+const DAY=[["Matin","Hydrater","Beauty Boost dans ta bouteille d'eau, pour bien partir la journée."],["Au repas","Nourrir et préserver","Optimals et Renew, selon l'étiquette, avec tes repas."],["Avant un repas","Équilibrer","Sugar Stop avant un repas plus riche en féculents."],["En après-midi","Recharger","Rejuveniix au lieu du café de 14 h."]];
 const FAQ=[
  ["Combien de temps dure la promo?",FIN?`Jusqu'au ${jourFin} à minuit (heure de l'Est), ou jusqu'à épuisement des stocks. Après, les produits reviennent au prix régulier.`:"Pour une durée limitée seulement. Après, les produits reviennent au prix régulier."],
- ["Est-ce que je dois prendre les 5 produits?","Non. Chaque produit s'achète seul. Restoriix est le cœur de la routine détox, et les autres viennent soutenir l'hydratation, la nutrition et l'équilibre. Si tu hésites, écris-moi et on regarde ensemble ce qui te convient."],
+ ["Est-ce que je dois prendre les 6 produits?","Non. Chaque produit s'achète seul. Restoriix est le cœur de la routine détox, et les autres viennent soutenir l'hydratation, la nutrition de base et l'équilibre. Si tu hésites, écris-moi et on regarde ensemble ce qui te convient."],
  ["Comment je prends Restoriix?","Selon les indications de l'étiquette, à distance de tes médicaments et de tes autres suppléments. Bois beaucoup d'eau : c'est là que Beauty Boost devient ton meilleur allié."],
  ["Rejuveniix contient de la caféine?","Oui, de la caféine naturelle de café vert. Évite-le en fin de journée si tu y es sensible, et tiens compte de ton café."],
  ["Est-ce que ça remplace une alimentation saine?","Non. Ces produits accompagnent une démarche globale : bien manger, bouger, bien dormir, et réduire tes expositions aux toxines du quotidien (plastiques, produits ménagers, cosmétiques)."],
@@ -243,10 +244,10 @@ const GATED=CONFIG.seuil>0&&!!CONFIG.video.trim()&&!deja&&qs.get("acces")!=="1";
 root.innerHTML=`
 <div class="top">-${CONFIG.rabais} % sur la routine détox · ${FIN?`Jusqu'au ${esc(jourFin)} seulement`:"Pour une durée limitée"}</div>
 <section class="hero c"><div class="w">
-  <div class="badge"><b>-${CONFIG.rabais} %</b> sur 5 produits</div>
+  <div class="badge"><b>-${CONFIG.rabais} %</b> sur 6 produits</div>
   <div class="k">Style de vie Lowtox · Promo limitée</div>
   <h1>Donne un coup de main à ton corps pour <em>faire le ménage</em></h1>
-  <p class="lead">Ton corps se détoxifie tous les jours. Mais entre les plastiques, le sucre et le stress, il en a beaucoup sur les épaules. Dans cette vidéo, je t'explique comment 5 produits peuvent soutenir ses processus naturels.</p>
+  <p class="lead">Ton corps se détoxifie tous les jours. Mais entre les plastiques, le sucre et le stress, il en a beaucoup sur les épaules. Dans cette vidéo, je t'explique comment 6 produits peuvent soutenir ses processus naturels.</p>
   <div class="vid ${CONFIG.videoVertical?"v916":""}">${vid}</div>
   ${GATED?`<div class="lock" data-lock><p><b>Regarde la vidéo :</b> tes prix à -${CONFIG.rabais} % s'affichent juste en dessous dès que tu en as vu ${CONFIG.seuil} %.</p><div class="bar" role="progressbar" aria-label="Progression de la vidéo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i></i></div></div>`:""}
   <div class="acts" data-acts ${GATED?"hidden":""}><a class="btn light" href="#produits">Voir mes prix à -${CONFIG.rabais} % <span aria-hidden="true">↓</span></a>${cta("Je prends l'ensemble",CONFIG.lienEnsemble,"ghost")}</div>
@@ -255,13 +256,13 @@ root.innerHTML=`
 
 <div class="band c"><div class="w">
   <h2>La détox, ce n'est pas une cure miracle</h2>
-  <p>C'est ton foie, tes reins, ta peau et ton système digestif qui font le travail, chaque jour. Mon approche : réduire ce qui entre, et donner à ton corps ce dont il a besoin pour bien faire son travail. Cinq piliers, cinq produits.</p>
+  <p>C'est ton foie, tes reins, ta peau et ton système digestif qui font le travail, chaque jour. Mon approche : réduire ce qui entre, et donner à ton corps ce dont il a besoin pour bien faire son travail. Six piliers, six produits.</p>
   <div class="pil">${PIL.map(x=>`<div><b>${x[0]}</b><span>${x[1]}</span></div>`).join("")}</div>
 </div></div>
 
 <div class="gate" data-gate ${GATED?"hidden":""}>
 <section id="produits"><div class="w">
-  <div class="c"><div class="k">Les produits en promo</div><h2>-${CONFIG.rabais} % sur chacun</h2><p class="lead">Prends seulement celui dont tu as besoin, ou les cinq pour une routine complète.</p></div>
+  <div class="c"><div class="k">Les produits en promo</div><h2>-${CONFIG.rabais} % sur chacun</h2><p class="lead">Prends seulement celui dont tu as besoin, ou les six pour une routine complète.</p></div>
   <div class="prods">${pr.map(p=>`<article class="pr"><div class="pic">${p.img?`<img src="${esc(p.img)}" alt="${esc(p.n)}" loading="lazy">`:`<div class="mono" aria-hidden="true">${p.m}</div>`}<div class="off">-${CONFIG.rabais} %</div></div>
     <div class="bd"><div class="role">${esc(p.role)}</div><h3>${esc(p.n)}</h3><p class="d">${esc(p.d)}</p>
     <ul>${p.i.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>${p.note?`<p class="note">${esc(p.note)}</p>`:""}
@@ -276,9 +277,9 @@ root.innerHTML=`
 
 <section style="padding-top:0"><div class="w">
   <div class="pack">
-    <div class="l"><div class="k">L'ensemble complet</div><h2>La routine détox au complet</h2><p>Les cinq produits ensemble, pour couvrir les cinq piliers : purifier, nourrir, protéger, équilibrer et hydrater.</p>
+    <div class="l"><div class="k">L'ensemble complet</div><h2>La routine détox au complet</h2><p>Les six produits ensemble, pour couvrir les six piliers : purifier, nourrir, préserver, protéger, équilibrer et hydrater.</p>
       <ul>${pr.map(p=>`<li>${esc(p.n)}<span>${p.reg?fmt(p.promo):"-"+CONFIG.rabais+" %"}</span></li>`).join("")}</ul></div>
-    <div class="r">${allPrix?`<s>${fmt(totReg)}</s><div class="big">${fmt(totReg*(1-R))}</div><div class="eco">Tu économises ${fmt(totReg*R)}</div>`:`<div class="big">-${CONFIG.rabais} %</div><div class="eco">sur les 5 produits</div>`}
+    <div class="r">${allPrix?`<s>${fmt(totReg)}</s><div class="big">${fmt(totReg*(1-R))}</div><div class="eco">Tu économises ${fmt(totReg*R)}</div>`:`<div class="big">-${CONFIG.rabais} %</div><div class="eco">sur les 6 produits</div>`}
       ${cta("Je prends l'ensemble",CONFIG.lienEnsemble,"light")}<p class="small" style="margin:16px 0 0;color:#a39a8e">${FIN?`Prix valides jusqu'au ${esc(jourFin)}.`:"Prix valides pour une durée limitée."}</p></div>
   </div>
 </div></section>
