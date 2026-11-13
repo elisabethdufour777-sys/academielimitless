@@ -33,23 +33,23 @@
 /* bandeau promo */
 #lt-promo .top{background:var(--terra);color:#fff;text-align:center;font-size:14px;font-weight:500;letter-spacing:.04em;padding:10px 16px}
 /* hero pleine largeur : texte à gauche, vidéo à droite */
-#lt-promo .hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);grid-template-areas:"top vid" "bot vid";background:var(--cream);padding:0;width:100%}
-#lt-promo .h-top{grid-area:top;align-self:end;padding:48px 48px 0 max(48px,calc((100vw - 1320px)/2 + 48px))}
-#lt-promo .h-bot{grid-area:bot;align-self:start;padding:0 48px 48px max(48px,calc((100vw - 1320px)/2 + 48px))}
-#lt-promo .h-vid{grid-area:vid;background:var(--sand);display:flex;align-items:center;justify-content:center;padding:40px max(40px,calc((100vw - 1320px)/2 + 40px)) 40px 40px;min-height:min(78vh,720px)}
+#lt-promo .hero{background:var(--cream);padding:0;width:100%;text-align:center}
+#lt-promo .h-top{padding:28px 48px 24px;max-width:1000px;margin:0 auto}#lt-promo .h-top h1{margin:0}
+#lt-promo .h-bot{background:var(--sand);padding:30px 48px 56px;display:flex;flex-direction:column;align-items:center}#lt-promo .h-bot .lead{margin:0 auto}
+#lt-promo .h-vid{padding:0 48px;display:flex;justify-content:center;background:linear-gradient(var(--cream) 50%,var(--sand) 50%)}#lt-promo .h-vid .vid{width:min(100%,1040px,calc((100vh - 270px)*16/9));min-width:min(100%,560px)}
 #lt-promo .pill{display:inline-flex;align-items:center;gap:10px;background:var(--white);border:1px solid var(--line);border-radius:30px;padding:7px 16px 7px 8px;font-size:13px;color:var(--brown);margin-bottom:20px}
 #lt-promo .pill b{background:var(--terra);color:#fff;border-radius:30px;padding:3px 10px;font-weight:600}
 #lt-promo .hero .lead{margin-bottom:6px}
 /* vidéo */
 #lt-promo .vid{position:relative;width:100%;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:var(--ink);box-shadow:0 30px 60px rgba(42,33,24,.22)}
-#lt-promo .vid.v916{aspect-ratio:9/16;width:auto;height:min(72vh,680px);max-width:100%}
+#lt-promo .vid.v916{aspect-ratio:9/16;width:auto!important;min-width:0!important;height:min(calc(100vh - 270px),720px);max-width:100%}
 #lt-promo .vid iframe,#lt-promo .vid video{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;object-fit:cover}
 #lt-promo .vid .ph{position:absolute;inset:0;display:grid;place-items:center;align-content:center;gap:14px;color:var(--on-dark);font-size:15px;text-align:center;padding:24px}
 #lt-promo .vid .play{width:84px;height:84px;border-radius:50%;background:var(--terra);display:grid;place-items:center;margin:0 auto}
 #lt-promo .vid .play:after{content:"";border-left:24px solid #fff;border-top:15px solid transparent;border-bottom:15px solid transparent;margin-left:6px}
-#lt-promo .hero .acts{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+#lt-promo .hero .acts{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:24px}
 /* déblocage */
-#lt-promo .lock{max-width:520px;margin:24px 0 0;background:var(--white);border:1px solid var(--line);border-radius:16px;padding:16px 20px}
+#lt-promo .lock{width:100%;max-width:520px;margin:22px auto 0;background:var(--white);border:1px solid var(--line);border-radius:16px;padding:16px 20px}
 #lt-promo .lock p{color:var(--muted);font-size:15px;margin:0 0 10px}
 #lt-promo .lock p b{color:var(--ink);font-weight:600}
 #lt-promo .bar{height:6px;border-radius:99px;background:var(--sand);overflow:hidden}
@@ -62,10 +62,10 @@
 #lt-promo .cd{margin-top:26px}
 #lt-promo .cd-t{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:var(--brown-l);margin-bottom:8px}
 #lt-promo .cd-g{display:flex;justify-content:center}
-#lt-promo .hero .cd-g{justify-content:flex-start}
+#lt-promo .hero .cd-g{justify-content:center}
 #lt-promo .cd-g div{text-align:center;padding:0 20px;min-width:84px}#lt-promo .cd-g div+div{border-left:1px solid var(--line)}
-#lt-promo .hero .cd-g div:first-child{padding-left:0;min-width:64px}
-#lt-promo .cd-g b{display:block;font-family:var(--serif);font-weight:500;font-size:44px;line-height:1;font-variant-numeric:tabular-nums;margin-bottom:4px;color:var(--ink)}
+
+#lt-promo .cd-g b{display:block;font-family:var(--sans);font-weight:300;font-size:40px;line-height:1;font-variant-numeric:tabular-nums;margin-bottom:4px;color:var(--ink)}
 #lt-promo .cd-g span{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 #lt-promo .cd.dark .cd-t{color:var(--sand-d)}#lt-promo .cd.dark .cd-g div+div{border-color:var(--line-dark)}
 #lt-promo .cd.dark .cd-g b{color:#fff}#lt-promo .cd.dark .cd-g span{color:var(--on-dark)}
@@ -143,12 +143,12 @@
 #lt-promo .legal{font-size:12px;color:var(--muted);text-align:center;max-width:780px;margin:28px auto 0}
 @media(max-width:980px){
   #lt-promo .w{padding:0 28px}
-  #lt-promo .hero{grid-template-columns:1fr;grid-template-areas:"top" "vid" "bot"}
-  #lt-promo .h-top{padding:28px 28px 18px}
-  #lt-promo .h-vid{padding:0 28px;min-height:0;background:linear-gradient(var(--cream) 50%,var(--sand) 50%)}
-  #lt-promo .h-bot{padding:18px 28px 40px;background:var(--sand)}
+
+  #lt-promo .h-top{padding:26px 28px 18px}#lt-promo .h-vid{padding:0 28px}#lt-promo .h-bot{padding:26px 28px 44px}
+
+
   #lt-promo .lock{background:var(--white)}
-  #lt-promo .vid.v916{height:auto;width:min(100%,380px)}
+
   #lt-promo .prods{grid-template-columns:1fr 1fr}
   #lt-promo .pil{grid-template-columns:repeat(3,1fr)}
   #lt-promo .day{grid-template-columns:1fr 1fr}
@@ -157,19 +157,19 @@
   #lt-promo section{padding:56px 0}
   #lt-promo .w{padding:0 18px}
   #lt-promo h1{font-size:clamp(32px,8.6vw,40px)}
-  #lt-promo .h-top{padding:22px 18px 16px}
+  #lt-promo .h-top{padding:20px 18px 16px}
   #lt-promo .h-top .k{display:none}
   #lt-promo .pill{margin-bottom:14px}
-  #lt-promo .h-vid{padding:0}
+  #lt-promo .h-vid{padding:0}#lt-promo .h-vid .vid{width:100%;min-width:0}
   #lt-promo .vid{border-radius:0;box-shadow:none}
   #lt-promo .vid.v916{width:100%;max-width:none;border-radius:0}
-  #lt-promo .h-bot{padding:18px 18px 40px}
+  #lt-promo .h-bot{padding:22px 18px 40px}
   #lt-promo .prods,#lt-promo .two,#lt-promo .tes,#lt-promo .day,#lt-promo .pack{grid-template-columns:1fr}
   #lt-promo .pil{grid-template-columns:1fr 1fr}
   #lt-promo .pack .l,#lt-promo .pack .r{padding:32px 24px}
   #lt-promo .story{grid-template-columns:1fr;gap:4px;padding:26px}
   #lt-promo .final{padding:44px 22px}
-  #lt-promo .cd-g div,#lt-promo .hero .cd-g div:first-child{min-width:0;flex:1;padding:0 6px}#lt-promo .cd-g b{font-size:34px}#lt-promo .cd-g span{font-size:10px;letter-spacing:.06em}
+  #lt-promo .cd-g div{min-width:0;flex:1;padding:0 6px}#lt-promo .cd-g b{font-size:34px}#lt-promo .cd-g span{font-size:10px;letter-spacing:.06em}
   #lt-promo .hero .acts .btn{width:100%}
 }
 </style>
@@ -266,8 +266,7 @@ root.innerHTML=`
 <section class="hero">
   <div class="h-top">
     <div class="pill"><b>-${CONFIG.rabais} %</b> sur 6 produits · ${FIN?`jusqu'au ${esc(jourFin)}`:"durée limitée"}</div>
-    <div class="k">Style de vie Lowtox · La routine détox</div>
-    <h1>Donne un coup de main à ton corps pour <em>faire le ménage</em></h1>
+    <h1>Aide ton corps à <em>faire le ménage</em></h1>
   </div>
   <div class="h-vid"><div class="vid ${CONFIG.videoVertical?"v916":""}">${vid}</div></div>
   <div class="h-bot">
