@@ -5,19 +5,19 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#F7F3EC">
-<meta name="description" content="L'app de formation de l'équipe Limitless chez Partner.Co : réseaux sociaux, business, produits et mindset.">
+<meta name="description" content="Le QG Limitless, l'app de l'équipe Limitless chez Partner.Co : tout pour bien démarrer, réseaux sociaux, business, produits et mindset.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Académie Limitless">
-<meta property="og:description" content="Tout ce dont tu as besoin pour faire de ta décision un succès : réseaux sociaux, business, produits et mindset.">
+<meta property="og:title" content="Le QG Limitless · Tout pour bien démarrer">
+<meta property="og:description" content="Tout pour bien démarrer : réseaux sociaux, business, produits et mindset.">
 <meta property="og:url" content="https://academie.dufourmedia.ca/">
-<meta property="og:image" content="https://academie.dufourmedia.ca/img/apercu.jpg">
+<meta property="og:image" content="https://academie.dufourmedia.ca/img/apercu.jpg?v=qg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="fr_CA">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<title>Académie Limitless</title>
+<title>Le QG Limitless</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&family=Poppins:wght@600&family=DM+Mono:wght@400;500&display=swap">
 <style>
@@ -960,8 +960,8 @@ accueil(m){
      <p class="cat-d">${esc(c.desc)}</p><div class="bar"><i style="width:${pc}%"></i></div>
      </div></a>`;
   }).join("");
-  return `<div class="home-hero"><div class="kicker" style="color:inherit;opacity:.8">Équipe Limitless · Partner.Co</div>
-  <h1>Bienvenue dans l'équipe Limitless</h1><img class="home-team-photo" src="/img/equipe-limitless.jpg" alt="L’équipe Limitless réunie sur la plage">
+  return `<div class="home-hero"><div class="kicker" style="color:inherit;opacity:.8">Le QG Limitless · Tout pour bien démarrer</div>
+  <h1>Bienvenue au QG Limitless</h1><img class="home-team-photo" src="/img/equipe-limitless.jpg" alt="L’équipe Limitless réunie sur la plage">
   <p>Ici, tu trouveras tout ce dont tu as besoin pour faire de ta décision un succès. Choisis ce que tu veux travailler aujourd'hui : pas besoin de suivre l'ordre.</p>
   ${p>0?`<div class="pill-row"><a class="btn" style="background:var(--sun);color:var(--sun-ink)" href="#${state.last&&MODULES.some(x=>x.id===state.last)?state.last:firstOpen()}">Reprendre où j'étais rendue →</a></div>`:`<div class="pill-row"><a class="btn" style="background:var(--sun);color:var(--sun-ink)" href="#cahier">Commencer ma première semaine →</a></div>`}</div>
   
@@ -1135,12 +1135,12 @@ catalogue(m){
   return `<div class="cat-frame"><iframe src="https://catalogue-partnerco.elisabethdufour777.workers.dev/" title="Catalogue des produits Partner.Co Canada" referrerpolicy="no-referrer"></iframe></div>`;
 },
 formationproduits(m){
-  return head(m,"Des vidéos produits à regarder dans l’Académie. Coche chaque ressource au fur et à mesure.")+
+  return head(m,"Des vidéos produits à regarder dans le QG. Coche chaque ressource au fur et à mesure.")+
   `<section class="training-grid" aria-label="Formations produits">
     <article class="card">
       <span class="sticker st-sun">Aliments fonctionnels · Noni</span>
       <h2 style="font-size:24px">Noni</h2>
-      <p>Regarde la formation et écoute-la ici, sans quitter l’Académie.</p>
+      <p>Regarde la formation et écoute-la ici, sans quitter le QG.</p>
       <div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/tJsRoVaQTAk" title="Formation sur le Noni" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
       ${lessonItem(m.lessons[0])}
       <p><a href="https://noniresearch.org/" target="_blank" rel="noopener">Consulter les études sur le Noni ↗</a></p>
@@ -1157,7 +1157,7 @@ formationproduits(m){
     <article class="card">
       <span class="sticker st-sun">Technologie de bien-être</span>
       <h2 style="font-size:24px">Bracelet CM2</h2>
-      <p>Regarde la formation et écoute-la ici, sans quitter l’Académie.</p>
+      <p>Regarde la formation et écoute-la ici, sans quitter le QG.</p>
       <div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/GlY3xA3N_Ag" title="Formation sur le bracelet CM2" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
       ${lessonItem(m.lessons[5])}
       <p class="ref">Si le lecteur ne fonctionne pas, <a href="https://youtu.be/GlY3xA3N_Ag" target="_blank" rel="noopener">ouvrir la vidéo sur YouTube ↗</a>.</p>
@@ -1228,7 +1228,7 @@ formationproduits(m){
       <p>Découvre aussi les transformations partagées dans le board.</p>
       <p class="pill-row"><a class="btn" href="https://app.boards.com/boards/Z0Nhsz.gQlY0qTQ" target="_blank" rel="noopener">Voir les transformations ↗</a></p>
       <p>Le programme d’accompagnement est gratuit avec l’achat des gouttes. Remplis tes informations pour recevoir un courriel chaque jour. Je suis aussi ici pour t’aider!</p>
-      <p>Copie ce lien de l’Académie pour le partager à tes clientes, ou utilise-le pour t’inscrire toi-même.</p>
+      <p>Copie ce lien du QG pour le partager à tes clientes, ou utilise-le pour t’inscrire toi-même.</p>
       <p class="pill-row"><a class="btn" href="https://limitlesssupport.com/slimming" target="_blank" rel="noopener">S’inscrire au programme ↗</a></p>
       <p class="ref">Une fois inscrite, ouvre la plateforme du programme :</p>
       <p><a href="https://members.limitlesssupport.com/" target="_blank" rel="noopener">Accéder à la plateforme ↗</a></p>
@@ -1291,7 +1291,7 @@ cap(m){
    <div class="card"><span class="meta">L’invitation</span><p>Tu termines par une question ouverte : « Si tu veux, je peux t’envoyer les détails. Qu’est-ce qui t’intéresse le plus? »</p></div>
    <div class="card"><span class="meta">La ressource</span><p>Tu partages une fiche, une vidéo ou une page adaptée à sa demande, puis tu vérifies si elle a trouvé sa réponse.</p></div>
   </div></section>
-  <section class="blk"><h2>Ta vidéo explicative</h2><article class="card"><p>Regarde la vidéo et écoute-la ici, sans quitter l’Académie.</p><div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/E8W1Quh5PJ4" title="La méthode CAP" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><p class="ref">Si le lecteur ne fonctionne pas, <a href="https://youtu.be/E8W1Quh5PJ4" target="_blank" rel="noopener">ouvrir la vidéo sur YouTube ↗</a>.</p></article></section>`+lessons(m)+nav(m);
+  <section class="blk"><h2>Ta vidéo explicative</h2><article class="card"><p>Regarde la vidéo et écoute-la ici, sans quitter le QG.</p><div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/E8W1Quh5PJ4" title="La méthode CAP" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><p class="ref">Si le lecteur ne fonctionne pas, <a href="https://youtu.be/E8W1Quh5PJ4" target="_blank" rel="noopener">ouvrir la vidéo sur YouTube ↗</a>.</p></article></section>`+lessons(m)+nav(m);
 },
 conformite(m){
   return head(m,"Ce module protège ton équipe et ta réputation. On le prend au sérieux.")+
@@ -1363,7 +1363,7 @@ backoffice(m){
    <tr><td><b>Service client</b></td><td><a href="https://partner.co/fr-ca/contact-us" target="_blank" rel="noopener">partner.co/fr-ca/contact-us ↗</a></td></tr>
    <tr><td><b>Politique de retour</b></td><td><a href="https://partner.co/fr-ca/return-policy" target="_blank" rel="noopener">partner.co/fr-ca/return-policy ↗</a></td></tr>
    <tr><td><b>Événements</b> (dont la PXP, en septembre 2026 à Orlando)</td><td><a href="https://partner.co/fr-ca/events" target="_blank" rel="noopener">partner.co/fr-ca/events ↗</a></td></tr>
-   <tr><td><b>Catalogue Canada de l'équipe</b></td><td><a href="#catalogue">Ouvrir le catalogue dans l'Académie</a></td></tr>
+   <tr><td><b>Catalogue Canada de l'équipe</b></td><td><a href="#catalogue">Ouvrir le catalogue dans le QG</a></td></tr>
   </tbody></table></div></section>
   <section class="blk"><h2>Questions fréquentes</h2><div class="faq">
    <details><summary>Une cliente veut devenir partenaire : comment je fais?</summary><div class="vs">
@@ -1628,7 +1628,7 @@ const MDESC={
  recrutement:"Parler de ton projet sans post « opportunité », et repérer les curieuses.",
  defi:"14 jours d'actions simples pour mettre tout ça en pratique.",
  catalogue:"Tous les produits Partner.Co Canada, avec leurs ingrédients et leurs bienfaits.",
- formationproduits:"Les vidéos de formation sur les produits, à regarder dans l’Académie.",
+ formationproduits:"Les vidéos de formation sur les produits, à regarder dans le QG.",
  produits:"Le catalogue par besoin, et les deux boutiques (Canada et États-Unis).",
  youth:"Le nouveau système Co.Lab : les 3 étapes, les comparatifs et le pré-lancement.",
  storiesprod:"Des séquences de 6 stories à télécharger, prêtes à publier.",
@@ -1916,7 +1916,7 @@ async function makeSyncLink(){const o={};SYNC_KEYS.forEach(k=>{if(state[k]!==und
 async function checkSyncHash(){const h=location.hash;if(!h.startsWith("#sync="))return false;
   try{const data=JSON.parse(await unb64gz(h.slice(6)));
     const box=document.getElementById("main");
-    box.innerHTML=`<div class="mod-h"><h1>Transférer ta progression</h1><p class="lead">Ce lien contient ta progression de l'Académie. Veux-tu la récupérer sur cet appareil? Ce qui est déjà ici sera remplacé.</p></div><div class="pill-row"><button class="btn" id="sync-yes" type="button">Oui, récupérer ma progression</button><a class="btn ghost" href="#accueil">Non, garder ce qui est ici</a></div>`;
+    box.innerHTML=`<div class="mod-h"><h1>Transférer ta progression</h1><p class="lead">Ce lien contient ta progression du QG. Veux-tu la récupérer sur cet appareil? Ce qui est déjà ici sera remplacé.</p></div><div class="pill-row"><button class="btn" id="sync-yes" type="button">Oui, récupérer ma progression</button><a class="btn ghost" href="#accueil">Non, garder ce qui est ici</a></div>`;
     window.__syncData=data;return true;}
   catch(e){history.replaceState(null,"","#accueil");return false;}}
 document.addEventListener("click",async e=>{
@@ -1979,7 +1979,7 @@ document.addEventListener("submit",async e=>{
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){ACCT.msg="Vérifie ton adresse courriel.";acctRefresh();return;}
   ACCT.busy=true;ACCT.msg="";acctRefresh();
   try{const r=await fetch("/api/login",{method:"POST",credentials:"same-origin",headers:{"content-type":"application/json"},body:JSON.stringify({email,prenom})});
-    ACCT.msg=r.ok?`C'est envoyé! Regarde tes courriels (${email}) et clique sur le bouton « Ouvrir mon Académie ». Le lien est valide 15 minutes. Pense à vérifier tes indésirables.`:(r.status===429?"Tu as demandé plusieurs liens de suite. Attends quelques minutes avant de réessayer.":"L'envoi n'a pas fonctionné. Réessaie dans un instant.");}
+    ACCT.msg=r.ok?`C'est envoyé! Regarde tes courriels (${email}) et clique sur le bouton « Ouvrir mon QG ». Le lien est valide 15 minutes. Pense à vérifier tes indésirables.`:(r.status===429?"Tu as demandé plusieurs liens de suite. Attends quelques minutes avant de réessayer.":"L'envoi n'a pas fonctionné. Réessaie dans un instant.");}
   catch(err){ACCT.msg="L'envoi n'a pas fonctionné. Vérifie ta connexion Internet.";}
   ACCT.busy=false;acctRefresh();
 });

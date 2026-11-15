@@ -1,4 +1,4 @@
-// Académie Limitless : connexion par lien magique (envoyé par GHL) et sauvegarde de la progression.
+// Le QG Limitless : connexion par lien magique (envoyé par GHL) et sauvegarde de la progression.
 // Worker Cloudflare : sert les fichiers de /public et répond aux routes /api/*.
 // Liaisons : KV « ACADEMIE » (wrangler.jsonc) et secret GHL_WEBHOOK_URL (tableau de bord).
 

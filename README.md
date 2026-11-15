@@ -1,4 +1,4 @@
-# Académie Limitless
+# Le QG Limitless
 
 L'app de formation de l'équipe Limitless (Partner.Co). Site statique, hébergé sur Cloudflare Pages.
 

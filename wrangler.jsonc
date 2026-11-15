@@ -1,5 +1,5 @@
 {
-  // Académie Limitless : Worker avec fichiers statiques et API de connexion
+  // Le QG Limitless : Worker avec fichiers statiques et API de connexion
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "academielimitless",
   "main": "src/worker.js",
