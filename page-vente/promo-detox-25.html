@@ -74,7 +74,8 @@ html,body{overflow-x:hidden}
 #lt-promo .player{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:18px;width:100%;max-width:min(1260px,calc((100vh - 280px)*16/9 + 350px));margin:0 auto;padding:0 40px;align-items:stretch;scroll-margin-top:12px}
 #lt-promo .player .vid{width:100%;min-width:0}
 #lt-promo .chap{position:relative;background:var(--white);border:1px solid var(--line);border-radius:14px;overflow:hidden;text-align:left;box-shadow:0 30px 60px rgba(107,76,59,.12)}
-#lt-promo .chap-h{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:16px 18px 12px;border-bottom:1px solid var(--line)}
+#lt-promo .chap-h{display:flex;justify-content:space-between;align-items:baseline;gap:10px;width:100%;padding:16px 18px 12px;border:0;border-bottom:1px solid var(--line);background:none;font:inherit;text-align:left;cursor:default}
+#lt-promo .chap-h .fl{display:none}
 #lt-promo .chap-h b{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--terra-d);font-weight:600}
 #lt-promo .chap-h span{font-size:12px;color:var(--muted)}
 #lt-promo .chap-l{position:absolute;top:50px;bottom:0;left:0;right:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:var(--sand-d) transparent}
@@ -90,6 +91,13 @@ html,body{overflow-x:hidden}
   #lt-promo .w{padding:0 28px}
   #lt-promo .player{grid-template-columns:1fr;max-width:820px;padding:0 28px}#lt-promo .h-bot{padding:32px 28px 0}
   #lt-promo .chap-l{position:static;max-height:300px}
+  #lt-promo .chap-h{cursor:pointer;align-items:center;padding:14px 18px}
+  #lt-promo .chap-h .fl{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--terra-d)}
+  #lt-promo .chap-h .fl:after{content:"";width:8px;height:8px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(-135deg) translate(-2px,-2px);transition:transform .2s}
+  #lt-promo .chap.ferme .chap-h .fl:after{transform:rotate(45deg) translate(-2px,-2px)}
+  #lt-promo .chap.ferme .chap-h{border-bottom:0}
+  #lt-promo .chap.ferme .chap-l{display:none}
+  #lt-promo .chap-h .hint{display:none}
 }
 @media(max-width:700px){
   #lt-promo section{padding:56px 0}
@@ -172,7 +180,7 @@ root.innerHTML=`
   <div class="k">Black Friday · jusqu’au ${esc(jourFin||"30 novembre")}</div>
   <div class="w" style="padding:0"><h1>Ton corps sait déjà se détoxifier.<em>Voici comment l’aider, dans le bon ordre.</em></h1></div>
   <div class="player" data-vidbox><div class="vid">${vid}</div>
-    <div class="chap"><div class="chap-h"><b>Chapitres</b><span>Clique pour y aller</span></div>
+    <div class="chap" data-chap><button type="button" class="chap-h" data-chtog aria-expanded="true"><b>Chapitres · ${CONFIG.chapitres.length}</b><span class="hint">Clique pour y aller</span><span class="fl" data-fl>Fermer</span></button>
       <div class="chap-l" data-chl>${CONFIG.chapitres.map(c=>`<button type="button" class="ch${c[2]?" part":""}" data-t="${sec(c[0])}"><span class="t">${esc(c[0])}</span><span class="n">${esc(c[1])}</span></button>`).join("")}</div></div>
   </div>
   <div class="h-bot">
@@ -202,6 +210,12 @@ const v=root.querySelector(".vid video"),yt=root.querySelector("iframe[data-yt]"
 const charger=(src,ok,err)=>{const s=document.createElement("script");s.src=src;if(ok)s.onload=ok;s.onerror=err;document.head.appendChild(s)};
 let seek=t=>{};
 const chs=[...root.querySelectorAll(".ch")],chl=root.querySelector("[data-chl]");let actif=-1;
+/* cellulaire : bouton pour ouvrir et fermer les chapitres (fermés au départ) */
+const chap=root.querySelector("[data-chap]"),tog=root.querySelector("[data-chtog]"),fl=root.querySelector("[data-fl]");
+const mobile=()=>matchMedia("(max-width:980px)").matches;
+const etat=f=>{chap.classList.toggle("ferme",f);tog.setAttribute("aria-expanded",String(!f));fl.textContent=f?"Voir les chapitres":"Fermer"};
+if(mobile())etat(true);
+tog.addEventListener("click",()=>{if(mobile())etat(!chap.classList.contains("ferme"))});
 const cur=t=>{let k=-1;chs.forEach((b,i)=>{if(+b.dataset.t<=t+0.5)k=i});if(k===actif)return;actif=k;
   chs.forEach((b,i)=>b.classList.toggle("on",i===k));
   if(k>=0&&getComputedStyle(chl).position==="absolute"){const b=chs[k];if(b.offsetTop<chl.scrollTop||b.offsetTop+b.offsetHeight>chl.scrollTop+chl.clientHeight)chl.scrollTo({top:b.offsetTop-chl.clientHeight/3,behavior:"smooth"})}};
