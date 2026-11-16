@@ -39,7 +39,6 @@ html,body{overflow-x:hidden}
 /* hero */
 #lt-promo .hero{padding:64px 0 72px;text-align:center}
 #lt-promo .hero h1{margin-bottom:34px}
-#lt-promo .h-vid{display:flex;justify-content:center;padding:0 40px;scroll-margin-top:16px}
 #lt-promo .vid{position:relative;width:min(100%,960px,calc((100vh - 300px)*16/9));min-width:min(100%,560px);aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:var(--sand);box-shadow:0 30px 60px rgba(107,76,59,.22),0 0 0 10px rgba(255,252,247,.55)}
 #lt-promo .vid iframe,#lt-promo .vid video{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;object-fit:cover}
 #lt-promo .vid .ph{position:absolute;inset:0;display:grid;place-items:center;align-content:center;gap:14px;color:var(--brown);font-size:14px;text-align:center;padding:24px}
@@ -71,17 +70,26 @@ html,body{overflow-x:hidden}
 #lt-promo .cd-g b{display:block;font-family:var(--sans);font-weight:300;font-size:34px;line-height:1;font-variant-numeric:tabular-nums;margin-bottom:6px;color:var(--ink)}
 #lt-promo .cd-g span{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
 #lt-promo .over{font-weight:500;color:var(--terra-d)}
-/* chapitres */
-#lt-promo .chs{display:grid;grid-template-columns:1fr 1fr;grid-auto-flow:column;column-gap:40px;margin-top:40px;text-align:left}
-#lt-promo .ch{display:flex;gap:18px;align-items:baseline;width:100%;padding:13px 4px;border:0;border-top:1px solid var(--line);background:none;font:inherit;color:var(--ink);text-align:left;cursor:pointer;border-radius:0;transition:background .2s}
+/* lecteur + chapitres */
+#lt-promo .player{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:18px;width:100%;max-width:min(1260px,calc((100vh - 280px)*16/9 + 350px));margin:0 auto;padding:0 40px;align-items:stretch;scroll-margin-top:12px}
+#lt-promo .player .vid{width:100%;min-width:0}
+#lt-promo .chap{position:relative;background:var(--white);border:1px solid var(--line);border-radius:14px;overflow:hidden;text-align:left;box-shadow:0 30px 60px rgba(107,76,59,.12)}
+#lt-promo .chap-h{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:16px 18px 12px;border-bottom:1px solid var(--line)}
+#lt-promo .chap-h b{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--terra-d);font-weight:600}
+#lt-promo .chap-h span{font-size:12px;color:var(--muted)}
+#lt-promo .chap-l{position:absolute;top:50px;bottom:0;left:0;right:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:var(--sand-d) transparent}
+#lt-promo .ch{display:flex;gap:12px;align-items:baseline;width:100%;padding:10px 18px;border:0;border-bottom:1px solid var(--line);background:none;font:inherit;color:var(--ink);text-align:left;cursor:pointer;border-radius:0;transition:background .2s,box-shadow .2s}
 #lt-promo .ch:hover{background:var(--cream)}
-#lt-promo .ch .t{flex:none;width:58px;font-variant-numeric:tabular-nums;font-size:14px;font-weight:600;color:var(--terra-d)}
-#lt-promo .ch .n{font-size:15.5px;line-height:1.45}
+#lt-promo .ch.on{background:var(--cream);box-shadow:inset 3px 0 0 var(--terra)}
+#lt-promo .ch .t{flex:none;width:44px;font-variant-numeric:tabular-nums;font-size:13px;font-weight:600;color:var(--terra-d)}
+#lt-promo .ch .n{font-size:14.5px;line-height:1.4}
 #lt-promo .ch.part .n{font-weight:600}
+#lt-promo .ch.on .n{color:var(--terra-d)}
 #lt-promo .legal{font-size:12px;color:var(--muted);text-align:center;max-width:760px;margin:0 auto;line-height:1.6}
 @media(max-width:980px){
   #lt-promo .w{padding:0 28px}
-  #lt-promo .h-vid{padding:0 28px}#lt-promo .h-bot{padding:32px 28px 0}
+  #lt-promo .player{grid-template-columns:1fr;max-width:820px;padding:0 28px}#lt-promo .h-bot{padding:32px 28px 0}
+  #lt-promo .chap-l{position:static;max-height:300px}
 }
 @media(max-width:700px){
   #lt-promo section{padding:56px 0}
@@ -89,11 +97,10 @@ html,body{overflow-x:hidden}
   #lt-promo .hero{padding:36px 0 52px}
   #lt-promo h1{font-size:clamp(30px,8.4vw,38px)}
   #lt-promo .hero h1{margin:0 20px 24px}
-  #lt-promo .h-vid{padding:0}
+  #lt-promo .player{padding:0;gap:0}#lt-promo .chap{border-radius:0;border-left:0;border-right:0;box-shadow:none}
   #lt-promo .vid{width:100%;min-width:0;border-radius:0;box-shadow:none}
   #lt-promo .h-bot{padding:28px 20px 0}
-  #lt-promo .offres,#lt-promo .chs{grid-template-columns:1fr}
-  #lt-promo .chs{grid-auto-flow:row;grid-template-rows:none!important}
+  #lt-promo .offres{grid-template-columns:1fr}
   #lt-promo .cd-g div{min-width:0;flex:1;padding:0 6px}#lt-promo .cd-g b{font-size:28px}
 }
 </style>
@@ -164,9 +171,12 @@ root.innerHTML=`
 <section class="hero s-zen">
   <div class="k">Black Friday · jusqu’au ${esc(jourFin||"30 novembre")}</div>
   <div class="w" style="padding:0"><h1>Ton corps sait déjà se détoxifier.<em>Voici comment l’aider, dans le bon ordre.</em></h1></div>
-  <div class="h-vid" data-vidbox><div class="vid">${vid}</div></div>
+  <div class="player" data-vidbox><div class="vid">${vid}</div>
+    <div class="chap"><div class="chap-h"><b>Chapitres</b><span>Clique pour y aller</span></div>
+      <div class="chap-l" data-chl>${CONFIG.chapitres.map(c=>`<button type="button" class="ch${c[2]?" part":""}" data-t="${sec(c[0])}"><span class="t">${esc(c[0])}</span><span class="n">${esc(c[1])}</span></button>`).join("")}</div></div>
+  </div>
   <div class="h-bot">
-    <p class="lead">Comment ton corps se détoxifie vraiment, pourquoi ça bloque parfois, et quels boosters l’aident, dans quel ordre. Utilise les chapitres plus bas pour aller directement à ce qui t’intéresse.</p>
+    <p class="lead">Comment ton corps se détoxifie vraiment, pourquoi ça bloque parfois, et quels boosters l’aident, dans quel ordre. Clique sur un chapitre pour aller directement à ce qui t’intéresse.</p>
     ${GATED?`<div class="lock" data-lock><p><b>Regarde la vidéo :</b> tes offres du Black Friday s’affichent ici dès que tu en as vu ${CONFIG.seuil} %.</p><div class="bar" role="progressbar" aria-label="Progression de la vidéo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i></i></div></div>`:""}
     <div class="offres" data-offres ${GATED?"hidden":""}>
       <div class="offre"><div class="lbl">-${CONFIG.boosters.rabais} % · Black Friday</div><h3>Mes boosters détox</h3><p>Optimals, Sugar Stop, Restoriix, Beauty Boost, Renew et Rejuveniix.</p>
@@ -177,11 +187,6 @@ root.innerHTML=`
     ${cd()}
   </div>
 </section>
-
-<section class="s-white"><div class="w c">
-  <div class="k">Chapitres de la vidéo</div><h2>Va directement<em>à ce qui t’intéresse</em></h2>
-  <div class="chs" style="grid-template-rows:repeat(${Math.ceil(CONFIG.chapitres.length/2)},auto)">${CONFIG.chapitres.map(c=>`<button type="button" class="ch${c[2]?" part":""}" data-t="${sec(c[0])}"><span class="t">${esc(c[0])}</span><span class="n">${esc(c[1])}</span></button>`).join("")}</div>
-</div></section>
 
 <section style="padding:36px 0;background:var(--cream)"><div class="w">
   <p class="legal">Contenu éducatif seulement. Ne remplace pas un avis médical. Ces produits sont des produits de santé naturels : lis l’étiquette et respecte le mode d’emploi. Consulte une professionnelle de la santé si tu prends des médicaments, si tu es enceinte ou si tu allaites. Les rabais s’appliquent jusqu’à la date de fin indiquée, ou jusqu’à épuisement des stocks.</p>
@@ -196,18 +201,23 @@ const prog=pct=>{if(ouvert||!isFinite(pct))return;max=Math.max(max,pct);const v=
 const v=root.querySelector(".vid video"),yt=root.querySelector("iframe[data-yt]"),vm=root.querySelector("iframe[data-vimeo]");
 const charger=(src,ok,err)=>{const s=document.createElement("script");s.src=src;if(ok)s.onload=ok;s.onerror=err;document.head.appendChild(s)};
 let seek=t=>{};
-if(v){v.addEventListener("timeupdate",()=>v.duration&&prog(v.currentTime/v.duration*100));seek=t=>{v.currentTime=t;v.play().catch(()=>{})}}
+const chs=[...root.querySelectorAll(".ch")],chl=root.querySelector("[data-chl]");let actif=-1;
+const cur=t=>{let k=-1;chs.forEach((b,i)=>{if(+b.dataset.t<=t+0.5)k=i});if(k===actif)return;actif=k;
+  chs.forEach((b,i)=>b.classList.toggle("on",i===k));
+  if(k>=0&&getComputedStyle(chl).position==="absolute"){const b=chs[k];if(b.offsetTop<chl.scrollTop||b.offsetTop+b.offsetHeight>chl.scrollTop+chl.clientHeight)chl.scrollTo({top:b.offsetTop-chl.clientHeight/3,behavior:"smooth"})}};
+if(v){v.addEventListener("timeupdate",()=>{cur(v.currentTime);v.duration&&prog(v.currentTime/v.duration*100)});seek=t=>{v.currentTime=t;v.play().catch(()=>{})}}
 else if(yt){
   let pl=null;
   seek=t=>{if(pl&&pl.seekTo){pl.seekTo(t,true);pl.playVideo()}else{yt.src=yt.src.replace(/&start=\d+/,"").replace(/&autoplay=1/,"")+"&start="+t+"&autoplay=1"}};
-  const go=()=>{pl=new YT.Player(yt,{events:{onReady:()=>setInterval(()=>{try{const d=pl.getDuration();if(d)prog(pl.getCurrentTime()/d*100)}catch(e){}},1000)}})};
+  const go=()=>{pl=new YT.Player(yt,{events:{onReady:()=>setInterval(()=>{try{const t=pl.getCurrentTime(),d=pl.getDuration();cur(t);if(d)prog(t/d*100)}catch(e){}},1000)}})};
   if(window.YT&&window.YT.Player)go();else{const prev=window.onYouTubeIframeAPIReady;window.onYouTubeIframeAPIReady=()=>{prev&&prev();go()};charger("https://www.youtube.com/iframe_api",null,ouvrir)}}
 else if(vm){let p=null;seek=t=>{p&&p.setCurrentTime(t).then(()=>p.play())};
-  const go=()=>{p=new Vimeo.Player(vm);p.on("timeupdate",d=>prog(d.percent*100))};
+  const go=()=>{p=new Vimeo.Player(vm);p.on("timeupdate",d=>{cur(d.seconds);prog(d.percent*100)})};
   if(window.Vimeo&&window.Vimeo.Player)go();else charger("https://player.vimeo.com/api/player.js",go,ouvrir)}
 else if(GATED)ouvrir();
-root.querySelectorAll(".ch").forEach(b=>b.addEventListener("click",()=>{
-  root.querySelector("[data-vidbox]").scrollIntoView({behavior:"smooth",block:"start"});seek(+b.dataset.t)}));
+chs.forEach(b=>b.addEventListener("click",()=>{const t=+b.dataset.t;seek(t);cur(t);
+  const r=root.querySelector(".vid").getBoundingClientRect();
+  if(r.top<0||r.bottom>innerHeight)window.scrollTo({top:scrollY+r.top-12,behavior:"smooth"})}));
 
 /* décompte */
 const cds=root.querySelectorAll("[data-cd]");
