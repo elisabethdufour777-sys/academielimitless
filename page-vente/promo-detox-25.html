@@ -187,7 +187,7 @@ root.innerHTML=`
     <p class="lead">Comment ton corps se détoxifie vraiment, pourquoi ça bloque parfois, et quels boosters l’aident, dans quel ordre. Clique sur un chapitre pour aller directement à ce qui t’intéresse.</p>
     ${GATED?`<div class="lock" data-lock><p><b>Regarde la vidéo :</b> tes offres du Black Friday s’affichent ici dès que tu en as vu ${CONFIG.seuil} %.</p><div class="bar" role="progressbar" aria-label="Progression de la vidéo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i></i></div></div>`:""}
     <div class="offres" data-offres ${GATED?"hidden":""}>
-      <div class="offre"><div class="lbl">-${CONFIG.boosters.rabais} % · Black Friday</div><h3>Mes boosters détox</h3><p>Optimals, Sugar Stop, Restoriix, Beauty Boost, Renew et Rejuveniix.</p>
+      <div class="offre"><div class="lbl">-${CONFIG.boosters.rabais} % · Black Friday</div><h3>Mes boosters détox</h3><p>Optimals, Sugar Stop, Restoriix, Beauty Boost et Renew.</p>
         <a class="btn" href="${esc(CONFIG.boosters.lien)}" target="_blank" rel="noopener">Acheter les boosters détox</a></div>
       <div class="offre"><div class="lbl">-${CONFIG.fbd.rabais} % · Black Friday</div><h3>Le Full Body Detox</h3><div class="prix">${esc(CONFIG.fbd.prix)}</div><p>Le programme complet : modules vidéo, protocole, plan alimentaire, recettes et journal de bord.</p>
         <a class="btn dark" href="${esc(CONFIG.fbd.lien)}" target="_blank" rel="noopener">Je m’inscris au Full Body Detox</a></div>
