@@ -61,6 +61,7 @@ html,body{overflow-x:hidden}
 #lt-promo .offre .lbl{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--terra);font-weight:600;margin-bottom:6px}
 #lt-promo .offre h3{font-size:28px;margin:0 0 6px}
 #lt-promo .offre .prix{font-family:var(--serif);font-size:46px;line-height:1;margin:6px 0 4px;color:var(--ink);font-variant-numeric:lining-nums}
+#lt-promo .offre .reg{font-size:13px;color:var(--muted);margin:0 0 10px}
 #lt-promo .offre p{font-size:14px;color:var(--muted);margin:0 0 20px;flex:1}
 /* décompte */
 #lt-promo .cd{margin-top:36px}
@@ -126,7 +127,7 @@ const CONFIG={
   seuil:15,
   /* LES DEUX OFFRES */
   boosters:{lien:"https://partner.co/s/ZDkyOWEwOGI4", rabais:25},
-  fbd:{lien:"https://styledevielowtox.com/fbd-promo", prix:"97 $", rabais:50},
+  fbd:{lien:"https://styledevielowtox.com/fbd-promo", prix:"97 $", regulier:"197 $", rabais:50},
   /* CHAPITRES : ["minutes:secondes", "titre", true si c'est le début d'une grande partie] */
   chapitres:[
     ["0:00","Ce qu’on va voir ensemble",true],
@@ -189,7 +190,7 @@ root.innerHTML=`
     <div class="offres" data-offres ${GATED?"hidden":""}>
       <div class="offre"><div class="lbl">-${CONFIG.boosters.rabais} % · Black Friday</div><h3>Mes boosters détox</h3><p>Optimals, Sugar Stop, Restoriix, Beauty Boost et Renew.</p>
         <a class="btn" href="${esc(CONFIG.boosters.lien)}" target="_blank" rel="noopener">Acheter les boosters détox</a></div>
-      <div class="offre"><div class="lbl">-${CONFIG.fbd.rabais} % · Black Friday</div><h3>Le Full Body Detox</h3><div class="prix">${esc(CONFIG.fbd.prix)}</div><p>Le programme complet : modules vidéo, protocole, plan alimentaire, recettes et journal de bord.</p>
+      <div class="offre"><div class="lbl">-${CONFIG.fbd.rabais} % · Black Friday</div><h3>Le Full Body Detox</h3><div class="prix">${esc(CONFIG.fbd.prix)}</div>${CONFIG.fbd.regulier?`<div class="reg">au lieu de <s>${esc(CONFIG.fbd.regulier)}</s></div>`:""}<p>Le programme complet : modules vidéo, protocole, plan alimentaire, recettes et journal de bord.</p>
         <a class="btn dark" href="${esc(CONFIG.fbd.lien)}" target="_blank" rel="noopener">Je m’inscris au Full Body Detox</a></div>
     </div>
     ${cd()}
