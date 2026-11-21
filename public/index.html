@@ -365,6 +365,124 @@ body.is-cat{overflow:hidden}
 .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
 .reset{background:none;border:0;color:var(--muted);text-decoration:underline;font-size:13px;padding:0}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+/* 2027 ARRIVE : cahier de travail interactif */
+.y27{display:flex;flex-direction:column;gap:22px}
+.y27-hero{background:var(--accent);color:var(--accent-ink);border-radius:22px;padding:clamp(28px,6vw,56px);display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden}
+.y27-hero::after{content:"2027";position:absolute;right:-10px;bottom:-40px;font-family:var(--f-display);font-weight:800;font-size:clamp(120px,22vw,240px);line-height:1;opacity:.08;letter-spacing:-.04em;pointer-events:none}
+.y27-hk{font-family:var(--f-mono);font-size:12px;text-transform:uppercase;letter-spacing:.12em;opacity:.75}
+.y27-hero h1{font-size:clamp(44px,9vw,84px);font-weight:800;letter-spacing:-.035em;line-height:.95}
+.y27-tag{font-size:clamp(17px,2.4vw,21px);opacity:.9;max-width:34ch}
+.y27-introtxt{display:flex;flex-direction:column;gap:14px;font-size:18px;line-height:1.65;max-width:64ch}
+.y27-introtxt .y27-close{font-family:var(--f-display);font-weight:700;font-size:21px;line-height:1.35;color:var(--accent-text)}
+.y27-cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.y27 .btn{cursor:pointer;font-size:15px;padding:12px 20px;border-radius:12px;transition:transform .15s}
+.y27 .btn:hover{transform:translateY(-1px)}
+.y27-big{font-size:17px!important;padding:16px 28px!important;letter-spacing:.02em}
+.y27-map{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
+@media (max-width:1100px){.y27-map{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}}
+.y27-map div{display:flex;gap:10px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:14px;font-weight:600}
+.y27-map b{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--accent-soft);color:var(--accent-text);font-family:var(--f-display);flex:none}
+.y27-prof{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.y27-pc{display:flex;flex-direction:column;gap:10px;text-align:left;background:var(--surface);border:2px solid var(--line);border-radius:18px;padding:22px;color:var(--ink);font:inherit;cursor:pointer;transition:border-color .15s,transform .15s}
+.y27-pc:hover{border-color:var(--accent-text);transform:translateY(-2px)}
+.y27-pc.on{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.y27-pc b{font-family:var(--f-display);font-size:24px;font-weight:800;letter-spacing:-.02em}
+.y27-pc>span:not(.y27-pn){color:var(--muted);font-size:15px}
+.y27-pn{font-family:var(--f-mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--accent-text)}
+.y27-pc ul{margin:6px 0 0;padding-left:18px;font-size:14px;display:flex;flex-direction:column;gap:4px}
+.y27-top{display:flex;flex-direction:column;gap:10px}
+.y27-link{background:none;border:0;padding:0;color:var(--accent-text);text-decoration:underline;font:inherit;cursor:pointer}
+.y27-gbar{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.y27-gbar .t,.y27-pbar .t,.y27-wbars .t{flex:1;min-width:160px;height:10px;background:var(--line);border-radius:99px;overflow:hidden}
+.y27-gbar i,.y27-pbar i,.y27-wbars i{display:block;height:100%;background:var(--accent-text);border-radius:99px;transition:width .35s ease}
+.y27-gbar span{font-size:14px;color:var(--muted)}
+.y27-steps{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
+.y27-st{display:flex;flex-direction:column;align-items:flex-start;gap:4px;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px 12px;color:var(--ink);font:inherit;cursor:pointer;min-width:0;transition:border-color .15s}
+.y27-st:hover{border-color:var(--accent-text)}
+.y27-st b{font-family:var(--f-display);font-size:18px;line-height:1}
+.y27-st span{font-size:12.5px;font-weight:600;line-height:1.25}
+.y27-st em{font-style:normal;font-family:var(--f-mono);font-size:11px;color:var(--muted)}
+.y27-st.on{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.y27-st.on em{color:inherit;opacity:.8}
+@media (max-width:860px){.y27-steps{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:4px}.y27-st{flex:0 0 132px;scroll-snap-align:start}}
+.y27-note{background:var(--sun);color:var(--sun-ink);border-radius:12px;padding:12px 16px;font-size:14px}
+.y27-note a{color:inherit;font-weight:700}
+.y27-mod{display:flex;flex-direction:column;gap:16px;animation:y27in .35s ease both}
+@keyframes y27in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.y27-mod{animation:none}.y27 .btn,.y27-pc{transition:none}}
+.y27-mh{display:flex;flex-direction:column;gap:8px;margin-bottom:4px}
+.y27-mn{font-family:var(--f-mono);font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--accent-text)}
+.y27-mh h2{font-size:clamp(26px,4vw,36px);font-weight:800;letter-spacing:-.02em}
+.y27-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.y27-grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.y27-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.y27-why{border-color:var(--accent-text)}
+.y27-q{display:flex;flex-direction:column;gap:8px;min-width:0}
+.y27-ql{font-weight:700;font-size:15.5px;line-height:1.35}
+.y27-in{width:100%;font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;resize:vertical;min-width:0;transition:border-color .15s,background .15s}
+.y27-in:focus{outline:none;border-color:var(--accent-text);background:var(--surface)}
+.y27-in.sm{font-size:14.5px;padding:9px 12px}
+.y27-pbar{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--muted)}
+.y27-pbar.big .t{height:14px}
+.y27-path{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;counter-reset:yp}
+.y27-path li{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center}
+.y27-path li textarea{grid-column:1/-1}
+.y27-path li.ok{border-color:var(--ok);background:var(--ok-soft)}
+.y27-ck{display:flex;gap:12px;align-items:flex-start;cursor:pointer;font-weight:600;line-height:1.4}
+.y27-ck input{width:20px;height:20px;margin:1px 0 0;accent-color:var(--accent-text);flex:none;cursor:pointer}
+li.ok>.y27-ck span{text-decoration:line-through;text-decoration-color:var(--muted);opacity:.75}
+.y27-go{font-size:13px;color:var(--accent-text);white-space:nowrap}
+.y27-weeks{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.y27-week{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.y27-wh{display:grid;grid-template-columns:1fr auto;gap:2px 10px;align-items:end}
+.y27-wh span{font-family:var(--f-mono);font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--accent-text)}
+.y27-wh h3{grid-column:1;font-size:20px;font-weight:800}
+.y27-wh em{grid-column:2;grid-row:1/3;font-style:normal;font-family:var(--f-display);font-weight:800;font-size:22px;color:var(--accent-text)}
+.y27-acts{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.y27-acts li{display:flex;justify-content:space-between;gap:8px;align-items:flex-start;padding:8px 10px;border-radius:10px;background:var(--bg)}
+.y27-acts li.ok{background:var(--ok-soft)}
+.y27-acts .y27-ck{font-weight:500;font-size:15px}
+.y27-del{background:none;border:0;color:var(--muted);font-size:20px;line-height:1;cursor:pointer;padding:0 4px}
+.y27-add{display:flex;gap:8px}
+.y27-add .btn{flex:none}
+.y27-days{display:flex;flex-wrap:wrap;gap:6px}
+.y27-day{border:1.5px solid var(--line);background:var(--bg);color:var(--ink);border-radius:99px;padding:8px 14px;font:inherit;font-weight:600;font-size:14px;cursor:pointer}
+.y27-day.on{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.y27-rh{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:flex-start}
+.y27-rh h3{font-size:20px;font-weight:800}
+.y27-week7{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.y27-week7 label{display:flex;flex-direction:column;gap:6px;font-size:13px}
+.y27-eng{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:860px){.y27-eng{grid-template-columns:1fr}}
+.y27-decl{position:sticky;top:calc(var(--top-h,70px) + 16px);background:var(--accent);color:var(--accent-ink);border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:10px}
+.y27-decl .kicker{color:inherit;opacity:.75}
+.y27-decl #y27-decl{display:flex;flex-direction:column;gap:10px;font-size:17px;line-height:1.55}
+.y27-decl .ref{color:inherit;opacity:.7}
+.y27-sig{font-family:var(--f-mono);font-size:12px;opacity:.75}
+.y27-dash{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.y27-dc{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.y27-dc ul,.y27-dc ol{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:14.5px}
+.y27-dc ul li span{display:block;font-size:12px;color:var(--muted)}
+.y27-dk{font-family:var(--f-mono);font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--accent-text)}
+.y27-dprof b{font-family:var(--f-display);font-size:26px;font-weight:800}
+.y27-ring{--v:0;width:110px;height:110px;border-radius:50%;background:conic-gradient(var(--accent-text) calc(var(--v)*1%),var(--line) 0);display:grid;place-items:center}
+.y27-ring span{width:86px;height:86px;border-radius:50%;background:var(--surface);display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:28px}
+.y27-ring small{font-size:14px}
+.y27-wide{grid-column:1/-1}
+.y27-wbars{display:flex;flex-direction:column;gap:10px}
+.y27-wbars>div{display:grid;grid-template-columns:minmax(0,220px) 1fr 50px;gap:12px;align-items:center;font-size:14px}
+.y27-wbars em{font-style:normal;font-family:var(--f-mono);font-size:12px;text-align:right}
+@media (max-width:620px){.y27-wbars>div{grid-template-columns:1fr 46px}.y27-wbars>div>span{grid-column:1/-1}}
+.y27-mods{list-style:none!important;padding:0!important}
+.y27-mods li{display:flex;justify-content:space-between;gap:8px}
+.y27-mods em{font-style:normal;font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.y27-done{list-style:"✓  "}
+.y27-first{margin:4px 0 0;padding-top:10px;border-top:1px solid var(--line);font-size:14.5px}
+.y27-first span{display:block;font-size:12px;color:var(--muted)}
+.y27-empty{color:var(--muted);font-size:14px;margin:0}
+.y27-export{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center;background:var(--accent-soft);border-radius:18px;padding:20px}
+.y27-export h3{font-size:19px;font-weight:800}
+.y27-nav{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
 </style>
 </head>
 <body>
@@ -481,6 +599,7 @@ const DM_SCRIPTS=[
 
 const MODULES=[
  {id:"accueil",n:"",title:"Accueil",group:"Départ",lessons:[]},
+ {id:"y2027",n:"",title:"2027 ARRIVE",group:"MIN",lessons:[]},
  {id:"cahier",n:"",title:"Mon cahier mindset",group:"MIN",lessons:[
   {id:"cz_pourquoi",t:"J'ai complété : Ton pourquoi"},
   {id:"cz_responsabilite",t:"J'ai complété : La responsabilisation"},
@@ -714,7 +833,7 @@ const CAP_IMG="img/9badcc96610f.webp";
 const CAHIER_IMG="img/25f9f8088afb.webp";
 const CAHIER={"titre": "Mon cahier mindset", "sous_titre": "Penser et travailler comme une entrepreneure", "intro": "Ce cahier, c'est pour toi. Prends-toi un café, un crayon, et réponds honnêtement. Il n'y a pas de bonne ou de mauvaise réponse : il y a seulement tes réponses à toi. Reviens-y quand tu doutes, quand tu bloques ou quand tu veux te rappeler pourquoi tu as commencé.", "sections": [{"id": "pourquoi", "titre": "Ton pourquoi", "intro": ["Ton pourquoi, c'est la raison profonde qui te fait avancer les jours où personne ne répond à ta story. Ce n'est pas « faire de l'argent » : c'est ce que cet argent, ce temps ou cette liberté changerait dans ta vie.", "Un pourquoi solide te touche quand tu le lis. S'il te laisse indifférente, creuse encore."], "exercices": [{"id": "p1", "type": "texte", "q": "Pourquoi as-tu dit oui à ce projet? Écris ta première réponse, sans filtre.", "lignes": 3}, {"id": "p2", "type": "cinq", "q": "La technique des 5 pourquoi : reprends ta réponse et demande-toi « pourquoi c'est important pour moi? » cinq fois de suite. Chaque réponse va plus profond que la précédente.", "lignes": 5}, {"id": "p3", "type": "texte", "q": "Ton pourquoi en une phrase. Elle commence par « Je bâtis ce projet pour… »", "lignes": 2}, {"id": "p4", "type": "texte", "q": "Où vas-tu l'afficher pour le voir chaque jour? (fond d'écran, miroir, agenda…)", "lignes": 1}]}, {"id": "responsabilite", "titre": "La responsabilisation", "intro": ["Une entrepreneure ne contrôle pas tout, mais elle se concentre sur ce qu'elle contrôle. Elle remplace « à cause de… » par « qu'est-ce que je peux faire avec ça? ».", "Ce n'est pas se blâmer. C'est reprendre ton pouvoir."], "points": ["Tu ne contrôles pas : l'algorithme, la réponse des gens, la météo, l'économie.", "Tu contrôles : le nombre de conversations que tu ouvres, la régularité de ton contenu, ce que tu apprends, ton attitude face aux refus."], "exercices": [{"id": "r1", "type": "deuxcol", "q": "Fais deux listes avec ce qui te préoccupe en ce moment dans ton projet.", "col1": "Ce que je ne contrôle pas", "col2": "Ce que je contrôle", "lignes": 5}, {"id": "r2", "type": "texte", "q": "Pense à une situation récente où tu as dit « c'est à cause de… ». Réécris-la en commençant par « J'ai choisi de… » ou « La prochaine fois, je vais… ».", "lignes": 3}, {"id": "r3", "type": "texte", "q": "Qui sera ta partenaire de responsabilité? Avec qui vas-tu faire un bilan chaque semaine? (ton upline, une collègue de l'équipe…)", "lignes": 1}]}, {"id": "penser", "titre": "Comment pensent les entrepreneures qui réussissent", "intro": ["Le succès en business vient rarement d'un talent spécial. Il vient d'habitudes répétées assez longtemps. Voici six façons de penser et de travailler que partagent les entrepreneures qui durent."], "points": ["Elle agit avant de se sentir prête. La confiance vient en faisant, pas avant.", "Elle voit l'échec comme une information. Un post qui ne marche pas lui dit quoi changer.", "Elle passe son temps sur ce qui fait avancer : créer, jaser avec des gens, apprendre.", "Elle mesure. Elle sait combien de conversations elle a eues cette semaine.", "Elle s'entoure. Elle demande de l'aide et elle apprend des autres.", "Elle pense à long terme. Elle sème aujourd'hui pour récolter dans 6 mois."], "exercices": [{"id": "e1", "type": "echelle", "q": "Évalue-toi de 1 (pas du tout) à 5 (tout à fait) pour chacune des six habitudes.", "items": ["J'agis avant de me sentir prête", "Je vois l'échec comme une information", "Je passe mon temps sur ce qui fait avancer", "Je mesure mes activités", "Je m'entoure et je demande de l'aide", "Je pense à long terme"]}, {"id": "e2", "type": "texte", "q": "Quelle habitude veux-tu améliorer en premier? Quel petit geste concret vas-tu faire cette semaine pour ça?", "lignes": 3}]}, {"id": "excuses", "titre": "Les excuses", "intro": ["Les excuses sont normales : c'est ton cerveau qui essaie de te protéger de l'inconfort. Le truc, ce n'est pas de ne plus en avoir. C'est de les reconnaître et de leur répondre."], "tableau": [["« Je n'ai pas le temps »", "Qu'est-ce que je peux faire en 15 minutes aujourd'hui?"], ["« Je ne connais pas assez de monde »", "Avec qui je pourrais commencer une vraie conversation cette semaine?"], ["« J'ai peur de ce que les gens vont penser »", "Qu'est-ce que je dirais à une amie qui a cette peur?"], ["« Je ne suis pas prête »", "Quelle est la plus petite prochaine étape?"], ["« Ça ne marche pas pour moi »", "Qu'est-ce que je n'ai pas encore essayé assez longtemps?"]], "exercices": [{"id": "x1", "type": "deuxcol", "q": "Écris tes 3 excuses préférées, celles qui reviennent le plus souvent. À côté, écris la question ou la réponse qui te remet en action.", "col1": "Mon excuse", "col2": "Ma réponse", "lignes": 3}, {"id": "x2", "type": "texte", "q": "Si tu n'avais aucune de ces excuses, qu'est-ce que tu ferais dès demain?", "lignes": 3}]}, {"id": "temps", "titre": "Gérer ton temps", "intro": ["Tu n'as pas besoin de plus de temps. Tu as besoin de protéger celui que tu as. Une petite plage fixe, chaque jour, bat une grosse fin de semaine une fois par mois.", "Les trois activités qui font avancer ton projet : créer du contenu, jaser avec des gens (commentaires, messages, conversations à 3) et apprendre."], "exercices": [{"id": "t1", "type": "texte", "q": "Tes voleurs de temps : qu'est-ce qui mange tes heures sans rien te rapporter? (défilement, notifications, tâches que quelqu'un d'autre pourrait faire…)", "lignes": 3}, {"id": "t2", "type": "semaine", "q": "Ta semaine type : pour chaque jour, note le moment où tu fais ton bloc de travail, et combien de temps."}, {"id": "t3", "type": "texte", "q": "Ton bloc de 30 minutes, qu'est-ce que tu y mets? (par exemple : 10 min créer, 15 min jaser, 5 min apprendre)", "lignes": 2}]}, {"id": "non", "titre": "Apprendre à dire non", "intro": ["Chaque oui à quelque chose est un non à autre chose. Dire non à ce qui ne compte pas, c'est dire oui à ce que tu veux vraiment accomplir.", "Dire non ne veut pas dire être fermée. Ça veut dire choisir."], "points": ["« Merci de penser à moi! Je ne peux pas cette fois-ci, mais j'ai hâte à la prochaine. »", "« Ce soir, j'ai déjà quelque chose de prévu. Est-ce qu'on peut se reprendre? »", "« Je ne prends pas de nouveaux engagements ce mois-ci. »"], "exercices": [{"id": "n1", "type": "texte", "q": "Ce que tu veux vraiment accomplir dans les 12 prochains mois, dans ta vie et dans ton projet :", "lignes": 3}, {"id": "n2", "type": "deuxcol", "q": "À quoi dis-tu oui en ce moment qui ne t'aide pas à y arriver? À quoi vas-tu dire non à la place?", "col1": "Je dis oui à…", "col2": "Je vais dire non à…", "lignes": 3}, {"id": "n3", "type": "texte", "q": "Ta phrase à toi pour dire non avec gentillesse :", "lignes": 2}]}, {"id": "nonneg", "titre": "Tes non-négociables", "intro": ["Tes non-négociables, ce sont les choses que tu protèges, peu importe la semaine que tu passes. Il y en a pour ta vie (ton sommeil, ta famille, ta santé) et pour ton projet (le minimum que tu fais chaque semaine).", "Quand tes non-négociables sont clairs, tu prends moins de décisions et tu avances plus."], "exercices": [{"id": "v1", "type": "liste", "q": "Tes 3 à 5 non-négociables de vie :", "lignes": 5}, {"id": "v2", "type": "liste", "q": "Tes 3 non-négociables de business, le minimum chaque semaine (par exemple : 3 séquences de stories, 5 conversations, un bilan avec mon upline) :", "lignes": 3}, {"id": "v3", "type": "texte", "q": "Qu'est-ce que tu fais quand une semaine déraille? Ton plan B minimum :", "lignes": 2}]}, {"id": "engagement", "titre": "Mon engagement des 90 prochains jours", "intro": ["Un objectif d'activité, c'est quelque chose que tu contrôles : le nombre de conversations, de publications, de suivis. On se fixe des objectifs d'activité, pas de revenus. Les résultats suivent les actions."], "exercices": [{"id": "g1", "type": "texte", "q": "Dans 90 jours, de quoi veux-tu être fière? (en actions, pas en argent)", "lignes": 3}, {"id": "g2", "type": "deuxcol", "q": "Tes objectifs d'activité par semaine :", "col1": "Activité", "col2": "Combien par semaine", "lignes": 4}, {"id": "g3", "type": "texte", "q": "Comment vas-tu célébrer quand tu y seras?", "lignes": 2}, {"id": "g4", "type": "signature", "q": "Je m'engage envers moi-même."}]}]};
 const CATS=[
- {id:"MIN",title:"Mindset du travailleur autonome",desc:"Ton pourquoi, ton horaire, les refus et la constance."},
+ {id:"MIN",title:"Mindset du travailleur autonome",desc:"Ton plan 2027, ton pourquoi, ton horaire, les refus et la constance."},
  {id:"BIZ",title:"Gérer ta nouvelle business",desc:"Ton back office, ton plan de rémunération, notre culture d’équipe, ton outil de suivi et les gestes de base pour être autonome."},
  {id:"SOC",title:"Réseaux sociaux",desc:"Publie pour attirer sans devenir cringe & vends sans gosser personne."},
  {id:"PRO",title:"Produits",desc:"Le catalogue, une formation produits, quel produit sert à quoi, le Youth Infusing System, des stories prêtes à publier et des témoignages conformes."}
@@ -948,7 +1067,256 @@ function todo(t){return `<div class="todo"><b>À compléter par Eli :</b> ${t}</
 const ints=()=>state.interests.length?state.interests:["sante"];
 const ilabel=id=>INTERESTS.find(x=>x.id===id).label;
 
+/* 2027-ARRIVE-START */
+/* ---------- 2027 ARRIVE : cahier de travail interactif ----------
+   Toutes les réponses vivent dans state.y27 : elles sont gardées sur l'appareil (localStorage)
+   et, quand la personne est connectée, synchronisées dans son compte (clé privée p:<courriel>, comme le reste du QG).
+   Structure : {v, p:profil, step, a:{réponses texte}, c:{cases cochées}, add:{w1:[{id,t}]...}, r:{routine par jour}, t:horodatage, owner:courriel} */
+const Y27_STEPS=["Mon bilan 2026","Ma vision 2027","Mon plan de développement","Mon plan d'action","Ma routine","Mon engagement","Mon tableau de bord"];
+const Y27_PROFILS={
+ start:{t:"Je démarre",d:"Tu viens de découvrir Partner.Co ou tu as encore peu d'expérience. On part de là où tu es, sans se comparer à personne."},
+ dev:{t:"Je développe",d:"Tu as déjà une clientèle et des ventes. Tu veux faire grandir ton activité avec plus de constance et de structure."},
+ multi:{t:"Je multiplie",d:"Tu accompagnes une équipe. Tu veux former de nouveaux leaders et bâtir une organisation plus autonome."}
+};
+const Y27_BILAN={
+ start:[
+  ["m1_envie","Qu'est-ce qui m'a donné envie de me lancer chez Partner.Co?","Une personne, un produit, un besoin, une envie de changement…"],
+  ["m1_decouv","Qu'est-ce que j'ai découvert jusqu'ici?","Sur les produits, sur l'équipe, ou sur moi-même."],
+  ["m1_enthou","Qu'est-ce qui m'enthousiasme le plus pour la suite?",""],
+  ["m1_freine","Qu'est-ce qui me fait un peu peur ou pourrait me freiner?","C'est normal d'en avoir. Les nommer aide à les dépasser."],
+  ["m1_force","Quelle force personnelle je peux mettre à profit?","Ta facilité à jaser, ton organisation, ta créativité, ton réseau…"],
+  ["m1_attentes","Qu'est-ce que j'attends de mon équipe et de mon upline?",""],
+  ["m1_laisser","Qu'est-ce que je veux laisser derrière moi en entrant dans 2027?","Une peur, une habitude, une croyance…"]],
+ dev:[
+  ["m1_fierte","Quelle est ma plus grande fierté de 2026?",""],
+  ["m1_appris","Qu'ai-je appris cette année?",""],
+  ["m1_actions","Quelles actions ont donné les meilleurs résultats?","Un type de publication, ta façon de faire tes suivis, un produit qui a plu…"],
+  ["m1_diff","Qu'est-ce que j'aurais aimé faire différemment?",""],
+  ["m1_comp","Quelle compétence ai-je développée?",""],
+  ["m1_laisser","Qu'est-ce que je veux laisser derrière moi?","Une habitude, une façon de penser, une activité qui ne rapporte rien…"]]
+};
+Y27_BILAN.multi=Y27_BILAN.dev.concat([
+  ["m1_equipe","Quelle personne de mon équipe m'a rendue la plus fière cette année, et pourquoi?",""],
+  ["m1_leader","Comme leader, qu'est-ce que je ferais autrement?","Ton accueil, ta présence, ta façon de déléguer…"]]);
+const Y27_VISION=p=>[
+ ["m2_revenu","Mon objectif financier mensuel",p==="start"?"Facultatif. Ex. couvrir mes produits, ou rien pour l'instant":"Facultatif. Le montant qui a du sens pour toi"],
+ ["m2_ventes","Mon objectif de ventes",p==="start"?"Ex. mes 3 premières commandes":"Ex. 15 commandes par mois"],
+ ["m2_clients","Mon objectif de nouveaux clients",p==="start"?"Ex. 5 premiers clients d'ici l'été":"Ex. 2 nouvelles clientes par mois"],
+ ["m2_equipe",p==="start"?"Est-ce que j'aimerais un jour partager l'opportunité? (aucune pression)":"Mon objectif de développement d'équipe",p==="start"?"Ex. pas pour l'instant, ou peut-être en cours d'année":p==="dev"?"Ex. accueillir ma première partenaire":"Ex. 3 nouveaux leaders autonomes"],
+ ["m2_rang","Mon objectif de rang ou de progression",p==="start"?"Ex. terminer les modules de base du QG":"Ex. le rang que tu vises d'ici décembre"],
+ ["m2_temps","Le temps que je veux investir chaque semaine","Ex. 5 heures"],
+ ["m2_comp","Les compétences que je veux développer","Ex. les reels, parler des produits, animer une équipe"]];
+const Y27_PARCOURS={
+ start:[["Comprendre Partner.Co","backoffice"],["Découvrir les produits","catalogue"],["Définir mon histoire et mes motivations","cahier"],["Apprendre à présenter les produits","produits"],["Créer mes premières conversations","dm"],["Développer mes premiers clients","cap"],["Comprendre les bases du suivi client","ryzr"]],
+ dev:[["Développer ma clientèle","mur"],["Augmenter la fidélisation","ryzr"],["Améliorer mes présentations","produits"],["Développer ma visibilité","reels"],["Structurer mes suivis","ryzr"],["Apprendre à repérer de nouveaux partenaires potentiels","recrutement"]],
+ multi:[["Repérer les leaders émergents",""],["Développer un système d'accueil","backoffice"],["Former les nouveaux partenaires",""],["Développer l'autonomie de mon équipe",""],["Créer une culture d'équipe","culture"],["Suivre mes indicateurs de développement",""]]
+};
+const Y27_SEMAINES=["Clarté et visibilité","Conversations et clientèle","Développement","Consolidation"];
+const Y27_PLAN={
+ start:[
+  ["Terminer le module « Activer ta business »","Mettre à jour ma bio Facebook et Instagram","Écrire mon histoire en 5 phrases : pourquoi j'ai commencé","Choisir mon produit chouchou et l'utiliser chaque jour"],
+  ["Faire la liste de 20 personnes avec qui j'aime jaser","Publier un post de vie qui ouvre la conversation","Avoir 5 conversations sincères, sans pitch","Parler de mon produit chouchou aux personnes curieuses"],
+  ["Regarder 2 formations produits","Faire ma première séquence de stories avec un sondage","Demander un retour à mon upline","Faire le suivi des personnes qui ont levé la main"],
+  ["Faire le bilan de mon mois","Noter mes 3 meilleures conversations et ce qui a marché","Planifier mon horaire du mois prochain","Partager une petite victoire dans le groupe"]],
+ dev:[
+  ["Faire la liste de mes clientes actives et de leur dernier achat","Mettre à jour ma bio et mes stories à la une","Choisir 2 produits à mettre de l'avant ce mois-ci","Planifier mes publications du mois (70 / 20 / 10)"],
+  ["Faire un suivi personnalisé à chaque cliente","Proposer l'abonnement aux clientes qui rachètent","Demander 2 témoignages, avec permission","Avoir 10 nouvelles conversations"],
+  ["Tester un nouveau format : reel, carrousel ou live","Animer une présentation ou un webinaire","Repérer 3 personnes curieuses de l'opportunité","Organiser mes suivis dans Ryzr"],
+  ["Regarder les publications qui ont le mieux marché","Faire le point sur mes ventes et ma fidélisation","Ajuster mon plan du mois prochain","Faire un appel de suivi avec mon upline"]],
+ multi:[
+  ["Faire la carte de mon équipe : qui est actif, qui démarre, qui veut grandir","Repérer 2 ou 3 leaders émergents","Revoir mon processus d'accueil des nouveaux","Partager ma vision 2027 avec mon équipe"],
+  ["Faire un appel individuel avec chaque leader émergent","Accueillir chaque nouvelle personne dans ses 48 premières heures","Partager une ressource du QG à mon équipe","Souligner 3 victoires d'équipe"],
+  ["Animer une formation d'équipe","Déléguer une responsabilité à un leader émergent","Mettre en place un rituel d'équipe : appel, défi ou groupe","Accompagner un leader dans sa première présentation"],
+  ["Suivre mes indicateurs : nouveaux, actifs, rétention","Faire un bilan avec chaque leader","Ajuster mon système d'accueil","Planifier le prochain mois d'équipe"]]
+};
+const Y27_JOURS=["Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche"];
+const Y27_ROUTINE={
+ start:["20 min : une publication de vie","15 min : jaser avec 2 personnes","20 min : un module du QG","15 min : suivis des personnes curieuses","Congé","10 min : stories de ma fin de semaine","10 min : planifier ma semaine"],
+ dev:["30 min : création de contenu · 15 min : suivis","30 min : conversations et messages","20 min : formation · 15 min : suivis clientes","30 min : stories ou live","20 min : suivis et abonnements","Congé","20 min : planifier ma semaine"],
+ multi:["Appel d'équipe · une publication","Appels individuels avec mes leaders","Contenu · suivis clientes","Accueil des nouveaux · formation","Souligner les victoires d'équipe","Congé","Planification et indicateurs"]
+};
+const Y27_ROUT_Q=p=>[
+ ["m5_heures","Combien d'heures par semaine puis-je consacrer à mon entreprise?","Ex. 5 heures"],
+ ["m5_contenu","Combien de temps puis-je consacrer à la création de contenu?","Ex. 2 heures par semaine"],
+ ["m5_suivis","Quand vais-je faire mes suivis?","Ex. mardi et jeudi soir, 20 minutes"],
+ ["m5_formation","Quand vais-je me former?","Ex. mercredi midi, un module du QG"],
+ ["m5_equipe",p==="start"?"Quand vais-je poser mes questions à mon upline?":"Quand vais-je travailler au développement de mon équipe?",p==="start"?"Ex. après chaque appel d'équipe":"Ex. lundi soir, appels individuels"]];
+const Y27_ENG=[["m6_p1","Ma priorité no 1"],["m6_p2","Ma priorité no 2"],["m6_p3","Ma priorité no 3"],["m6_q1","Mon objectif pour le premier trimestre (d'ici le 31 mars)"],["m6_premiere","Ma première action concrète"],["m6_diff","Ce que je m'engage à faire différemment"],["m6_accomp","La personne qui va m'accompagner et me garder responsable"]];
+
+function Y(){if(!state.y27||typeof state.y27!=="object")state.y27={v:1,step:"intro",a:{},c:{},add:{},r:{}};const y=state.y27;y.a=y.a||{};y.c=y.c||{};y.add=y.add||{};y.r=y.r||{};return y;}
+let y27T=null;
+function y27Save(now){const y=Y();y.t=Date.now();if(ACCT.email)y.owner=ACCT.email;clearTimeout(y27T);if(now)save();else y27T=setTimeout(save,400);}
+const y27v=k=>(Y().a[k]||"");
+const y27f=k=>String(Y().a[k]||"").trim()!=="";
+function y27Actions(){const y=Y(),p=y.p||"start",out=[];
+  Y27_PLAN[p].forEach((wk,w)=>{wk.forEach((t,i)=>{const k=`m4_${p}_${w}_${i}`;out.push({w,k,t,done:!!y.c[k],custom:false});});
+    (y.add["w"+w]||[]).forEach(x=>{const k="m4x_"+x.id;out.push({w,k,t:x.t,done:!!y.c[k],custom:true,id:x.id});});});
+  return out;}
+function y27Pct(){const y=Y(),p=y.p||"start";const r=(n,d)=>d?Math.round(n/d*100):0;
+  const b=Y27_BILAN[p];const m1=r(b.filter(q=>y27f(q[0])).length,b.length);
+  const v=Y27_VISION(p).filter(x=>x[0]!=="m2_revenu").map(x=>x[0]).concat("m2_pourquoi");const m2=r(v.filter(y27f).length,v.length);
+  const par=Y27_PARCOURS[p];const m3=r(par.filter((x,i)=>y.c[`m3_${p}_${i}`]).length,par.length);
+  const acts=y27Actions();const m4=r(acts.filter(x=>x.done).length,acts.length);
+  const n5=Y27_ROUT_Q(p).filter(q=>y27f(q[0])).length+(y27v("m5_jours")?1:0)+(Object.values(y.r).some(x=>String(x||"").trim())?1:0);const m5=r(n5,7);
+  const m6=r(Y27_ENG.filter(q=>y27f(q[0])).length,Y27_ENG.length);
+  const mods=[m1,m2,m3,m4,m5,m6];return {mods,global:Math.round(mods.reduce((s,x)=>s+x,0)/mods.length)};}
+function y27UpdateProg(){const P=y27Pct();
+  document.querySelectorAll("[data-yp]").forEach(el=>{const k=el.dataset.yp;const v=k==="g"?P.global:P.mods[+k];
+    if(el.tagName==="I")el.style.width=v+"%";else el.textContent=v+" %";});
+  const d=document.getElementById("y27-decl");if(d)d.innerHTML=y27Decl();}
+function y27Ta(k,label,ph,rows){return `<label class="y27-q"><span class="y27-ql">${esc(label)}</span><textarea class="y27-in" data-y="${k}" rows="${rows||3}" placeholder="${esc(ph||"Écris ici…")}">${esc(y27v(k))}</textarea></label>`;}
+function y27In(k,label,ph){return `<label class="y27-q"><span class="y27-ql">${esc(label)}</span><input class="y27-in" type="text" data-y="${k}" value="${esc(y27v(k))}" placeholder="${esc(ph||"")}"></label>`;}
+function y27Decl(){const a=Y().a,s=k=>esc(String(a[k]||"").trim());const nom=s("m6_nom")||"…";
+  const pr=["m6_p1","m6_p2","m6_p3"].map(s).filter(Boolean);
+  return `<p>Moi, <b>${nom}</b>, en 2027, je choisis de passer à l'action.</p>
+   ${pr.length?`<p>Mes priorités : ${pr.map(x=>`<b>${x}</b>`).join(", ")}.</p>`:""}
+   ${s("m6_q1")?`<p>D'ici le 31 mars, je vise : <b>${s("m6_q1")}</b>.</p>`:""}
+   ${s("m6_premiere")?`<p>Ma première action : <b>${s("m6_premiere")}</b>.</p>`:""}
+   ${s("m6_diff")?`<p>Cette année, je fais les choses autrement : <b>${s("m6_diff")}</b>.</p>`:""}
+   ${s("m6_accomp")?`<p><b>${s("m6_accomp")}</b> m'accompagne et m'aide à rester responsable.</p>`:""}
+   <p class="y27-sig">Signé le ${new Date().toLocaleDateString("fr-CA",{day:"numeric",month:"long",year:"numeric"})}</p>`;}
+
+function y27View(m){const y=Y();setTimeout(()=>{const n=document.querySelector(".y27-steps"),o=n&&n.querySelector(".y27-st.on");if(o&&n.scrollWidth>n.clientWidth)n.scrollLeft=o.offsetLeft-n.offsetLeft-16;},0);
+  const login=ACCT.email?"":`<div class="y27-note">Ton cahier s'enregistre tout seul dans ce navigateur, et personne d'autre que toi ne le voit. Tu changes d'appareil? Crée ton <a href="#accueil">lien de transfert</a> à l'accueil, dans « Ta progression ».</div>`;
+  if(!y.p||y.step==="intro"||y.step==="profil")return (y.step==="profil"?y27Profil():y27Intro())+login;
+  const P=y27Pct(),s=+y.step||1;
+  const nav=`<nav class="y27-steps" aria-label="Étapes du cahier 2027">${Y27_STEPS.map((t,i)=>`<button type="button" class="y27-st ${s===i+1?"on":""}" data-ygo="${i+1}" ${s===i+1?'aria-current="step"':""}><b>${i+1}</b><span>${esc(t)}</span>${i<6?`<em data-yp="${i}">${P.mods[i]} %</em>`:""}</button>`).join("")}</nav>`;
+  const body=[y27M1,y27M2,y27M3,y27M4,y27M5,y27M6,y27M7][s-1]();
+  return `<div class="y27">
+   <div class="y27-top"><div><div class="kicker">2027 ARRIVE · Profil ${esc(Y27_PROFILS[y.p].t)} · <button type="button" class="y27-link" data-ygo="profil">changer</button></div>
+     <div class="y27-gbar"><div class="t"><i data-yp="g" style="width:${P.global}%"></i></div><span><b data-yp="g">${P.global} %</b> de ton cahier rempli</span></div></div></div>
+   ${nav}${login}
+   <section class="y27-mod">${body}</section>
+   <div class="y27-nav">${s>1?`<button type="button" class="btn ghost" data-ygo="${s-1}">← ${esc(Y27_STEPS[s-2])}</button>`:`<button type="button" class="btn ghost" data-ygo="intro">← Accueil 2027</button>`}${s<7?`<button type="button" class="btn" data-ygo="${s+1}">${esc(Y27_STEPS[s])} →</button>`:""}</div>
+   <p class="ref">Tes réponses s'enregistrent toutes seules, au fur et à mesure. Tu peux revenir les modifier en tout temps.</p>
+  </div>`;}
+function y27Intro(){const y=Y(),P=y27Pct();const started=y.p&&P.global>0;
+  return `<div class="y27"><div class="y27-hero">
+   <div class="y27-hk">Mindset · Cahier de travail</div>
+   <h1>2027 ARRIVE.</h1>
+   <p class="y27-tag">Termine 2026 avec intention. Commence 2027 avec vision.</p></div>
+   <div class="y27-introtxt">
+    <p>Une nouvelle année approche. Mais avant de tourner la page, prenons le temps de décider ce que nous voulons réellement construire.</p>
+    <p>Que tu sois nouveau chez Partner.Co, que tu développes déjà ta clientèle ou que tu diriges une équipe, ce guide est là pour t'aider à prendre du recul, clarifier tes objectifs et transformer tes ambitions en actions concrètes.</p>
+    <p><b>Tu n'as pas besoin d'avoir toutes les réponses aujourd'hui.</b> Tu as simplement besoin de savoir quelle sera ta prochaine étape.</p>
+    <p class="y27-close">On termine 2026 avec intention. On commence 2027 avec vision. Et surtout, on passe à l'action.</p></div>
+   <div class="y27-cta">${started?`<button type="button" class="btn y27-big" data-ygo="${+y.lastStep||1}">Reprendre mon cahier · ${P.global} %</button><button type="button" class="btn ghost" data-ygo="7">Voir mon tableau de bord</button>`:`<button type="button" class="btn y27-big" data-ygo="${y.p?1:"profil"}">COMMENCER MON BILAN</button>`}</div>
+   <div class="y27-map">${Y27_STEPS.map((t,i)=>`<div><b>${i+1}</b><span>${esc(t)}</span></div>`).join("")}</div>
+  </div>`;}
+function y27Profil(){const y=Y();
+  return `<div class="y27"><div class="mod-h"><div class="kicker">2027 ARRIVE · Avant de commencer</div><h1>Où en es-tu aujourd'hui?</h1><p class="lead">Choisis le profil qui te ressemble le plus. Les questions et ton plan d'action s'adaptent à ton niveau. Il n'y a pas de bon ou de mauvais choix, et tu pourras le changer en tout temps.</p></div>
+   <div class="y27-prof">${Object.entries(Y27_PROFILS).map(([k,o],i)=>`<button type="button" class="y27-pc ${y.p===k?"on":""}" data-yprof="${k}" aria-pressed="${y.p===k}"><span class="y27-pn">Profil ${i+1}</span><b>${esc(o.t)}</b><span>${esc(o.d)}</span><ul>${Y27_PARCOURS[k].slice(0,3).map(x=>`<li>${esc(x[0])}</li>`).join("")}</ul></button>`).join("")}</div>
+   <p class="ref">Tu démarres? Tant mieux. Personne ne s'attend à ce que tu maîtrises tout : ton cahier est fait pour avancer une étape à la fois.</p></div>`;}
+function y27Hd(n,title,lead){return `<div class="y27-mh"><span class="y27-mn">Module ${n}</span><h2>${esc(title)}</h2>${lead?`<p class="lead">${lead}</p>`:""}</div>`;}
+function y27M1(){const p=Y().p;
+  return y27Hd(1,"Avant d'aller plus loin, regardons le chemin parcouru.",p==="start"?"Tu commences à peine? Ce bilan porte sur tes motivations et tes découvertes, pas sur des résultats.":"Prends le temps de répondre honnêtement. Personne d'autre que toi ne lit ces réponses.")+
+  `<div class="y27-cards">${Y27_BILAN[p].map(q=>`<div class="y27-card">${y27Ta(q[0],q[1],q[2],3)}</div>`).join("")}</div>`;}
+function y27M2(){const p=Y().p;
+  return y27Hd(2,"Si tout était possible, qu'aimerais-je construire?","Ces objectifs t'appartiennent. Écris ceux qui ont du sens pour toi, laisse vide ce qui ne te concerne pas encore. Ce sont des intentions, pas des promesses : aucun revenu ni résultat n'est garanti.")+
+  `<div class="y27-grid2">${Y27_VISION(p).map(x=>`<div class="y27-card">${y27In(x[0],x[1],x[2])}</div>`).join("")}</div>
+   <div class="y27-card y27-why">${y27Ta("m2_pourquoi","Pourquoi cet objectif est-il important pour moi?","Ce qui va te garder motivée les semaines plus tranquilles.",4)}</div>`;}
+function y27M3(){const y=Y(),p=y.p;const L=Y27_PARCOURS[p];
+  const done=L.filter((x,i)=>y.c[`m3_${p}_${i}`]).length;
+  return y27Hd(3,"Mon plan de développement",`Ton parcours <b>${esc(Y27_PROFILS[p].t)}</b> : ${L.length} étapes. Coche celles que tu maîtrises déjà et note ta prochaine étape pour les autres.`)+
+  `<div class="y27-pbar"><div class="t"><i style="width:${Math.round(done/L.length*100)}%"></i></div><span>${done} sur ${L.length}</span></div>
+   <ol class="y27-path">${L.map((x,i)=>{const k=`m3_${p}_${i}`;return `<li class="${y.c[k]?"ok":""}"><label class="y27-ck"><input type="checkbox" data-yc="${k}" ${y.c[k]?"checked":""}><span>${esc(x[0])}</span></label>${x[1]?`<a class="y27-go" href="#${x[1]}">Module du QG ↗</a>`:""}
+     <textarea class="y27-in sm" data-y="${k}_n" rows="2" placeholder="Ma prochaine étape, ou ce que j'ai appris…">${esc(y27v(k+"_n"))}</textarea></li>`;}).join("")}</ol>`;}
+function y27M4(){const y=Y(),acts=y27Actions();const pct=w=>{const a=acts.filter(x=>x.w===w);return a.length?Math.round(a.filter(x=>x.done).length/a.length*100):0;};
+  const tot=acts.length?Math.round(acts.filter(x=>x.done).length/acts.length*100):0;
+  return y27Hd(4,"Mon plan d'action de 30 jours","Quatre semaines, quelques actions par semaine. Coche ce qui est fait, ajoute tes propres actions et garde tes notes. Avance à ton rythme : une semaine peut en prendre deux.")+
+  `<div class="y27-pbar big"><div class="t"><i style="width:${tot}%"></i></div><span><b>${tot} %</b> de ton plan réalisé</span></div>
+   <div class="y27-weeks">${Y27_SEMAINES.map((t,w)=>`<div class="y27-week"><div class="y27-wh"><span>Semaine ${w+1}</span><h3>${esc(t)}</h3><em>${pct(w)} %</em></div>
+    ${y27In("m4_obj_"+w,"Mon objectif de la semaine","Ex. avoir 5 conversations")}
+    <ul class="y27-acts">${acts.filter(x=>x.w===w).map(x=>`<li class="${x.done?"ok":""}"><label class="y27-ck"><input type="checkbox" data-yc="${x.k}" ${x.done?"checked":""}><span>${esc(x.t)}</span></label>${x.custom?`<button type="button" class="y27-del" data-ydel="${w}:${x.id}" aria-label="Retirer cette action">×</button>`:""}</li>`).join("")}</ul>
+    <div class="y27-add"><input class="y27-in" type="text" id="y27-new-${w}" data-yaddin="${w}" placeholder="Ajouter ma propre action…" maxlength="140"><button type="button" class="btn ghost" data-yadd="${w}">Ajouter</button></div>
+    ${y27Ta("m4_notes_"+w,"Mes notes","Ce qui a marché, ce que j'ajuste…",2)}</div>`).join("")}</div>`;}
+function y27M5(){const y=Y(),p=y.p;const jours=new Set((y27v("m5_jours")||"").split(",").filter(Boolean));
+  return y27Hd(5,"Ma routine entrepreneuriale","Une routine réaliste vaut mieux qu'un horaire parfait que tu ne suivras pas. Pars de ton vrai quotidien.")+
+  `<div class="y27-grid2">${Y27_ROUT_Q(p).slice(0,1).map(q=>`<div class="y27-card">${y27In(q[0],q[1],q[2])}</div>`).join("")}
+    <div class="y27-card"><span class="y27-ql">Quels jours suis-je disponible?</span><div class="y27-days">${Y27_JOURS.map(j=>`<button type="button" class="y27-day ${jours.has(j)?"on":""}" data-yday="${j}" aria-pressed="${jours.has(j)}">${j.slice(0,3)}</button>`).join("")}</div></div>
+    ${Y27_ROUT_Q(p).slice(1).map(q=>`<div class="y27-card">${y27In(q[0],q[1],q[2])}</div>`).join("")}</div>
+   <div class="y27-card"><div class="y27-rh"><div><h3>Ma semaine type</h3><p class="ref" style="margin:0">Un exemple pour le profil ${esc(Y27_PROFILS[p].t)} est en gris dans chaque case. Remplis avec ta propre réalité.</p></div><button type="button" class="btn ghost" data-yex="1">Partir de l'exemple</button></div>
+    <div class="y27-week7">${Y27_JOURS.map((j,i)=>`<label><b>${j}</b><textarea class="y27-in sm" data-yr="${j}" rows="2" placeholder="${esc(Y27_ROUTINE[p][i])}">${esc(y.r[j]||"")}</textarea></label>`).join("")}</div></div>`;}
+function y27M6(){
+  return y27Hd(6,"Cette année, je choisis de passer à l'action.","Écris tes engagements avec tes mots. Ta déclaration se construit au fur et à mesure, à droite (ou en dessous sur ton téléphone).")+
+  `<div class="y27-eng"><div class="y27-card">${y27In("m6_nom","Mon prénom","")}${Y27_ENG.map(q=>q[0]==="m6_diff"?y27Ta(q[0],q[1],"",2):y27In(q[0],q[1],"")).join("")}</div>
+   <div class="y27-decl"><div class="kicker">Ma déclaration d'engagement 2027</div><div id="y27-decl">${y27Decl()}</div><p class="ref">Relis-la au début de chaque mois. Tu peux l'imprimer avec ton plan au module 7.</p></div></div>`;}
+function y27M7(){const y=Y(),p=y.p,a=y.a,P=y27Pct(),acts=y27Actions();const s=k=>esc(String(a[k]||"").trim());
+  const goals=Y27_VISION(p).filter(x=>s(x[0]));const pr=["m6_p1","m6_p2","m6_p3"].filter(k=>s(k));const done=acts.filter(x=>x.done);
+  const empty=t=>`<p class="y27-empty">${t}</p>`;
+  return y27Hd(7,"Mon tableau de bord 2027","Tout ton plan au même endroit. Reviens-y chaque mois pour cocher, ajuster et faire le point.")+
+  `<div class="y27-dash">
+   <div class="y27-dc y27-dprof"><span class="y27-dk">Mon profil</span><b>${esc(Y27_PROFILS[p].t)}</b><div class="y27-ring" style="--v:${P.global}"><span>${P.global}<small>%</small></span></div><span class="ref">de mon cahier rempli</span></div>
+   <div class="y27-dc"><span class="y27-dk">Mes objectifs 2027</span>${goals.length?`<ul>${goals.map(x=>`<li><span>${esc(x[1])}</span><b>${s(x[0])}</b></li>`).join("")}</ul>`:empty("Pas encore d'objectifs. <button type=\"button\" class=\"y27-link\" data-ygo=\"2\">Remplir ma vision →</button>")}</div>
+   <div class="y27-dc"><span class="y27-dk">Mes 3 priorités</span>${pr.length?`<ol>${pr.map(k=>`<li>${s(k)}</li>`).join("")}</ol>`:empty("À définir au module 6. <button type=\"button\" class=\"y27-link\" data-ygo=\"6\">Mon engagement →</button>")}${s("m6_premiere")?`<p class="y27-first"><span>Ma première action</span>${s("m6_premiere")}</p>`:""}</div>
+   <div class="y27-dc y27-wide"><span class="y27-dk">Mon plan de 30 jours</span><div class="y27-wbars">${Y27_SEMAINES.map((t,w)=>{const L=acts.filter(x=>x.w===w);const v=L.length?Math.round(L.filter(x=>x.done).length/L.length*100):0;return `<div><span>S${w+1} · ${esc(t)}</span><div class="t"><i style="width:${v}%"></i></div><em>${v} %</em></div>`;}).join("")}</div><button type="button" class="y27-link" data-ygo="4">Ouvrir mon plan →</button></div>
+   <div class="y27-dc"><span class="y27-dk">Ma progression</span><ul class="y27-mods">${Y27_STEPS.slice(0,6).map((t,i)=>`<li><button type="button" class="y27-link" data-ygo="${i+1}">${esc(t)}</button><em>${P.mods[i]} %</em></li>`).join("")}</ul></div>
+   <div class="y27-dc"><span class="y27-dk">Mes actions réalisées · ${done.length}</span>${done.length?`<ul class="y27-done">${done.slice(-8).reverse().map(x=>`<li>${esc(x.t)}</li>`).join("")}</ul>`:empty("Coche tes premières actions au module 4.")}</div>
+   <div class="y27-dc"><span class="y27-dk">Mon prochain bilan</span><label class="y27-q"><input class="y27-in" type="date" data-y="m7_bilan" value="${esc(y27v("m7_bilan"))}"></label><p class="ref" style="margin:0">Suggestion : à la fin du premier trimestre, le 31 mars 2027. Refais alors ton bilan et ajuste ton plan.</p></div>
+  </div>
+  <div class="y27-export"><div><h3>Mon plan personnel en PDF</h3><p class="ref" style="margin:0">Une page claire avec ta vision, ton plan de 30 jours, ta routine et ta déclaration. Choisis « Enregistrer en PDF » dans la fenêtre d'impression.</p></div><button type="button" class="btn" id="y27-pdf">Imprimer ou exporter en PDF</button></div>`;}
+
+function y27Doc(){const y=Y(),p=y.p||"start",a=y.a,acts=y27Actions(),P=y27Pct();const s=k=>esc(String(a[k]||"").trim());
+  const sec=(t,h)=>h?`<section><h2>${t}</h2>${h}</section>`:"";
+  const li=arr=>arr.length?`<ul>${arr.join("")}</ul>`:"";
+  const bilan=Y27_BILAN[p].filter(q=>s(q[0])).map(q=>`<li><b>${esc(q[1])}</b><br>${s(q[0])}</li>`);
+  const vis=Y27_VISION(p).filter(x=>s(x[0])).map(x=>`<li><b>${esc(x[1])} :</b> ${s(x[0])}</li>`);
+  const par=Y27_PARCOURS[p].map((x,i)=>{const k=`m3_${p}_${i}`;return `<li>${y.c[k]?"☑":"☐"} ${esc(x[0])}${s(k+"_n")?` <i>· ${s(k+"_n")}</i>`:""}</li>`;});
+  const plan=Y27_SEMAINES.map((t,w)=>`<div class="wk"><h3>Semaine ${w+1} · ${esc(t)}</h3>${s("m4_obj_"+w)?`<p><b>Objectif :</b> ${s("m4_obj_"+w)}</p>`:""}<ul>${acts.filter(x=>x.w===w).map(x=>`<li>${x.done?"☑":"☐"} ${esc(x.t)}</li>`).join("")}</ul>${s("m4_notes_"+w)?`<p><i>${s("m4_notes_"+w)}</i></p>`:""}</div>`).join("");
+  const rout=Y27_ROUT_Q(p).filter(q=>s(q[0])).map(q=>`<li><b>${esc(q[1])}</b> ${s(q[0])}</li>`);
+  if(s("m5_jours"))rout.unshift(`<li><b>Mes jours disponibles :</b> ${s("m5_jours").replace(/,/g,", ")}</li>`);
+  const sem=Y27_JOURS.filter(j=>String(y.r[j]||"").trim()).map(j=>`<tr><td>${j}</td><td>${esc(y.r[j])}</td></tr>`).join("");
+  return `<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Mon plan 2027${s("m6_nom")?" - "+s("m6_nom"):""}</title>
+<style>@page{size:letter;margin:16mm}*{box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact}body{font:13px/1.5 "Helvetica Neue",Arial,sans-serif;color:#1C1A17;margin:0}
+.hd{border-bottom:3px solid #1C1A17;padding-bottom:10px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:flex-end}.hd h1{font-size:30px;margin:0;letter-spacing:-.02em}.hd p{margin:4px 0 0;color:#6E665D}
+.pill{background:#EFE8DC;border-radius:99px;padding:4px 12px;font-weight:700;font-size:12px}
+section{margin:0 0 14px;break-inside:avoid}h2{font-size:15px;text-transform:uppercase;letter-spacing:.08em;color:#86663B;border-bottom:1px solid #E6DFD3;padding-bottom:4px;margin:0 0 8px}
+h3{font-size:13px;margin:0 0 4px}ul{margin:0;padding-left:18px}li{margin-bottom:4px}.wks{display:grid;grid-template-columns:1fr 1fr;gap:10px}.wk{border:1px solid #E6DFD3;border-radius:8px;padding:8px 10px;break-inside:avoid}.wk ul{list-style:none;padding:0}
+table{border-collapse:collapse;width:100%}td{border-bottom:1px solid #E6DFD3;padding:4px 6px;vertical-align:top}td:first-child{font-weight:700;width:90px}
+.decl{background:#F7F3EC;border-left:4px solid #86663B;padding:10px 14px;border-radius:6px}.decl p{margin:0 0 6px}.ft{margin-top:16px;color:#6E665D;font-size:11px}</style></head><body>
+<div class="hd"><div><h1>Mon plan 2027</h1><p>Le QG Limitless · Termine 2026 avec intention. Commence 2027 avec vision.</p></div><span class="pill">${esc(Y27_PROFILS[p].t)} · ${P.global} % rempli</span></div>
+${sec("Ma déclaration d'engagement",`<div class="decl">${y27Decl()}</div>`)}
+${sec("Ma vision 2027",li(vis)+(s("m2_pourquoi")?`<p><b>Pourquoi c'est important pour moi :</b> ${s("m2_pourquoi")}</p>`:""))}
+${sec("Mon bilan 2026",li(bilan))}
+${sec("Mon plan de développement",li(par))}
+<section><h2>Mon plan d'action de 30 jours</h2><div class="wks">${plan}</div></section>
+${sec("Ma routine entrepreneuriale",li(rout)+(sem?`<table>${sem}</table>`:""))}
+${s("m7_bilan")?sec("Mon prochain bilan",`<p>${s("m7_bilan")}</p>`):""}
+<p class="ft">Ces objectifs sont des intentions personnelles. Aucun revenu ni résultat n'est garanti. Imprimé le ${new Date().toLocaleDateString("fr-CA",{day:"numeric",month:"long",year:"numeric"})}.</p>
+<script>window.addEventListener("load",function(){setTimeout(function(){try{window.print()}catch(e){}},250)});<\/script></body></html>`;}
+function y27Print(){const html=y27Doc();const w=window.open("","_blank");
+  if(w){w.document.open();w.document.write(html);w.document.close();return;}
+  const f=document.createElement("iframe");f.style.cssText="position:fixed;right:0;bottom:0;width:0;height:0;border:0";document.body.appendChild(f);
+  f.contentDocument.open();f.contentDocument.write(html.replace(/<script>[\s\S]*?<\/script>/,""));f.contentDocument.close();
+  setTimeout(()=>{try{f.contentWindow.focus();f.contentWindow.print();}catch(e){}setTimeout(()=>f.remove(),60000);},500);}
+
+/* Événements du cahier 2027 */
+document.addEventListener("input",e=>{const t=e.target;if(!t.dataset)return;
+  if(t.dataset.y){Y().a[t.dataset.y]=t.value;y27Save();y27UpdateProg();}
+  else if(t.dataset.yr){Y().r[t.dataset.yr]=t.value;y27Save();y27UpdateProg();}});
+document.addEventListener("change",e=>{const t=e.target;if(t.dataset&&t.dataset.yc){Y().c[t.dataset.yc]=t.checked;y27Save(true);keepScroll(render);}});
+function y27Add(w){const inp=document.getElementById("y27-new-"+w);if(!inp)return;const v=inp.value.trim();if(!v){inp.focus();return;}
+  const y=Y();(y.add["w"+w]=y.add["w"+w]||[]).push({id:Date.now().toString(36)+Math.random().toString(36).slice(2,5),t:v.slice(0,140)});y27Save(true);keepScroll(render);
+  const n=document.getElementById("y27-new-"+w);if(n)n.focus();}
+document.addEventListener("keydown",e=>{const t=e.target;if(e.key==="Enter"&&t.dataset&&t.dataset.yaddin!==undefined){e.preventDefault();y27Add(t.dataset.yaddin);}});
+document.addEventListener("click",e=>{if(!e.target.closest)return;
+  const g=e.target.closest("[data-ygo]");
+  if(g){const y=Y(),v=g.dataset.ygo;y.step=(v==="intro"||v==="profil")?v:+v;if(typeof y.step==="number")y.lastStep=y.step;y27Save(true);render();
+    const mn=document.getElementById("main");if(mn)window.scrollTo({top:Math.max(0,mn.getBoundingClientRect().top+window.scrollY-90),behavior:"smooth"});return;}
+  const pr=e.target.closest("[data-yprof]");
+  if(pr){const y=Y();y.p=pr.dataset.yprof;if(y.step==="profil"||y.step==="intro")y.step=+y.lastStep||1;y.lastStep=y.step;y27Save(true);render();window.scrollTo(0,0);return;}
+  const ad=e.target.closest("[data-yadd]");if(ad){y27Add(ad.dataset.yadd);return;}
+  const dl=e.target.closest("[data-ydel]");
+  if(dl){const [w,id]=dl.dataset.ydel.split(":");const y=Y();y.add["w"+w]=(y.add["w"+w]||[]).filter(x=>x.id!==id);delete y.c["m4x_"+id];y27Save(true);keepScroll(render);return;}
+  const dy=e.target.closest("[data-yday]");
+  if(dy){const y=Y();const s=new Set((y.a.m5_jours||"").split(",").filter(Boolean));const d=dy.dataset.yday;s.has(d)?s.delete(d):s.add(d);
+    y.a.m5_jours=Y27_JOURS.filter(j=>s.has(j)).join(",");y27Save(true);keepScroll(render);return;}
+  if(e.target.closest("[data-yex]")){const y=Y(),p=y.p||"start";Y27_JOURS.forEach((j,i)=>{if(!String(y.r[j]||"").trim())y.r[j]=Y27_ROUTINE[p][i];});y27Save(true);keepScroll(render);return;}
+  if(e.target.closest("#y27-pdf")){clearTimeout(y27T);save();y27Print();return;}
+});
+/* 2027-ARRIVE-END */
 const VIEWS={
+y2027(m){return y27View(m);},
 accueil(m){
   const {p}=progress();
   const cards=CATS.map(c=>{
@@ -1607,6 +1975,7 @@ const IMG_VENTE="img/5fb255570889.webp";
 const SUB_IMG={"Claude AI":"img/fa4155825379.webp","Vendre et recruter":IMG_VENTE,get "Passer à l'action"(){return CAT_IMG.SOC;},"Créer ton contenu":"img/dfaf9cba40e6.webp","Les bases":"img/d0ff143b1038.webp"};
 const SUB_POS={"Vendre et recruter":"center 40%","Passer à l'action":"center 40%","Claude AI":"center 55%"};
 const MDESC={
+ y2027:"Ton bilan 2026, ta vision 2027 et ton plan d'action de 30 jours, adaptés à ton profil.",
  cahier:"Ton pourquoi, tes excuses, ton temps et ton engagement de 90 jours, à remplir ici ou à imprimer.",
  mindset:"Garder ta motivation les semaines tranquilles, gérer les refus et rester constante.",
  backoffice:"Les tutos du back office et les premières étapes pour démarrer ton entreprise.",
@@ -1903,7 +2272,7 @@ function dataUrlBlob(u){const [h,b]=u.split(",");const bin=atob(b);const a=new U
 const dlSlug=t=>t.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
 function showFallback(msg,url,label,img){msg.hidden=false;msg.innerHTML=`Le téléchargement direct ne fonctionne pas sur cet appareil. <a href="${url}" target="_blank" rel="noopener">${label}</a>, puis enregistre le fichier${img?" (sur téléphone : appui long sur l'image, puis « Enregistrer »)":""}.`;}
 document.addEventListener("input",e=>{if(e.target&&e.target.id==="rail-q"){railQ=e.target.value;applyRailFilter();}});
-const SYNC_KEYS=["done","days","interests","answers","brand","edits","yisPhase","seen","last"];
+const SYNC_KEYS=["done","days","interests","answers","brand","edits","yisPhase","seen","last","y27"];
 async function b64gz(str){const bytes=new TextEncoder().encode(str);let out=bytes;
   if(window.CompressionStream){const cs=new Blob([bytes]).stream().pipeThrough(new CompressionStream("gzip"));out=new Uint8Array(await new Response(cs).arrayBuffer());}
   let bin="";out.forEach(b=>bin+=String.fromCharCode(b));return (window.CompressionStream?"z":"p")+btoa(bin).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");}
@@ -1941,12 +2310,15 @@ function acctHTML(){
    ${ACCT.msg?`<p class="cz-msg">${esc(ACCT.msg)}</p>`:""}</div>`;
 }
 function acctRefresh(){const id=(location.hash||"#accueil").slice(1);if(id===""||id==="accueil")keepScroll(render);}
-const ACCT_KEYS=["done","days","interests","answers","brand","edits","yisPhase","seen","last","open"];
+const ACCT_KEYS=["done","days","interests","answers","brand","edits","yisPhase","seen","last","open","y27"];
 function acctPayload(){const o={};ACCT_KEYS.forEach(k=>{if(state[k]!==undefined)o[k]=state[k];});return o;}
 let acctTimer=null;
 function acctQueuePush(){if(!ACCT.email)return;clearTimeout(acctTimer);acctTimer=setTimeout(acctPush,1500);}
 async function acctPush(){if(!ACCT.email)return;try{const r=await fetch("/api/progress",{method:"PUT",credentials:"same-origin",headers:{"content-type":"application/json"},body:JSON.stringify(acctPayload())});if(r.status===401){ACCT.email=null;acctRefresh();}}catch(e){}}
 function mergeState(sv){if(!sv||typeof sv!=="object")return;
+  /* Cahier 2027 : un cahier laissé sur l'appareil par un autre compte n'est jamais fusionné; sinon la version la plus récente gagne. */
+  if(state.y27&&state.y27.owner&&ACCT.email&&state.y27.owner!==ACCT.email)delete state.y27;
+  if(sv.y27&&typeof sv.y27==="object"&&(!state.y27||(sv.y27.t||0)>(state.y27.t||0)))state.y27=sv.y27;
   const orMap=(a,b)=>{const o={...(a||{})};Object.entries(b||{}).forEach(([k,v])=>{if(v)o[k]=v;});return o;};
   const filled=o=>Object.fromEntries(Object.entries(o||{}).filter(([k,v])=>v!==""&&v!=null));
   state.done=orMap(sv.done,state.done);state.days=orMap(sv.days,state.days);
@@ -1985,8 +2357,12 @@ document.addEventListener("submit",async e=>{
 });
 document.addEventListener("click",async e=>{
   if(!(e.target.closest&&e.target.closest("#acct-out")))return;
+  clearTimeout(acctTimer);if(typeof y27T!=="undefined"&&y27T){clearTimeout(y27T);try{localStorage.setItem(KEY,JSON.stringify(state))}catch(err){}}await acctPush();
   try{await fetch("/api/logout",{method:"POST",credentials:"same-origin"});}catch(err){}
-  ACCT.email=null;ACCT.msg="Tu es déconnectée. Ta progression reste aussi sur cet appareil.";acctRefresh();
+  ACCT.email=null;
+  /* Ton plan 2027 reste privé : il est retiré de cet appareil et demeure dans ton compte. */
+  if(state.y27){delete state.y27;try{localStorage.setItem(KEY,JSON.stringify(state))}catch(err){}}
+  ACCT.msg="Tu es déconnectée. Ta progression reste aussi sur cet appareil, sauf ton cahier 2027, qui reste privé dans ton compte.";acctRefresh();
 });
 function keepScroll(fn){const y=window.scrollY;fn();window.scrollTo(0,y);}
 window.addEventListener("hashchange",()=>{if(ACCT.avail&&location.hash.startsWith("#login=")){acctVerify(location.hash.slice(7));return;}render();window.scrollTo(0,0);checkSyncHash();});
